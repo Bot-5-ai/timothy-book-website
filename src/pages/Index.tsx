@@ -10,12 +10,16 @@ import Footer from '../components/Footer';
 
 const Index = () => {
   useEffect(() => {
-    // Initialize AOS on component mount
+    // Initialize AOS on component mount with enhanced options
     const AOS = window.AOS;
     if (typeof AOS !== 'undefined') {
       AOS.init({ 
         duration: 800,
-        once: true
+        once: false,
+        mirror: true,
+        offset: 100,
+        easing: 'ease-in-out',
+        delay: 100
       });
     }
   }, []);
@@ -31,16 +35,16 @@ const Index = () => {
       
       <Navbar />
       <Hero />
-      <div className="bg-waves">
+      <div className="bg-waves section-transition" data-aos="fade-up" data-aos-duration="1200">
         <Summary />
       </div>
-      <div className="bg-dots">
+      <div className="bg-dots section-transition" data-aos="fade-up" data-aos-duration="1200">
         <Author />
       </div>
-      <div className="bg-circuit">
+      <div className="bg-circuit section-transition" data-aos="fade-up" data-aos-duration="1200">
         <Reviews />
       </div>
-      <div className="bg-confetti">
+      <div className="bg-confetti section-transition" data-aos="fade-up" data-aos-duration="1200">
         <Analysis />
       </div>
       <div className="bg-stripes">
