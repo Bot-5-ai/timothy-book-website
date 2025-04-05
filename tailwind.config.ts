@@ -40,6 +40,17 @@ export default {
 					800: '#002966',
 					900: '#001433',
 				},
+				// Added vibrant color palette
+				vibrant: {
+					pink: '#FF6B6B',
+					orange: '#FFA07A',
+					yellow: '#FFD700',
+					green: '#00FA9A',
+					teal: '#00F2FE',
+					cyan: '#4FACFE',
+					purple: '#8B5CF6',
+					magenta: '#D946EF',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'

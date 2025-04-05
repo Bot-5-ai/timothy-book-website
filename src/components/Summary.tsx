@@ -4,18 +4,18 @@ import { BookOpen } from 'lucide-react';
 
 const Summary = () => {
   return (
-    <section id="summary" className="py-20 px-4 bg-white">
+    <section id="summary" className="py-20 px-4 bg-gradient-to-b from-white to-purple-50">
       <div className="container mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 text-gray-800">
+          <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 gradient-text">
             Book Summary
           </h2>
-          <div className="w-20 h-1 bg-bookblue-500 mx-auto"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-bookblue-500 to-vibrant-magenta mx-auto"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+        <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden card-hover neon-shadow" data-aos="fade-up" data-aos-delay="200">
           <div className="md:flex">
-            <div className="md:flex-shrink-0 bg-gradient-to-br from-bookblue-400 to-bookblue-600 p-6 flex items-center justify-center md:w-64">
+            <div className="md:flex-shrink-0 bg-gradient-to-br from-vibrant-purple to-vibrant-magenta p-6 flex items-center justify-center md:w-64">
               <BookOpen className="h-20 w-20 text-white" />
             </div>
 
@@ -53,8 +53,8 @@ const Summary = () => {
         </div>
 
         <div className="mt-12 grid md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="400">
-          <div className="bg-bookblue-50 p-6 rounded-lg border border-bookblue-100">
-            <div className="text-bookblue-600 mb-2">
+          <div className="bg-gradient-to-br from-vibrant-cyan/10 to-vibrant-purple/10 backdrop-blur-sm p-6 rounded-lg border border-vibrant-cyan/20 shadow-lg card-hover">
+            <div className="text-vibrant-cyan mb-2">
               <i className="fas fa-lightbulb text-xl"></i>
             </div>
             <h4 className="font-merriweather font-bold text-lg mb-2">Key Themes</h4>
@@ -66,8 +66,8 @@ const Summary = () => {
             </ul>
           </div>
 
-          <div className="bg-bookblue-50 p-6 rounded-lg border border-bookblue-100">
-            <div className="text-bookblue-600 mb-2">
+          <div className="bg-gradient-to-br from-vibrant-magenta/10 to-vibrant-purple/10 backdrop-blur-sm p-6 rounded-lg border border-vibrant-magenta/20 shadow-lg card-hover">
+            <div className="text-vibrant-magenta mb-2">
               <i className="fas fa-users text-xl"></i>
             </div>
             <h4 className="font-merriweather font-bold text-lg mb-2">Main Arguments</h4>
@@ -79,8 +79,8 @@ const Summary = () => {
             </ul>
           </div>
 
-          <div className="bg-bookblue-50 p-6 rounded-lg border border-bookblue-100">
-            <div className="text-bookblue-600 mb-2">
+          <div className="bg-gradient-to-br from-vibrant-orange/10 to-vibrant-pink/10 backdrop-blur-sm p-6 rounded-lg border border-vibrant-orange/20 shadow-lg card-hover">
+            <div className="text-vibrant-orange mb-2">
               <i className="fas fa-clock text-xl"></i>
             </div>
             <h4 className="font-merriweather font-bold text-lg mb-2">Timeline Context</h4>

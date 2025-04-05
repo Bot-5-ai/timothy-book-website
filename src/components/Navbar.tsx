@@ -17,8 +17,8 @@ const Navbar = () => {
       // Update active section based on scroll position
       const sections = document.querySelectorAll('section[id]');
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY - 100;
+        const sectionHeight = section.getBoundingClientRect().height;
         const sectionId = section.getAttribute('id') || '';
         
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -35,7 +35,7 @@ const Navbar = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: element.getBoundingClientRect().top + window.scrollY - 80,
         behavior: 'smooth'
       });
     }
@@ -53,12 +53,14 @@ const Navbar = () => {
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md' : 'bg-transparent'
+        isScrolled 
+          ? 'bg-gradient-to-r from-bookblue-500/90 to-purple-500/90 backdrop-blur-md shadow-md' 
+          : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
-          <div className="text-bookblue-600 font-merriweather font-bold text-xl">
+          <div className="text-white font-merriweather font-bold text-xl">
             Book Analysis
           </div>
           
@@ -69,8 +71,8 @@ const Navbar = () => {
                 onClick={() => scrollToSection(item.id)}
                 className={`px-4 py-2 rounded-lg flex items-center transition-colors ${
                   activeSection === item.id 
-                    ? 'bg-bookblue-100 text-bookblue-700 font-medium' 
-                    : 'text-gray-600 hover:bg-gray-100'
+                    ? 'bg-white text-bookblue-700 font-medium shadow-md' 
+                    : 'text-white hover:bg-white/20'
                 }`}
               >
                 {item.icon}
@@ -87,8 +89,8 @@ const Navbar = () => {
                   onClick={() => scrollToSection(item.id)}
                   className={`p-2 rounded-full transition-colors ${
                     activeSection === item.id 
-                      ? 'bg-bookblue-100 text-bookblue-700' 
-                      : 'text-gray-600 hover:bg-gray-100'
+                      ? 'bg-white text-bookblue-700' 
+                      : 'text-white hover:bg-white/20'
                   }`}
                 >
                   {item.icon}

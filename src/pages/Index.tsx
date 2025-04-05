@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 const Index = () => {
   useEffect(() => {
     // Initialize AOS on component mount
+    const AOS = window.AOS;
     if (typeof AOS !== 'undefined') {
       AOS.init({ 
         duration: 800,
