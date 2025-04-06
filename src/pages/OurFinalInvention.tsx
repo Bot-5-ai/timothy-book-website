@@ -9,6 +9,7 @@ import Summary from '../components/Summary';
 import Author from '../components/Author';
 import Reviews from '../components/Reviews';
 import Analysis from '../components/Analysis';
+import DangerSection from '../components/DangerSection';
 import Footer from '../components/Footer';
 
 const OurFinalInvention = () => {
@@ -134,6 +135,10 @@ const OurFinalInvention = () => {
           <div className="absolute inset-0 ai-overlay circuit-overlay"></div>
           <Reviews />
         </div>
+        
+        {/* New Dangers Section */}
+        <DangerSection />
+        
         <div className="bg-ai-binary section-transition relative" data-aos="fade-up" data-aos-duration="1200">
           <div className="absolute inset-0 ai-overlay binary-overlay"></div>
           <Analysis />
@@ -157,6 +162,7 @@ const OurFinalInvention = () => {
             <p className="text-sm text-blue-300 mb-2 typing-animation">Hello human. Exploring AI concepts?</p>
             <div className="flex gap-2 mt-2">
               <a href="#summary" className="text-xs px-3 py-1 bg-purple-600/50 hover:bg-purple-600 rounded-full transition-all">Summary</a>
+              <a href="#dangers" className="text-xs px-3 py-1 bg-red-600/50 hover:bg-red-600 rounded-full transition-all">Dangers</a>
               <a href="#analysis" className="text-xs px-3 py-1 bg-blue-600/50 hover:bg-blue-600 rounded-full transition-all">Analysis</a>
             </div>
           </div>
