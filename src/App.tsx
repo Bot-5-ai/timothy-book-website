@@ -9,6 +9,7 @@ import OurFinalInvention from "./pages/OurFinalInvention";
 import SecondBook from "./pages/SecondBook";
 import NotFound from "./pages/NotFound";
 
+// Create a new QueryClient instance outside of the component
 const queryClient = new QueryClient();
 
 const App = () => (
