@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -28,6 +28,12 @@
     
     <!-- AOS - Animate On Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Particles.js for interactive particles -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Three.js for 3D effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   </head>
 
   <body>
@@ -38,9 +44,22 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS with persistent animations
         AOS.init({
           duration: 800,
-          once: true
+          once: true, // Elements will animate only once
+          offset: 100
+        });
+        
+        // Add event listeners for interactive AI elements
+        const aiElements = document.querySelectorAll('.ai-interactive');
+        aiElements.forEach(element => {
+          element.addEventListener('mouseenter', () => {
+            element.classList.add('highlight-glow');
+          });
+          element.addEventListener('mouseleave', () => {
+            element.classList.remove('highlight-glow');
+          });
         });
       });
     </script>
