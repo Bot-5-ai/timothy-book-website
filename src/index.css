@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,4 +99,104 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* AI-themed Background Patterns */
+.bg-ai-grid {
+  background-color: #fcfcfc;
+  background-image: 
+    linear-gradient(rgba(0, 0, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-ai-neural {
+  background-color: #f8f9fa;
+  background-image: radial-gradient(rgba(120, 120, 255, 0.15) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.bg-ai-circuit {
+  background-color: #fcfcfc;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-ai-binary {
+  background-color: #fcfcfc;
+  background-image: repeating-linear-gradient(45deg, rgba(0, 0, 255, 0.03), rgba(0, 0, 255, 0.03) 1px, #fcfcfc 1px, #fcfcfc 10px);
+}
+
+.bg-ai-matrix {
+  background-color: #f9fafb;
+  background-image: 
+    linear-gradient(180deg, rgba(100, 100, 225, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 100, 225, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Binary rain animation */
+.binary-rain {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: rgba(0, 200, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.binary-rain::before {
+  content: "01010111 00100000 01000001 01001001 00100000 01001001 01010011 00100000 01010100 01001000 01000101 00100000 01000110 01010101 01010100 01010101 01010010 01000101";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  word-break: break-all;
+  animation: scroll-down 120s linear infinite;
+  transform-origin: 50% 0%;
+}
+
+/* AI circuit decoration lines */
+.circuit-lines-vertical {
+  background-image: linear-gradient(180deg, transparent 10px, rgba(100, 100, 255, 0.2) 10px, rgba(100, 100, 255, 0.2) 11px, transparent 11px);
+  background-size: 100% 20px;
+}
+
+/* Animation keyframes */
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Custom animations */
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
