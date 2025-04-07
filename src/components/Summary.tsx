@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { BookOpen, Circuit, Cpu, BrainCircuit } from 'lucide-react';
+import { BookOpen, Cpu, BrainCircuit } from 'lucide-react';
 
 const Summary = () => {
   return (

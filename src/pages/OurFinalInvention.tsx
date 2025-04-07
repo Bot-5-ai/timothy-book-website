@@ -126,14 +126,14 @@ const OurFinalInvention = () => {
     }
     
     // Add mousemove event for interactive binary code particles
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const particles = document.querySelectorAll('.ai-particle');
-      particles.forEach((particle: any) => {
-        const speed = particle.dataset.speed;
-        const x = (window.innerWidth - e.pageX * speed) / 100;
-        const y = (window.innerHeight - e.pageY * speed) / 100;
+      particles.forEach((particle: Element) => {
+        const speed = (particle as HTMLElement).dataset.speed;
+        const x = (window.innerWidth - e.pageX * Number(speed)) / 100;
+        const y = (window.innerHeight - e.pageY * Number(speed)) / 100;
         
-        particle.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        (particle as HTMLElement).style.transform = `translateX(${x}px) translateY(${y}px)`;
       });
     };
     
