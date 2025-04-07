@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Final Invention - Book Analysis</title>
+    <title>Book Analysis Project - Cartoony Library</title>
     <meta name="description" content="Analysis of James Barrat's Our Final Invention for English class" />
     <meta name="author" content="English Student" />
 
@@ -18,7 +17,7 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -34,6 +33,9 @@
     
     <!-- Three.js for 3D effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
     <style>
       /* Enhanced AI theme styles */
@@ -211,6 +213,66 @@
       .card-hover:hover {
         transform: translateY(-5px);
       }
+      
+      /* Cartoony Library Theme Styles */
+      .floating-book {
+        animation: float 4s ease-in-out infinite;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(var(--rotation, 0deg)); }
+        50% { transform: translateY(-15px) rotate(var(--rotation, 0deg)); }
+      }
+      
+      /* Book shelf wooden texture */
+      .bookshelf {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiM4QjQ1MTMiLz48cGF0aCBkPSJNMCAwaDIwbS0yMCAyMGgyMG0tMjAgMjBoMjBtLTIwIDIwaDIwbS0yMCAyMGgyMG0tMjAgMjBoMjBtLTIwIDIwaDIwbS0yMCAyMGgyMG0tMjAgMjBoMjBtLTIwIDIwaDIwIiBzdHJva2U9IiM2QjQyMjYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==');
+        background-repeat: repeat;
+      }
+      
+      /* Paper texture for background */
+      .paper-texture {
+        background-color: #fefaee;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e6c8a2' fill-opacity='0.06' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+      
+      /* Book spine styles */
+      .book-spine {
+        position: relative;
+        height: 120px;
+        margin: 0 4px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+      }
+      
+      .book-spine:hover {
+        transform: translateY(-5px);
+      }
+      
+      /* Reading cat animation */
+      .cat {
+        animation: cat-reading 4s ease-in-out infinite;
+      }
+      
+      @keyframes cat-reading {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-5px); }
+      }
+      
+      /* Book opening animation */
+      .book-open {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+      
+      .book-cover {
+        transition: transform 1s ease;
+        transform-origin: left;
+      }
+      
+      .book-open:hover .book-cover {
+        transform: rotateY(-60deg);
+      }
     </style>
   </head>
 
@@ -225,20 +287,81 @@
         // Initialize AOS with persistent animations
         AOS.init({
           duration: 800,
-          once: true, // Elements will animate only once
+          once: false, // Elements will animate multiple times
           offset: 100
         });
         
-        // Add event listeners for interactive AI elements
-        const aiElements = document.querySelectorAll('.ai-interactive');
-        aiElements.forEach(element => {
-          element.addEventListener('mouseenter', () => {
-            element.classList.add('highlight-glow');
-          });
-          element.addEventListener('mouseleave', () => {
-            element.classList.remove('highlight-glow');
-          });
-        });
+        // Add interactive bookshelf effect
+        const createBookshelf = () => {
+          const bookColors = ['#D32F2F', '#1976D2', '#388E3C', '#FFA000', '#7B1FA2', '#C2185B'];
+          const bookshelf = document.querySelector('.bookshelf');
+          
+          if (!bookshelf) return;
+          
+          for (let i = 0; i < 20; i++) {
+            const book = document.createElement('div');
+            const width = Math.floor(Math.random() * 30) + 20;
+            const colorIndex = Math.floor(Math.random() * bookColors.length);
+            
+            book.className = 'book-spine absolute bottom-0';
+            book.style.width = `${width}px`;
+            book.style.left = `${i * 35}px`;
+            book.style.backgroundColor = bookColors[colorIndex];
+            book.style.zIndex = '5';
+            
+            bookshelf.appendChild(book);
+          }
+        };
+        
+        // Create floating paper effect
+        const createFloatingPapers = () => {
+          const container = document.querySelector('#root');
+          if (!container) return;
+          
+          for (let i = 0; i < 10; i++) {
+            const paper = document.createElement('div');
+            paper.className = 'absolute pointer-events-none';
+            paper.style.width = '20px';
+            paper.style.height = '25px';
+            paper.style.backgroundColor = '#fff';
+            paper.style.boxShadow = '0 1px 3px rgba(0,0,0,0.12)';
+            paper.style.borderRadius = '2px';
+            paper.style.opacity = '0.7';
+            paper.style.left = `${Math.random() * 90 + 5}%`;
+            paper.style.top = `${Math.random() * 90 + 5}%`;
+            paper.style.animation = `float ${4 + Math.random() * 3}s ease-in-out infinite`;
+            paper.style.animationDelay = `${Math.random() * 5}s`;
+            paper.style.transform = `rotate(${Math.random() * 360}deg)`;
+            paper.style.zIndex = '1';
+            
+            container.appendChild(paper);
+          }
+        };
+        
+        // Setup animated elements with GSAP
+        const setupAnimations = () => {
+          if (window.gsap) {
+            gsap.from(".book-card", {
+              duration: 0.8,
+              y: 50,
+              opacity: 0,
+              stagger: 0.2,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: ".book-card",
+                start: "top bottom",
+                toggleActions: "play none none none"
+              }
+            });
+          }
+        };
+        
+        // Call setup functions
+        setTimeout(() => {
+          createBookshelf();
+          createFloatingPapers();
+          setupAnimations();
+        }, 1000);
       });
     </script>
   </body>

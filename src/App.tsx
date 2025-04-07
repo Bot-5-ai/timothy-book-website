@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import OurFinalInvention from "./pages/OurFinalInvention";
 import SecondBook from "./pages/SecondBook";
 import NotFound from "./pages/NotFound";
+import './App.css';
 
 // Create a new QueryClient instance outside of the component
 const queryClient = new QueryClient();
