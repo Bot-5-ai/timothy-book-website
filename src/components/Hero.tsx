@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { ChevronDown, BrainCircuit, Circuit } from 'lucide-react';
+import { ChevronDown, BrainCircuit } from 'lucide-react';
 
-const Hero = () => {
+const Hero: React.FC = () => {
   const scrollToSummary = () => {
     const summarySection = document.getElementById('summary');
     if (summarySection) {
@@ -40,9 +40,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-40 left-30 w-20 h-20 animate-float-reverse opacity-70">
+      <div className="absolute bottom-40 left-[30px] w-20 h-20 animate-float-reverse opacity-70">
         <div className="rounded-lg bg-gradient-to-r from-green-500/30 to-cyan-400/30 p-3 backdrop-blur-sm border border-green-500/20 shadow-lg">
-          <span className="text-xs font-mono text-green-400">function ai() {</span>
+          <span className="text-xs font-mono text-green-400">function ai() {'{'}</span>
         </div>
       </div>
 
