@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BookOpen, Cpu, BrainCircuit } from 'lucide-react';
 
@@ -28,23 +29,23 @@ const Summary = () => {
 
               <div className="text-gray-300 space-y-4">
                 <p className="animate__animated animate__fadeIn">
-                  In "Our Final Invention," James Barrat explores the potential consequences of developing advanced artificial intelligence (AI). The book presents a cautionary view of how AI could evolve beyond human control and potentially pose existential risks to humanity.
+                  In the book "Our Final Invention", the author James Barrat talks about some of the risks of developing artificial intelligence that can surpass humans. The book presents a safe view of how AI can surpass the human mind that it can take control over use and maybe even pose a threat to our society.
                 </p>
                 
                 <p className="animate__animated animate__fadeIn animate__delay-1s">
-                  Barrat introduces the concept of <span className="text-cyan-300 hover:text-cyan-200 transition-colors">Artificial General Intelligence (AGI)</span> – AI systems that equal human intelligence – and <span className="text-blue-300 hover:text-blue-200 transition-colors">Artificial Superintelligence (ASI)</span> – AI that far surpasses human abilities. He argues that once we create AGI, the leap to ASI may happen rapidly and unpredictably.
+                  Barrat educates us on something that is known as <span className="text-cyan-300 hover:text-cyan-200 transition-colors">Artificial General Intelligence (AGI)</span> - AI systems that are equal to human intelligence and <span className="text-blue-300 hover:text-blue-200 transition-colors">Artificial Super Intelligence (ASI)</span> - AI systems that can surpass human knowledge. James Barrat talks about once when we develop AGI, developing ASI may happen too quickly.
                 </p>
                 
                 <p className="animate__animated animate__fadeIn animate__delay-2s">
-                  The central concern of the book is the "control problem": how can humans ensure that superintelligent machines remain aligned with human values and goals? Barrat interviews AI researchers, philosophers, and scientists who share various perspectives on this challenge.
+                  The main problem that Barrat shares in his novel is something known as the "control problem". Which is how can us humans make sure that superintelligent machines share the same values and goals as us? Barrat interviews many researchers of AI, some philosophers and scientists who have different perspectives on this challenge.
                 </p>
                 
                 <p className="animate__animated animate__fadeIn animate__delay-3s">
-                  Through examining current AI development trends, government initiatives, and private industry research, Barrat makes a compelling case that we need to prioritize AI safety research before we reach technological breakthroughs that could lead to uncontrollable intelligence.
+                  By checking over trends of AI development, initiatives from the government and private industry research, Barrat makes a case on how we need to make sure that we need to do AI safety research so that when we reach technological breakthroughs, we can control the intelligence.
                 </p>
 
                 <p className="animate__animated animate__fadeIn animate__delay-4s">
-                  The book concludes with recommendations for responsible AI development, emphasizing the importance of transparency, international cooperation, and ethical frameworks to guide our creation of increasingly powerful AI systems.
+                  This book finishes off with recommendations for AI research and development. Barrat really emphasizes on how we should build AI so that it will work in our favor and following rules on what is right and what is wrong.
                 </p>
               </div>
             </div>

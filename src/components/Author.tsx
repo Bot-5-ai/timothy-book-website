@@ -28,15 +28,15 @@ const Author = () => {
               
               <div className="p-8 md:w-2/3">
                 <p className="text-gray-700 mb-4">
-                  James Barrat is an American documentary filmmaker and author who has created films for National Geographic, Discovery, PBS, and other broadcasters in the United States and Europe. His book "Our Final Invention: Artificial Intelligence and the End of the Human Era" explores the potential existential risks of advanced artificial intelligence.
+                  James Barrat is a documentary filmmaker and author living in America. He has created films for National Geographic, Discovery, PBS and other broadcasters that are from America and Europe. His book that he wrote titled "Our Final Invention" talks about the risks of us humans developing AI that are too advanced.
                 </p>
                 
                 <p className="text-gray-700 mb-4">
-                  Barrat became interested in AI risks after interviewing experts like Ray Kurzweil and others for various documentary projects. His concern grew as he learned about the rapid development of AI technologies and what he perceived as inadequate attention to safety protocols.
+                  Barrat was interested in the risks of AI after he had interviewed multiple experts such as Ray Kurzweil and others for some of his documentary projects. He has a growing concern after those interviews as he learned a lot about AI developing too quickly and he fears that we don't pay attention to safety protocols when trying to develop stronger AI.
                 </p>
                 
                 <p className="text-gray-700">
-                  Through his work, Barrat aims to raise awareness about both the promises and perils of advanced AI development. He has become a notable voice in the AI safety movement, advocating for more research into making AI systems beneficial and aligned with human values.
+                  Through his work, Barrat wants to raise more awareness about what can happen to mankind if we don't get a grasp of AI development. His voice is very well known to build better safety for AI and calls for more research so that we build AI to help us and respects our values.
                 </p>
               </div>
             </div>
