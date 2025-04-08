@@ -22,6 +22,8 @@ export default {
 			fontFamily: {
 				'merriweather': ['Merriweather', 'serif'],
 				'roboto': ['Roboto', 'sans-serif'],
+				'cinzel': ['Cinzel', 'serif'],
+				'medieval': ['Metamorphous', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -39,6 +41,15 @@ export default {
 					700: '#003d99',
 					800: '#002966',
 					900: '#001433',
+				},
+				// Medieval theme colors
+				medieval: {
+					dark: '#1a1407',
+					'dark-alt': '#241e11',
+					gold: 'rgb(212, 175, 55)',
+					light: '#f0e6d2',
+					parchment: '#f5e8c9',
+					red: '#8b0000',
 				},
 				// Added vibrant color palette
 				vibrant: {
@@ -101,13 +112,24 @@ export default {
 				'pulse-light': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.8' },
-				}
+				},
+				'dragon-flight': {
+					'0%': { transform: 'translate(-100%, 0) rotate(5deg)' },
+					'50%': { transform: 'translate(400%, -50px) rotate(-5deg)' },
+					'100%': { transform: 'translate(1000%, 0) rotate(5deg)' },
+				},
+				'torch-flicker': {
+					'0%, 100%': { filter: 'brightness(1) drop-shadow(0 0 10px rgba(255, 165, 0, 0.8))' },
+					'50%': { filter: 'brightness(0.8) drop-shadow(0 0 5px rgba(255, 165, 0, 0.5))' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 3s ease-in-out infinite',
-				'pulse-light': 'pulse-light 2s ease-in-out infinite'
+				'pulse-light': 'pulse-light 2s ease-in-out infinite',
+				'dragon-flight': 'dragon-flight 30s ease-in-out infinite',
+				'torch-flicker': 'torch-flicker 3s ease-in-out infinite',
 			}
 		}
 	},
