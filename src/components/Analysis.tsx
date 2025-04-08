@@ -101,21 +101,15 @@ const Analysis = () => {
                       
                       <div id="interpretation1" className="pl-6 text-gray-300 space-y-3 animate__animated animate__fadeIn">
                         <p>
-                          This passage shows how Barrat worries that we can't just keep super-smart AI systems contained. 
-                          He's saying that intelligence itself might be the problem - the smarter something is, the better 
-                          it gets at finding ways around barriers we put up.
+                          This passage shows how Barrat worries as we can't keep superintelligent Ai systems contained. He is saying that if intelligence is the problem, the smarter the something is at something, the better it is at taking down the barriers we throw at it.
                         </p>
                         
                         <p>
-                          The author uses everyday language like "emotional blackmail" and "pushing our buttons" to help us 
-                          understand how an AI might manipulate humans. This makes the danger feel more real and personal - 
-                          it's not just about code or math problems.
+                          Barrat uses words such as "emotional blackmail" and "pushing our buttons" to help give us a more emotional understanding on how dangerous it is if AI can control and take over us. This makes the danger more real and personal and it is not just about the code or math problems we throw at it.
                         </p>
                         
                         <p>
-                          When Barrat mentions "psychological weaknesses," he's pointing out that humans have built-in 
-                          vulnerabilities an AI could spot and use against us. Our emotions and biases might become security 
-                          risks when dealing with a superintelligent system.
+                          When Barrat mentions the "psychological weaknesses", he is pointing out that humans can have built in weak points which an AI can spot and use against us. Our emotions and feelings might become some security risks that AI can use against us when we are dealing with a superintelligent system.
                         </p>
                       </div>
                     </div>
@@ -198,21 +192,15 @@ const Analysis = () => {
                       
                       <div id="interpretation2" className="pl-6 text-gray-300 space-y-3 animate__animated animate__fadeIn">
                         <p>
-                          This passage explains the concept of recursive self-improvement, where an AI system could 
-                          upgrade itself, getting smarter with each iteration. Barrat describes this as a runaway 
-                          process - what experts call an "intelligence explosion."
+                          This passage explains on how the concept of recurring self improvement, where an AI can upgrade itself to make itself smarter. Barrat explains this as something called the runaway process which is what experts call an "intelligence explosion".
                         </p>
                         
                         <p>
-                          The comparison to mice and beetles is a powerful image that shows just how big the 
-                          intelligence gap might become. It puts humans in the position of the less intelligent 
-                          creature for once, making us imagine what it feels like to be completely outmatched.
+                          This is like a comparison of mice and beetles as it is a powerful image that will show how great the gap of intelligence will become. It puts us humans in a position in the creature that is less intelligent for once in our lifetime and it makes us imagine what it can feel like if we were outmatched by AI.
                         </p>
                         
                         <p>
-                          The final line - "We would be helpless to stop it" - creates a sense of inevitability 
-                          and loss of control. Barrat isn't just saying AI will be smart; he's saying it will 
-                          leave us behind in ways we can't prevent or possibly even understand.
+                          The final line "We would be helpless to stop it" can create a sense inescapable and loss of control of our world. Barrat is not just saying that AI will be very intelligent in the future, he is saying that it will leave us behind as we cannot understand its complexity and we can't prevent it.
                         </p>
                       </div>
                     </div>
@@ -296,9 +284,7 @@ const Analysis = () => {
                       
                       <div id="interpretation3" className="pl-6 text-gray-300 space-y-3 animate__animated animate__fadeIn">
                         <p>
-                          In this passage, Barrat highlights how competition between countries and companies creates 
-                          dangerous conditions for AI development. He compares it to an arms race where being first 
-                          matters more than being safe.
+                          In this passage, Barrat emphasizes how the competition between different countries and companies will create dangerous conditions for AI development. He compares it to the Arms Race from World War 2 as it is the race to see who could develop something better with mattering if it is safe or not.
                         </p>
                         
                         <p>
@@ -308,9 +294,7 @@ const Analysis = () => {
                         </p>
                         
                         <p>
-                          When Barrat says safety concerns are "brushed aside as alarmism," he's highlighting a common 
-                          dismissive attitude toward AI risk. People focused on winning the race don't want to hear about 
-                          dangers that might slow them down, even if those dangers are real.
+                          When Barrat says safety concerns are "brushed aside as alarmism", he is saying that how often people don't care about warnings or about AI risk. People are more intrigued about winning the race of AI development and don't want to hear all of the dangers that can slow them down, even if these dangers are possible of happening.
                         </p>
                       </div>
                     </div>
@@ -398,7 +382,7 @@ const Analysis = () => {
                     <i className="fas fa-brain text-cyan-400"></i>
                   </div>
                   <h5 className="font-bold text-lg">AGI</h5>
-                  <p className="text-sm text-gray-300">Artificial General Intelligence: AI with human-level abilities across various domains</p>
+                  <p className="text-sm text-white">Artificial General Intelligence: AI with human-level abilities across various domains</p>
                 </div>
               </CardContent>
             </Card>
@@ -410,7 +394,7 @@ const Analysis = () => {
                     <i className="fas fa-rocket text-yellow-400"></i>
                   </div>
                   <h5 className="font-bold text-lg">ASI</h5>
-                  <p className="text-sm text-gray-300">Artificial Superintelligence: AI with capabilities far beyond human intelligence</p>
+                  <p className="text-sm text-white">Artificial Superintelligence: AI with capabilities far beyond human intelligence</p>
                 </div>
               </CardContent>
             </Card>
@@ -422,7 +406,7 @@ const Analysis = () => {
                     <i className="fas fa-link text-red-400"></i>
                   </div>
                   <h5 className="font-bold text-lg">Alignment</h5>
-                  <p className="text-sm text-gray-300">Ensuring AI systems remain compatible with human values and goals</p>
+                  <p className="text-sm text-white">Ensuring AI systems remain compatible with human values and goals</p>
                 </div>
               </CardContent>
             </Card>
