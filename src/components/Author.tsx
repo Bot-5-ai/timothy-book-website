@@ -18,8 +18,12 @@ const Author = () => {
             <div className="md:flex items-center">
               <div className="md:w-1/3 bg-gradient-to-br from-bookblue-400 to-bookblue-600 py-8 px-6">
                 <div className="text-center">
-                  <div className="inline-block rounded-full border-4 border-white p-2 mb-4">
-                    <User className="h-16 w-16 text-white" />
+                  <div className="inline-block rounded-full border-4 border-white p-2 mb-4 overflow-hidden">
+                    <img 
+                      src="/lovable-uploads/bf953bbd-2af1-455e-8b7c-bf24f14e79a1.png" 
+                      alt="James Barrat"
+                      className="h-48 w-48 rounded-full object-cover"
+                    />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-1">James Barrat</h3>
                   <p className="text-bookblue-100">Author & Documentarian</p>

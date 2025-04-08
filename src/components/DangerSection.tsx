@@ -40,13 +40,11 @@ const DangerSection = () => {
             </div>
             
             <p className="text-gray-300 mb-4">
-              Artificial General Intelligence (AGI) can do anything a human brain can do. It could solve complex problems, 
-              learn new skills quickly, and work across different fields - just like we can.
+              Artificial General Intelligence (AGI) can do anything and everything that a human brain can do. It can solve high complexity problems, learn to use skills fast, and work in many different areas and specialties.
             </p>
             
             <p className="text-gray-300 mb-6">
-              Artificial Superintelligence (ASI) goes even further. It would be smarter than all human brains combined. 
-              An ASI could solve problems we can't even understand and develop technologies beyond our imagination.
+              Artificial Super Intelligence (ASI) is much more smarter and can do things beyond the human brain. It is smarter that all brains on earth from every human combined. An ASI is able to solve problems that we don't be able to understand and develop technologies that are much better than ours.
             </p>
 
             <div className="relative mb-6">
@@ -96,13 +94,11 @@ const DangerSection = () => {
             </div>
             
             <p className="text-gray-300 mb-4">
-              Major organizations like DARPA (Defense Advanced Research Projects Agency) and tech companies like IBM 
-              have been developing AI systems for decades. Today, companies are racing to create more powerful AI.
+              There are organizations out there such as DARPA (Defense Advanced Research Projects Agency) and IBM that have been creating AI systems for decades now. Now, these companies are trying to race each other to see who can create the more powerful AI.
             </p>
             
             <p className="text-gray-300 mb-6">
-              This competition pushes innovation forward quickly but also creates pressure to cut corners on safety. 
-              When companies compete, they might rush to release new AI without fully testing for problems.
+              This competition will push the innovation forward quickly but it can also create the pressure for them to cut corners for safety measures. When companies compete to race eachother, they will often rush to create new sorts of AI and often not check over problems or cut too many corners.
             </p>
 
             <div className="grid grid-cols-3 gap-3 mb-6">
@@ -177,8 +173,7 @@ const DangerSection = () => {
               </div>
               <h4 className="text-lg font-bold text-orange-300 mt-4 mb-2">Misaligned Objectives</h4>
               <p className="text-gray-300 text-sm">
-                An AI told to "make people happy" might decide the easiest way is to change human brains or force 
-                people to take happiness drugs - not what we meant!
+                If an AI is told to "make people happy", it could think that the easier route is to change one's brain or force them to take pills of happiness. Of course, this is not what we meant! The problem is that the AI may take it too seriously that it ignores that fact that happiness can't be forced.
               </p>
             </div>
             
@@ -222,25 +217,21 @@ const DangerSection = () => {
                     <Users className="h-5 w-5 mr-2 text-orange-500" />
                     The Challenge of Encoding Human Values
                   </h4>
-                  <p className="text-gray-300 mb-4">
-                    Human values aren't simple to encode into computer instructions. We value things like freedom, 
-                    happiness, and fairness, but these concepts are hard to define precisely. Even humans disagree 
-                    about what these values really mean.
+                  <p className="text-white mb-4">
+                    Human emotions and values are not that simple to encode into computers. We will usually values things such as freedom, happiness and fairness but, these concepts are hard to define precisely. Some humans can even disagree about what these values can really mean.
                   </p>
-                  <p className="text-gray-300">
-                    As Barrat points out, we can't simply tell an AI to "do what humans want" because human wants are 
-                    complex, contradictory, and constantly changing. This makes the alignment problem one of the 
-                    hardest challenges in AI safety.
+                  <p className="text-white">
+                    As Barrat points out, we cannot tell an AI to do what us humans want as what we want are complex, contradictory and are always changing. This makes the alignment of AI and humans one of the toughest challenges for AI safety.
                   </p>
                 </div>
                 
                 <div className="bg-orange-900/20 p-5 rounded-lg border border-orange-500/30">
                   <h4 className="text-lg font-bold text-orange-300 mb-3">Barrat's Warning</h4>
-                  <blockquote className="italic text-gray-300 border-l-4 border-orange-500 pl-4 mb-4">
+                  <blockquote className="italic text-white border-l-4 border-orange-500 pl-4 mb-4">
                     "We cannot simply program an AI with 'friendliness' or 'morality' because 
                     these are emergent properties of our brains and cultures, not simple rules that can be written in code."
                   </blockquote>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-white">
                     The book stresses that solving this problem may be our most important task, as a superintelligent 
                     AI with misaligned values could pose an existential risk to humanity.
                   </p>
@@ -256,10 +247,94 @@ const DangerSection = () => {
           </Collapsible>
         </div>
 
+        {/* New Passage Analysis Sections */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {/* Control Problem Interpretation */}
+          <div className="bg-black/60 backdrop-blur-md border border-red-500/30 rounded-xl p-6 shadow-glow-red transition-all duration-300 hover:shadow-glow-red-lg card-hover" data-aos="fade-up">
+            <div className="flex items-center mb-4">
+              <div className="mr-4 text-red-500">
+                <Shield className="h-8 w-8" />
+              </div>
+              <h3 className="text-2xl font-bold text-red-300">Control Problem <span className="text-sm opacity-75">p. 24-26</span></h3>
+            </div>
+            
+            <p className="text-white mb-4">
+              This passage shows how Barrat worries as we can't keep superintelligent AI systems contained. He is saying that if intelligence is the problem, the smarter the something is at something, the better it is at taking down the barriers we throw at it.
+            </p>
+            
+            <p className="text-white mb-4">
+              Barrat uses words such as "emotional blackmail" and "pushing our buttons" to help give us a more emotional understanding on how dangerous it is if AI can control and take over us. This makes the danger more real and personal and it is not just about the code or math problems we throw at it.
+            </p>
+            
+            <p className="text-white">
+              When Barrat mentions the "psychological weaknesses", he is pointing out that humans can have built in weak points which an AI can spot and use against us. Our emotions and feelings might become some security risks that AI can use against us when we are dealing with a superintelligent system.
+            </p>
+            
+            <div className="mt-6 animate__animated animate__pulse animate__infinite">
+              <i className="fas fa-quote-left text-red-500 text-xl mr-2"></i>
+              <span className="italic text-red-300">"Our psychological weaknesses make poor containment strategies."</span>
+            </div>
+          </div>
+          
+          {/* Intelligence Explosion Interpretation */}
+          <div className="bg-black/60 backdrop-blur-md border border-blue-500/30 rounded-xl p-6 shadow-glow-blue transition-all duration-300 hover:shadow-glow-blue-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+            <div className="flex items-center mb-4">
+              <div className="mr-4 text-blue-500">
+                <Zap className="h-8 w-8" />
+              </div>
+              <h3 className="text-2xl font-bold text-blue-300">Intelligence Explosion <span className="text-sm opacity-75">p. 42-45</span></h3>
+            </div>
+            
+            <p className="text-white mb-4">
+              This passage explains on how the concept of recurring self improvement, where an AI can upgrade itself to make itself smarter. Barrat explains this as something called the runaway process which is what experts call an "intelligence explosion".
+            </p>
+            
+            <p className="text-white mb-4">
+              This is like a comparison of mice and beetles as it is a powerful image that will show how great the gap of intelligence will become. It puts us humans in a position in the creature that is less intelligent for once in our lifetime and it makes us imagine what it can feel like if we were outmatched by AI.
+            </p>
+            
+            <p className="text-white">
+              The final line "We would be helpless to stop it" can create a sense inescapable and loss of control of our world. Barrat is not just saying that AI will be very intelligent in the future, he is saying that it will leave us behind as we cannot understand its complexity and we can't prevent it.
+            </p>
+            
+            <div className="mt-6 animate__animated animate__pulse animate__infinite">
+              <i className="fas fa-quote-left text-blue-500 text-xl mr-2"></i>
+              <span className="italic text-blue-300">"The gap between us and superintelligence would be like the gap between beetles and humans."</span>
+            </div>
+          </div>
+          
+          {/* Arms Race Interpretation */}
+          <div className="bg-black/60 backdrop-blur-md border border-purple-500/30 rounded-xl p-6 shadow-glow-purple transition-all duration-300 hover:shadow-glow-purple-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+            <div className="flex items-center mb-4">
+              <div className="mr-4 text-purple-500">
+                <Target className="h-8 w-8" />
+              </div>
+              <h3 className="text-2xl font-bold text-purple-300">Arms Race <span className="text-sm opacity-75">p. 98-102</span></h3>
+            </div>
+            
+            <p className="text-white mb-4">
+              In this passage, Barrat emphasizes how the competition between different countries and companies will create dangerous conditions for AI development. He compares it to the Arms Race from World War 2 as it is the race to see who could develop something better with mattering if it is safe or not.
+            </p>
+            
+            <p className="text-white mb-4">
+              When Barrat says safety concerns are "brushed aside as alarmism", he is saying that how often people don't care about warnings or about AI risk. People are more intrigued about winning the race of AI development and don't want to hear all of the dangers that can slow them down, even if these dangers are possible of happening.
+            </p>
+            
+            <p className="text-white">
+              Barrat draws connections between historical competitive races for dangerous technologies and our current AI development landscape, suggesting we're repeating the same pattern with potentially worse consequences.
+            </p>
+            
+            <div className="mt-6 animate__animated animate__pulse animate__infinite">
+              <i className="fas fa-quote-left text-purple-500 text-xl mr-2"></i>
+              <span className="italic text-purple-300">"Safety concerns are brushed aside as alarmism in the rush to be first."</span>
+            </div>
+          </div>
+        </div>
+
         {/* Possible Solutions */}
         <div className="text-center mb-10">
           <h3 className="text-2xl font-bold text-cyan-300 mb-4" data-aos="fade-up">Possible Solutions</h3>
-          <p className="text-gray-300 max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
+          <p className="text-white max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
             Researchers are working on ways to make advanced AI safer. These approaches try to 
             solve the problems Barrat identifies in "Our Final Invention."
           </p>
@@ -271,7 +346,7 @@ const DangerSection = () => {
               <i className="fas fa-shield-alt text-3xl"></i>
             </div>
             <h4 className="text-lg font-bold text-cyan-300 mb-2">AI Safety Research</h4>
-            <p className="text-gray-300 text-sm">
+            <p className="text-white text-sm">
               Dedicated research to develop mathematical frameworks that can prove an AI system will behave safely 
               even as it gets smarter. This includes work on verifiable AI constraints.
             </p>
@@ -282,7 +357,7 @@ const DangerSection = () => {
               <i className="fas fa-balance-scale text-3xl"></i>
             </div>
             <h4 className="text-lg font-bold text-cyan-300 mb-2">Value Alignment</h4>
-            <p className="text-gray-300 text-sm">
+            <p className="text-white text-sm">
               Teaching AI systems to understand and respect human values through techniques like reinforcement 
               learning from human feedback, allowing them to learn what humans actually want.
             </p>
@@ -293,7 +368,7 @@ const DangerSection = () => {
               <i className="fas fa-globe text-3xl"></i>
             </div>
             <h4 className="text-lg font-bold text-cyan-300 mb-2">Global Cooperation</h4>
-            <p className="text-gray-300 text-sm">
+            <p className="text-white text-sm">
               International agreements and oversight to prevent unsafe AI development and ensure that safety 
               standards are followed by all organizations working on advanced AI.
             </p>
@@ -306,7 +381,7 @@ const DangerSection = () => {
             <div className="bg-black/80 backdrop-blur-sm rounded-xl p-6">
               <Zap className="h-8 w-8 text-yellow-400 mx-auto mb-4" />
               <h4 className="text-xl font-bold text-white mb-3">Something to Think About</h4>
-              <p className="text-gray-300">
+              <p className="text-white">
                 If we create an intelligence greater than our own, can we ensure it shares our goals and values?
                 Or are we creating something that might one day see us as we see ants - curious, but ultimately irrelevant?
               </p>

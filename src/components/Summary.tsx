@@ -16,7 +16,14 @@ const Summary = () => {
         <div className="max-w-4xl mx-auto backdrop-blur-md bg-black/40 border border-blue-500/20 rounded-xl shadow-lg overflow-hidden card-hover shadow-cyan-500/20" data-aos="fade-up" data-aos-delay="200">
           <div className="md:flex">
             <div className="md:flex-shrink-0 bg-gradient-to-br from-blue-600/30 to-cyan-500/30 p-6 flex items-center justify-center md:w-64 border-r border-blue-500/20">
-              <BrainCircuit className="h-20 w-20 text-cyan-400" />
+              <div className="relative">
+                <img 
+                  src="/lovable-uploads/e24a62e6-7820-423b-8b2b-15176df81136.png"
+                  alt="Our Final Invention Book Cover" 
+                  className="max-h-80 shadow-lg rounded-lg animate__animated animate__fadeIn"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
+              </div>
             </div>
 
             <div className="p-8">
@@ -37,7 +44,7 @@ const Summary = () => {
                 </p>
                 
                 <p className="animate__animated animate__fadeIn animate__delay-2s">
-                  The main problem that Barrat shares in his novel is something known as the "control problem". Which is how can us humans make sure that superintelligent machines share the same values and goals as us? Barrat interviews many researchers of AI, some philosophers and scientists who have different perspectives on this challenge.
+                  The main problem that Barrat shares in his novel is something known as the "Control Problem". Which is how can us humans make sure that superintelligent machines share the same values and goals as us? Barrat interviews many researchers of AI, some philosophers and scientists who have different perspectives on this challenge.
                 </p>
                 
                 <p className="animate__animated animate__fadeIn animate__delay-3s">
@@ -84,7 +91,7 @@ const Summary = () => {
               <i className="fas fa-clock text-xl mr-3"></i>
               <h4 className="font-merriweather font-bold text-lg">Timeline Context</h4>
             </div>
-            <ul className="list-none text-gray-300 space-y-2">
+            <ul className="list-none text-white space-y-2">
               <li className="flex items-center"><i className="fas fa-calendar-alt text-green-500 mr-2"></i>Published in 2013</li>
               <li className="flex items-center"><i className="fas fa-calendar-alt text-green-500 mr-2"></i>Precedes recent AI breakthroughs</li>
               <li className="flex items-center"><i className="fas fa-calendar-alt text-green-500 mr-2"></i>Remains relevant in current AI discourse</li>
