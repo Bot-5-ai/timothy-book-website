@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BrainCircuit, Cpu, Terminal, Binary, Atom, MoveRight, Code } from 'lucide-react';
@@ -6,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Summary from '../components/Summary';
-import Author from '../components/Author';
 import Reviews from '../components/Reviews';
 import Analysis from '../components/Analysis';
 import DangerSection from '../components/DangerSection';
@@ -315,12 +313,6 @@ const OurFinalInvention = () => {
           <AuthorBio />
         </div>
         
-        {/* Original Author Section */}
-        <div className="bg-ai-neural section-transition relative" data-aos="fade-up" data-aos-duration="1200">
-          <div className="absolute inset-0 ai-overlay neural-overlay"></div>
-          <Author />
-        </div>
-
         {/* AI Risk Visualization Section */}
         <div className="bg-ai-binary section-transition relative" data-aos="fade-up" data-aos-duration="1200">
           <div className="absolute inset-0 ai-overlay binary-overlay"></div>
