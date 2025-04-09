@@ -1,346 +1,483 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, Swords, Scroll, Feather } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const SecondBook = () => {
   useEffect(() => {
-    // Initialize AOS on component mount
-    const AOS = window.AOS;
-    if (typeof AOS !== 'undefined') {
-      AOS.init({ 
-        duration: 800,
-        once: false,
-        mirror: true,
-        offset: 100,
-        easing: 'ease-in-out',
-        delay: 100
+    // Initialize AOS
+    if (typeof window.AOS !== 'undefined') {
+      window.AOS.init({
+        duration: 1000,
+        once: false
       });
     }
 
-    // Initialize particles.js for background effects
-    const particlesJS = window.particlesJS;
-    if (typeof particlesJS !== 'undefined') {
-      particlesJS('particles-js', {
-        particles: {
-          number: { value: 15, density: { enable: true, value_area: 800 } },
-          color: { value: '#d4af37' },
-          shape: { type: 'circle' },
-          opacity: { value: 0.5, random: true },
-          size: { value: 3, random: true },
-          move: {
-            enable: true,
-            speed: 2,
-            direction: 'none',
-            random: true,
-            out_mode: 'out'
-          }
+    // Parchment effect
+    if (typeof window.parchment !== 'undefined') {
+      document.querySelectorAll('.parchment').forEach((el) => {
+        window.parchment.init(el);
+      });
+    }
+
+    // Initialize GSAP animations
+    if (typeof window.gsap !== 'undefined') {
+      window.gsap.from(".hero-text", { 
+        duration: 1.5, 
+        y: 100, 
+        opacity: 0, 
+        stagger: 0.25,
+        ease: "power3.out"
+      });
+
+      window.gsap.from(".dragon-image", { 
+        duration: 2, 
+        scale: 0.5, 
+        opacity: 0, 
+        rotation: 10,
+        ease: "back.out(1.7)"
+      });
+
+      // Animate the dragon flight across the screen
+      window.gsap.to(".flying-dragon", {
+        x: window.innerWidth + 300, 
+        duration: 20, 
+        repeat: -1,
+        ease: "none",
+        yoyo: false,
+      });
+    }
+
+    // Add torch flicker effect
+    const torches = document.querySelectorAll('.torch');
+    torches.forEach((torch) => {
+      if (torch instanceof HTMLElement) {
+        torch.style.animation = `torch-flicker ${3 + Math.random() * 2}s ease-in-out infinite`;
+      }
+    });
+    
+    // Add floating clouds
+    const clouds = document.querySelectorAll('.cloud');
+    clouds.forEach((cloud, index) => {
+      if (cloud instanceof HTMLElement) {
+        cloud.style.animation = `float ${10 + index * 5}s ease-in-out infinite`;
+      }
+    });
+
+    // Initialize calendar for medieval date picking
+    const calendar = document.getElementById('medieval-calendar');
+    if (calendar) {
+      calendar.addEventListener('click', () => {
+        alert('The year is 1257, Month of Harvests, 3rd Sunday after the Feast of Saint Crispin');
+      });
+    }
+    
+    // Castle gate open/close animation
+    const castleGate = document.getElementById('castle-gate');
+    if (castleGate) {
+      castleGate.addEventListener('click', () => {
+        castleGate.classList.toggle('gate-open');
+        const isOpen = castleGate.classList.contains('gate-open');
+        const gateStatusText = document.getElementById('gate-status-text');
+        if (gateStatusText) {
+          gateStatusText.textContent = isOpen ? 'Castle Gate Open' : 'Castle Gate Closed';
         }
       });
     }
-
-    // Initialize torch flickering effect
-    const torches = document.querySelectorAll('.torch');
-    torches.forEach(torch => {
-      setInterval(() => {
-        const randomIntensity = 0.7 + Math.random() * 0.3;
-        torch.style.filter = `brightness(${randomIntensity})`;
-        torch.style.textShadow = `0 0 ${10 + Math.random() * 10}px rgba(255, 165, 0, ${0.6 + Math.random() * 0.4})`;
-      }, 100);
-    });
-
+    
+    // Initialize ScrollReveal if available
+    if (typeof window.ScrollReveal !== 'undefined') {
+      window.ScrollReveal().reveal('.scroll-reveal', { 
+        delay: 300,
+        distance: '50px',
+        duration: 1000,
+        origin: 'bottom',
+        easing: 'ease-in-out'
+      });
+    }
+    
     return () => {
-      // Cleanup if needed
+      // Clean up event listeners if needed
+      const calendar = document.getElementById('medieval-calendar');
+      if (calendar) {
+        calendar.removeEventListener('click', () => {});
+      }
+      
+      const castleGate = document.getElementById('castle-gate');
+      if (castleGate) {
+        castleGate.removeEventListener('click', () => {});
+      }
     };
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
-    <div className="font-medieval relative overflow-x-hidden bg-medieval-dark text-medieval-light">
-      {/* Particles background */}
-      <div id="particles-js" className="absolute inset-0 z-0 opacity-40"></div>
-      
-      {/* Medieval texture overlay */}
-      <div className="absolute inset-0 z-0 opacity-10 bg-repeat" style={{backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')"}}></div>
-
+    <div className="min-h-screen bg-medieval-dark text-medieval-light font-medieval">
       {/* Navigation */}
-      <nav className="fixed w-full z-50 bg-gradient-to-r from-medieval-dark/95 to-medieval-dark-alt/95 border-b border-medieval-gold/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex justify-between items-center">
-            <div className="text-medieval-gold font-cinzel font-bold text-xl">
-              <span className="flex items-center">
-                <Shield className="mr-2 h-6 w-6" />
-                Medieval Chronicles
-              </span>
-            </div>
-            
-            <div className="flex space-x-2">
-              <Link to="/">
-                <Button variant="outline" className="border-medieval-gold/30 text-medieval-gold bg-medieval-dark-alt/50 hover:bg-medieval-dark-alt hover:border-medieval-gold/50">
-                  <ArrowLeft className="mr-2 h-4 w-4" /> Return to Kingdom
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 pt-20">
-        {/* Background castle silhouette */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 md:h-96 bg-repeat-x z-0 opacity-30 castle-silhouette"></div>
-        
-        {/* Flying dragon animation */}
-        <div className="dragon absolute top-1/4 -right-20 w-40 h-40 z-10 animate-dragon-flight">
-          <img 
-            src="https://cdn-icons-png.flaticon.com/512/1068/1068778.png" 
-            alt="Flying Dragon" 
-            className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(255,165,0,0.6)]"
-          />
-        </div>
-
-        <div className="container mx-auto text-center relative z-10">
-          <div 
-            className="inline-block mb-6 p-2 px-4 border-2 border-medieval-gold rounded-sm text-medieval-gold text-sm font-medieval tracking-widest shadow-xl shadow-black/30"
-            data-aos="fade-down"
-          >
-            <span className="torch">MEDIEVAL CHRONICLES</span>
-          </div>
+      <header className="py-4 px-6 bg-medieval-dark-alt border-b border-medieval-gold/30">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link to="/" className="flex items-center">
+            <img src="https://img.icons8.com/glyph-neue/64/d4af37/castle.png" alt="Medieval Logo" className="h-10 w-10 mr-3" />
+            <h1 className="text-medieval-gold text-2xl font-bold">Medieval Chronicles</h1>
+          </Link>
           
-          <h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-cinzel font-black mb-6 text-medieval-parchment tracking-wide"
-            data-aos="fade-up"
-          >
-            <span className="block">The Kingdom of</span> 
-            <span className="text-medieval-gold medieval-text-shadow">Dragons & Knights</span>
-          </h1>
+          <nav className="hidden md:flex space-x-6">
+            <Link to="/" className="hvr-underline-from-center text-medieval-light hover:text-medieval-gold transition-colors">Home</Link>
+            <Link to="/second-book" className="hvr-underline-from-center text-medieval-gold transition-colors">Knights & Dragons</Link>
+            <Link to="/our-final-invention" className="hvr-underline-from-center text-medieval-light hover:text-medieval-gold transition-colors">AI Book</Link>
+          </nav>
           
-          <p 
-            className="text-xl md:text-2xl text-medieval-light mb-8 max-w-3xl mx-auto font-medieval"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            A tale of honor, bravery, and the ancient conflict between noble knights and fearsome dragons
-          </p>
-
-          <div 
-            className="mb-8 flex items-center justify-center"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <div className="flex items-center bg-medieval-dark-alt/80 shadow-2xl rounded-sm p-4 border border-medieval-gold/30">
-              <div className="h-20 w-20 mr-4 overflow-hidden">
-                <div className="h-full w-full bg-medieval-dark-alt flex items-center justify-center rounded-sm border border-medieval-gold/30">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/3712/3712093.png" 
-                    alt="Medieval Coat of Arms" 
-                    className="h-16 w-16 object-contain"
-                  />
-                </div>
-              </div>
-              <div className="text-left">
-                <p className="text-sm text-medieval-gold/80">WRITTEN BY</p>
-                <p className="font-cinzel font-semibold text-medieval-light">Sir William of Westeros</p>
-              </div>
-            </div>
-          </div>
-
-          <div 
-            className="animate__animated animate__fadeInUp animate__delay-1s"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <button
-              onClick={() => scrollToSection('summary')}
-              className="px-8 py-3 bg-medieval-gold/80 text-medieval-dark rounded-sm font-medieval font-bold tracking-wider hover:bg-medieval-gold transition-colors shadow-lg hover:shadow-medieval-gold/20 relative overflow-hidden group"
-            >
-              <span className="relative z-10 flex items-center">
-                <Scroll className="mr-2 h-5 w-5" />
-                Begin The Journey
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-medieval-gold to-amber-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          <div className="md:hidden">
+            <button className="text-medieval-light hover:text-medieval-gold">
+              <i className="fas fa-bars text-xl"></i>
             </button>
           </div>
         </div>
-
-        {/* Decorative torches */}
-        <div className="absolute left-8 top-1/3 hidden md:block">
-          <div className="torch w-10 h-16 bg-gradient-to-t from-orange-600 to-yellow-300 rounded-t-full animate-torch-flicker"></div>
-        </div>
-        <div className="absolute right-8 top-1/3 hidden md:block">
-          <div className="torch w-10 h-16 bg-gradient-to-t from-orange-600 to-yellow-300 rounded-t-full animate-torch-flicker"></div>
-        </div>
-      </section>
-
-      {/* Summary Section */}
-      <section id="summary" className="py-20 px-4 relative border-t border-medieval-gold/20">
-        <div className="container mx-auto relative z-10">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <div className="flex items-center justify-center mb-4">
-              <div className="h-0.5 w-12 bg-medieval-gold"></div>
-              <h2 className="text-3xl md:text-4xl font-cinzel font-bold mx-4 text-medieval-gold medieval-text-shadow">
-                The Chronicle
-              </h2>
-              <div className="h-0.5 w-12 bg-medieval-gold"></div>
-            </div>
-            <p className="text-medieval-parchment/80 max-w-2xl mx-auto">
-              An ancient tale passed down through generations of scribes
-            </p>
+      </header>
+      
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-32 bg-[url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="relative container mx-auto px-6 text-center z-10">
+          <div className="mb-6 inline-block animate__animated animate__fadeIn">
+            <i className="fas fa-dragon text-4xl text-medieval-gold animate-pulse-light"></i>
           </div>
-
-          <div className="max-w-4xl mx-auto bg-medieval-dark-alt border border-medieval-gold/30 rounded-sm shadow-2xl shadow-black/30 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-            <div className="md:flex">
-              <div className="md:w-1/3 bg-gradient-to-br from-medieval-dark to-medieval-dark-alt p-6 flex items-center justify-center border-r border-medieval-gold/20">
-                <div className="relative">
-                  <img 
-                    src="https://cdn-icons-png.flaticon.com/512/6045/6045852.png"
-                    alt="Medieval Book" 
-                    className="max-h-80 animate__animated animate__fadeIn drop-shadow-[0_5px_15px_rgba(212,175,55,0.3)]"
-                  />
-                </div>
-              </div>
-
-              <div className="p-8">
-                <div className="uppercase tracking-wide text-sm text-medieval-gold font-medieval font-semibold mb-1">
-                  The Legend
-                </div>
-                <h3 className="text-2xl font-cinzel font-bold mb-4 text-medieval-parchment">
-                  Dragons & Knights: An Eternal Conflict
-                </h3>
-
-                <div className="text-medieval-light/90 space-y-4 font-medieval">
-                  <p className="first-letter:text-3xl first-letter:font-cinzel first-letter:text-medieval-gold first-letter:mr-1 first-letter:float-left">
-                    In the ancient kingdom of Valoria, knights and dragons have been locked in an eternal struggle. As fire rained from the skies and brave knights ventured forth with sword and shield, the balance of power shifted through the centuries.
-                  </p>
-                  
-                  <p>
-                    This chronicle tells the tale of Sir Galahad, a knight whose destiny became intertwined with Drakoris, the eldest and wisest of dragons. Their unlikely alliance would reshape the very foundations of the realm and challenge the ancient enmity between their kinds.
-                  </p>
-                  
-                  <p>
-                    Through trials of fire and steel, betrayal and honor, this saga explores the nature of courage, wisdom, and the possibility of peace between sworn enemies. The parchments contained herein were recovered from the Royal Library of Valoria, preserved through centuries of war and peace.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <h1 className="hero-text text-4xl md:text-6xl font-cinzel font-bold mb-6 medieval-text-shadow">
+            The Age of <span className="text-medieval-gold">Dragons</span> & <span className="text-medieval-gold">Knights</span>
+          </h1>
+          <p className="hero-text text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-300">
+            An epic tale of bravery, honor, and the eternal struggle between man and mythical beast
+          </p>
+          <div className="hero-text flex flex-wrap justify-center gap-4">
+            <button className="px-6 py-3 bg-medieval-red text-white rounded-sm font-bold hover:bg-red-800 transition-colors shadow-lg flex items-center">
+              <i className="fas fa-book-open mr-2"></i> Read the Chronicle
+            </button>
+            <button className="px-6 py-3 border-2 border-medieval-gold text-medieval-gold rounded-sm font-bold hover:bg-medieval-gold/20 transition-colors shadow-lg flex items-center">
+              <i className="fas fa-map-marked-alt mr-2"></i> Explore the Realm
+            </button>
           </div>
-
-          <div className="mt-12 grid md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="400">
-            <div className="bg-medieval-dark-alt p-6 rounded-sm border border-medieval-gold/30 shadow-lg hover:shadow-medieval-gold/10 transition-shadow">
-              <div className="text-medieval-gold mb-4 flex items-center">
-                <Shield className="w-6 h-6 mr-2" />
-                <h4 className="font-cinzel font-bold text-lg">The Knights</h4>
-              </div>
-              <ul className="list-none text-medieval-light/90 space-y-2 font-medieval">
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Defenders of the realm, sworn to protect</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Masters of sword, lance, and strategy</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Bound by the ancient code of chivalry</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Adorned in plate armor forged in royal smithies</li>
-              </ul>
-            </div>
-
-            <div className="bg-medieval-dark-alt p-6 rounded-sm border border-medieval-gold/30 shadow-lg hover:shadow-medieval-gold/10 transition-shadow">
-              <div className="text-medieval-gold mb-4 flex items-center">
-                <Swords className="w-6 h-6 mr-2" />
-                <h4 className="font-cinzel font-bold text-lg">The Conflict</h4>
-              </div>
-              <ul className="list-none text-medieval-light/90 space-y-2 font-medieval">
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Centuries of battles across the lands</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Dragons' fire against knights' steel</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Villages destroyed, castles burned</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Ancient prophecies of a final resolution</li>
-              </ul>
-            </div>
-
-            <div className="bg-medieval-dark-alt p-6 rounded-sm border border-medieval-gold/30 shadow-lg hover:shadow-medieval-gold/10 transition-shadow">
-              <div className="text-medieval-gold mb-4 flex items-center">
-                <Feather className="w-6 h-6 mr-2" />
-                <h4 className="font-cinzel font-bold text-lg">The Dragons</h4>
-              </div>
-              <ul className="list-none text-medieval-light/90 space-y-2 font-medieval">
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Ancient beings of immense power and wisdom</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Guardians of forgotten magic and treasures</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>Scales harder than any armor, breath hotter than forge</li>
-                <li className="flex items-center"><i className="fas fa-chevron-right text-medieval-gold mr-2 text-xs"></i>The last of their kind, fighting extinction</li>
-              </ul>
-            </div>
+          
+          <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+            <i className="fas fa-chevron-down text-medieval-gold text-3xl"></i>
           </div>
         </div>
-      </section>
-
-      {/* Placeholder for Chapter Preview */}
-      <section className="py-20 bg-medieval-dark-alt px-4 relative border-t border-medieval-gold/20">
-        <div className="absolute inset-0 opacity-5 bg-repeat z-0" style={{backgroundImage: "url('https://www.transparenttextures.com/patterns/old-map.png')"}}></div>
         
-        <div className="container mx-auto relative z-10">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <div className="flex items-center justify-center mb-4">
-              <div className="h-0.5 w-12 bg-medieval-gold"></div>
-              <h2 className="text-3xl md:text-4xl font-cinzel font-bold mx-4 text-medieval-gold medieval-text-shadow">
-                Chapter Preview
-              </h2>
-              <div className="h-0.5 w-12 bg-medieval-gold"></div>
+        {/* Flying dragon animation */}
+        <div className="absolute top-20 left-0 flying-dragon pointer-events-none">
+          <img src="https://www.freepnglogos.com/uploads/dragon-png/dragon-png-transparent-images-download-clip-14.png" alt="Flying Dragon" className="w-40 md:w-64" />
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="hidden md:block absolute top-10 left-10 torch animate-torch-flicker">
+          <i className="fas fa-fire text-orange-500 text-3xl"></i>
+        </div>
+        <div className="hidden md:block absolute top-10 right-10 torch animate-torch-flicker">
+          <i className="fas fa-fire text-orange-500 text-3xl"></i>
+        </div>
+      </section>
+      
+      {/* Book Description */}
+      <section className="py-16 bg-medieval-dark-alt">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row gap-10 items-center">
+            <div className="md:w-1/2" data-aos="fade-right">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Medieval Book" 
+                  className="rounded-lg shadow-xl border-4 border-medieval-gold/30 dragon-image"
+                />
+                <div className="absolute -bottom-5 -right-5 bg-medieval-gold/90 rounded-full p-3 shadow-xl">
+                  <i className="fas fa-award text-medieval-dark text-3xl"></i>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-medieval-dark border border-medieval-gold/30 p-8 rounded-sm shadow-2xl shadow-black/30" data-aos="fade-up" data-aos-delay="200">
-              <h3 className="font-cinzel text-2xl text-medieval-gold mb-6 text-center">Chapter I: The Dragon's Awakening</h3>
-              
-              <p className="text-medieval-light/90 mb-4 font-medieval first-letter:text-3xl first-letter:font-cinzel first-letter:text-medieval-gold first-letter:mr-1 first-letter:float-left">
-                The mountain trembled as Drakoris awoke from his century-long slumber. Stone and debris cascaded down the slopes as the ancient dragon stretched wings that could blot out the sun. His scales, the color of burnished copper tinged with gold, caught the morning light and reflected it in dazzling patterns across the cavern walls.
-              </p>
-              
-              <p className="text-medieval-light/90 mb-4 font-medieval">
-                Far below, in the village of Oakenshield, the daily routines came to an abrupt halt as people gazed skyward in horror. It had been three generations since a dragon had been sighted in these parts, long enough for the old tales to become nothing more than stories to frighten children.
-              </p>
-              
-              <p className="text-medieval-light/90 mb-4 font-medieval">
-                Sir Galahad was polishing his family's ancestral sword when the warning bells began to toll. Unlike the other knights who scrambled in panic, he moved with deliberate calm, a strange sense of destiny settling over him. The prophecy his grandmother had whispered on her deathbed echoed in his mind: <span className="text-medieval-gold italic">"When copper wings darken the sky, seek not the heart of the beast, but its wisdom."</span>
-              </p>
-              
-              <div className="text-center mt-8">
-                <button className="px-6 py-2 border border-medieval-gold text-medieval-gold font-medieval hover:bg-medieval-gold/10 transition-colors rounded-sm">
-                  Continue Reading
+            
+            <div className="md:w-1/2" data-aos="fade-left">
+              <div className="parchment-texture p-8 rounded-lg">
+                <h2 className="text-3xl font-cinzel font-bold text-medieval-dark mb-4 flex items-center">
+                  <i className="fas fa-quill text-medieval-red mr-3"></i>
+                  The Chronicle of Scales and Steel
+                </h2>
+                <div className="medieval-divider"></div>
+                <p className="text-medieval-dark mb-4">
+                  In the ancient kingdom of Valorheim, dragons and knights have engaged in an age-old conflict that has shaped the destiny of the realm. This chronicle documents the epic battles, valiant heroes, and fearsome dragons that have defined this legendary era.
+                </p>
+                <p className="text-medieval-dark mb-6">
+                  Written by the court historian Sir Gideon of Westmark, this volume contains detailed accounts of the most famous dragon-slayers and their conquests, as well as the lineages of the noble dragon families that ruled the mountains and skies.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="flex items-center">
+                    <i className="fas fa-calendar-alt text-medieval-red mr-2"></i>
+                    <span className="text-medieval-dark">Year Published: 1257</span>
+                  </div>
+                  <div className="flex items-center">
+                    <i className="fas fa-scroll text-medieval-red mr-2"></i>
+                    <span className="text-medieval-dark">Pages: 842</span>
+                  </div>
+                  <div className="flex items-center">
+                    <i className="fas fa-language text-medieval-red mr-2"></i>
+                    <span className="text-medieval-dark">Language: Old English</span>
+                  </div>
+                  <div className="flex items-center">
+                    <i className="fas fa-university text-medieval-red mr-2"></i>
+                    <span className="text-medieval-dark">Kingdom: Valorheim</span>
+                  </div>
+                </div>
+                
+                <button className="px-6 py-3 bg-medieval-red text-white rounded-sm font-bold hover:bg-red-800 transition-colors shadow-lg flex items-center mx-auto">
+                  <i className="fas fa-book mr-2"></i> Read Sample Chapter
                 </button>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-medieval-dark border-t border-medieval-gold/30 text-medieval-light/80 py-10 px-4 relative">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <h3 className="text-xl font-cinzel font-bold text-medieval-gold mb-2">Medieval Chronicles</h3>
-              <p className="text-medieval-light/60 text-sm font-medieval">Tales of dragons and knights for English class</p>
+      
+      {/* Key Characters */}
+      <section className="py-16 bg-[url('https://images.unsplash.com/photo-1553615738-d8e4d1c23bbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')] bg-fixed bg-cover bg-center">
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative container mx-auto px-6 z-10">
+          <div className="text-center mb-12" data-aos="fade-up">
+            <h2 className="text-3xl md:text-4xl font-cinzel font-bold mb-4 medieval-text-shadow">
+              Key Characters
+            </h2>
+            <div className="w-24 h-1 bg-medieval-gold mx-auto"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Knight Character */}
+            <div className="bg-medieval-dark-alt/90 border border-medieval-gold/30 rounded-lg overflow-hidden shadow-xl scroll-reveal" data-aos="fade-up" data-aos-delay="100">
+              <div className="aspect-square overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Sir Galahad the Dragonslayer" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-cinzel font-bold mb-2 text-medieval-gold">Sir Galahad the Dragonslayer</h3>
+                <p className="text-sm text-gray-300 mb-4">
+                  The most renowned knight of the realm, Sir Galahad has slain seventeen dragons and saved countless villages from fiery destruction.
+                </p>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <i className="fas fa-shield-alt text-medieval-red mr-2"></i>
+                    <span className="text-sm">Knight of Valorheim</span>
+                  </div>
+                  <button className="text-medieval-gold hover:text-medieval-light">
+                    <i className="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
             </div>
             
-            <div>
-              <Link to="/">
-                <Button variant="outline" className="border-medieval-gold/30 text-medieval-gold bg-medieval-dark-alt/50 hover:bg-medieval-dark-alt hover:border-medieval-gold/50">
-                  <ArrowLeft className="mr-2 h-4 w-4" /> Return to Kingdom
-                </Button>
-              </Link>
+            {/* Dragon Character */}
+            <div className="bg-medieval-dark-alt/90 border border-medieval-gold/30 rounded-lg overflow-hidden shadow-xl scroll-reveal" data-aos="fade-up" data-aos-delay="200">
+              <div className="aspect-square overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1577493340887-b7bfff550145?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Fyretalon the Ancient" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-cinzel font-bold mb-2 text-medieval-gold">Fyretalon the Ancient</h3>
+                <p className="text-sm text-gray-300 mb-4">
+                  The eldest and most fearsome dragon in the Mistpeak Mountains, Fyretalon guards a hoard of treasure accumulated over five centuries.
+                </p>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <i className="fas fa-dragon text-medieval-red mr-2"></i>
+                    <span className="text-sm">Elder Dragon</span>
+                  </div>
+                  <button className="text-medieval-gold hover:text-medieval-light">
+                    <i className="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Princess Character */}
+            <div className="bg-medieval-dark-alt/90 border border-medieval-gold/30 rounded-lg overflow-hidden shadow-xl scroll-reveal" data-aos="fade-up" data-aos-delay="300">
+              <div className="aspect-square overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  alt="Princess Elyndra" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-cinzel font-bold mb-2 text-medieval-gold">Princess Elyndra</h3>
+                <p className="text-sm text-gray-300 mb-4">
+                  Far from a damsel in distress, Princess Elyndra is a skilled diplomat who brokered the first peace treaty between knights and dragonkind.
+                </p>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <i className="fas fa-crown text-medieval-red mr-2"></i>
+                    <span className="text-sm">Royal Diplomat</span>
+                  </div>
+                  <button className="text-medieval-gold hover:text-medieval-light">
+                    <i className="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Interactive Castle Section */}
+      <section className="py-16 bg-medieval-dark-alt castle-silhouette">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12" data-aos="fade-up">
+            <h2 className="text-3xl md:text-4xl font-cinzel font-bold mb-4 medieval-text-shadow">
+              The Interactive Castle
+            </h2>
+            <div className="w-24 h-1 bg-medieval-gold mx-auto"></div>
+            <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
+              Explore the royal castle of Valorheim and discover the secrets hidden within its ancient walls.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-medieval-dark border border-medieval-gold/30 rounded-lg p-6" data-aos="fade-right">
+              <h3 className="text-xl font-cinzel font-bold mb-4 text-medieval-gold flex items-center">
+                <i className="fas fa-chess-rook mr-3"></i> Castle Features
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <button className="w-12 h-12 rounded-full bg-medieval-gold/20 flex items-center justify-center mr-4">
+                    <i className="fas fa-dungeon text-medieval-gold text-xl"></i>
+                  </button>
+                  <div>
+                    <h4 className="font-cinzel font-medium text-white">Royal Throne Room</h4>
+                    <p className="text-sm text-gray-400">Where the king holds court and makes royal proclamations</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <button className="w-12 h-12 rounded-full bg-medieval-gold/20 flex items-center justify-center mr-4">
+                    <i className="fas fa-book text-medieval-gold text-xl"></i>
+                  </button>
+                  <div>
+                    <h4 className="font-cinzel font-medium text-white">Ancient Library</h4>
+                    <p className="text-sm text-gray-400">Contains scrolls documenting the history of dragons</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <button className="w-12 h-12 rounded-full bg-medieval-gold/20 flex items-center justify-center mr-4">
+                    <i className="fas fa-shield-alt text-medieval-gold text-xl"></i>
+                  </button>
+                  <div>
+                    <h4 className="font-cinzel font-medium text-white">Armory</h4>
+                    <p className="text-sm text-gray-400">Where knights prepare for battle with enchanted weapons</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <button className="w-12 h-12 rounded-full bg-medieval-gold/20 flex items-center justify-center mr-4" id="castle-gate">
+                    <i className="fas fa-door-open text-medieval-gold text-xl"></i>
+                  </button>
+                  <div>
+                    <h4 className="font-cinzel font-medium text-white">Castle Gate</h4>
+                    <p className="text-sm text-gray-400" id="gate-status-text">Click to open or close the castle gate</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <button className="w-12 h-12 rounded-full bg-medieval-gold/20 flex items-center justify-center mr-4" id="medieval-calendar">
+                    <i className="fas fa-calendar-alt text-medieval-gold text-xl"></i>
+                  </button>
+                  <div>
+                    <h4 className="font-cinzel font-medium text-white">Royal Calendar</h4>
+                    <p className="text-sm text-gray-400">Click to see today's medieval date</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div data-aos="fade-left">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1579025246803-189be6d2b2bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Valorheim Castle" 
+                  className="rounded-lg shadow-xl border-4 border-medieval-gold/30"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-6 left-6">
+                  <button className="px-4 py-2 bg-medieval-red text-white rounded-sm text-sm font-bold hover:bg-red-800 transition-colors shadow-lg">
+                    Virtual Tour
+                  </button>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-3 gap-4 mt-4">
+                <img 
+                  src="https://images.unsplash.com/photo-1584813539806-2538b621b5b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                  alt="Castle Interior" 
+                  className="h-24 object-cover rounded-lg border-2 border-medieval-gold/30 cursor-pointer hover:border-medieval-gold transition-colors"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1597767411735-c3a37003cf24?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                  alt="Castle Throne Room" 
+                  className="h-24 object-cover rounded-lg border-2 border-medieval-gold/30 cursor-pointer hover:border-medieval-gold transition-colors"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1584813539542-5c29an4fa06a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                  alt="Castle Armory" 
+                  className="h-24 object-cover rounded-lg border-2 border-medieval-gold/30 cursor-pointer hover:border-medieval-gold transition-colors"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Medieval Footer */}
+      <footer className="py-10 bg-medieval-dark border-t border-medieval-gold/30">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <div className="flex items-center">
+                <img src="https://img.icons8.com/glyph-neue/64/d4af37/castle.png" alt="Medieval Logo" className="h-10 w-10 mr-3" />
+                <h3 className="text-medieval-gold text-xl font-cinzel font-bold">Medieval Chronicles</h3>
+              </div>
+              <p className="text-gray-400 mt-2 text-sm">
+                Est. in the Year of Our Lord 1257
+              </p>
+            </div>
+            
+            <div className="flex space-x-6 mb-6 md:mb-0">
+              <a href="#" className="text-gray-400 hover:text-medieval-gold transition-colors">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-medieval-gold transition-colors">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-medieval-gold transition-colors">
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-medieval-gold transition-colors">
+                <i className="fab fa-youtube"></i>
+              </a>
+            </div>
+            
+            <div className="text-center md:text-right">
+              <p className="text-gray-400 text-sm">
+                Crafted by the Royal Scribe
+              </p>
+              <p className="text-gray-500 text-xs mt-1">
+                By decree of the King of Valorheim
+              </p>
             </div>
           </div>
           
-          <div className="mt-8 pt-6 border-t border-medieval-gold/10">
-            <p className="text-medieval-light/50 text-sm text-center font-medieval">
-              © {new Date().getFullYear()} English Class Project. This manuscript is for educational purposes only.
-            </p>
+          <div className="sword-divider"></div>
+          
+          <div className="text-center text-gray-500 text-xs">
+            <p>All illustrations and tales herein are protected by royal decree. Unauthorized copying shall be punishable by dragon.</p>
           </div>
         </div>
       </footer>

@@ -10,9 +10,15 @@ import Author from '../components/Author';
 import Reviews from '../components/Reviews';
 import Analysis from '../components/Analysis';
 import DangerSection from '../components/DangerSection';
+import VideoGallery from '../components/VideoGallery';
+import AuthorBio from '../components/AuthorBio';
+import AIRiskVisualization from '../components/AIRiskVisualization';
 import Footer from '../components/Footer';
+import { useToast } from "@/components/ui/use-toast";
 
 const OurFinalInvention = () => {
+  const { toast } = useToast();
+
   useEffect(() => {
     // Initialize AOS on component mount with enhanced options
     const AOS = window.AOS;
@@ -138,12 +144,50 @@ const OurFinalInvention = () => {
     };
     
     document.addEventListener('mousemove', handleMouseMove);
+
+    // Initialize AOS animations when elements come into view
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach((element: Element) => {
+        if (isElementInViewport(element as HTMLElement)) {
+          element.classList.add('animate__animated', 'animate__fadeInUp');
+        }
+      });
+    };
+
+    const isElementInViewport = (el: HTMLElement) => {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
+      );
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
     
     // Clean up event listeners
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', animateOnScroll);
     };
   }, []);
+
+  // Function to show newsletter toast notification
+  const showNewsletterToast = () => {
+    toast({
+      title: "Stay Updated on AI Safety",
+      description: "You've subscribed to our AI safety newsletter. We'll keep you informed about the latest research and developments.",
+      duration: 5000,
+    });
+  };
+
+  // Function to handle smooth scroll to sections
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="font-roboto overflow-x-hidden relative bg-black text-white">
@@ -165,8 +209,26 @@ const OurFinalInvention = () => {
         </Link>
       </div>
       
+      {/* Quick navigation menu */}
+      <div className="fixed top-4 right-4 z-[60] hidden md:block">
+        <div className="flex space-x-2 backdrop-blur-md bg-black/40 p-2 rounded-lg border border-cyan-500/30">
+          <Button variant="ghost" size="sm" onClick={() => scrollToSection('summary')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
+            Summary
+          </Button>
+          <Button variant="ghost" size="sm" onClick={() => scrollToSection('author-bio')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
+            Author
+          </Button>
+          <Button variant="ghost" size="sm" onClick={() => scrollToSection('ai-risks')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
+            Risks
+          </Button>
+          <Button variant="ghost" size="sm" onClick={() => scrollToSection('videos')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
+            Videos
+          </Button>
+        </div>
+      </div>
+      
       {/* Typing animation container */}
-      <div className="fixed top-5 right-5 z-50 max-w-xs backdrop-blur-md bg-black/40 p-3 rounded-lg border border-cyan-500/30 shadow-lg hidden md:block">
+      <div className="fixed top-20 right-5 z-50 max-w-xs backdrop-blur-md bg-black/40 p-3 rounded-lg border border-cyan-500/30 shadow-lg hidden md:block">
         <span id="ai-typing-text" className="text-sm text-cyan-400 font-mono"></span>
       </div>
       
@@ -240,26 +302,89 @@ const OurFinalInvention = () => {
       <div className="relative z-10">
         <Navbar />
         <Hero />
+
+        {/* Summary Section */}
         <div className="bg-ai-grid section-transition relative" data-aos="fade-up" data-aos-duration="1200">
           <div className="absolute inset-0 ai-overlay grid-overlay"></div>
           <Summary />
         </div>
+
+        {/* Author Bio Section */}
+        <div className="bg-ai-neural section-transition relative" data-aos="fade-up" data-aos-duration="1200">
+          <div className="absolute inset-0 ai-overlay neural-overlay"></div>
+          <AuthorBio />
+        </div>
+        
+        {/* Original Author Section */}
         <div className="bg-ai-neural section-transition relative" data-aos="fade-up" data-aos-duration="1200">
           <div className="absolute inset-0 ai-overlay neural-overlay"></div>
           <Author />
         </div>
+
+        {/* AI Risk Visualization Section */}
+        <div className="bg-ai-binary section-transition relative" data-aos="fade-up" data-aos-duration="1200">
+          <div className="absolute inset-0 ai-overlay binary-overlay"></div>
+          <AIRiskVisualization />
+        </div>
+
+        {/* Reviews Section */}
         <div className="bg-ai-circuit section-transition relative" data-aos="fade-up" data-aos-duration="1200">
           <div className="absolute inset-0 ai-overlay circuit-overlay"></div>
           <Reviews />
         </div>
         
-        {/* New Dangers Section */}
-        <DangerSection />
+        {/* Video Gallery Section */}
+        <div className="bg-ai-matrix section-transition relative" data-aos="fade-up" data-aos-duration="1200">
+          <div className="absolute inset-0 ai-overlay matrix-overlay"></div>
+          <VideoGallery />
+        </div>
         
+        {/* Dangers Section */}
+        <div className="bg-ai-circuit section-transition relative" data-aos="fade-up" data-aos-duration="1200">
+          <div className="absolute inset-0 ai-overlay circuit-overlay"></div>
+          <DangerSection />
+        </div>
+        
+        {/* Analysis Section */}
         <div className="bg-ai-binary section-transition relative" data-aos="fade-up" data-aos-duration="1200">
           <div className="absolute inset-0 ai-overlay binary-overlay"></div>
           <Analysis />
         </div>
+
+        {/* Newsletter Section */}
+        <div className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden">
+          <div className="container mx-auto">
+            <div className="max-w-3xl mx-auto backdrop-blur-md bg-black/40 border border-blue-500/20 rounded-xl shadow-lg p-8" data-aos="fade-up">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl md:text-3xl font-merriweather font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                  Stay Updated on AI Safety
+                </h2>
+                <p className="text-gray-300">Subscribe to our newsletter for the latest research and developments</p>
+              </div>
+              
+              <div className="flex flex-col md:flex-row gap-4">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email address" 
+                  className="flex-1 px-4 py-2 rounded-md bg-black/60 border border-blue-500/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                />
+                <Button 
+                  onClick={showNewsletterToast}
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-medium px-6 py-2"
+                >
+                  Subscribe
+                </Button>
+              </div>
+              
+              <div className="mt-6 flex items-center justify-center text-xs text-gray-400">
+                <i className="fas fa-shield-alt mr-2"></i>
+                <p>We respect your privacy. Unsubscribe at any time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Footer Section */}
         <div className="bg-ai-matrix relative">
           <div className="absolute inset-0 ai-overlay matrix-overlay"></div>
           <Footer />
@@ -275,15 +400,29 @@ const OurFinalInvention = () => {
           >
             <BrainCircuit className="w-8 h-8" />
           </button>
-          <div id="aiMessage" className="absolute bottom-full right-0 mb-4 p-4 bg-black/80 backdrop-blur-lg border border-cyan-500/50 rounded-lg w-64 shadow-glow hidden animate__animated animate__fadeIn">
-            <p className="text-sm text-cyan-300 mb-2 typing-animation">Hello human. Exploring AI concepts?</p>
-            <div className="flex gap-2 mt-2">
-              <a href="#summary" className="text-xs px-3 py-1 bg-cyan-600/50 hover:bg-cyan-600 rounded-full transition-all">Summary</a>
-              <a href="#dangers" className="text-xs px-3 py-1 bg-red-600/50 hover:bg-red-600 rounded-full transition-all">Dangers</a>
-              <a href="#analysis" className="text-xs px-3 py-1 bg-blue-600/50 hover:bg-blue-600 rounded-full transition-all">Analysis</a>
+          <div id="aiMessage" className="absolute bottom-full right-0 mb-4 p-4 bg-black/80 backdrop-blur-lg border border-cyan-500/50 rounded-lg w-80 shadow-glow hidden animate__animated animate__fadeIn">
+            <p className="text-sm text-cyan-300 mb-2 typing-animation">Hello human. Exploring AI concepts? Navigate to key sections:</p>
+            <div className="grid grid-cols-2 gap-2 mt-3">
+              <a href="#summary" className="text-xs px-3 py-1.5 bg-cyan-600/50 hover:bg-cyan-600 rounded-full transition-all text-center">Book Summary</a>
+              <a href="#author-bio" className="text-xs px-3 py-1.5 bg-blue-600/50 hover:bg-blue-600 rounded-full transition-all text-center">Author Bio</a>
+              <a href="#ai-risks" className="text-xs px-3 py-1.5 bg-red-600/50 hover:bg-red-600 rounded-full transition-all text-center">AI Risks</a>
+              <a href="#videos" className="text-xs px-3 py-1.5 bg-purple-600/50 hover:bg-purple-600 rounded-full transition-all text-center">Watch Videos</a>
+              <a href="#dangers" className="text-xs px-3 py-1.5 bg-orange-600/50 hover:bg-orange-600 rounded-full transition-all text-center">Dangers</a>
+              <a href="#analysis" className="text-xs px-3 py-1.5 bg-green-600/50 hover:bg-green-600 rounded-full transition-all text-center">Analysis</a>
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Back to top button */}
+      <div className="fixed bottom-8 left-8 z-50">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-blue-500/30 text-blue-400 hover:text-blue-300 hover:bg-black/60 transition-all"
+          aria-label="Back to top"
+        >
+          <i className="fas fa-arrow-up"></i>
+        </button>
       </div>
       
       {/* SVG Circuit paths */}
