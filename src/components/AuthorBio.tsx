@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Book, ExternalLink, Award, Share2, User, Twitter, Linkedin, Globe, File } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -32,7 +33,7 @@ const AuthorBio = () => {
                 <p className="text-cyan-300 mb-4">Documentary Filmmaker & Author</p>
                 
                 <div className="flex justify-center space-x-3">
-                  <a href="https://twitter.com/jamesbarrat" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors">
+                  <a href="https://x.com/jrbarrat/status/1830960333692776896" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors">
                     <Twitter className="h-5 w-5" />
                     <span className="sr-only">Twitter</span>
                   </a>

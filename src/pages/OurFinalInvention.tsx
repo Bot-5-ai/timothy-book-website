@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BrainCircuit, Cpu, Terminal, Binary, Atom, MoveRight, Code } from 'lucide-react';
@@ -12,6 +13,7 @@ import VideoGallery from '../components/VideoGallery';
 import AuthorBio from '../components/AuthorBio';
 import AIRiskVisualization from '../components/AIRiskVisualization';
 import Footer from '../components/Footer';
+import AIChatbot from '../components/AIChatbot';
 import { useToast } from "@/components/ui/use-toast";
 
 const OurFinalInvention = () => {
@@ -367,28 +369,8 @@ const OurFinalInvention = () => {
         </div>
       </div>
       
-      {/* Interactive floating bot */}
-      <div className="fixed bottom-8 right-8 animate-bounce-slow z-50" id="aiAssistant">
-        <div className="relative">
-          <button 
-            className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-cyan-600 to-blue-500 text-white shadow-glow p-4 hover:scale-110 transition-all duration-300"
-            onClick={() => document.getElementById('aiMessage')?.classList.toggle('hidden')}
-          >
-            <BrainCircuit className="w-8 h-8" />
-          </button>
-          <div id="aiMessage" className="absolute bottom-full right-0 mb-4 p-4 bg-black/80 backdrop-blur-lg border border-cyan-500/50 rounded-lg w-80 shadow-glow hidden animate__animated animate__fadeIn">
-            <p className="text-sm text-cyan-300 mb-2 typing-animation">Hello human. Exploring AI concepts? Navigate to key sections:</p>
-            <div className="grid grid-cols-2 gap-2 mt-3">
-              <a href="#summary" className="text-xs px-3 py-1.5 bg-cyan-600/50 hover:bg-cyan-600 rounded-full transition-all text-center">Book Summary</a>
-              <a href="#author-bio" className="text-xs px-3 py-1.5 bg-blue-600/50 hover:bg-blue-600 rounded-full transition-all text-center">Author Bio</a>
-              <a href="#ai-risks" className="text-xs px-3 py-1.5 bg-red-600/50 hover:bg-red-600 rounded-full transition-all text-center">AI Risks</a>
-              <a href="#videos" className="text-xs px-3 py-1.5 bg-purple-600/50 hover:bg-purple-600 rounded-full transition-all text-center">Watch Videos</a>
-              <a href="#dangers" className="text-xs px-3 py-1.5 bg-orange-600/50 hover:bg-orange-600 rounded-full transition-all text-center">Dangers</a>
-              <a href="#analysis" className="text-xs px-3 py-1.5 bg-green-600/50 hover:bg-green-600 rounded-full transition-all text-center">Analysis</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* AI Chatbot */}
+      <AIChatbot />
       
       {/* Back to top button */}
       <div className="fixed bottom-8 left-8 z-50">
