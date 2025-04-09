@@ -207,23 +207,7 @@ const OurFinalInvention = () => {
         </Link>
       </div>
       
-      {/* Quick navigation menu */}
-      <div className="fixed top-4 right-4 z-[60] hidden md:block">
-        <div className="flex space-x-2 backdrop-blur-md bg-black/40 p-2 rounded-lg border border-cyan-500/30">
-          <Button variant="ghost" size="sm" onClick={() => scrollToSection('summary')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
-            Summary
-          </Button>
-          <Button variant="ghost" size="sm" onClick={() => scrollToSection('author-bio')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
-            Author
-          </Button>
-          <Button variant="ghost" size="sm" onClick={() => scrollToSection('ai-risks')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
-            Risks
-          </Button>
-          <Button variant="ghost" size="sm" onClick={() => scrollToSection('videos')} className="text-cyan-300 hover:text-cyan-200 hover:bg-blue-900/40">
-            Videos
-          </Button>
-        </div>
-      </div>
+      {/* Removed the quick navigation menu that was here */}
       
       {/* Typing animation container */}
       <div className="fixed top-20 right-5 z-50 max-w-xs backdrop-blur-md bg-black/40 p-3 rounded-lg border border-cyan-500/30 shadow-lg hidden md:block">
