@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Book, ExternalLink, Award, Share2, User, Twitter, Linkedin, Globe, File } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -95,16 +94,13 @@ const AuthorBio = () => {
                 
                 <TabsContent value="biography" className="mt-6 space-y-4">
                   <p className="text-gray-300">
-                    James Barrat is a documentary filmmaker and author who has written extensively about artificial intelligence, with a focus on the potential risks of advanced AI systems.
+                    James Barrat is a documentary filmmaker and author living in America. He has created films for National Geographic, Discovery, PBS and other broadcasters that are from America and Europe. His book that he wrote titled "Our Final Invention" talks about the risks of us humans developing AI that are too advanced.
                   </p>
                   <p className="text-gray-300">
-                    After interviewing many AI researchers for his documentary projects, Barrat became concerned about the trajectory of artificial intelligence development. His book "Our Final Invention" explores the challenges of controlling systems that may eventually surpass human intelligence.
+                    Barrat was interested in the risks of AI after he had interviewed multiple experts such as Ray Kurzweil and others for some of his documentary projects. He has a growing concern after those interviews as he learned a lot about AI developing too quickly and he fears that we don't pay attention to safety protocols when trying to develop stronger AI.
                   </p>
                   <p className="text-gray-300">
-                    Throughout his career, Barrat has created documentaries for National Geographic, Discovery, PBS, and other major networks across the United States and Europe. His work often explores the intersection of technology, society, and human values.
-                  </p>
-                  <p className="text-gray-300">
-                    As an advocate for AI safety, Barrat regularly speaks at conferences and provides consultation on the potential risks and benefits of artificial intelligence. He emphasizes the importance of developing AI systems that align with human values and respect ethical boundaries.
+                    Through his work, Barrat wants to raise more awareness about what can happen to mankind if we don't get a grasp of AI development. His voice is very well known to build better safety for AI and calls for more research so that we build AI to help us and respects our values.
                   </p>
                   
                   <div className="mt-4 pt-4 border-t border-blue-500/20">
@@ -240,7 +236,6 @@ const AuthorBio = () => {
         </div>
       </div>
       
-      {/* Decorative Elements */}
       <div className="absolute top-10 left-10 opacity-10">
         <User className="h-32 w-32 text-cyan-500" />
       </div>
