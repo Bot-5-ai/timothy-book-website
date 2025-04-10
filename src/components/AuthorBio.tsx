@@ -1,11 +1,48 @@
 
 import React, { useState } from 'react';
-import { Book, ExternalLink, Award, Share2, User, Twitter, Linkedin, Globe, File } from 'lucide-react';
+import { Book, ExternalLink, Award, Share2, User, Twitter, Linkedin, Globe, File, Mail, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+import { useToast } from "@/hooks/use-toast";
 
 const AuthorBio = () => {
   const [showMilestones, setShowMilestones] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [showShareDialog, setShowShareDialog] = useState(false);
+  const { toast } = useToast();
+  
+  const currentUrl = window.location.href;
+  const emailSubject = encodeURIComponent("Check out this book: Our Final Invention");
+  const emailBody = encodeURIComponent(
+    `I thought you might be interested in this book about AI safety:\n\n` +
+    `"Our Final Invention: Artificial Intelligence and the End of the Human Era" by James Barrat\n\n` +
+    `Learn more here: ${currentUrl}\n\n` +
+    `The book discusses the potential existential risks of advanced artificial intelligence and why AI safety research is crucial.`
+  );
+  
+  const emailLink = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+  
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(currentUrl);
+    setCopied(true);
+    toast({
+      title: "Link copied!",
+      description: "The link has been copied to your clipboard.",
+      duration: 3000,
+    });
+    setTimeout(() => setCopied(false), 2000);
+  };
+  
+  const handleShareEmail = () => {
+    window.location.href = emailLink;
+    toast({
+      title: "Opening email client",
+      description: "Creating an email with the book information.",
+      duration: 3000,
+    });
+    setShowShareDialog(false);
+  };
 
   return (
     <section id="author-bio" className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden">
@@ -139,7 +176,7 @@ const AuthorBio = () => {
                       </div>
                     </a>
                     
-                    <a href="https://futureoflife.org/podcast/james-barrat-on-our-final-invention-and-the-path-to-superintelligence/" target="_blank" rel="noopener noreferrer" className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-900/30 transition-colors">
+                    <a href="https://futureoflife.org/ai/james-barrat-on-our-final-invention-and-the-path-to-superintelligence/" target="_blank" rel="noopener noreferrer" className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-900/30 transition-colors">
                       <div className="flex items-center">
                         <div className="mr-4 flex-shrink-0 w-16 h-16 bg-blue-900/30 rounded-lg flex items-center justify-center">
                           <ExternalLink className="h-6 w-6 text-cyan-400" />
@@ -151,14 +188,14 @@ const AuthorBio = () => {
                       </div>
                     </a>
                     
-                    <a href="https://www.scientificamerican.com/article/will-artificial-intelligence-become-conscious/" target="_blank" rel="noopener noreferrer" className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-900/30 transition-colors">
+                    <a href="https://www.scientificamerican.com/article/when-will-artificial-intelligence-become-conscious/" target="_blank" rel="noopener noreferrer" className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-900/30 transition-colors">
                       <div className="flex items-center">
                         <div className="mr-4 flex-shrink-0 w-16 h-16 bg-blue-900/30 rounded-lg flex items-center justify-center">
                           <ExternalLink className="h-6 w-6 text-cyan-400" />
                         </div>
                         <div>
                           <h5 className="text-white font-medium">Scientific American Interview</h5>
-                          <p className="text-sm text-gray-400">Will Artificial Intelligence Become Conscious?</p>
+                          <p className="text-sm text-gray-400">When Will Artificial Intelligence Become Conscious?</p>
                         </div>
                       </div>
                     </a>
@@ -227,10 +264,58 @@ const AuthorBio = () => {
                     Buy the Book
                   </a>
                 </Button>
-                <Button variant="outline" className="bg-blue-600/20 text-cyan-300 border-cyan-500/30 hover:bg-blue-600/40 backdrop-blur-md">
-                  <Share2 className="mr-2 h-4 w-4" />
-                  Share
-                </Button>
+                
+                {/* Share button with Dialog */}
+                <Dialog open={showShareDialog} onOpenChange={setShowShareDialog}>
+                  <DialogTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="bg-blue-600/20 text-cyan-300 border-cyan-500/30 hover:bg-blue-600/40 backdrop-blur-md group animate__animated animate__pulse animate__infinite animate__slow"
+                    >
+                      <Share2 className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                      Share
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md backdrop-blur-lg bg-gray-900/90 border border-blue-500/30 rounded-lg text-white">
+                    <DialogHeader>
+                      <DialogTitle className="text-xl text-center font-merriweather bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                        Share "Our Final Invention"
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="py-6 flex flex-col items-center">
+                      <div className="mb-6 w-16 h-16 text-cyan-300 animate__animated animate__fadeIn">
+                        <i className="fas fa-share-alt fa-3x"></i>
+                      </div>
+                      <p className="text-center text-gray-300 mb-6">
+                        Spread awareness about AI safety by sharing this book with friends and colleagues
+                      </p>
+                      <div className="grid gap-4 w-full max-w-sm">
+                        <Button 
+                          onClick={handleShareEmail} 
+                          className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 animate__animated animate__fadeIn"
+                        >
+                          <Mail className="h-5 w-5" />
+                          <span>Share via Email</span>
+                        </Button>
+                        
+                        <Button 
+                          onClick={handleCopyLink} 
+                          className="flex items-center justify-center gap-2 bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950 text-white py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 animate__animated animate__fadeIn animate__delay-1s"
+                        >
+                          {copied ? <Check className="h-5 w-5 text-green-400" /> : <Copy className="h-5 w-5" />}
+                          <span>{copied ? "Copied!" : "Copy Link"}</span>
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="flex justify-center mt-2">
+                      <DialogClose asChild>
+                        <Button variant="ghost" className="text-gray-400 hover:text-white">
+                          Close
+                        </Button>
+                      </DialogClose>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
