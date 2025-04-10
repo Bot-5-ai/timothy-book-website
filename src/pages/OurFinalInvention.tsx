@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BrainCircuit, Cpu, Terminal, Binary, Atom, MoveRight, Code, Server, Globe, ChevronUp, Robot, Blocks, Microscope, Brain } from 'lucide-react';
+import { ArrowLeft, BrainCircuit, Cpu, Terminal, Binary, Atom, MoveRight, Code, Server, Globe, ChevronUp, Bot, Blocks, Microscope, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -260,9 +260,9 @@ const OurFinalInvention = () => {
         <Code className="w-full h-full text-cyan-400" />
       </div>
       
-      {/* New robot-themed elements */}
+      {/* New robot-themed elements - Fixed Robot icon by replacing with Bot */}
       <div className="ai-particle robot-element absolute top-[35%] left-[25%] w-18 h-18 opacity-70 animate-float" data-speed="3">
-        <Robot className="w-full h-full text-cyan-300" />
+        <Bot className="w-full h-full text-cyan-300" />
       </div>
       <div className="ai-particle robot-element absolute top-[65%] right-[20%] w-14 h-14 opacity-60 animate-float-delayed" data-speed="2">
         <Brain className="w-full h-full text-purple-400" />
