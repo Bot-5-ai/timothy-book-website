@@ -151,14 +151,14 @@ const AuthorBio = () => {
                       </div>
                     </a>
                     
-                    <a href="https://www.npr.org/sections/alltechconsidered/2015/01/15/377487534/as-ai-advances-what-are-its-religious-implications" target="_blank" rel="noopener noreferrer" className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-900/30 transition-colors">
+                    <a href="https://www.scientificamerican.com/article/will-artificial-intelligence-become-conscious/" target="_blank" rel="noopener noreferrer" className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-900/30 transition-colors">
                       <div className="flex items-center">
                         <div className="mr-4 flex-shrink-0 w-16 h-16 bg-blue-900/30 rounded-lg flex items-center justify-center">
                           <ExternalLink className="h-6 w-6 text-cyan-400" />
                         </div>
                         <div>
-                          <h5 className="text-white font-medium">NPR Interview</h5>
-                          <p className="text-sm text-gray-400">As AI Advances, What Are Its Implications?</p>
+                          <h5 className="text-white font-medium">Scientific American Interview</h5>
+                          <p className="text-sm text-gray-400">Will Artificial Intelligence Become Conscious?</p>
                         </div>
                       </div>
                     </a>
