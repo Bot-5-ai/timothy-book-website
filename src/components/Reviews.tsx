@@ -59,14 +59,15 @@ const Reviews = () => {
     <section id="reviews" className="py-20 px-4 bg-gradient-to-br from-bookblue-50 to-white">
       <div className="container mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 text-gray-800">
+          <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 bg-gradient-to-r from-vibrant-purple via-vibrant-cyan to-vibrant-blue bg-clip-text text-transparent animate-pulse-light relative inline-block">
             Book Reviews
+            <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-vibrant-purple via-vibrant-cyan to-vibrant-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </h2>
-          <div className="w-20 h-1 bg-bookblue-500 mx-auto"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-vibrant-purple via-vibrant-cyan to-vibrant-blue mx-auto"></div>
         </div>
 
         <div className="max-w-4xl mx-auto relative" data-aos="fade-up" data-aos-delay="200">
-          <div className="bg-white rounded-xl shadow-lg p-8 md:p-12 mb-8">
+          <div className="bg-white rounded-xl shadow-lg p-8 md:p-12 mb-8 hover:shadow-xl transition-shadow duration-300">
             <div className="flex justify-between items-center mb-8">
               <h3 className="text-xl md:text-2xl font-merriweather font-bold text-gray-800">
                 {reviews[currentReview].source}
