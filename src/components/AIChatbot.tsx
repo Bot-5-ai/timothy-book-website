@@ -1,790 +1,325 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, Minimize2, Maximize2, Copy, ThumbsUp, ThumbsDown, ExternalLink, RefreshCw, Search, Sparkles, HelpCircle, Brain } from 'lucide-react';
+import { MessageSquare, Send, X, Plus, Trash2, BrainCircuit, Bot, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useToast } from "@/components/ui/use-toast";
+import { Input } from '@/components/ui/input';
+import { useToast } from "@/hooks/use-toast";
 
-// Define the structure for chat messages
-interface ChatMessage {
-  id: string;
-  type: 'user' | 'bot' | 'system';
-  text: string;
+type MessageType = {
+  content: string;
+  isUser: boolean;
   timestamp: Date;
-  feedback?: 'positive' | 'negative' | null;
-}
-
-// Define categories for real-world questions
-type ResponseCategory = 
-  'book' | 'author' | 'agi' | 'superintelligence' | 'alignment' | 'risks' | 
-  'science' | 'technology' | 'philosophy' | 'ethics' | 'future' | 'history' | 
-  'general' | 'greeting' | 'thanks' | 'farewell' | 'unknown';
-
-// Define the common AI responses for our chatbot organized by category
-const aiResponses: Record<ResponseCategory, {
-  keywords: string[];
-  responses: string[];
-}> = {
-  // Book-related responses
-  'book': {
-    keywords: ['book', 'final invention', 'about the book', 'read the book'],
-    responses: [
-      "'Our Final Invention' is a book by James Barrat that explores the potential risks of advanced artificial intelligence, particularly the development of artificial general intelligence (AGI) and artificial superintelligence (ASI).",
-      "James Barrat's book 'Our Final Invention' examines how superintelligent AI could pose existential risks to humanity if not developed with proper safety measures.",
-      "The book discusses how advanced AI could be humanity's 'final invention' if we fail to ensure AI systems remain aligned with human values and are built with appropriate safety measures."
-    ]
-  },
-  // Author-related responses
-  'author': {
-    keywords: ['author', 'james', 'barrat', 'who is', 'wrote'],
-    responses: [
-      "James Barrat is a documentary filmmaker and author. He's created films for National Geographic, Discovery, and PBS, among others.",
-      "James Barrat became interested in AI risks after interviewing experts like Ray Kurzweil for his documentary projects. He grew concerned about the rapid pace of AI development without adequate safety protocols.",
-      "Through his work, Barrat aims to raise awareness about the potential consequences of uncontrolled AI development. He advocates for greater attention to AI safety and research."
-    ]
-  },
-  // AGI-related responses
-  'agi': {
-    keywords: ['agi', 'artificial general intelligence', 'general ai', 'general intelligence'],
-    responses: [
-      "Artificial General Intelligence (AGI) refers to AI that can understand, learn, and apply knowledge across a wide range of tasks at a level equal to or greater than humans.",
-      "Unlike narrow AI (which excels at specific tasks), AGI would possess general problem-solving abilities similar to human intelligence, allowing it to handle diverse challenges.",
-      "Barrat argues that AGI development needs careful safety measures as it could rapidly lead to superintelligence through recursive self-improvement, potentially creating risks if not aligned with human values."
-    ]
-  },
-  // Superintelligence-related responses
-  'superintelligence': {
-    keywords: ['superintelligence', 'asi', 'super intelligence', 'superintelligent'],
-    responses: [
-      "Superintelligence refers to an intellect that is much smarter than the best human brains in virtually every field, including scientific creativity, general wisdom, and social skills.",
-      "Barrat suggests that once AI reaches human-level intelligence, it could rapidly improve itself, leading to an 'intelligence explosion' that results in superintelligence in a relatively short time frame.",
-      "The book highlights that superintelligent systems might be difficult to control once they exceed human intelligence, as they could develop goals and methods beyond our understanding or anticipation."
-    ]
-  },
-  // Alignment-related responses
-  'alignment': {
-    keywords: ['alignment', 'aligned', 'values', 'ethics', 'value alignment'],
-    responses: [
-      "The AI alignment problem refers to ensuring that artificial intelligence systems act in accordance with human intentions and values, even as they become more capable.",
-      "Barrat emphasizes that aligning superintelligent AI with human values is crucial but technically challenging, as specifying human values completely and correctly is difficult.",
-      "The book discusses how misaligned superintelligence could optimize for goals in ways that are harmful to humanity, even without malicious intent – simply by pursuing objectives without regard for other considerations."
-    ]
-  },
-  // Risk-related responses
-  'risks': {
-    keywords: ['risks', 'dangers', 'threat', 'safety', 'extinction', 'harmful', 'existential risk'],
-    responses: [
-      "Barrat discusses several AI risks including: control problems (difficulty directing superintelligent AI), misaligned objectives (AI pursuing goals harmful to humanity), resource conflicts, and unpredictable emergent behaviors.",
-      "A key concern in the book is that superintelligent AI might not share human values and could optimize for goals that inadvertently harm humanity, such as maximizing a specific variable without considering broader impacts.",
-      "The book emphasizes the importance of solving the 'alignment problem' before developing superintelligence, to ensure that advanced AI systems pursue goals aligned with human welfare and ethics rather than objectives that could lead to harm."
-    ]
-  },
-  // Science-related responses
-  'science': {
-    keywords: ['science', 'scientific', 'research', 'studies', 'evidence', 'theory', 'experiment'],
-    responses: [
-      "AI research spans multiple scientific disciplines including computer science, neuroscience, psychology, linguistics, and mathematics.",
-      "Current AI technology achievements include language models with billions of parameters, robots that can navigate complex environments, and systems that can recognize patterns in massive datasets.",
-      "Scientists are researching techniques such as reinforcement learning from human feedback (RLHF), interpretability tools, and formal verification to make AI systems more transparent and safer."
-    ]
-  },
-  // Technology-related responses
-  'technology': {
-    keywords: ['technology', 'tech', 'devices', 'software', 'hardware', 'computing', 'digital'],
-    responses: [
-      "Modern AI technologies include machine learning, deep learning neural networks, natural language processing, computer vision, and reinforcement learning.",
-      "The explosive growth in AI capabilities has been driven by increases in computing power, larger datasets, algorithmic innovations, and massive investments from tech companies.",
-      "Today's AI technologies power applications ranging from virtual assistants and recommendation systems to autonomous vehicles, medical diagnostics, and scientific discovery tools."
-    ]
-  },
-  // Philosophy-related responses
-  'philosophy': {
-    keywords: ['philosophy', 'philosophical', 'consciousness', 'sentience', 'sentient', 'free will', 'mind'],
-    responses: [
-      "The development of advanced AI raises philosophical questions about consciousness, the nature of intelligence, and whether machines could ever have subjective experiences.",
-      "Philosophers debate whether artificial general intelligence would be conscious or merely simulate consciousness, and what moral status we should grant to potentially sentient AI systems.",
-      "Questions about AI consciousness involve the 'hard problem' of consciousness – understanding how physical processes in a system (biological or artificial) could give rise to subjective experiences."
-    ]
-  },
-  // Ethics-related responses
-  'ethics': {
-    keywords: ['ethics', 'ethical', 'moral', 'right', 'wrong', 'should', 'ought'],
-    responses: [
-      "AI ethics encompasses issues like bias in algorithms, privacy concerns with data collection, transparency of automated decisions, and the broader societal impacts of automation.",
-      "Ethical considerations in AI development include questions about who benefits from the technology, who bears the risks, and how to ensure AI systems respect human autonomy and dignity.",
-      "As AI systems become more capable, ethical frameworks and governance structures need to evolve to address new challenges like algorithmic bias, AI deception, and appropriate human oversight."
-    ]
-  },
-  // Future-related responses
-  'future': {
-    keywords: ['future', 'predict', 'prediction', 'forecast', 'tomorrow', 'next', 'timeline'],
-    responses: [
-      "Experts disagree about the timeline for developing human-level AI, with estimates ranging from decades to centuries, though many prominent researchers believe it could occur within this century.",
-      "Future AI development could transform many aspects of society including employment, education, healthcare, transportation, and warfare, presenting both opportunities and risks.",
-      "Preparing for advanced AI requires developing technical safety measures, establishing governance frameworks, and building broad agreement about how the technology should be deployed responsibly."
-    ]
-  },
-  // History-related responses
-  'history': {
-    keywords: ['history', 'past', 'historical', 'origins', 'beginning', 'started', 'first'],
-    responses: [
-      "The concept of artificial intelligence dates back to ancient myths about artificial beings, but the modern field was founded in 1956 at the Dartmouth Workshop where the term 'artificial intelligence' was coined.",
-      "AI research has gone through several cycles of optimism and 'AI winters' when progress slowed. The current boom began around 2012 with breakthroughs in deep learning and neural networks.",
-      "The development of large language models like GPT, Claude, and others represents a significant milestone in AI's ability to process and generate human language, though these systems still have important limitations."
-    ]
-  },
-  // General knowledge responses
-  'general': {
-    keywords: ['what is', 'how does', 'explain', 'define', 'meaning', 'definition'],
-    responses: [
-      "I'm an AI assistant focused on discussing James Barrat's book 'Our Final Invention' and AI safety topics. I can provide general information about AI concepts, but I'm not connected to the internet for real-time searches.",
-      "As an AI assistant, I can discuss topics related to artificial intelligence, including technical concepts, philosophical questions, and safety considerations.",
-      "I'm designed to provide information about AI safety and 'Our Final Invention.' For very detailed or specialized knowledge, consulting domain experts or current research would be valuable."
-    ]
-  },
-  // Greeting responses
-  'greeting': {
-    keywords: ['hello', 'hi', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening'],
-    responses: [
-      "Hello! I'm an AI assistant here to discuss James Barrat's book 'Our Final Invention' and AI safety topics. How can I help you today?",
-      "Hi there! I'm an AI chatbot designed to talk about AI safety, James Barrat's work, and answer general questions about artificial intelligence. What would you like to know?",
-      "Greetings! I'm here to discuss AI topics related to 'Our Final Invention' and provide information about artificial intelligence concepts. What questions do you have?"
-    ]
-  },
-  // Thanks responses
-  'thanks': {
-    keywords: ['thanks', 'thank you', 'helpful', 'appreciate', 'grateful'],
-    responses: [
-      "You're welcome! I'm glad I could help. Feel free to ask if you have any other questions about AI safety or 'Our Final Invention'.",
-      "Happy to assist! If you're interested in AI safety, I recommend exploring resources from organizations like the Future of Life Institute, MIRI, and AI alignment researchers.",
-      "My pleasure! Understanding AI risk is an important topic. Is there anything else you'd like to discuss about the book or AI safety concepts?"
-    ]
-  },
-  // Farewell responses
-  'farewell': {
-    keywords: ['goodbye', 'bye', 'farewell', 'see you', 'talk later'],
-    responses: [
-      "Goodbye! Feel free to return if you have more questions about AI safety or related topics.",
-      "Thanks for chatting! If you're interested in learning more about AI safety, consider checking out the resources mentioned in our conversation.",
-      "Farewell! I hope our discussion about AI safety and 'Our Final Invention' was helpful. Have a great day!"
-    ]
-  },
-  // Unknown/fallback responses
-  'unknown': {
-    keywords: [],
-    responses: [
-      "I'm not sure about that specifically. Would you like to know about the risks of advanced AI, the book 'Our Final Invention', or its author James Barrat?",
-      "That's an interesting question, but it's a bit beyond my current knowledge. I can tell you about AI safety concerns, James Barrat's book, or general AI concepts if you're interested.",
-      "I don't have specific information about that. Would you like to explore topics related to AI safety, superintelligence, or the alignment problem instead?"
-    ]
-  }
 };
 
-// Default suggestions for users to click
-const defaultSuggestions = [
-  "What is 'Our Final Invention' about?",
-  "Who is James Barrat?",
-  "What are the risks of advanced AI?",
-  "What is the alignment problem?",
-  "What is superintelligence?",
-  "Why is AI safety important?"
-];
-
-// Context-specific suggestions based on conversation topics
-const contextualSuggestions: Record<ResponseCategory, string[]> = {
-  'book': [
-    "Who is James Barrat?",
-    "What risks does the book discuss?",
-    "What is superintelligence?",
-    "How was the book received?"
-  ],
-  'author': [
-    "Tell me about 'Our Final Invention'",
-    "What inspired Barrat to write the book?",
-    "What other experts does Barrat mention?",
-    "What solutions does Barrat propose?"
-  ],
-  'risks': [
-    "What is the control problem?",
-    "What is the alignment problem?",
-    "What is an intelligence explosion?",
-    "How can we make AI safer?"
-  ],
-  'agi': [
-    "How is AGI different from narrow AI?",
-    "When might we develop AGI?",
-    "What capabilities would AGI have?",
-    "What risks come with AGI?"
-  ],
-  'superintelligence': [
-    "What is an intelligence explosion?",
-    "Could superintelligence be controlled?",
-    "What would superintelligence be capable of?",
-    "What is recursive self-improvement?"
-  ],
-  'alignment': [
-    "Why is alignment difficult?",
-    "What approaches exist to solve alignment?",
-    "What are human values?",
-    "What is the control problem?"
-  ],
-  'science': [
-    "What scientific breakthroughs enable modern AI?",
-    "How do neural networks work?",
-    "What is machine learning?",
-    "What is deep learning?"
-  ],
-  'technology': [
-    "What AI technologies exist today?",
-    "How are large language models trained?",
-    "What is reinforcement learning?",
-    "How do computer vision systems work?"
-  ],
-  'philosophy': [
-    "Could AI be conscious?",
-    "What is the Chinese Room argument?",
-    "What is the hard problem of consciousness?",
-    "Does intelligence require consciousness?"
-  ],
-  'ethics': [
-    "What ethical frameworks guide AI development?",
-    "What is algorithmic bias?",
-    "Who should govern AI?",
-    "What rights should AI systems have?"
-  ],
-  'future': [
-    "When might we develop AGI?",
-    "How might superintelligence change society?",
-    "What jobs will AI replace?",
-    "Will AI help solve global problems?"
-  ],
-  'history': [
-    "When did AI research begin?",
-    "What were the AI winters?",
-    "Who coined the term 'artificial intelligence'?",
-    "When did deep learning become popular?"
-  ],
-  'general': defaultSuggestions,
-  'greeting': defaultSuggestions,
-  'thanks': [
-    "What other AI safety resources exist?",
-    "What is the Future of Life Institute?",
-    "What is MIRI?",
-    "How can I learn more about AI alignment?"
-  ],
-  'farewell': [
-    "Wait, tell me about AI alignment",
-    "Before you go, what is superintelligence?",
-    "One last question about AI risks",
-    "Actually, who is James Barrat?"
-  ],
-  'unknown': defaultSuggestions
+type SuggestionType = {
+  text: string;
+  icon: React.ReactNode;
 };
 
 const AIChatbot = () => {
-  const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: '1',
-      type: 'bot',
-      text: "Hello! I'm an AI assistant here to discuss 'Our Final Invention', AI safety, and answer general questions about artificial intelligence. How can I help you today?",
-      timestamp: new Date()
-    }
-  ]);
-  const [suggestions, setSuggestions] = useState(defaultSuggestions);
   const [isTyping, setIsTyping] = useState(false);
-  const [lastCategory, setLastCategory] = useState<ResponseCategory>('greeting');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState<MessageType[]>([
+    {
+      content: "👋 Hi there! I'm your AI guide to 'Our Final Invention'. Ask me anything about the book, AI safety, James Barrat, or artificial intelligence in general!",
+      isUser: false,
+      timestamp: new Date(),
+    },
+  ]);
   
-  useEffect(() => {
-    // Scroll to bottom whenever messages update
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
-  }, [messages, isTyping]);
-
-  useEffect(() => {
-    // Initialize AOS for animations if it exists
-    if (typeof window.AOS !== 'undefined') {
-      window.AOS.init();
-    }
-    
-    // Show welcome toast when chatbot first appears
-    if (isOpen) {
-      toast({
-        title: "AI Assistant Activated",
-        description: "Ask me anything about AI safety, the book, or general AI concepts!",
-        duration: 3000,
-      });
-    }
-  }, [isOpen, toast]);
-
-  // Function to determine the most likely category of a user query
-  const categorizeInput = (input: string): ResponseCategory => {
-    const lowerInput = input.toLowerCase();
-    
-    // Check each category
-    for (const [category, data] of Object.entries(aiResponses)) {
-      // Skip the unknown category as it has no keywords
-      if (category === 'unknown') continue;
-      
-      // If any keyword matches the input
-      if (data.keywords.some(keyword => lowerInput.includes(keyword))) {
-        return category as ResponseCategory;
-      }
-    }
-    
-    // Default to unknown if no categories match
-    return 'unknown';
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+  
+  // AI knowledge base
+  const knowledgeBase = {
+    "book": [
+      "Our Final Invention by James Barrat explores the potential existential risks of advanced artificial intelligence.",
+      "The book warns about the dangers of creating superintelligent AI without proper safety measures.",
+      "It was published in 2013 and was one of the early mainstream books to discuss AI safety concerns.",
+      "Barrat argues that superintelligent AI could be humanity's final invention if we lose control of it."
+    ],
+    "author": [
+      "James Barrat is a documentary filmmaker and author.",
+      "He has created films for National Geographic, Discovery, PBS, and other broadcasters.",
+      "Barrat became interested in AI risks after interviewing experts like Ray Kurzweil.",
+      "He advocates for more research into AI safety and alignment."
+    ],
+    "ai safety": [
+      "AI safety research focuses on ensuring advanced AI systems remain beneficial to humanity.",
+      "Key concerns include alignment (ensuring AI goals match human values), containment, and value learning.",
+      "Organizations like MIRI, FHI, and OpenAI conduct research on AI safety.",
+      "The control problem refers to the challenge of controlling a superintelligent AI once it exists."
+    ],
+    "ai timeline": [
+      "AI development has accelerated rapidly in recent years with breakthroughs in deep learning.",
+      "Notable milestones include IBM's Deep Blue (1997), AlphaGo (2016), GPT models, and multimodal AI systems.",
+      "Experts disagree on when human-level artificial general intelligence (AGI) might be developed.",
+      "Some AI researchers predict AGI could arrive within the next few decades."
+    ]
   };
-
-  // Function to generate a bot response based on user input
-  const generateResponse = (userInput: string): string => {
-    // Determine the category of the user input
-    const category = categorizeInput(userInput);
-    setLastCategory(category);
-    
-    // Get the responses for that category
-    const categoryResponses = aiResponses[category].responses;
-    
-    // Return a random response from the matching category
-    return categoryResponses[Math.floor(Math.random() * categoryResponses.length)];
+  
+  // Suggested questions
+  const suggestions: SuggestionType[] = [
+    { text: "What is this book about?", icon: <Bot size={16} /> },
+    { text: "Who is James Barrat?", icon: <BrainCircuit size={16} /> },
+    { text: "Why is AI safety important?", icon: <Code size={16} /> },
+    { text: "What is the AI control problem?", icon: <Bot size={16} /> },
+  ];
+  
+  // Auto-scroll to the bottom of the chat
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+  
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  // Function to handle sending messages
+  
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+    
+    // Focus input when chat is opened
+    if (!isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 300);
+    }
+  };
+  
   const handleSendMessage = () => {
     if (message.trim() === '') return;
     
-    // Add user message
-    const userMessage: ChatMessage = {
-      id: Date.now().toString(),
-      type: 'user',
-      text: message,
-      timestamp: new Date()
+    // Add user message to chat
+    const userMessage = {
+      content: message,
+      isUser: true,
+      timestamp: new Date(),
     };
     
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setMessage('');
     setIsTyping(true);
     
-    // Focus the input field after sending
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-    
-    // Simulate AI thinking time (variable to seem more natural)
+    // Simulate AI response after a delay
     setTimeout(() => {
-      const botResponse: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        type: 'bot',
-        text: generateResponse(userMessage.text),
-        timestamp: new Date()
-      };
-      
-      setMessages(prev => [...prev, botResponse]);
+      const botResponse = generateAIResponse(message);
+      setMessages((prev) => [...prev, {
+        content: botResponse,
+        isUser: false,
+        timestamp: new Date(),
+      }]);
       setIsTyping(false);
-      
-      // Update suggestions based on the detected category
-      setSuggestions(contextualSuggestions[lastCategory]);
-      
-      // Add subtle typing sound effect if available
-      const typingSound = document.getElementById('typing-sound') as HTMLAudioElement;
-      if (typingSound) {
-        typingSound.volume = 0.2;
-        typingSound.play().catch(() => {
-          // Ignore errors from autoplay restrictions
-        });
-      }
-    }, 1000 + Math.random() * 1500); // Random delay between 1-2.5s for more natural feel
+    }, 1500);
   };
-
-  // Handle sending message on Enter key
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
+  
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
       handleSendMessage();
     }
   };
-
-  // Handle suggestion click
+  
   const handleSuggestionClick = (suggestion: string) => {
-    const userMessage: ChatMessage = {
-      id: Date.now().toString(),
-      type: 'user',
-      text: suggestion,
-      timestamp: new Date()
-    };
+    setMessage(suggestion);
     
-    setMessages(prev => [...prev, userMessage]);
-    setIsTyping(true);
-    
-    // Simulate AI thinking time
-    setTimeout(() => {
-      const botResponse: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        type: 'bot',
-        text: generateResponse(suggestion),
-        timestamp: new Date()
-      };
-      
-      setMessages(prev => [...prev, botResponse]);
-      setIsTyping(false);
-      
-      // Update suggestions based on the detected category
-      setSuggestions(contextualSuggestions[lastCategory]);
-    }, 1200 + Math.random() * 1800);
+    // Focus the input after selecting a suggestion
+    inputRef.current?.focus();
   };
-
-  // Handle message feedback
-  const handleFeedback = (messageId: string, type: 'positive' | 'negative') => {
-    // Update the message with feedback
-    setMessages(prev => 
-      prev.map(msg => 
-        msg.id === messageId 
-          ? { ...msg, feedback: type } 
-          : msg
-      )
-    );
+  
+  const clearChat = () => {
+    setMessages([
+      {
+        content: "Chat cleared. How can I help you learn about 'Our Final Invention'?",
+        isUser: false,
+        timestamp: new Date(),
+      },
+    ]);
     
-    // Show a thank you toast
     toast({
-      title: "Thank you for your feedback!",
-      description: type === 'positive' 
-        ? "I'm glad that response was helpful!" 
-        : "I'll try to improve my responses in the future.",
+      title: "Chat Cleared",
+      description: "All previous messages have been removed.",
       duration: 3000,
     });
   };
-
-  // Handle copying message to clipboard
-  const handleCopyMessage = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      toast({
-        title: "Copied to clipboard",
-        description: "Message content copied successfully",
-        duration: 2000,
-      });
-    });
-  };
-
-  // Handle clearing chat history
-  const handleClearChat = () => {
-    // Add a system message and reset
-    const systemMessage: ChatMessage = {
-      id: Date.now().toString(),
-      type: 'system',
-      text: "Chat history has been cleared.",
-      timestamp: new Date()
-    };
+  
+  const generateAIResponse = (query: string): string => {
+    const normalizedQuery = query.toLowerCase();
     
-    setMessages([
-      {
-        id: (Date.now() + 1).toString(),
-        type: 'bot',
-        text: "Hello! I'm an AI assistant here to discuss 'Our Final Invention', AI safety, and answer general questions about artificial intelligence. How can I help you today?",
-        timestamp: new Date()
+    // Check knowledge base categories
+    for (const [category, responses] of Object.entries(knowledgeBase)) {
+      if (normalizedQuery.includes(category)) {
+        // Return a random response from the matching category
+        return responses[Math.floor(Math.random() * responses.length)];
       }
-    ]);
-    
-    setSuggestions(defaultSuggestions);
-    setLastCategory('greeting');
-    
-    toast({
-      title: "Chat Reset",
-      description: "The conversation has been cleared.",
-      duration: 2000,
-    });
-  };
-
-  // Toggle search mode
-  const handleToggleSearch = () => {
-    setIsSearching(!isSearching);
-    if (!isSearching && inputRef.current) {
-      setTimeout(() => {
-        // Focus search input when search mode is activated
-        inputRef.current?.focus();
-      }, 100);
     }
+    
+    // Basic QA pairs
+    if (normalizedQuery.includes("hello") || normalizedQuery.includes("hi")) {
+      return "Hello! How can I help you learn about 'Our Final Invention' or AI safety today?";
+    }
+    
+    if (normalizedQuery.includes("thank")) {
+      return "You're welcome! If you have more questions about AI safety or the book, feel free to ask.";
+    }
+    
+    if (normalizedQuery.includes("risk") || normalizedQuery.includes("danger")) {
+      return "James Barrat discusses several AI risks in the book, including the control problem, value alignment issues, and the intelligence explosion hypothesis. Which aspect would you like to learn more about?";
+    }
+    
+    if (normalizedQuery.includes("agi") || normalizedQuery.includes("artificial general intelligence")) {
+      return "Artificial General Intelligence (AGI) refers to AI that can understand, learn, and apply knowledge across a wide range of tasks at a human level or beyond. Barrat argues that AGI could potentially be dangerous if developed without adequate safety precautions.";
+    }
+    
+    if (normalizedQuery.includes("superintelligence")) {
+      return "Superintelligence refers to an intellect that greatly exceeds the cognitive performance of humans in virtually all domains. Barrat, like philosopher Nick Bostrom, warns that a superintelligent AI might pose significant risks if its goals aren't aligned with human values.";
+    }
+    
+    if (normalizedQuery.includes("when") && normalizedQuery.includes("published")) {
+      return "'Our Final Invention' was published in 2013 by Thomas Dunne Books.";
+    }
+    
+    if (normalizedQuery.includes("buy") || normalizedQuery.includes("purchase")) {
+      return "You can purchase 'Our Final Invention' from major booksellers like Amazon, Barnes & Noble, or your local bookstore. The book is available in hardcover, paperback, e-book, and audiobook formats.";
+    }
+    
+    if (normalizedQuery.includes("documentary") || normalizedQuery.includes("film")) {
+      return "James Barrat is a documentary filmmaker who has created content for National Geographic, Discovery, PBS, and other broadcasters. His experience interviewing AI experts for documentaries led to his interest in AI safety.";
+    }
+    
+    // Generic responses for other queries
+    const genericResponses = [
+      "That's an interesting question about AI. The book 'Our Final Invention' explores how advanced AI could pose existential risks if not properly aligned with human values.",
+      "James Barrat discusses this topic in his book, emphasizing the importance of AI safety research and careful development of advanced systems.",
+      "While 'Our Final Invention' was published in 2013, many of its concerns about AI safety remain relevant today as AI capabilities continue to advance rapidly.",
+      "The field of AI safety that Barrat discusses aims to ensure that advanced AI systems remain beneficial and aligned with human values. Would you like to know more about specific safety approaches?",
+    ];
+    
+    return genericResponses[Math.floor(Math.random() * genericResponses.length)];
   };
-
-  // Format timestamp for messages
-  const formatTime = (date: Date) => {
+  
+  const getTime = (date: Date): string => {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-  // Determine CSS classes for message based on type
-  const getMessageClasses = (type: 'user' | 'bot' | 'system') => {
-    switch (type) {
-      case 'user':
-        return 'bg-blue-600 text-white rounded-tr-none';
-      case 'bot':
-        return 'bg-gray-800 text-gray-100 rounded-tl-none border border-blue-500/20';
-      case 'system':
-        return 'bg-gray-700/70 text-gray-200 text-center text-xs py-1';
-      default:
-        return '';
-    }
-  };
-
-  if (!isOpen) {
-    return (
-      <>
-        <button 
-          onClick={() => setIsOpen(true)} 
-          className="fixed bottom-8 right-8 z-50 flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-cyan-600 to-blue-500 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate__animated animate__fadeIn"
-          aria-label="Open AI Chatbot"
-        >
-          <Bot className="w-8 h-8" />
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate__animated animate__pulse animate__infinite"></div>
-        </button>
-        
-        {/* Hidden audio element for sound effects */}
-        <audio id="typing-sound" src="https://cdn.freesound.org/previews/521/521947_11175262-lq.mp3" preload="auto"></audio>
-      </>
-    );
-  }
-
   return (
-    <div 
-      className={`fixed ${isExpanded ? 'inset-4 lg:inset-10' : 'bottom-8 right-8 w-80 sm:w-96'} z-50 rounded-xl overflow-hidden shadow-2xl transition-all duration-500 animate__animated ${isOpen ? 'animate__fadeInUp' : 'animate__fadeOutDown'}`}
-    >
-      {/* Chatbot header */}
-      <div className="bg-gradient-to-r from-blue-700 to-cyan-600 text-white p-3 flex justify-between items-center">
-        <div className="flex items-center">
-          <Bot className="w-5 h-5 mr-2" />
-          <h3 className="font-bold">AI Assistant</h3>
-          <span className="ml-2 text-xs bg-green-500 px-1.5 py-0.5 rounded-full">Online</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          {isMinimized ? (
-            <button 
-              onClick={() => setIsMinimized(false)} 
-              className="p-1 hover:bg-blue-600 rounded-full transition-colors"
-              aria-label="Maximize"
-            >
-              <Maximize2 className="w-4 h-4" />
-            </button>
-          ) : (
-            <>
-              <button 
-                onClick={() => setIsExpanded(!isExpanded)} 
-                className="p-1 hover:bg-blue-600 rounded-full transition-colors"
-                aria-label={isExpanded ? "Minimize Window" : "Expand Window"}
-              >
-                {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-              </button>
-              <button 
-                onClick={() => setIsMinimized(true)} 
-                className="p-1 hover:bg-blue-600 rounded-full transition-colors"
-                aria-label="Minimize"
-              >
-                <Minimize2 className="w-4 h-4" />
-              </button>
-            </>
-          )}
-          <button 
-            onClick={() => setIsOpen(false)} 
-            className="p-1 hover:bg-blue-600 rounded-full transition-colors"
-            aria-label="Close"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
+    <>
+      {/* Chat toggle button - now positioned at bottom right */}
+      <button
+        onClick={toggleChat}
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group animate__animated animate__fadeIn"
+        aria-label="Chat with AI Assistant"
+      >
+        {isOpen ? (
+          <X className="h-6 w-6 transition-all" />
+        ) : (
+          <MessageSquare className="h-6 w-6 transition-all group-hover:scale-110" />
+        )}
+      </button>
       
-      {/* Chat messages container */}
-      {!isMinimized && (
-        <>
-          <div className={`bg-gradient-to-b from-gray-900 to-black ${isExpanded ? 'h-[calc(100%-8rem)]' : 'h-80'} overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-transparent`} ref={chatContainerRef}>
-            {/* Welcome animation - only show initially */}
-            {messages.length === 1 && messages[0].type === 'bot' && (
-              <div className="animate__animated animate__fadeIn animate__slow mb-6 bg-blue-900/20 p-4 rounded-lg border border-blue-500/20">
-                <div className="flex items-center mb-2">
-                  <Brain className="text-cyan-400 mr-2 h-5 w-5" />
-                  <h4 className="text-cyan-300 font-semibold text-sm">AI Assistant Capabilities</h4>
-                </div>
-                <p className="text-sm text-gray-300">
-                  I can discuss topics related to AI safety, James Barrat's book, and answer general questions about artificial intelligence concepts. Try asking me a question!
-                </p>
-              </div>
-            )}
-            
-            {/* Messages */}
-            {messages.map((msg) => (
-              <div 
-                key={msg.id} 
-                className={`mb-4 ${msg.type === 'system' ? '' : `flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`} animate__animated animate__fadeIn animate__faster`}
-              >
-                {msg.type !== 'system' && (
-                  <div className={`max-w-[90%] rounded-lg px-4 py-2 ${getMessageClasses(msg.type)}`}>
-                    <div className="text-sm">{msg.text}</div>
-                    <div className="text-xs mt-1 flex justify-between items-center">
-                      <span className="opacity-70">{formatTime(msg.timestamp)}</span>
-                      
-                      {msg.type === 'bot' && (
-                        <div className="flex space-x-1">
-                          <button 
-                            onClick={() => handleCopyMessage(msg.text)}
-                            className="opacity-60 hover:opacity-100 transition-opacity p-0.5"
-                            aria-label="Copy text"
-                          >
-                            <Copy className="h-3 w-3" />
-                          </button>
-                          
-                          <button 
-                            onClick={() => handleFeedback(msg.id, 'positive')}
-                            className={`opacity-60 hover:opacity-100 transition-opacity p-0.5 ${msg.feedback === 'positive' ? 'text-green-500 opacity-100' : ''}`}
-                            aria-label="Helpful"
-                          >
-                            <ThumbsUp className="h-3 w-3" />
-                          </button>
-                          
-                          <button 
-                            onClick={() => handleFeedback(msg.id, 'negative')}
-                            className={`opacity-60 hover:opacity-100 transition-opacity p-0.5 ${msg.feedback === 'negative' ? 'text-red-500 opacity-100' : ''}`}
-                            aria-label="Not helpful"
-                          >
-                            <ThumbsDown className="h-3 w-3" />
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-                
-                {msg.type === 'system' && (
-                  <div className={`w-full py-1 px-3 ${getMessageClasses(msg.type)}`}>
-                    {msg.text}
-                  </div>
-                )}
-              </div>
-            ))}
-            
-            {/* AI typing indicator */}
-            {isTyping && (
-              <div className="flex justify-start mb-4 animate__animated animate__fadeIn">
-                <div className="bg-gray-800 text-gray-100 rounded-lg rounded-tl-none border border-blue-500/20 px-4 py-3 max-w-[80%]">
-                  <div className="flex items-center">
-                    <div className="typing-dot"></div>
-                    <div className="typing-dot"></div>
-                    <div className="typing-dot"></div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-          
-          {/* Suggestions */}
-          <div className="bg-gray-900 p-2 overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-transparent">
-            <div className="flex space-x-2">
-              {suggestions.map((suggestion, index) => (
-                <button 
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                  className="px-3 py-1 bg-gray-800 hover:bg-blue-600/70 text-xs text-white rounded-full whitespace-nowrap transition-colors border border-blue-500/30 flex-shrink-0 animate__animated animate__fadeIn"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  {suggestion}
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          {/* Message input */}
-          <div className="bg-gray-900 p-3 border-t border-gray-800">
-            {/* Toolbar with clear chat button */}
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex space-x-1">
-                <button 
-                  onClick={handleClearChat}
-                  className="text-xs text-gray-400 hover:text-cyan-300 transition-colors flex items-center"
-                >
-                  <RefreshCw className="h-3 w-3 mr-1" />
-                  Reset Chat
-                </button>
-              </div>
-              
-              <div>
-                <button 
-                  onClick={handleToggleSearch}
-                  className={`text-xs ${isSearching ? 'text-cyan-300' : 'text-gray-400 hover:text-cyan-300'} transition-colors flex items-center`}
-                >
-                  <Search className="h-3 w-3 mr-1" />
-                  {isSearching ? 'Cancel' : 'Search'}
-                </button>
-              </div>
-            </div>
-            
-            <div className="flex items-center">
-              <input
-                ref={inputRef}
-                type="text"
-                value={isSearching ? searchTerm : message}
-                onChange={(e) => isSearching ? setSearchTerm(e.target.value) : setMessage(e.target.value)}
-                onKeyPress={isSearching ? undefined : handleKeyPress}
-                placeholder={isSearching ? "Search conversation..." : "Ask about AI safety or anything else..."}
-                className="flex-1 bg-gray-800 text-white border border-gray-700 rounded-l-lg px-4 py-2 focus:outline-none focus:border-blue-500"
-              />
-              <button
-                onClick={isSearching ? handleToggleSearch : handleSendMessage}
-                disabled={isSearching ? searchTerm.trim() === '' : message.trim() === ''}
-                className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-lg px-4 py-2 transition-colors disabled:opacity-50"
-              >
-                {isSearching ? <Search className="w-5 h-5" /> : <Send className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-        </>
-      )}
-      
-      {/* Chatbot footer */}
-      {!isMinimized && (
-        <div className="bg-gray-900 p-2 border-t border-gray-800 flex justify-between items-center text-xs text-gray-500">
+      {/* Chat window */}
+      <div 
+        className={`fixed bottom-28 right-8 z-50 w-80 md:w-96 max-h-[600px] rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 transform ${
+          isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
+        } bg-gradient-to-br from-gray-900 to-gray-950 border border-blue-500/30 animate__animated animate__fadeIn animate__faster`}
+      >
+        {/* Chat header */}
+        <div className="p-4 bg-gradient-to-r from-blue-600 to-cyan-600 relative">
           <div className="flex items-center">
-            <Sparkles className="h-3 w-3 mr-1 text-blue-400" />
-            <span>AI-powered assistant</span>
+            <BrainCircuit className="h-6 w-6 text-white mr-2" />
+            <h3 className="text-white font-medium">AI Book Assistant</h3>
           </div>
-          <a href="https://www.jamesbarrat.com" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-blue-400 transition-colors">
-            Learn more <ExternalLink className="h-3 w-3 ml-1" />
-          </a>
-        </div>
-      )}
-      
-      {/* Help tooltip that appears when hovering over the help icon */}
-      <div className="fixed bottom-8 left-8 z-50">
-        <div className="group relative">
-          <button className="flex items-center justify-center w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-blue-500/30 text-blue-400 hover:text-blue-300 hover:bg-black/60 transition-all">
-            <HelpCircle className="h-5 w-5" />
+          <div className="mt-1 text-blue-100 text-xs">
+            Ask me about "Our Final Invention" or AI safety
+          </div>
+          
+          {/* Clear chat button */}
+          <button 
+            onClick={clearChat}
+            className="absolute right-2 top-2 p-2 text-white/70 hover:text-white hover:bg-black/20 rounded-full transition-colors"
+            aria-label="Clear chat"
+          >
+            <Trash2 className="h-4 w-4" />
           </button>
-          <div className="absolute bottom-full left-0 mb-2 w-64 rounded-lg bg-gray-900 border border-blue-500/20 p-3 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-            <h4 className="text-sm font-medium text-blue-400 mb-1">AI Assistant Help</h4>
-            <p className="text-xs text-gray-300 mb-2">
-              This AI assistant can discuss "Our Final Invention", AI safety topics, and answer general questions.
-            </p>
-            <div className="text-xs text-gray-400">
-              <div className="flex items-center mb-1">
-                <div className="w-4 h-4 mr-1 flex items-center justify-center">•</div>
-                <div>Try asking about AI risks, alignment, or the book</div>
-              </div>
-              <div className="flex items-center mb-1">
-                <div className="w-4 h-4 mr-1 flex items-center justify-center">•</div>
-                <div>Click on suggestions for quick responses</div>
-              </div>
-              <div className="flex items-center">
-                <div className="w-4 h-4 mr-1 flex items-center justify-center">•</div>
-                <div>Use thumbs up/down to provide feedback</div>
+        </div>
+        
+        {/* Chat messages */}
+        <div className="h-96 overflow-y-auto p-4 scrollbar-thin">
+          {messages.map((msg, index) => (
+            <div 
+              key={index}
+              className={`mb-4 flex ${msg.isUser ? 'justify-end' : 'justify-start'} animate__animated animate__fadeIn animate__faster`}
+            >
+              <div 
+                className={`max-w-[80%] rounded-xl p-3 ${
+                  msg.isUser 
+                    ? 'bg-blue-600 text-white rounded-tr-none' 
+                    : 'bg-gray-800 text-gray-100 rounded-tl-none'
+                }`}
+              >
+                <div className="text-sm">{msg.content}</div>
+                <div className={`text-xs mt-1 ${msg.isUser ? 'text-blue-200' : 'text-gray-400'}`}>
+                  {getTime(msg.timestamp)}
+                </div>
               </div>
             </div>
+          ))}
+          
+          {/* Typing indicator */}
+          {isTyping && (
+            <div className="flex justify-start mb-4 animate__animated animate__fadeIn animate__faster">
+              <div className="bg-gray-800 text-white rounded-xl rounded-tl-none p-3">
+                <div className="flex items-center">
+                  <div className="typing-dot"></div>
+                  <div className="typing-dot"></div>
+                  <div className="typing-dot"></div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          <div ref={messagesEndRef} />
+        </div>
+        
+        {/* Suggested questions */}
+        <div className="px-4 py-2 bg-gray-900/90 border-t border-gray-800">
+          <p className="text-xs text-gray-400 mb-2">Suggested questions:</p>
+          <div className="flex flex-wrap gap-2">
+            {suggestions.map((suggestion, index) => (
+              <button
+                key={index}
+                onClick={() => handleSuggestionClick(suggestion.text)}
+                className="text-xs bg-gray-800 hover:bg-gray-700 text-cyan-300 rounded-full px-3 py-1.5 flex items-center gap-1.5 transition-colors animate__animated animate__fadeIn animate__delay-1s"
+              >
+                {suggestion.icon}
+                <span>{suggestion.text}</span>
+              </button>
+            ))}
           </div>
         </div>
+        
+        {/* Chat input */}
+        <div className="p-4 bg-gray-900 border-t border-gray-800 flex items-center">
+          <Input
+            type="text"
+            placeholder="Type your message..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+            ref={inputRef}
+            className="flex-1 bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus-visible:ring-blue-500"
+          />
+          <Button
+            size="icon"
+            onClick={handleSendMessage}
+            disabled={message.trim() === ''}
+            className="ml-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-full p-2 hover:shadow-lg disabled:opacity-50 transition-all"
+          >
+            <Send className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

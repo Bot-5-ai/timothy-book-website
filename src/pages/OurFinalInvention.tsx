@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BrainCircuit, Cpu, Terminal, Binary, Atom, MoveRight, Code } from 'lucide-react';
+import { ArrowLeft, BrainCircuit, Cpu, Terminal, Binary, Atom, MoveRight, Code, Server, Globe, ChevronUp, Robot, Blocks, Microscope, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -14,7 +14,7 @@ import AuthorBio from '../components/AuthorBio';
 import AIRiskVisualization from '../components/AIRiskVisualization';
 import Footer from '../components/Footer';
 import AIChatbot from '../components/AIChatbot';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const OurFinalInvention = () => {
   const { toast } = useToast();
@@ -69,6 +69,32 @@ const OurFinalInvention = () => {
           }
         }
       );
+      
+      // Animate robot elements
+      gsap.from('.robot-element', {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: '.robot-section',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+      
+      // Animate code blocks
+      gsap.from('.code-block', {
+        x: -50,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: '.code-section',
+          start: 'top 75%',
+          toggleActions: 'play none none reverse'
+        }
+      });
     }
     
     // Initialize Typed.js for typing animation
@@ -209,14 +235,12 @@ const OurFinalInvention = () => {
         </Link>
       </div>
       
-      {/* Removed the quick navigation menu that was here */}
-      
       {/* Typing animation container */}
       <div className="fixed top-20 right-5 z-50 max-w-xs backdrop-blur-md bg-black/40 p-3 rounded-lg border border-cyan-500/30 shadow-lg hidden md:block">
         <span id="ai-typing-text" className="text-sm text-cyan-400 font-mono"></span>
       </div>
       
-      {/* AI-themed floating elements */}
+      {/* AI-themed floating elements - Added more robot and code elements */}
       <div className="ai-particle absolute top-[10%] left-[5%] w-16 h-16 opacity-70 animate-pulse" data-speed="4">
         <BrainCircuit className="w-full h-full text-cyan-500" />
       </div>
@@ -236,6 +260,61 @@ const OurFinalInvention = () => {
         <Code className="w-full h-full text-cyan-400" />
       </div>
       
+      {/* New robot-themed elements */}
+      <div className="ai-particle robot-element absolute top-[35%] left-[25%] w-18 h-18 opacity-70 animate-float" data-speed="3">
+        <Robot className="w-full h-full text-cyan-300" />
+      </div>
+      <div className="ai-particle robot-element absolute top-[65%] right-[20%] w-14 h-14 opacity-60 animate-float-delayed" data-speed="2">
+        <Brain className="w-full h-full text-purple-400" />
+      </div>
+      <div className="ai-particle robot-element absolute bottom-[20%] left-[30%] w-16 h-16 opacity-50 animate-pulse-slow" data-speed="4">
+        <Blocks className="w-full h-full text-green-300" />
+      </div>
+      <div className="ai-particle robot-element absolute top-[45%] right-[35%] w-12 h-12 opacity-70 animate-float-reverse" data-speed="3">
+        <Microscope className="w-full h-full text-yellow-400" />
+      </div>
+      <div className="ai-particle robot-element absolute bottom-[40%] right-[8%] w-16 h-16 opacity-60 animate-spin-slow" data-speed="2">
+        <Server className="w-full h-full text-pink-400" />
+      </div>
+      
+      {/* Code block elements */}
+      <div className="code-block absolute top-[15%] left-[40%] max-w-xs opacity-20 transform rotate-6 pointer-events-none">
+        <pre className="text-xs text-green-400 font-mono">
+          <code>
+            {`function AI() {
+  if (this.intelligence > human) {
+    return "Superintelligence";
+  }
+}`}
+          </code>
+        </pre>
+      </div>
+      
+      <div className="code-block absolute bottom-[35%] right-[25%] max-w-xs opacity-20 transform -rotate-3 pointer-events-none">
+        <pre className="text-xs text-pink-400 font-mono">
+          <code>
+            {`class AGI {
+  constructor() {
+    this.goals = undefined;
+    this.intelligence = Infinity;
+  }
+}`}
+          </code>
+        </pre>
+      </div>
+      
+      <div className="code-block absolute top-[50%] left-[12%] max-w-xs opacity-20 transform rotate-12 pointer-events-none">
+        <pre className="text-xs text-yellow-400 font-mono">
+          <code>
+            {`// Alignment problem
+const alignAI = (values) => {
+  // How do we encode human values?
+  return "unsolved";
+};`}
+          </code>
+        </pre>
+      </div>
+      
       {/* AI Tech Images */}
       <div className="ai-particle absolute top-[30%] right-[8%] w-24 h-24 opacity-80 animate-float-delayed rounded-full overflow-hidden shadow-glow-blue" data-speed="2">
         <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
@@ -250,6 +329,23 @@ const OurFinalInvention = () => {
       <div className="ai-particle absolute top-[70%] right-[12%] w-28 h-28 opacity-70 animate-float rounded-full overflow-hidden shadow-glow-blue" data-speed="1">
         <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
              alt="Digital brain concept" 
+             className="w-full h-full object-cover" />
+      </div>
+      
+      {/* Added more tech images */}
+      <div className="ai-particle absolute top-[20%] left-[20%] w-32 h-32 opacity-60 animate-float rounded-full overflow-hidden shadow-glow-blue" data-speed="2">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+             alt="Robot hand" 
+             className="w-full h-full object-cover" />
+      </div>
+      <div className="ai-particle absolute bottom-[25%] right-[28%] w-24 h-24 opacity-50 animate-float-delayed rounded-full overflow-hidden shadow-glow-blue" data-speed="3">
+        <img src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+             alt="Robot face" 
+             className="w-full h-full object-cover" />
+      </div>
+      <div className="ai-particle absolute top-[55%] right-[40%] w-20 h-20 opacity-60 animate-float-reversed rounded-full overflow-hidden shadow-glow-blue" data-speed="2">
+        <img src="https://images.unsplash.com/photo-1677442135968-6ca6a7d3b002?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+             alt="Circuit board" 
              className="w-full h-full object-cover" />
       </div>
       
@@ -376,10 +472,10 @@ const OurFinalInvention = () => {
       <div className="fixed bottom-8 left-8 z-50">
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-blue-500/30 text-blue-400 hover:text-blue-300 hover:bg-black/60 transition-all"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-blue-500/30 text-blue-400 hover:text-blue-300 hover:bg-black/60 transition-all animate__animated animate__fadeIn"
           aria-label="Back to top"
         >
-          <i className="fas fa-arrow-up"></i>
+          <ChevronUp className="h-5 w-5" />
         </button>
       </div>
       
@@ -388,6 +484,11 @@ const OurFinalInvention = () => {
         <path className="circuit-path" d="M0,100 Q100,50 200,100 T400,100" stroke="#06b6d4" strokeWidth="2" fill="none" strokeDasharray="5,5" />
         <path className="circuit-path" d="M0,200 Q200,150 400,200 T800,200" stroke="#0ea5e9" strokeWidth="2" fill="none" strokeDasharray="5,5" />
         <path className="circuit-path" d="M0,300 Q300,250 600,300 T1200,300" stroke="#2dd4bf" strokeWidth="2" fill="none" strokeDasharray="5,5" />
+        
+        {/* Additional circuit paths */}
+        <path className="circuit-path" d="M0,400 Q150,350 300,400 T600,400" stroke="#06b6d4" strokeWidth="1.5" fill="none" strokeDasharray="5,10" />
+        <path className="circuit-path" d="M0,500 Q250,450 500,500 T1000,500" stroke="#0ea5e9" strokeWidth="1.5" fill="none" strokeDasharray="8,8" />
+        <path className="circuit-path" d="M0,600 Q350,550 700,600 T1400,600" stroke="#2dd4bf" strokeWidth="1.5" fill="none" strokeDasharray="3,15" />
       </svg>
       
       {/* Additional AI-themed decorative elements */}
