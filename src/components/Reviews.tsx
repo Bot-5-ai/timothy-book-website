@@ -55,29 +55,47 @@ const Reviews = () => {
     ));
   };
 
+  // Load CDN resources
+  React.useEffect(() => {
+    // Font Awesome
+    const fontAwesome = document.createElement('link');
+    fontAwesome.rel = 'stylesheet';
+    fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css';
+    document.head.appendChild(fontAwesome);
+    
+    // Animate.css
+    const animateCSS = document.createElement('link');
+    animateCSS.rel = 'stylesheet';
+    animateCSS.href = 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
+    document.head.appendChild(animateCSS);
+  }, []);
+
   return (
     <section id="reviews" className="py-20 px-4 bg-gradient-to-br from-bookblue-50 to-white">
       <div className="container mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 bg-gradient-to-r from-vibrant-purple via-vibrant-cyan to-vibrant-blue bg-clip-text text-transparent animate-pulse-light relative inline-block">
-            Book Reviews
-            <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-vibrant-purple via-vibrant-cyan to-vibrant-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+          <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 animate__animated animate__pulse animate__infinite animate__slow group hover:animate-none relative inline-block">
+            <span className="bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
+              Book Reviews
+            </span>
+            <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-vibrant-purple via-vibrant-cyan to-vibrant-blue mx-auto"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 mx-auto rounded-full shadow-glow"></div>
         </div>
 
         <div className="max-w-4xl mx-auto relative" data-aos="fade-up" data-aos-delay="200">
-          <div className="bg-white rounded-xl shadow-lg p-8 md:p-12 mb-8 hover:shadow-xl transition-shadow duration-300">
+          <div className="bg-white rounded-xl shadow-lg p-8 md:p-12 mb-8 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 animate__animated animate__fadeIn">
             <div className="flex justify-between items-center mb-8">
-              <h3 className="text-xl md:text-2xl font-merriweather font-bold text-gray-800">
+              <h3 className="text-xl md:text-2xl font-merriweather font-bold text-gray-800 flex items-center">
+                <i className="fas fa-quote-left text-blue-500 mr-2"></i>
                 {reviews[currentReview].source}
               </h3>
-              <div className="flex">
+              <div className="flex animate__animated animate__fadeIn">
                 {renderStars(reviews[currentReview].rating)}
               </div>
             </div>
 
-            <blockquote className="text-gray-700 text-lg italic mb-6">
+            <blockquote className="text-gray-700 text-lg italic mb-6 animate__animated animate__fadeIn">
               "{reviews[currentReview].content}"
             </blockquote>
 
@@ -94,7 +112,7 @@ const Reviews = () => {
           <div className="flex justify-center space-x-4">
             <button 
               onClick={prevReview}
-              className="p-3 rounded-full bg-white shadow-md hover:bg-bookblue-50 text-bookblue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-bookblue-400"
+              className="p-3 rounded-full bg-white shadow-md hover:bg-blue-50 text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-110"
               aria-label="Previous review"
             >
               <ChevronLeft className="h-6 w-6" />
@@ -102,7 +120,7 @@ const Reviews = () => {
             
             <button
               onClick={nextReview}
-              className="p-3 rounded-full bg-white shadow-md hover:bg-bookblue-50 text-bookblue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-bookblue-400"
+              className="p-3 rounded-full bg-white shadow-md hover:bg-blue-50 text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-110"
               aria-label="Next review"
             >
               <ChevronRight className="h-6 w-6" />
@@ -114,7 +132,7 @@ const Reviews = () => {
               href="https://www.amazon.com/Our-Final-Invention-Artificial-Intelligence/dp/1250058783/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3 bg-bookblue-600 text-white rounded-full font-medium hover:bg-bookblue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-bookblue-500 focus:ring-offset-2 animate-pulse-light"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full font-medium hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 animate__animated animate__pulse animate__infinite animate__slow transform hover:scale-105 hover:animate-none"
             >
               <i className="fas fa-shopping-cart mr-2"></i>
               Purchase Book
@@ -123,6 +141,12 @@ const Reviews = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .shadow-glow {
+          box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+      `}</style>
     </section>
   );
 };

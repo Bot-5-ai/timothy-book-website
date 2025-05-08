@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, Send, X, Plus, Trash2, BrainCircuit, Bot, Code } from 'lucide-react';
+import { MessageSquare, Send, X, Plus, Trash2, BrainCircuit, Bot, Code, Star, ThumbsUp, ThumbsDown, XCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from "@/hooks/use-toast";
@@ -11,6 +11,7 @@ type MessageType = {
   content: string;
   isUser: boolean;
   timestamp: Date;
+  rated?: 'up' | 'down' | null;
 };
 
 type SuggestionType = {
@@ -24,7 +25,7 @@ const AIChatbot = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<MessageType[]>([
     {
-      content: "👋 Hi there! I'm your AI guide to 'Our Final Invention'. Ask me anything about the book, AI safety, James Barrat, or artificial intelligence in general!",
+      content: "👋 Hi there! I'm your AI assistant. I can help with questions about 'Our Final Invention', AI safety, or any other topic you're curious about!",
       isUser: false,
       timestamp: new Date(),
     },
@@ -34,7 +35,7 @@ const AIChatbot = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   
-  // AI knowledge base
+  // Expanded AI knowledge base
   const knowledgeBase = {
     "book": [
       "Our Final Invention by James Barrat explores the potential existential risks of advanced artificial intelligence.",
@@ -59,21 +60,73 @@ const AIChatbot = () => {
       "Notable milestones include IBM's Deep Blue (1997), AlphaGo (2016), GPT models, and multimodal AI systems.",
       "Experts disagree on when human-level artificial general intelligence (AGI) might be developed.",
       "Some AI researchers predict AGI could arrive within the next few decades."
+    ],
+    "current ai": [
+      "Modern AI systems like GPT-4, Claude, PaLM, and DALL-E represent state-of-the-art in language and image generation.",
+      "Large language models have demonstrated impressive capabilities in understanding and generating human language.",
+      "Concerns about AI include privacy issues, algorithmic bias, job displacement, and existential risks.",
+      "AI ethics is an emerging field addressing the moral implications of artificial intelligence."
+    ],
+    "technology": [
+      "Moore's Law describes the observation that computing power doubles approximately every 18-24 months.",
+      "Quantum computing promises to solve certain problems exponentially faster than classical computers.",
+      "Blockchain technology provides decentralized, tamper-proof record-keeping through cryptographic techniques.",
+      "Virtual and augmented reality technologies are increasingly used in education, healthcare, and entertainment."
+    ],
+    "science": [
+      "CRISPR-Cas9 is a revolutionary gene-editing technology that allows precise modification of DNA sequences.",
+      "Fusion energy research aims to replicate the sun's power generation process for clean, abundant energy.",
+      "Climate change is primarily caused by human activities, especially the burning of fossil fuels.",
+      "The James Webb Space Telescope has provided unprecedented views of distant galaxies and exoplanets."
+    ],
+    "philosophy": [
+      "The simulation hypothesis suggests our reality might be an artificial simulation created by advanced beings.",
+      "Philosophical zombies are hypothetical beings physically identical to humans but lacking consciousness.",
+      "The trolley problem is a thought experiment highlighting tensions between utilitarian and deontological ethics.",
+      "The hard problem of consciousness refers to explaining why physical processes give rise to subjective experience."
     ]
   };
   
-  // Suggested questions
+  // Suggested questions covering broader topics
   const suggestions: SuggestionType[] = [
     { text: "What is this book about?", icon: <Bot size={16} /> },
     { text: "Who is James Barrat?", icon: <BrainCircuit size={16} /> },
-    { text: "Why is AI safety important?", icon: <Code size={16} /> },
-    { text: "What is the AI control problem?", icon: <Bot size={16} /> },
+    { text: "What are current AI capabilities?", icon: <Code size={16} /> },
+    { text: "How does quantum computing work?", icon: <Bot size={16} /> },
+    { text: "Latest climate science?", icon: <BrainCircuit size={16} /> },
+    { text: "What is the simulation hypothesis?", icon: <Code size={16} /> },
   ];
   
   // Auto-scroll to the bottom of the chat
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+  
+  useEffect(() => {
+    // Load external resources
+    const loadExternalResources = () => {
+      // Font Awesome
+      const fontAwesome = document.createElement('link');
+      fontAwesome.rel = 'stylesheet';
+      fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css';
+      document.head.appendChild(fontAwesome);
+      
+      // Animate.css
+      const animateCSS = document.createElement('link');
+      animateCSS.rel = 'stylesheet';
+      animateCSS.href = 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
+      document.head.appendChild(animateCSS);
+    };
+    
+    loadExternalResources();
+    
+    // Focus input when chat is opened
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 300);
+    }
+  }, [isOpen]);
   
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -132,7 +185,7 @@ const AIChatbot = () => {
   const clearChat = () => {
     setMessages([
       {
-        content: "Chat cleared. How can I help you learn about 'Our Final Invention'?",
+        content: "Chat cleared. How can I help you with today?",
         isUser: false,
         timestamp: new Date(),
       },
@@ -142,6 +195,23 @@ const AIChatbot = () => {
       title: "Chat Cleared",
       description: "All previous messages have been removed.",
       duration: 3000,
+    });
+  };
+  
+  // Handle rating messages
+  const handleRateMessage = (index: number, rating: 'up' | 'down') => {
+    setMessages(prev => 
+      prev.map((msg, i) => 
+        i === index ? { ...msg, rated: rating } : msg
+      )
+    );
+    
+    toast({
+      title: rating === 'up' ? "Thanks for the feedback!" : "We'll improve our answers",
+      description: rating === 'up' 
+        ? "Glad this answer was helpful to you." 
+        : "Your feedback helps us improve our responses.",
+      duration: 2000,
     });
   };
   
@@ -158,43 +228,58 @@ const AIChatbot = () => {
     
     // Basic QA pairs
     if (normalizedQuery.includes("hello") || normalizedQuery.includes("hi")) {
-      return "Hello! How can I help you learn about 'Our Final Invention' or AI safety today?";
+      return "Hello there! I'm your friendly AI assistant. How can I help you today?";
     }
     
     if (normalizedQuery.includes("thank")) {
-      return "You're welcome! If you have more questions about AI safety or the book, feel free to ask.";
+      return "You're welcome! I'm happy to help. If you have any other questions, feel free to ask.";
     }
     
-    if (normalizedQuery.includes("risk") || normalizedQuery.includes("danger")) {
-      return "James Barrat discusses several AI risks in the book, including the control problem, value alignment issues, and the intelligence explosion hypothesis. Which aspect would you like to learn more about?";
+    // Expanded response capabilities
+    if (normalizedQuery.includes("climate change") || normalizedQuery.includes("global warming")) {
+      return "Climate change is primarily caused by human activities, especially the burning of fossil fuels which releases greenhouse gases. The scientific consensus is that we need to limit warming to 1.5°C above pre-industrial levels to avoid the most severe impacts. This requires significant reductions in carbon emissions and a transition to renewable energy sources.";
     }
     
-    if (normalizedQuery.includes("agi") || normalizedQuery.includes("artificial general intelligence")) {
-      return "Artificial General Intelligence (AGI) refers to AI that can understand, learn, and apply knowledge across a wide range of tasks at a human level or beyond. Barrat argues that AGI could potentially be dangerous if developed without adequate safety precautions.";
+    if (normalizedQuery.includes("quantum") || normalizedQuery.includes("quantum computing")) {
+      return "Quantum computing uses quantum bits or 'qubits' that can exist in multiple states simultaneously (superposition) and be correlated with each other (entanglement). This allows quantum computers to perform certain calculations exponentially faster than classical computers. While still in early stages, quantum computers show promise for solving complex problems in cryptography, materials science, and drug discovery.";
     }
     
-    if (normalizedQuery.includes("superintelligence")) {
-      return "Superintelligence refers to an intellect that greatly exceeds the cognitive performance of humans in virtually all domains. Barrat, like philosopher Nick Bostrom, warns that a superintelligent AI might pose significant risks if its goals aren't aligned with human values.";
+    if (normalizedQuery.includes("crypto") || normalizedQuery.includes("bitcoin")) {
+      return "Cryptocurrency is a form of digital or virtual currency that uses cryptography for security and operates on a technology called blockchain. Bitcoin, created in 2009, was the first cryptocurrency. The blockchain is a distributed ledger that records all transactions across a network of computers, making it difficult to hack or alter. Cryptocurrencies have been both praised for their potential to democratize finance and criticized for their energy consumption and use in illicit activities.";
     }
     
+    if (normalizedQuery.includes("simulation") || normalizedQuery.includes("simulation hypothesis")) {
+      return "The simulation hypothesis, popularized by philosopher Nick Bostrom, suggests our reality could be an artificial simulation created by advanced beings. The argument is that if it's possible to create fully immersive simulated realities, and advanced civilizations would likely create many such simulations, then statistically we're more likely to be in a simulation than base reality. While fascinating, the hypothesis is currently unfalsifiable and remains in the realm of philosophical speculation.";
+    }
+    
+    if (normalizedQuery.includes("consciousness") || normalizedQuery.includes("hard problem")) {
+      return "Consciousness, the subjective experience of being, poses what philosopher David Chalmers called the 'hard problem' - explaining why physical processes in the brain give rise to subjective experience. Various theories exist, from emergent properties of complex neural systems to quantum effects in brain microtubules, but there's no scientific consensus. Some philosophers argue consciousness may be fundamental to reality rather than emergent from physical processes.";
+    }
+    
+    if (normalizedQuery.includes("ai risk") || normalizedQuery.includes("ai danger")) {
+      return "AI risks include short-term concerns like algorithmic bias, privacy violations, and job displacement, as well as longer-term existential risks from advanced AI. The control problem (ensuring advanced AI systems remain aligned with human values) and the possibility of an 'intelligence explosion' (rapidly self-improving AI) are key concerns. Organizations like the Future of Life Institute and the Center for AI Safety are working to ensure AI development remains beneficial for humanity.";
+    }
+    
+    if (normalizedQuery.includes("gene edit") || normalizedQuery.includes("crispr")) {
+      return "CRISPR-Cas9 is a revolutionary gene-editing technology that allows scientists to precisely modify DNA sequences. It works like molecular scissors, guided by RNA to cut specific DNA segments which can then be deleted or replaced. While promising tremendous medical benefits like curing genetic diseases, it also raises ethical concerns about human germline editing, designer babies, and unintended consequences of genetic modifications. International scientific consensus generally opposes heritable human genome editing until safety and ethical issues are resolved.";
+    }
+    
+    if (normalizedQuery.includes("age") || normalizedQuery.includes("what are you") || normalizedQuery.includes("who are you")) {
+      return "I'm an AI assistant designed to help answer questions about 'Our Final Invention' and many other topics. I don't have a physical form or age - I exist as a program that processes and generates text. I aim to be helpful, informative, and engaging in our conversations!";
+    }
+    
+    // Factual information
     if (normalizedQuery.includes("when") && normalizedQuery.includes("published")) {
       return "'Our Final Invention' was published in 2013 by Thomas Dunne Books.";
     }
     
-    if (normalizedQuery.includes("buy") || normalizedQuery.includes("purchase")) {
-      return "You can purchase 'Our Final Invention' from major booksellers like Amazon, Barnes & Noble, or your local bookstore. The book is available in hardcover, paperback, e-book, and audiobook formats.";
-    }
-    
-    if (normalizedQuery.includes("documentary") || normalizedQuery.includes("film")) {
-      return "James Barrat is a documentary filmmaker who has created content for National Geographic, Discovery, PBS, and other broadcasters. His experience interviewing AI experts for documentaries led to his interest in AI safety.";
-    }
-    
     // Generic responses for other queries
     const genericResponses = [
-      "That's an interesting question about AI. The book 'Our Final Invention' explores how advanced AI could pose existential risks if not properly aligned with human values.",
-      "James Barrat discusses this topic in his book, emphasizing the importance of AI safety research and careful development of advanced systems.",
-      "While 'Our Final Invention' was published in 2013, many of its concerns about AI safety remain relevant today as AI capabilities continue to advance rapidly.",
-      "The field of AI safety that Barrat discusses aims to ensure that advanced AI systems remain beneficial and aligned with human values. Would you like to know more about specific safety approaches?",
+      "That's an interesting question! From my knowledge base, I can tell you that advances in AI have accelerated dramatically in recent years, with systems becoming increasingly capable at tasks ranging from language understanding to image generation.",
+      "Great question. While I don't have a specific answer, I can share that AI ethics researchers are actively working on issues like alignment, interpretability, and safety to ensure AI systems remain beneficial.",
+      "I don't have a complete answer to that, but many experts believe that ensuring advanced AI systems remain aligned with human values is one of the most important challenges facing AI research.",
+      "That's a fascinating topic. The intersection of technology and society raises important questions about privacy, autonomy, and the future of human-machine collaboration.",
+      "Interesting question! The field is evolving rapidly, with new research constantly emerging. I'd encourage looking into recent publications from organizations like the Machine Intelligence Research Institute or the Future of Life Institute for the most current information.",
     ];
     
     return genericResponses[Math.floor(Math.random() * genericResponses.length)];
@@ -209,11 +294,11 @@ const AIChatbot = () => {
       {/* Chat toggle button - floating in the bottom right */}
       <button
         onClick={toggleChat}
-        className="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group animate__animated animate__fadeIn"
+        className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group ${isOpen ? 'animate__animated animate__rubberBand' : 'animate__animated animate__pulse animate__infinite animate__slow'}`}
         aria-label="Chat with AI Assistant"
       >
         {isOpen ? (
-          <X className="h-6 w-6 transition-all" />
+          <X className="h-6 w-6 transition-all animate__animated animate__rotateIn" />
         ) : (
           <MessageSquare className="h-6 w-6 transition-all group-hover:scale-110" />
         )}
@@ -227,19 +312,20 @@ const AIChatbot = () => {
         open={isOpen}
         onOpenChange={setIsOpen}
         className={`fixed bottom-28 right-8 z-50 w-80 md:w-96 max-h-[600px] rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 transform ${
-          isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
-        } animate__animated animate__fadeIn animate__faster`}
+          isOpen ? 'scale-100 opacity-100 animate__animated animate__fadeInUp animate__faster' : 'scale-95 opacity-0 pointer-events-none'
+        }`}
       >
         <CollapsibleContent>
-          <div className="bg-gradient-to-br from-gray-900 to-gray-950 border border-blue-500/30">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-950 border border-blue-500/30 rounded-2xl overflow-hidden">
             {/* Chat header */}
-            <div className="p-4 bg-gradient-to-r from-blue-600 to-cyan-600 relative">
+            <div className="p-4 bg-gradient-to-r from-blue-600 to-blue-700 relative">
               <div className="flex items-center">
-                <BrainCircuit className="h-6 w-6 text-white mr-2" />
-                <h3 className="text-white font-medium">AI Book Assistant</h3>
+                <i className="fas fa-robot text-white mr-2 text-xl"></i>
+                <h3 className="text-white font-medium">AI Assistant</h3>
               </div>
-              <div className="mt-1 text-blue-100 text-xs">
-                Ask me about "Our Final Invention" or AI safety
+              <div className="mt-1 text-blue-100 text-xs flex items-center">
+                <i className="fas fa-circle text-green-400 text-xs mr-1 animate-pulse"></i>
+                <span>Online - Ask me anything!</span>
               </div>
               
               {/* Clear chat button */}
@@ -253,22 +339,54 @@ const AIChatbot = () => {
             </div>
             
             {/* Chat messages */}
-            <div className="h-96 overflow-y-auto p-4 scrollbar-thin">
+            <div className="h-96 overflow-y-auto p-4 scrollbar-thin bg-gray-900/50">
               {messages.map((msg, index) => (
                 <div 
                   key={index}
-                  className={`mb-4 flex ${msg.isUser ? 'justify-end' : 'justify-start'} animate__animated animate__fadeIn animate__faster`}
+                  className={`mb-4 flex ${msg.isUser ? 'justify-end' : 'justify-start'} ${msg.isUser ? 'animate__animated animate__fadeInRight animate__faster' : 'animate__animated animate__fadeInLeft animate__faster'}`}
                 >
                   <div 
                     className={`max-w-[80%] rounded-xl p-3 ${
                       msg.isUser 
-                        ? 'bg-blue-600 text-white rounded-tr-none' 
+                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-tr-none' 
                         : 'bg-gray-800 text-gray-100 rounded-tl-none'
                     }`}
                   >
                     <div className="text-sm">{msg.content}</div>
-                    <div className={`text-xs mt-1 ${msg.isUser ? 'text-blue-200' : 'text-gray-400'}`}>
-                      {getTime(msg.timestamp)}
+                    <div className={`text-xs mt-1 ${msg.isUser ? 'text-blue-200' : 'text-gray-400'} flex justify-between items-center`}>
+                      <span>{getTime(msg.timestamp)}</span>
+                      
+                      {/* Rating buttons for AI messages only */}
+                      {!msg.isUser && (
+                        <div className="flex space-x-2">
+                          {msg.rated ? (
+                            <span className={`text-xs ${msg.rated === 'up' ? 'text-green-400' : 'text-red-400'}`}>
+                              {msg.rated === 'up' ? (
+                                <i className="fas fa-check"></i>
+                              ) : (
+                                <i className="fas fa-times"></i>
+                              )}
+                            </span>
+                          ) : (
+                            <>
+                              <button 
+                                onClick={() => handleRateMessage(index, 'up')}
+                                className="text-gray-400 hover:text-green-400 transition-colors"
+                                aria-label="Rate helpful"
+                              >
+                                <i className="fas fa-thumbs-up text-xs"></i>
+                              </button>
+                              <button 
+                                onClick={() => handleRateMessage(index, 'down')}
+                                className="text-gray-400 hover:text-red-400 transition-colors"
+                                aria-label="Rate unhelpful"
+                              >
+                                <i className="fas fa-thumbs-down text-xs"></i>
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -292,13 +410,16 @@ const AIChatbot = () => {
             
             {/* Suggested questions */}
             <div className="px-4 py-2 bg-gray-900/90 border-t border-gray-800">
-              <p className="text-xs text-gray-400 mb-2">Suggested questions:</p>
+              <p className="text-xs text-gray-400 mb-2 flex items-center">
+                <i className="fas fa-lightbulb text-yellow-400 mr-1"></i>
+                <span>Quick questions:</span>
+              </p>
               <div className="flex flex-wrap gap-2">
                 {suggestions.map((suggestion, index) => (
                   <button
                     key={index}
                     onClick={() => handleSuggestionClick(suggestion.text)}
-                    className="text-xs bg-gray-800 hover:bg-gray-700 text-cyan-300 rounded-full px-3 py-1.5 flex items-center gap-1.5 transition-colors animate__animated animate__fadeIn animate__delay-1s"
+                    className="text-xs bg-gray-800 hover:bg-blue-700 text-blue-300 rounded-full px-3 py-1.5 flex items-center gap-1.5 transition-colors animate__animated animate__fadeIn animate__delay-1s hover:scale-105 transform"
                   >
                     {suggestion.icon}
                     <span>{suggestion.text}</span>
@@ -311,7 +432,7 @@ const AIChatbot = () => {
             <div className="p-4 bg-gray-900 border-t border-gray-800 flex items-center">
               <Input
                 type="text"
-                placeholder="Type your message..."
+                placeholder="Ask me anything..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -322,7 +443,7 @@ const AIChatbot = () => {
                 size="icon"
                 onClick={handleSendMessage}
                 disabled={message.trim() === ''}
-                className="ml-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-full p-2 hover:shadow-lg disabled:opacity-50 transition-all"
+                className="ml-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full p-2 hover:shadow-lg disabled:opacity-50 transition-all"
               >
                 <Send className="h-4 w-4" />
               </Button>
@@ -338,19 +459,20 @@ const AIChatbot = () => {
             <Button 
               variant="outline" 
               size="icon"
-              className="fixed bottom-24 right-8 z-50 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white border-none hover:shadow-lg md:hidden"
+              className="fixed bottom-24 right-8 z-50 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white border-none hover:shadow-lg md:hidden"
             >
               <MessageSquare className="h-5 w-5" />
             </Button>
           </SheetTrigger>
           <SheetContent side="bottom" className="h-[90vh] p-0 rounded-t-xl bg-gradient-to-br from-gray-900 to-gray-950 border-t border-blue-500/30">
-            <div className="p-4 bg-gradient-to-r from-blue-600 to-cyan-600">
+            <div className="p-4 bg-gradient-to-r from-blue-600 to-blue-700">
               <div className="flex items-center">
-                <BrainCircuit className="h-6 w-6 text-white mr-2" />
-                <h3 className="text-white font-medium">AI Book Assistant</h3>
+                <i className="fas fa-robot text-white mr-2 text-xl"></i>
+                <h3 className="text-white font-medium">AI Assistant</h3>
               </div>
-              <div className="mt-1 text-blue-100 text-xs">
-                Ask me about "Our Final Invention" or AI safety
+              <div className="mt-1 text-blue-100 text-xs flex items-center">
+                <i className="fas fa-circle text-green-400 text-xs mr-1 animate-pulse"></i>
+                <span>Online - Ask me anything!</span>
               </div>
             </div>
             
@@ -364,13 +486,45 @@ const AIChatbot = () => {
                     <div 
                       className={`max-w-[80%] rounded-xl p-3 ${
                         msg.isUser 
-                          ? 'bg-blue-600 text-white rounded-tr-none' 
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-tr-none' 
                           : 'bg-gray-800 text-gray-100 rounded-tl-none'
                       }`}
                     >
                       <div className="text-sm">{msg.content}</div>
-                      <div className={`text-xs mt-1 ${msg.isUser ? 'text-blue-200' : 'text-gray-400'}`}>
-                        {getTime(msg.timestamp)}
+                      <div className={`text-xs mt-1 ${msg.isUser ? 'text-blue-200' : 'text-gray-400'} flex justify-between items-center`}>
+                        <span>{getTime(msg.timestamp)}</span>
+                        
+                        {/* Rating buttons for AI messages only */}
+                        {!msg.isUser && (
+                          <div className="flex space-x-2">
+                            {msg.rated ? (
+                              <span className={`text-xs ${msg.rated === 'up' ? 'text-green-400' : 'text-red-400'}`}>
+                                {msg.rated === 'up' ? (
+                                  <i className="fas fa-check"></i>
+                                ) : (
+                                  <i className="fas fa-times"></i>
+                                )}
+                              </span>
+                            ) : (
+                              <>
+                                <button 
+                                  onClick={() => handleRateMessage(index, 'up')}
+                                  className="text-gray-400 hover:text-green-400 transition-colors"
+                                  aria-label="Rate helpful"
+                                >
+                                  <i className="fas fa-thumbs-up text-xs"></i>
+                                </button>
+                                <button 
+                                  onClick={() => handleRateMessage(index, 'down')}
+                                  className="text-gray-400 hover:text-red-400 transition-colors"
+                                  aria-label="Rate unhelpful"
+                                >
+                                  <i className="fas fa-thumbs-down text-xs"></i>
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -396,7 +550,7 @@ const AIChatbot = () => {
                       <button
                         key={index}
                         onClick={() => handleSuggestionClick(suggestion.text)}
-                        className="text-xs whitespace-nowrap bg-gray-800 text-cyan-300 rounded-full px-3 py-1.5 flex items-center gap-1.5"
+                        className="text-xs whitespace-nowrap bg-gray-800 text-blue-300 rounded-full px-3 py-1.5 flex items-center gap-1.5 hover:bg-blue-700 transition-colors"
                       >
                         {suggestion.icon}
                         <span>{suggestion.text}</span>
@@ -408,7 +562,7 @@ const AIChatbot = () => {
                 <div className="p-4 bg-gray-900 flex items-center">
                   <Input
                     type="text"
-                    placeholder="Type your message..."
+                    placeholder="Ask me anything..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -418,7 +572,7 @@ const AIChatbot = () => {
                     size="icon"
                     onClick={handleSendMessage}
                     disabled={message.trim() === ''}
-                    className="ml-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-full p-2 hover:shadow-lg disabled:opacity-50 transition-all"
+                    className="ml-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full p-2 hover:shadow-lg disabled:opacity-50 transition-all"
                   >
                     <Send className="h-4 w-4" />
                   </Button>
@@ -429,8 +583,9 @@ const AIChatbot = () => {
         </Sheet>
       </div>
 
-      {/* CSS for typing animation dots */}
-      <style jsx>{`
+      {/* CSS for styling and animations */}
+      <style>
+        {`
         .typing-dot {
           animation: typingAnimation 1.4s infinite both;
         }
@@ -455,7 +610,8 @@ const AIChatbot = () => {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-      `}</style>
+        `}
+      </style>
     </>
   );
 };
