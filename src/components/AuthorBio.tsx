@@ -283,8 +283,8 @@ const AuthorBio = () => {
                         <CardContent className="p-5">
                           <div className="flex flex-col">
                             <div className="flex justify-between items-start">
-                              <div className="flex-1" onClick={() => toggleInterview(index)} style={{cursor: 'pointer'}}>
-                                <h5 className="text-white font-medium group flex items-center">
+                              <div className="flex-1">
+                                <h5 className="text-white font-medium group flex items-center" onClick={() => toggleInterview(index)} style={{cursor: 'pointer'}}>
                                   <i className={`fas fa-${expandedInterview === index ? 'minus' : 'plus'}-circle text-cyan-400 mr-2 transition-all duration-300`}></i>
                                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">{interview.title}</span>
                                 </h5>
@@ -456,7 +456,8 @@ const AuthorBio = () => {
         <Award className="h-24 w-24 text-blue-500" />
       </div>
       
-      <style jsx>{`
+      <style>
+        {`
         @keyframes pulse-blue {
           0% {
             box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
@@ -476,7 +477,8 @@ const AuthorBio = () => {
         .font-playfair {
           font-family: 'Playfair Display', serif;
         }
-      `}</style>
+      `}
+      </style>
     </section>
   );
 };
