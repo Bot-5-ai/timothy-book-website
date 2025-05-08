@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Book, ExternalLink, Award, Share2, User, Twitter, Linkedin, Globe, File, Mail, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -72,9 +71,9 @@ const AuthorBio = () => {
     }
   ];
 
-  // Function to toggle expanded interview
-  const toggleInterview = (index: number) => {
-    setExpandedInterview(expandedInterview === index ? null : index);
+  // Function to handle interview card click
+  const handleInterviewClick = (url: string) => {
+    window.open(url, '_blank');
   };
 
   // Load additional CDN resources
@@ -274,42 +273,27 @@ const AuthorBio = () => {
                 
                   <div className="space-y-5">
                     {interviews.map((interview, index) => (
-                      <Card key={index} 
-                            data-aos="fade-up" 
-                            data-aos-delay={200 + (index * 100)}
-                            className={`bg-blue-900/20 border border-blue-500/20 hover:border-blue-400/30 transition-all duration-300 ${
-                                expandedInterview === index ? 'shadow-lg shadow-blue-500/10' : ''
-                            }`}>
+                      <Card 
+                        key={index} 
+                        data-aos="fade-up" 
+                        data-aos-delay={200 + (index * 100)}
+                        className="bg-blue-900/20 border border-blue-500/20 hover:border-blue-400/30 transition-all duration-300 cursor-pointer"
+                        onClick={() => handleInterviewClick(interview.url)}
+                      >
                         <CardContent className="p-5">
                           <div className="flex flex-col">
                             <div className="flex justify-between items-start">
                               <div className="flex-1">
-                                <h5 className="text-white font-medium group flex items-center" onClick={() => toggleInterview(index)} style={{cursor: 'pointer'}}>
-                                  <i className={`fas fa-${expandedInterview === index ? 'minus' : 'plus'}-circle text-cyan-400 mr-2 transition-all duration-300`}></i>
+                                <h5 className="text-white font-medium group flex items-center">
+                                  <i className="fas fa-external-link-alt text-cyan-400 mr-2"></i>
                                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">{interview.title}</span>
                                 </h5>
                                 <p className="text-sm text-gray-400 mb-2">{interview.source}</p>
                               </div>
-                              
-                              <TooltipProvider>
-                                <Tooltip>
-                                  <TooltipTrigger asChild>
-                                    <a href={interview.url} target="_blank" rel="noopener noreferrer" 
-                                       className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-all duration-300 transform hover:scale-110 hover:-rotate-12">
-                                      <ExternalLink className="h-4 w-4" />
-                                    </a>
-                                  </TooltipTrigger>
-                                  <TooltipContent className="bg-blue-900/80 text-cyan-100 border-blue-500/30">
-                                    Visit full interview
-                                  </TooltipContent>
-                                </Tooltip>
-                              </TooltipProvider>
                             </div>
                             
-                            <div className={`mt-2 overflow-hidden transition-all duration-500 ${
-                              expandedInterview === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                            }`}>
-                              <div className="pl-3 border-l-2 border-cyan-500/30 mt-2 animate__animated animate__fadeIn animate__delay-1s">
+                            <div className="mt-2">
+                              <div className="pl-3 border-l-2 border-cyan-500/30">
                                 <p className="text-gray-300 italic text-sm mb-3">{interview.quote}</p>
                                 <p className="text-gray-400 text-sm">{interview.description}</p>
                               </div>
@@ -477,7 +461,7 @@ const AuthorBio = () => {
         .font-playfair {
           font-family: 'Playfair Display', serif;
         }
-      `}
+        `}
       </style>
     </section>
   );
