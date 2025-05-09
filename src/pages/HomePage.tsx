@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Library, Bookmark, Search } from 'lucide-react';
@@ -274,7 +273,8 @@ const HomePage = () => {
       </div>
       
       {/* Additional styling */}
-      <style jsx>{`
+      <style>
+        {`
         @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Serif+Pro:wght@400;600;700&display=swap');
         
         .font-serif {
@@ -285,7 +285,6 @@ const HomePage = () => {
           transform: rotateY(10deg);
         }
         
-        /* Fix for JSX styling */
         @keyframes glow {
           0%, 100% {
             box-shadow: 0 0 10px rgba(107, 77, 48, 0.4);
@@ -298,7 +297,8 @@ const HomePage = () => {
         .book-cover:hover {
           animation: glow 3s infinite;
         }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };
