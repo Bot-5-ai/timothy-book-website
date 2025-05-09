@@ -142,7 +142,7 @@ const Reviews = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .shadow-glow {
           box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
