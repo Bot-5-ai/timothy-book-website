@@ -1,9 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Book, Sparkles, BookOpen, Library } from 'lucide-react';
+import { BookOpen, Library, Bookmark, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { Card, CardContent } from '@/components/ui/card';
 
 const HomePage = () => {
   const bookshelfRef = useRef<HTMLDivElement>(null);
@@ -19,19 +20,7 @@ const HomePage = () => {
       });
     }
     
-    // Setup floating books animation
-    const animateFloatingBooks = () => {
-      const books = document.querySelectorAll('.floating-book');
-      books.forEach((book, index) => {
-        const delay = index * 0.5;
-        const element = book as HTMLElement;
-        element.style.animationDelay = `${delay}s`;
-      });
-    };
-    
-    animateFloatingBooks();
-    
-    // Confetti effect for book click
+    // Setup interactive elements
     const setupBookInteraction = () => {
       const books = document.querySelectorAll('.book-card');
       books.forEach(book => {
@@ -60,7 +49,7 @@ const HomePage = () => {
       description: `You selected "${bookTitle}". Click "View Analysis" to continue.`,
     });
     
-    // Create book opening animation
+    // Subtle highlight animation
     target.classList.add('animate__animated', 'animate__pulse');
     setTimeout(() => {
       target.classList.remove('animate__animated', 'animate__pulse');
@@ -68,155 +57,248 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#FEF9E7] to-[#FDF2E9]">
-      {/* Decorative library elements */}
-      <div className="absolute inset-0 z-0 opacity-15">
-        <div className="absolute top-0 left-0 w-full h-full bg-repeat bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNCQkMwQzMiIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBmaWxsPSIjQTc2QTM5IiBkPSJNMTAgMGg1MHY2MEgxMHoiLz48cGF0aCBmaWxsPSIjODQ1MzJEIiBkPSJNMjAgMGg0MHY2MEgyMHoiLz48cGF0aCBmaWxsPSIjNjc0MDIzIiBkPSJNMzAgMGgzMHY2MEgzMHoiLz48cGF0aCBmaWxsPSIjNTczMzFDIiBkPSJNNDAgMGgyMHY2MEg0MHoiLz48cGF0aCBmaWxsPSIjNDIyNzE2IiBkPSJNNTAgMGgxMHY2MEg1MHoiLz48L2c+PC9zdmc+')]"></div>
+    <div className="min-h-screen relative overflow-hidden bg-[#f8f5f2]">
+      {/* Library Background with Real Bookshelf */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        <div 
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1526243741027-444d633d7365?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80')`,
+            filter: 'sepia(20%)'
+          }}
+        ></div>
       </div>
+
+      {/* Warm Library Lighting Effect */}
+      <div className="absolute inset-0 bg-gradient-radial from-[#ffedcc30] via-[#f8f5f220] to-[#f8f5f240] z-[1]"></div>
       
-      {/* Floating books */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="floating-book animate-float" style={{position: 'absolute', top: '10%', left: '5%'}}>
-          <BookOpen size={30} className="text-amber-700 transform rotate-12" />
-        </div>
-        <div className="floating-book animate-float" style={{position: 'absolute', top: '15%', right: '10%'}}>
-          <Book size={25} className="text-purple-700 transform -rotate-6" />
-        </div>
-        <div className="floating-book animate-float" style={{position: 'absolute', bottom: '20%', left: '15%'}}>
-          <BookOpen size={35} className="text-blue-700 transform rotate-3" />
-        </div>
-        <div className="floating-book animate-float" style={{position: 'absolute', bottom: '30%', right: '5%'}}>
-          <Book size={28} className="text-green-700 transform -rotate-8" />
-        </div>
-      </div>
-      
-      {/* Bookshelf background effect */}
-      <div ref={bookshelfRef} className="absolute bottom-0 left-0 w-full h-1/3 bg-[#8B4513] opacity-70 z-0">
-        <div className="absolute top-0 w-full h-8 bg-[#A0522D] shadow-inner"></div>
-        <div className="absolute bottom-0 w-full h-8 bg-[#A0522D]"></div>
-        <div className="absolute top-10 w-full h-3 bg-[#6B4226]"></div>
-        <div className="absolute bottom-20 w-full h-3 bg-[#6B4226]"></div>
+      {/* Wood Texture for Bottom of Page */}
+      <div 
+        ref={bookshelfRef} 
+        className="absolute bottom-0 left-0 w-full h-1/3 z-0"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1586268089456-8dcb1bf2798b?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <div className="absolute top-0 w-full h-8 bg-[#392f24] opacity-40 shadow-inner"></div>
+        <div className="absolute bottom-0 w-full h-8 bg-[#392f24] opacity-40"></div>
       </div>
       
       {/* Content */}
       <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div data-aos="fade-down">
-            <h1 className="text-5xl md:text-7xl font-merriweather font-black mb-8 text-[#5D4037] drop-shadow-lg">
-              <Library size={48} className="inline-block mr-3 mb-2 text-amber-700" />
-              Book Analysis Project
-            </h1>
-          </div>
-          
-          <div data-aos="fade-up" data-aos-delay="300">
-            <p className="text-xl md:text-2xl mb-12 text-[#795548] font-roboto">
-              Explore detailed analyses of classic and contemporary literature
+        <div className="max-w-5xl mx-auto">
+          <div data-aos="fade-down" className="text-center mb-12">
+            <div className="flex justify-center items-center mb-6">
+              <Library size={48} className="text-[#6b4d30] mr-3" />
+              <h1 className="text-5xl md:text-7xl font-serif font-bold text-[#3a2c1c] tracking-tight">
+                Literary Analysis
+              </h1>
+            </div>
+            
+            <p className="text-xl md:text-2xl mb-8 text-[#5d4534] font-serif max-w-3xl mx-auto leading-relaxed">
+              Explore detailed analyses of classic and contemporary works of literature in our carefully curated collection.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 mt-16">
+          {/* Search Bar */}
+          <div 
+            className="relative max-w-2xl mx-auto mb-16"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div className="flex items-center bg-white bg-opacity-90 rounded-lg shadow-md border border-[#e5ded3] p-1">
+              <Search className="ml-3 h-5 w-5 text-[#6b4d30]" />
+              <input 
+                type="text" 
+                placeholder="Search our library collection..." 
+                className="w-full p-3 bg-transparent border-none focus:outline-none text-[#3a2c1c] placeholder-[#a18e7b]"
+              />
+              <Button 
+                className="bg-[#6b4d30] hover:bg-[#5d4027] text-white rounded-md mr-1"
+              >
+                Search
+              </Button>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 mt-12">
             {/* First Book Card */}
-            <div 
-              data-aos="flip-left" 
-              data-aos-delay="500" 
-              className="book-card bg-gradient-to-r from-[#FFF8E1] to-[#FFECB3] rounded-xl p-8 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.2)] border-4 border-[#D4A76A] hover:shadow-[0_25px_30px_-5px_rgba(0,0,0,0.3)] transition-all duration-300 cursor-pointer relative overflow-hidden"
+            <Card 
+              data-aos="fade-right" 
+              data-aos-delay="300" 
+              className="book-card bg-white bg-opacity-95 rounded-lg p-6 shadow-lg border border-[#e5ded3] hover:shadow-xl transition-all duration-300 cursor-pointer relative overflow-hidden transform hover:-translate-y-1"
               data-title="Our Final Invention"
             >
-              <div className="absolute top-0 right-0 w-20 h-20 bg-[#D50000] rotate-45 translate-x-10 -translate-y-10 z-[1]"></div>
-              
-              <div className="h-40 mb-6 flex items-center justify-center relative">
-                <div className="absolute w-full h-full flex items-center justify-center opacity-10">
-                  <i className="fas fa-robot text-9xl text-[#455A64]"></i>
-                </div>
-                <Book size={80} className="text-[#D32F2F] relative z-[2]" />
+              <div className="absolute top-0 right-0 w-24 h-24">
+                <div className="absolute right-[-20px] top-[-20px] w-32 h-32 rotate-45 bg-[#8b3a3a]"></div>
               </div>
               
-              <h2 className="text-2xl font-merriweather font-bold text-[#5D4037] mb-4 relative z-[2]">
-                Our Final Invention
-              </h2>
-              
-              <p className="text-[#795548] mb-6 relative z-[2]">
-                Artificial Intelligence and the End of the Human Era
-              </p>
-              
-              <Link to="/our-final-invention" className="relative z-[2] block">
-                <Button 
-                  size="lg" 
-                  className="w-full bg-[#D32F2F] hover:bg-[#B71C1C] text-white shadow-lg group"
-                >
-                  <span>View Analysis</span>
-                  <Sparkles size={16} className="ml-2 group-hover:animate-pulse" />
-                </Button>
-              </Link>
-            </div>
+              <div className="flex md:flex-row flex-col">
+                <div className="md:w-1/3 mb-4 md:mb-0 flex justify-center items-start">
+                  <div className="book-cover shadow-lg relative transform hover:rotate-y-10 transition-all duration-500" 
+                       style={{
+                         width: '120px', 
+                         height: '180px', 
+                         background: 'linear-gradient(145deg, #a13333, #8b2929)',
+                         boxShadow: '5px 5px 15px rgba(0,0,0,0.3), -1px -1px 5px rgba(255,255,255,0.1)',
+                         borderRadius: '2px 8px 8px 2px'
+                       }}>
+                    <div className="absolute h-full w-[8px] left-0 top-0 bg-[#6b2323] rounded-l-sm"></div>
+                    <div className="p-3 h-full flex flex-col justify-center items-center">
+                      <BookOpen size={40} className="text-white opacity-80 mb-2" />
+                      <h3 className="text-white text-sm font-bold text-center">Our Final Invention</h3>
+                      <p className="text-white text-xs opacity-80 text-center mt-1">James Barrat</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-2/3 md:pl-6 relative z-[2]">
+                  <h2 className="text-2xl font-serif font-bold text-[#3a2c1c] mb-3 flex items-center">
+                    <span>Our Final Invention</span>
+                    <Bookmark className="ml-2 h-5 w-5 text-[#8b3a3a]" />
+                  </h2>
+                  
+                  <p className="text-[#5d4534] mb-4 italic">
+                    Artificial Intelligence and the End of the Human Era
+                  </p>
+                  
+                  <p className="text-[#5d4534] mb-6 line-clamp-3">
+                    Barrat explores how the quest for artificial intelligence could lead to unforeseen consequences for humanity, examining both the promise and peril of creating machines that may surpass human intellect.
+                  </p>
+                  
+                  <Link to="/our-final-invention" className="block">
+                    <Button 
+                      className="bg-[#8b3a3a] hover:bg-[#6b2323] text-white shadow-md group w-full md:w-auto"
+                    >
+                      <span>View Analysis</span>
+                      <i className="fas fa-book-open ml-2 group-hover:animate-pulse"></i>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
             
             {/* Second Book Card */}
-            <div 
-              data-aos="flip-right" 
-              data-aos-delay="700" 
-              className="book-card bg-gradient-to-r from-[#E3F2FD] to-[#BBDEFB] rounded-xl p-8 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.2)] border-4 border-[#90CAF9] hover:shadow-[0_25px_30px_-5px_rgba(0,0,0,0.3)] transition-all duration-300 cursor-pointer relative overflow-hidden"
+            <Card 
+              data-aos="fade-left" 
+              data-aos-delay="400" 
+              className="book-card bg-white bg-opacity-95 rounded-lg p-6 shadow-lg border border-[#e5ded3] hover:shadow-xl transition-all duration-300 cursor-pointer relative overflow-hidden transform hover:-translate-y-1"
               data-title="Second Book Analysis"
             >
-              <div className="absolute top-0 right-0 w-20 h-20 bg-[#1565C0] rotate-45 translate-x-10 -translate-y-10 z-[1]"></div>
-              
-              <div className="h-40 mb-6 flex items-center justify-center relative">
-                <div className="absolute w-full h-full flex items-center justify-center opacity-10">
-                  <i className="fas fa-magic text-9xl text-[#1565C0]"></i>
-                </div>
-                <Sparkles size={80} className="text-[#1976D2] relative z-[2]" />
+              <div className="absolute top-0 right-0 w-24 h-24">
+                <div className="absolute right-[-20px] top-[-20px] w-32 h-32 rotate-45 bg-[#1a4b6e]"></div>
               </div>
               
-              <h2 className="text-2xl font-merriweather font-bold text-[#1565C0] mb-4 relative z-[2]">
-                Second Book Analysis
-              </h2>
-              
-              <p className="text-[#1976D2] mb-6 relative z-[2]">
-                Template for your second book analysis project
-              </p>
-              
-              <Link to="/second-book" className="relative z-[2] block">
-                <Button 
-                  size="lg" 
-                  className="w-full bg-[#1976D2] hover:bg-[#0D47A1] text-white shadow-lg group"
-                >
-                  <span>View Analysis</span>
-                  <BookOpen size={16} className="ml-2 group-hover:animate-pulse" />
-                </Button>
-              </Link>
+              <div className="flex md:flex-row flex-col">
+                <div className="md:w-1/3 mb-4 md:mb-0 flex justify-center items-start">
+                  <div className="book-cover shadow-lg relative transform hover:rotate-y-10 transition-all duration-500" 
+                       style={{
+                         width: '120px', 
+                         height: '180px', 
+                         background: 'linear-gradient(145deg, #235d8b, #1a4b6e)',
+                         boxShadow: '5px 5px 15px rgba(0,0,0,0.3), -1px -1px 5px rgba(255,255,255,0.1)',
+                         borderRadius: '2px 8px 8px 2px'
+                       }}>
+                    <div className="absolute h-full w-[8px] left-0 top-0 bg-[#0f3650] rounded-l-sm"></div>
+                    <div className="p-3 h-full flex flex-col justify-center items-center">
+                      <BookOpen size={40} className="text-white opacity-80 mb-2" />
+                      <h3 className="text-white text-sm font-bold text-center">Second Book</h3>
+                      <p className="text-white text-xs opacity-80 text-center mt-1">Author Name</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-2/3 md:pl-6 relative z-[2]">
+                  <h2 className="text-2xl font-serif font-bold text-[#3a2c1c] mb-3 flex items-center">
+                    <span>Second Book Analysis</span>
+                    <Bookmark className="ml-2 h-5 w-5 text-[#1a4b6e]" />
+                  </h2>
+                  
+                  <p className="text-[#5d4534] mb-4 italic">
+                    Template for your second book analysis project
+                  </p>
+                  
+                  <p className="text-[#5d4534] mb-6 line-clamp-3">
+                    A comprehensive literary analysis exploring themes, characters, and the cultural significance of this important work. Dive into the scholarly examination of this text.
+                  </p>
+                  
+                  <Link to="/second-book" className="block">
+                    <Button 
+                      className="bg-[#1a4b6e] hover:bg-[#0f3650] text-white shadow-md group w-full md:w-auto"
+                    >
+                      <span>View Analysis</span>
+                      <i className="fas fa-book-open ml-2 group-hover:animate-pulse"></i>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
+          </div>
+          
+          {/* Reading Corner Section */}
+          <div className="mt-20 bg-white bg-opacity-80 rounded-lg p-8 shadow-lg border border-[#e5ded3]" data-aos="fade-up" data-aos-delay="500">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="md:w-1/2 mb-6 md:mb-0">
+                <img 
+                  src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                  alt="Reading Corner" 
+                  className="rounded-lg shadow-md"
+                  style={{maxHeight: '300px', objectFit: 'cover', width: '100%'}}
+                />
+              </div>
+              <div className="md:w-1/2 md:pl-10">
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#3a2c1c] mb-4">The Reading Corner</h2>
+                <p className="text-[#5d4534] mb-6">
+                  Join our community of literary enthusiasts. Discover new perspectives, share your insights, and engage with fellow readers in meaningful discussions about the books that shape our understanding of the world.
+                </p>
+                <div className="flex space-x-3">
+                  <Button className="bg-[#6b4d30] hover:bg-[#5d4027]">
+                    Join Book Club
+                  </Button>
+                  <Button variant="outline" className="border-[#6b4d30] text-[#6b4d30] hover:bg-[#6b4d30] hover:text-white">
+                    Browse Collection
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
           
-          {/* Reading cat illustration */}
-          <div className="mt-16 flex justify-center" data-aos="zoom-in" data-aos-delay="900">
-            <div className="relative w-64 h-48">
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-40 h-12 bg-[#8B4513] rounded-lg"></div>
-              <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-32 h-20 bg-[#5D4037] rounded flex items-center justify-center">
-                <div className="w-28 h-16 bg-white flex items-center justify-center text-xs text-center text-[#5D4037]">
-                  <i className="fas fa-book-open text-lg mb-1"></i>
-                  <br/>Reading is magic
-                </div>
-              </div>
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#795548] rounded-full z-10"></div>
-              <div className="cat absolute bottom-14 left-1/2 transform -translate-x-1/2 z-20">
-                <div className="w-20 h-14 bg-[#FF9800] rounded-t-3xl relative">
-                  <div className="absolute top-[-8px] left-2 w-6 h-8 bg-[#FF9800] rounded-t-full transform rotate-[-20deg]"></div>
-                  <div className="absolute top-[-8px] right-2 w-6 h-8 bg-[#FF9800] rounded-t-full transform rotate-[20deg]"></div>
-                  <div className="absolute top-4 left-3 w-3 h-3 bg-black rounded-full"></div>
-                  <div className="absolute top-4 right-3 w-3 h-3 bg-black rounded-full"></div>
-                  <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-4 h-2 bg-[#E65100] rounded-full"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-16 text-[#795548] animate__animated animate__fadeIn animate__delay-1s">
+          {/* Footer */}
+          <div className="mt-16 text-center text-[#6b4d30]">
             <p className="text-sm">
               <i className="fas fa-book-reader mr-2"></i>
-              English Class Project &copy; {new Date().getFullYear()}
+              Literary Analysis Project &copy; {new Date().getFullYear()}
             </p>
           </div>
         </div>
       </div>
+      
+      {/* Additional styling */}
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Serif+Pro:wght@400;600;700&display=swap');
+        
+        .font-serif {
+          font-family: 'Libre Baskerville', 'Georgia', serif;
+        }
+        
+        .rotate-y-10:hover {
+          transform: rotateY(10deg);
+        }
+        
+        /* Fix for JSX styling */
+        @keyframes glow {
+          0%, 100% {
+            box-shadow: 0 0 10px rgba(107, 77, 48, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(107, 77, 48, 0.6);
+          }
+        }
+        
+        .book-cover:hover {
+          animation: glow 3s infinite;
+        }
+      `}</style>
     </div>
   );
 };
