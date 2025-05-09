@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const reviews = [
@@ -141,11 +142,11 @@ const Reviews = () => {
         </div>
       </div>
 
-      <style>
+      <style jsx>{`
         .shadow-glow {
           box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
-      </style>
+      `}</style>
     </section>
   );
 };
