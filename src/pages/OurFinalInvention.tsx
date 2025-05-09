@@ -113,14 +113,16 @@ const OurFinalInvention = () => {
         backDelay: 2000
       });
       
+      // Clean up typed instance
       return () => {
         typed.destroy();
       };
     }
     
-    // Initialize particles.js for background effect
+    // Initialize particles.js for both background and hero section
     const particlesJS = window.particlesJS;
     if (typeof particlesJS !== 'undefined') {
+      // Main background particles
       particlesJS('particles-js', {
         particles: {
           number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -152,6 +154,42 @@ const OurFinalInvention = () => {
           modes: {
             grab: { distance: 140, line_linked: { opacity: 1 } },
             push: { particles_nb: 4 }
+          }
+        }
+      });
+      
+      // Hero section particles with a different configuration
+      particlesJS('particles-hero', {
+        particles: {
+          number: { value: 40, density: { enable: true, value_area: 800 } },
+          color: { value: '#0ea5e9' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.3, random: true },
+          size: { value: 2, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#06b6d4',
+            opacity: 0.2,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 0.5,
+            direction: 'none',
+            random: true,
+            out_mode: 'out'
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: { enable: true, mode: 'bubble' },
+            onclick: { enable: true, mode: 'repulse' }
+          },
+          modes: {
+            bubble: { distance: 100, size: 4, opacity: 0.8 },
+            repulse: { distance: 100, duration: 0.4 }
           }
         }
       });
