@@ -1,104 +1,45 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useMobile } from '@/hooks/use-mobile';
 
-import React, { useState, useEffect } from 'react';
-import { BookOpen, User, MessageCircle, BookmarkIcon, Home } from 'lucide-react';
+const Navbar: React.FC = () => {
+  const isMobile = useMobile();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      // Update active section based on scroll position
-      const sections = document.querySelectorAll('section[id]');
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY - 100;
-        const sectionHeight = section.getBoundingClientRect().height;
-        const sectionId = section.getAttribute('id') || '';
-        
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          setActiveSection(sectionId);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      window.scrollTo({
-        top: element.getBoundingClientRect().top + window.scrollY - 80,
-        behavior: 'smooth'
-      });
-    }
-    setActiveSection(sectionId);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const navItems = [
-    { id: 'home', label: 'Home', icon: <Home className="h-4 w-4 mr-2" /> },
-    { id: 'summary', label: 'Summary', icon: <BookOpen className="h-4 w-4 mr-2" /> },
-    { id: 'author', label: 'Author', icon: <User className="h-4 w-4 mr-2" /> },
-    { id: 'reviews', label: 'Reviews', icon: <MessageCircle className="h-4 w-4 mr-2" /> },
-    { id: 'analysis', label: 'Analysis', icon: <BookmarkIcon className="h-4 w-4 mr-2" /> },
-  ];
-
   return (
-    <nav 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-gradient-to-r from-bookblue-500/90 to-purple-500/90 backdrop-blur-md shadow-md' 
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex justify-between items-center">
-          <div className="text-white font-merriweather font-bold text-xl">
-            Book Analysis
+    <nav className="bg-black/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 py-4 px-6 border-b border-gray-800">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link to="/" className="text-white text-xl font-bold">
+          Book Analysis
+        </Link>
+        
+        {!isMobile ? (
+          <div className="flex items-center space-x-6">
+            <Link to="/" className="text-gray-300 hover:text-cyan-400 transition-colors">Home</Link>
+            <Link to="/our-final-invention" className="text-gray-300 hover:text-cyan-400 transition-colors">AI Book</Link>
+            <Link to="/hatchet" className="text-gray-300 hover:text-green-400 transition-colors">Hatchet</Link>
           </div>
-          
-          <div className="hidden md:flex space-x-1">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`px-4 py-2 rounded-lg flex items-center transition-colors ${
-                  activeSection === item.id 
-                    ? 'bg-white text-bookblue-700 font-medium shadow-md' 
-                    : 'text-white hover:bg-white/20'
-                }`}
-              >
-                {item.icon}
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="md:hidden block">
-            <div className="flex space-x-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`p-2 rounded-full transition-colors ${
-                    activeSection === item.id 
-                      ? 'bg-white text-bookblue-700' 
-                      : 'text-white hover:bg-white/20'
-                  }`}
-                >
-                  {item.icon}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        ) : (
+          <>
+            <button onClick={toggleMenu} aria-label="Toggle menu" className="text-white">
+              <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
+            </button>
+            
+            {isMenuOpen && (
+              <div className="absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md p-4 border-b border-gray-800">
+                <div className="flex flex-col space-y-3">
+                  <Link to="/" className="text-gray-300 hover:text-cyan-400 transition-colors py-2" onClick={toggleMenu}>Home</Link>
+                  <Link to="/our-final-invention" className="text-gray-300 hover:text-cyan-400 transition-colors py-2" onClick={toggleMenu}>AI Book</Link>
+                  <Link to="/hatchet" className="text-gray-300 hover:text-green-400 transition-colors py-2" onClick={toggleMenu}>Hatchet</Link>
+                </div>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </nav>
   );
