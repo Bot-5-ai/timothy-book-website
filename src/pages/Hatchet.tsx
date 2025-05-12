@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Axe, Compass, Trees, TreePine, Mountain } from 'lucide-react';
@@ -544,4 +545,120 @@ const Hatchet = () => {
                 <div className="animate__animated animate__fadeIn">
                   <div className="flex items-center mb-4">
                     <i className="fas fa-sync-alt text-[#a3c9a8] mr-3"></i>
-                    <h3 className
+                    <h3 className="text-xl font-bold text-white">
+                      Transformation - A New Brian
+                    </h3>
+                  </div>
+                  
+                  <div className="passage-card">
+                    <blockquote className="backdrop-blur-sm bg-[#0a1510] border-l-4 border-[#a3c9a8] pl-5 py-4 mb-6 italic text-gray-200 rounded-r-lg">
+                      "He was not the same now—the Brian that stood and watched the wolves move away and nodded to them was completely changed. Time had come, time that he measured but didn't care about; time had come into his life and moved out and left him different."
+                      <div className="text-right mt-2 text-sm text-[#a3c9a8]">- Hatchet, Page 153</div>
+                    </blockquote>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="space-y-3">
+                        <h4 className="text-[#e9b872] font-bold text-lg">Analysis</h4>
+                        <p className="text-gray-300">
+                          This passage illustrates the profound transformation Brian undergoes during his time in the wilderness. The repetition of "time" underscores how his experience of it has shifted from the urgency of survival to a deeper, more natural rhythm.
+                        </p>
+                        <p className="text-gray-300">
+                          The interaction with the wolves symbolizes Brian's integration into the natural world and his newfound ability to coexist with it rather than simply battle against it.
+                        </p>
+                        <p className="text-gray-300">
+                          Paulsen uses simple declarative statements ("He was not the same now") to emphasize the finality and completeness of Brian's transformation.
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <h4 className="text-[#a3c9a8] font-bold text-lg">Key Changes in Brian</h4>
+                        <ul className="space-y-2 text-gray-300">
+                          <li className="flex items-start">
+                            <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>From fear of nature to understanding and respect for it</span>
+                          </li>
+                          <li className="flex items-start">
+                            <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>From dependence on technology to reliance on his own skills</span>
+                          </li>
+                          <li className="flex items-start">
+                            <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>From seeing time as a stress-inducing constraint to experiencing it naturally</span>
+                          </li>
+                          <li className="flex items-start">
+                            <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>From being consumed by "The Secret" to finding peace with his circumstances</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {activeTab === 'passage3' && (
+                <div className="animate__animated animate__fadeIn">
+                  <div className="flex items-center mb-4">
+                    <i className="fas fa-lightbulb text-[#e9b872] mr-3"></i>
+                    <h3 className="text-xl font-bold text-white">
+                      New Understanding - The Secret
+                    </h3>
+                  </div>
+                  
+                  <div className="passage-card">
+                    <blockquote className="backdrop-blur-sm bg-[#0a1510] border-l-4 border-[#e9b872] pl-5 py-4 mb-6 italic text-gray-200 rounded-r-lg">
+                      "The Secret that had caused so much trouble came to him now and he opened it and looked at it and understood it was part of him, would always be part of him, but did not have to govern his life. Not now, not for the rest of his life. The Secret was gone, finally gone."
+                      <div className="text-right mt-2 text-sm text-[#e9b872]">- Hatchet, Page 116</div>
+                    </blockquote>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="space-y-3">
+                        <h4 className="text-[#e9b872] font-bold text-lg">Analysis</h4>
+                        <p className="text-gray-300">
+                          This passage represents Brian's emotional breakthrough regarding "The Secret" - his knowledge of his mother's affair that led to his parents' divorce.
+                        </p>
+                        <p className="text-gray-300">
+                          Paulsen capitalizes "Secret" throughout the novel, emphasizing its weight and power over Brian. In this moment, Brian achieves emotional maturity by accepting this painful reality without letting it control him.
+                        </p>
+                        <p className="text-gray-300">
+                          The repetition of "gone, finally gone" signals both relief and closure, marking an important step in Brian's psychological healing.
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <h4 className="text-[#a3c9a8] font-bold text-lg">Psychological Growth</h4>
+                        <p className="text-gray-300">
+                          This passage illustrates several aspects of Brian's psychological development:
+                        </p>
+                        <ul className="space-y-2 text-gray-300">
+                          <li className="flex items-start">
+                            <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>Acceptance: Brian acknowledges the reality of his parents' situation</span>
+                          </li>
+                          <li className="flex items-start">
+                            <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>Integration: He recognizes that painful experiences become part of us</span>
+                          </li>
+                          <li className="flex items-start">
+                            <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>Agency: He realizes he has control over how much influence past trauma has</span>
+                          </li>
+                          <li className="flex items-start">
+                            <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
+                            <span>Release: The wilderness has provided him space to process his emotions</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Hatchet;
