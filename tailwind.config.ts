@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,6 +27,7 @@ export default {
 				'source-code': ['Source Code Pro', 'monospace'],
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
 				'sans': ['Inter', 'system-ui', 'sans-serif'],
+				'cabin': ['Cabin', 'sans-serif'], // Add Cabin font for rugged, outdoorsy feel
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -63,6 +65,18 @@ export default {
 					cyan: '#4FACFE',
 					purple: '#8B5CF6',
 					magenta: '#D946EF',
+				},
+				// Survival theme colors
+				survival: {
+					moss: '#2c4c3b',
+					bark: '#5c4033',
+					stone: '#708090',
+					leaf: '#a3c9a8',
+					earth: '#8b4513',
+					gold: '#e9b872',
+					water: '#1e90ff',
+					night: '#0a1510',
+					fire: '#ff7f50',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',

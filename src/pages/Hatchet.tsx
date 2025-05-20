@@ -1,11 +1,12 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Axe, Compass, Trees, TreePine, Mountain } from 'lucide-react';
+import { Axe, Compass, Trees, TreePine, Mountain, Tent, Backpack, Map } from 'lucide-react';
+import Campfire from '../components/icons/Campfire';
 
 const Hatchet = () => {
   const [activeTab, setActiveTab] = useState('passage1');
-
+  const [showSurvivalTip, setShowSurvivalTip] = useState(false);
+  
   useEffect(() => {
     // Initialize animations and effects
     if (typeof window.AOS !== 'undefined') {
@@ -110,99 +111,244 @@ const Hatchet = () => {
             <span>"The most important rule of survival is staying calm."</span>
           </div>
           
-          <div className="animate__animated animate__fadeInUp animate__delay-3s flex flex-wrap justify-center gap-4">
-            <a href="#summary" className="px-6 py-3 bg-[#2c4c3b] text-white rounded-md font-medium hover:bg-[#3a5d4a] transition-all shadow-lg flex items-center group">
-              <span className="relative z-10">Read Summary</span>
-              <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-md"></span>
-            </a>
-            
-            <a href="#buy" className="px-6 py-3 border-2 border-[#e9b872] text-[#e9b872] rounded-md font-medium hover:bg-[#e9b872]/20 transition-colors shadow-lg flex items-center">
-              <i className="fas fa-book mr-2"></i> Purchase Book
+          <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+            <a 
+              href="#summary" 
+              className="p-2 rounded-full bg-[#2c4c3b]/50 backdrop-blur-md text-[#a3c9a8] hover:text-[#e9b872] hover:bg-[#2c4c3b]/70 transition-colors focus:outline-none border border-[#638b6d]/30"
+              aria-label="Scroll down"
+            >
+              <i className="fas fa-chevron-down text-2xl"></i>
             </a>
           </div>
-        </div>
-        
-        {/* Animated scroll down indicator */}
-        <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
-          <a 
-            href="#summary" 
-            className="p-2 rounded-full bg-[#2c4c3b]/50 backdrop-blur-md text-[#a3c9a8] hover:text-[#e9b872] hover:bg-[#2c4c3b]/70 transition-colors focus:outline-none border border-[#638b6d]/30"
-            aria-label="Scroll down"
-          >
-            <i className="fas fa-chevron-down text-2xl"></i>
-          </a>
         </div>
       </section>
       
-      {/* Book Summary */}
-      <section id="summary" className="py-16 bg-[#0f1b15]">
-        <div className="container mx-auto px-6">
+      {/* Book Summary and Biography - Enhanced Section */}
+      <section id="summary" className="py-16 bg-[url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')] bg-fixed bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-[#0a1510]/80 backdrop-filter backdrop-blur-[2px]"></div>
+        <div className="relative container mx-auto px-6 z-10">
           <div className="text-center mb-12" data-aos="fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Book Summary
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#e9b872]">
+              Wilderness Journey
             </h2>
-            <div className="w-24 h-1 bg-[#e9b872] mx-auto"></div>
+            <div className="w-24 h-1 bg-[#a3c9a8] mx-auto"></div>
           </div>
           
-          <div className="flex flex-col md:flex-row gap-10 items-center">
-            <div className="md:w-1/2" data-aos="fade-right">
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                  alt="Forest representing Hatchet's setting" 
-                  className="rounded-lg shadow-xl border-4 border-[#2c4c3b] h-[500px] object-cover"
-                />
-                <div className="absolute -bottom-5 -right-5 bg-[#e9b872]/90 rounded-full p-3 shadow-xl">
-                  <Axe className="h-10 w-10 text-[#0f1b15]" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            {/* Book Summary Box */}
+            <div className="bg-[#162821]/90 border border-[#2c4c3b] rounded-lg shadow-xl overflow-hidden" data-aos="fade-right">
+              <div className="p-1 bg-gradient-to-r from-[#2c4c3b] to-[#e9b872]"></div>
+              <div className="p-6 md:p-8">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 rounded-full bg-[#2c4c3b] flex items-center justify-center mr-4">
+                    <Axe className="h-6 w-6 text-[#e9b872]" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#e9b872]">Book Summary</h3>
+                </div>
+                
+                <div className="prose prose-sm md:prose-base prose-invert max-w-none">
+                  <p className="text-gray-200 mb-4 leading-relaxed">
+                    "Hatchet" tells the gripping story of thirteen-year-old Brian Robeson, whose small plane crashes in the Canadian wilderness while he's traveling to visit his father after his parents' divorce. As the sole survivor, Brian must learn to survive with only the hatchet his mother gave him as a parting gift.
+                  </p>
+                  
+                  <p className="text-gray-200 mb-4 leading-relaxed">
+                    Stranded and alone, Brian faces the brutal realities of the wild—hunger, predators, harsh weather, and isolation. His journey becomes not just about physical survival, but about emotional and psychological endurance as he processes "The Secret" of his mother's affair that led to his parents' separation.
+                  </p>
+                  
+                  <p className="text-gray-200 mb-4 leading-relaxed">
+                    Through trial and error, Brian gradually acquires survival skills: building shelter, making fire, hunting for food, and crafting tools. A turning point comes when he successfully creates fire, marking his first major triumph against nature. Each new skill represents not just Brian's growing ability to survive physically, but his evolving mental resilience and maturity.
+                  </p>
+                  
+                  <p className="text-gray-200 mb-4 leading-relaxed">
+                    After a devastating tornado strikes his camp, Brian discovers the submerged airplane and manages to retrieve a survival pack containing food, equipment, and an emergency transmitter. Though seemingly rescued by chance when the transmitter activates, his true salvation comes from the inner strength and self-reliance he developed during his 54-day ordeal in the wilderness.
+                  </p>
+                  
+                  <p className="text-gray-200 leading-relaxed">
+                    By the story's end, Brian has transformed from a dependent city boy into a self-sufficient young man with profound respect for nature and deeper understanding of himself. His experience in the wilderness changes him forever, teaching him patience, resourcefulness, and the remarkable capacity of the human spirit to adapt and overcome.
+                  </p>
+                </div>
+                
+                <div className="mt-6 flex flex-wrap gap-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#2c4c3b] text-[#e9b872]">
+                    <i className="fas fa-map-marker-alt mr-1"></i> Canadian Wilderness
+                  </span>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#2c4c3b] text-[#e9b872]">
+                    <i className="fas fa-calendar-alt mr-1"></i> 54 Days
+                  </span>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#2c4c3b] text-[#e9b872]">
+                    <i className="fas fa-award mr-1"></i> Newbery Honor
+                  </span>
                 </div>
               </div>
             </div>
             
-            <div className="md:w-1/2" data-aos="fade-left">
-              <div className="bg-[#162821] p-8 rounded-lg border border-[#2c4c3b] shadow-lg">
-                <h3 className="text-2xl font-bold mb-4 flex items-center text-[#e9b872]">
-                  <i className="fas fa-fire text-orange-400 mr-3"></i>
-                  Hatchet by Gary Paulsen
-                </h3>
-                
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-[#638b6d]/50 to-transparent mb-6"></div>
-                
-                <p className="text-gray-300 mb-4">
-                  "Hatchet" is a powerful coming-of-age novel about thirteen-year-old Brian Robeson who must learn to survive alone in the Canadian wilderness after a plane crash. Armed with only a hatchet given to him by his mother, Brian must overcome numerous challenges and learn to live off the land.
-                </p>
-                
-                <p className="text-gray-300 mb-6">
-                  Throughout his 54-day ordeal, Brian undergoes a profound transformation, developing resilience, self-reliance, and an appreciation for nature. The novel explores themes of survival, self-discovery, resilience, and humanity's relationship with the natural world.
-                </p>
-                
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="flex items-center">
-                    <i className="fas fa-calendar-alt text-[#a3c9a8] mr-2"></i>
-                    <span className="text-gray-300">Published: 1987</span>
+            {/* Author Biography Box */}
+            <div className="bg-[#162821]/90 border border-[#2c4c3b] rounded-lg shadow-xl overflow-hidden" data-aos="fade-left">
+              <div className="p-1 bg-gradient-to-r from-[#e9b872] to-[#2c4c3b]"></div>
+              <div className="p-6 md:p-8">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 rounded-full bg-[#2c4c3b] flex items-center justify-center mr-4">
+                    <i className="fas fa-user-edit text-xl text-[#e9b872]"></i>
                   </div>
-                  <div className="flex items-center">
-                    <i className="fas fa-award text-[#a3c9a8] mr-2"></i>
-                    <span className="text-gray-300">Newbery Honor</span>
-                  </div>
-                  <div className="flex items-center">
-                    <i className="fas fa-map-marked text-[#a3c9a8] mr-2"></i>
-                    <span className="text-gray-300">Setting: Canadian wilderness</span>
-                  </div>
-                  <div className="flex items-center">
-                    <i className="fas fa-book text-[#a3c9a8] mr-2"></i>
-                    <span className="text-gray-300">Genre: Young Adult Survival</span>
-                  </div>
+                  <h3 className="text-2xl font-bold text-[#e9b872]">About Gary Paulsen</h3>
                 </div>
                 
-                <div className="flex justify-center">
-                  <div className="inline-flex items-center space-x-1 bg-[#2c4c3b]/60 px-4 py-2 rounded-full text-sm">
-                    <i className="fas fa-star text-[#e9b872]"></i>
-                    <i className="fas fa-star text-[#e9b872]"></i>
-                    <i className="fas fa-star text-[#e9b872]"></i>
-                    <i className="fas fa-star text-[#e9b872]"></i>
-                    <i className="fas fa-star-half-alt text-[#e9b872]"></i>
-                    <span className="ml-2 text-white">4.8/5 - Over 10,000 reviews</span>
+                <div className="flex flex-col md:flex-row gap-6 mb-6">
+                  <div className="md:w-1/3">
+                    <div className="relative rounded-lg overflow-hidden border-2 border-[#2c4c3b] shadow-lg">
+                      <img 
+                        src="https://images.unsplash.com/photo-1541343672885-9be56236302a?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=500&q=80" 
+                        alt="Author representation" 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1510] to-transparent"></div>
+                      <div className="absolute bottom-3 right-3 bg-[#e9b872]/90 rounded-full p-2">
+                        <i className="fas fa-pen-fancy text-[#0f1b15]"></i>
+                      </div>
+                    </div>
                   </div>
+                  
+                  <div className="md:w-2/3">
+                    <div className="prose prose-sm md:prose-base prose-invert max-w-none">
+                      <p className="text-gray-200 mb-4 leading-relaxed">
+                        Gary Paulsen (1939-2021) was one of America's most beloved writers of young adult literature, known for his coming-of-age stories set in the wilderness. Drawing from his own rich and varied life experiences—including running the Iditarod dog sled race, sailing the Pacific, and living in the Minnesota woods—Paulsen crafted authentic adventure narratives that resonated with readers worldwide.
+                      </p>
+                      
+                      <p className="text-gray-200 mb-4 leading-relaxed">
+                        Paulsen's own childhood was marked by neglect and hardship, which drove him toward the solitude and self-reliance often reflected in his characters. After serving in the military and working various jobs, he found his calling as a writer, ultimately authoring more than 200 books and receiving numerous accolades, including three Newbery Honor awards.
+                      </p>
+                      
+                      <p className="text-gray-200 leading-relaxed">
+                        "Hatchet," published in 1987, is perhaps his most famous work, inspired by Paulsen's own wilderness experiences and survival knowledge. His direct, unembellished writing style and profound respect for nature's power have made his books treasured classics that continue to inspire young readers to develop resilience, courage, and appreciation for the natural world.
+                      </p>
+                    </div>
+                    
+                    <div className="mt-6 flex items-center space-x-4">
+                      <span className="text-[#a3c9a8]">Notable Works:</span>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-2 py-1 rounded text-xs bg-[#2c4c3b]/60 text-[#e9b872]">Hatchet</span>
+                        <span className="px-2 py-1 rounded text-xs bg-[#2c4c3b]/60 text-[#e9b872]">Brian's Winter</span>
+                        <span className="px-2 py-1 rounded text-xs bg-[#2c4c3b]/60 text-[#e9b872]">Dogsong</span>
+                        <span className="px-2 py-1 rounded text-xs bg-[#2c4c3b]/60 text-[#e9b872]">The River</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Interactive Survival Tip */}
+          <div className="relative max-w-3xl mx-auto p-4 bg-[#2c4c3b]/70 border border-[#a3c9a8]/50 rounded-lg backdrop-blur-sm mb-12" data-aos="fade-up">
+            <div 
+              className="flex items-center cursor-pointer group"
+              onClick={() => setShowSurvivalTip(!showSurvivalTip)}
+            >
+              <div className="w-12 h-12 rounded-full bg-[#0a1510] flex items-center justify-center mr-4 group-hover:bg-[#e9b872] transition-colors">
+                <Campfire className="h-6 w-6 text-[#e9b872] group-hover:text-[#0a1510] transition-colors" />
+              </div>
+              <h3 className="text-xl font-bold text-[#e9b872] group-hover:text-white transition-colors">
+                {showSurvivalTip ? "Brian's Survival Lesson" : "Click to Reveal a Wilderness Survival Tip"}
+              </h3>
+              <div className="ml-auto">
+                <i className={`fas fa-chevron-${showSurvivalTip ? 'up' : 'down'} text-[#a3c9a8]`}></i>
+              </div>
+            </div>
+            
+            {showSurvivalTip && (
+              <div className="mt-4 animate__animated animate__fadeIn">
+                <blockquote className="bg-[#0a1510]/50 border-l-4 border-[#e9b872] p-4 rounded-r-lg italic text-[#a3c9a8] mb-3">
+                  "You are your most valuable asset. Don't forget that. You are the best thing you have." 
+                  <div className="text-right mt-2 text-sm text-[#e9b872]">- Hatchet</div>
+                </blockquote>
+                <p className="text-gray-200">
+                  In survival situations, maintaining a positive mental attitude is often as crucial as physical skills. Brian learned that patience, careful observation, and adapting to the environment were essential for wilderness survival.
+                </p>
+              </div>
+            )}
+          </div>
+          
+          {/* Buy the Book Section */}
+          <div id="buy" className="bg-[#162821]/90 border border-[#2c4c3b] rounded-lg shadow-xl overflow-hidden" data-aos="fade-up">
+            <div className="p-1 bg-gradient-to-r from-[#e9b872] via-[#2c4c3b] to-[#e9b872]"></div>
+            <div className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div className="mb-6 md:mb-0">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#e9b872] mb-3">Get Your Copy of Hatchet</h3>
+                  <p className="text-gray-300 max-w-md">
+                    Experience Brian's extraordinary wilderness journey for yourself. Available in multiple formats to suit your reading preference.
+                  </p>
+                </div>
+                
+                <div className="flex flex-wrap gap-3">
+                  <a 
+                    href="https://www.amazon.com/Hatchet-Gary-Paulsen/dp/1416936475/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="px-6 py-3 bg-[#e9b872] text-[#0a1510] rounded-md font-bold hover:bg-[#d8a75f] transition-colors flex items-center"
+                  >
+                    <i className="fab fa-amazon mr-2"></i> Amazon
+                  </a>
+                  <a 
+                    href="https://www.barnesandnoble.com/w/hatchet-gary-paulsen/1100553305" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="px-6 py-3 border-2 border-[#e9b872] text-[#e9b872] rounded-md font-bold hover:bg-[#e9b872]/20 transition-colors flex items-center"
+                  >
+                    <i className="fas fa-book mr-2"></i> Barnes & Noble
+                  </a>
+                  <a 
+                    href="https://www.audible.com/pd/Hatchet-Audiobook/B002V5BQBQ" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="px-6 py-3 bg-[#2c4c3b] text-white rounded-md font-bold hover:bg-[#3a5d4a] transition-colors flex items-center"
+                  >
+                    <i className="fas fa-headphones mr-2"></i> Audiobook
+                  </a>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <div className="bg-[#0a1510]/60 p-4 rounded-lg text-center">
+                  <div className="text-[#e9b872] mb-1">
+                    <i className="fas fa-book text-2xl"></i>
+                  </div>
+                  <div className="text-sm font-medium text-white">Paperback</div>
+                  <div className="text-[#a3c9a8] text-xs">from $8.99</div>
+                </div>
+                
+                <div className="bg-[#0a1510]/60 p-4 rounded-lg text-center">
+                  <div className="text-[#e9b872] mb-1">
+                    <i className="fas fa-tablet-alt text-2xl"></i>
+                  </div>
+                  <div className="text-sm font-medium text-white">E-Book</div>
+                  <div className="text-[#a3c9a8] text-xs">from $7.99</div>
+                </div>
+                
+                <div className="bg-[#0a1510]/60 p-4 rounded-lg text-center">
+                  <div className="text-[#e9b872] mb-1">
+                    <i className="fas fa-headphones text-2xl"></i>
+                  </div>
+                  <div className="text-sm font-medium text-white">Audiobook</div>
+                  <div className="text-[#a3c9a8] text-xs">from $14.95</div>
+                </div>
+                
+                <div className="bg-[#0a1510]/60 p-4 rounded-lg text-center">
+                  <div className="text-[#e9b872] mb-1">
+                    <i className="fas fa-bookmark text-2xl"></i>
+                  </div>
+                  <div className="text-sm font-medium text-white">Hardcover</div>
+                  <div className="text-[#a3c9a8] text-xs">from $18.99</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center mt-6 py-3 px-4 bg-[#0a1510]/40 rounded-lg">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#2c4c3b] mr-3">
+                  <i className="fas fa-users text-[#e9b872]"></i>
+                </div>
+                <div className="text-sm">
+                  <span className="text-[#a3c9a8] font-medium">Perfect for classrooms and reading groups!</span>
+                  <div className="text-gray-300 text-xs mt-0.5">Bulk discounts available for educational purposes</div>
                 </div>
               </div>
             </div>
