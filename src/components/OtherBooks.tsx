@@ -23,6 +23,14 @@ const OtherBooks: React.FC = () => {
       amazonLink: "https://www.amazon.com/Brians-Winter-Gary-Paulsen/dp/0307929582/"
     },
     {
+      id: "brians-return",
+      title: "Brian's Return",
+      description: "Brian, now sixteen years old, finds it difficult to adjust to normal life after his wilderness experiences and decides to return to the woods to find peace again.",
+      coverImage: "https://m.media-amazon.com/images/I/815tMobAd+L.jpg",
+      releaseYear: "1999",
+      amazonLink: "https://www.amazon.com/Brians-Return-Gary-Paulsen/dp/0307929590/"
+    },
+    {
       id: "brians-hunt",
       title: "Brian's Hunt",
       description: "Brian returns to the wilderness to confront his fears and pursue a rogue bear that is attacking a neighboring family.",
@@ -53,7 +61,7 @@ const OtherBooks: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {otherBooks.map((book) => (
             <div 
               key={book.id}
@@ -98,7 +106,7 @@ const OtherBooks: React.FC = () => {
         
         <div className="mt-12 text-center">
           <a 
-            href="https://www.amazon.com/stores/Gary-Paulsen/author/B000AQ0BP2"
+            href="https://www.goodreads.com/author/list/18.Gary_Paulsen"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-[#2c4c3b]/80 text-white rounded-md hover:bg-[#2c4c3b] transition-colors shadow-lg backdrop-blur-sm"

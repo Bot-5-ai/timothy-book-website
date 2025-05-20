@@ -158,23 +158,22 @@ const Hatchet = () => {
             <div className="w-24 h-1 bg-[#e9b872] mx-auto"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Book Cover & Summary */}
-            <div data-aos="fade-right">
-              <div className="bg-[#162821] p-8 rounded-lg border border-[#2c4c3b] shadow-lg h-full flex flex-col">
-                <div className="flex justify-center mb-6">
-                  <div className="relative w-48 h-auto shadow-xl">
-                    <img 
-                      src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781442403321/hatchet-9781442403321_hr.jpg" 
-                      alt="Hatchet Book Cover" 
-                      className="w-full h-auto rounded-md border-4 border-[#2c4c3b] object-cover transform transition-transform duration-500 hover:scale-105"
-                    />
-                    <div className="absolute -bottom-3 -right-3 bg-[#e9b872] text-[#0f1b15] px-3 py-1 rounded-full text-sm font-bold rotate-[-5deg] shadow-lg">
-                      Classic!
-                    </div>
+          <div className="bg-[#162821] p-8 rounded-lg border border-[#2c4c3b] shadow-lg" data-aos="fade-right">
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="md:w-1/3 lg:w-1/4 flex justify-center">
+                <div className="relative w-48 h-auto shadow-xl">
+                  <img 
+                    src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781442403321/hatchet-9781442403321_hr.jpg" 
+                    alt="Hatchet Book Cover" 
+                    className="w-full h-auto rounded-md border-4 border-[#2c4c3b] object-cover transform transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute -bottom-3 -right-3 bg-[#e9b872] text-[#0f1b15] px-3 py-1 rounded-full text-sm font-bold rotate-[-5deg] shadow-lg">
+                    Classic!
                   </div>
                 </div>
-                
+              </div>
+              
+              <div className="md:w-2/3 lg:w-3/4">
                 <h3 className="text-2xl font-bold mb-4 flex items-center text-[#e9b872]">
                   <i className="fas fa-fire text-orange-400 mr-3"></i>
                   Book Summary
@@ -182,7 +181,7 @@ const Hatchet = () => {
                 
                 <div className="w-full h-px bg-gradient-to-r from-transparent via-[#638b6d]/50 to-transparent mb-6"></div>
                 
-                <div className="flex-grow">
+                <div>
                   <p className="text-gray-300 mb-4">
                     "Hatchet" is a powerful coming-of-age novel about thirteen-year-old Brian Robeson who must learn to survive alone in the Canadian wilderness after a plane crash. Armed with only a hatchet given to him by his mother, Brian must overcome numerous challenges and learn to live off the land.
                   </p>
@@ -216,48 +215,59 @@ const Hatchet = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Author Bio Box */}
-            <div data-aos="fade-left">
-              <div className="bg-[#162821] p-8 rounded-lg border border-[#2c4c3b] shadow-lg h-full">
+          </div>
+        </div>
+      </section>
+      
+      {/* Author Bio Section - New separate section */}
+      <section id="author" className="py-16 bg-[#162821]">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12" data-aos="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              About the Author
+            </h2>
+            <div className="w-24 h-1 bg-[#e9b872] mx-auto"></div>
+          </div>
+          
+          <div className="bg-[#0f1b15] p-8 rounded-lg border border-[#2c4c3b] shadow-lg" data-aos="fade-left">
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="md:w-1/3 lg:w-1/4">
+                <img 
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL0qtld_Cr0u4WlFTXmPnAFlPXpywEfUm5rg&s" 
+                  alt="Gary Paulsen" 
+                  className="rounded-lg border-2 border-[#2c4c3b] w-full shadow-lg"
+                />
+              </div>
+              
+              <div className="md:w-2/3 lg:w-3/4">
                 <h3 className="text-2xl font-bold mb-4 flex items-center text-[#e9b872]">
                   <i className="fas fa-user text-[#a3c9a8] mr-3"></i>
-                  About Gary Paulsen
+                  Gary Paulsen (1939-2021)
                 </h3>
                 
                 <div className="w-full h-px bg-gradient-to-r from-transparent via-[#638b6d]/50 to-transparent mb-6"></div>
                 
-                <div className="flex flex-col sm:flex-row gap-6 mb-6">
-                  <div className="sm:w-1/3">
-                    <img 
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL0qtld_Cr0u4WlFTXmPnAFlPXpywEfUm5rg&s" 
-                      alt="Gary Paulsen" 
-                      className="rounded-lg border-2 border-[#2c4c3b] w-full shadow-lg"
-                    />
-                  </div>
+                <div>
+                  <p className="text-gray-300 mb-4">
+                    Gary Paulsen was a renowned American author of young adult literature, best known for his coming-of-age stories set in the wilderness. His own difficult childhood and diverse experiences deeply influenced his writing.
+                  </p>
                   
-                  <div className="sm:w-2/3">
-                    <p className="text-gray-300 mb-4">
-                      Gary Paulsen (1939-2021) was a renowned American author of young adult literature, best known for his coming-of-age stories set in the wilderness. His own difficult childhood and diverse experiences deeply influenced his writing.
-                    </p>
-                    
-                    <p className="text-gray-300">
-                      Paulsen ran away from home at 14 and later worked as a farmhand, construction worker, ranch hand, truck driver, sailor, and even competed in the Iditarod Trail Sled Dog Race twice. These real-world survival experiences gave authenticity to his wilderness narratives.
-                    </p>
-                  </div>
+                  <p className="text-gray-300 mb-4">
+                    Paulsen ran away from home at 14 and later worked as a farmhand, construction worker, ranch hand, truck driver, sailor, and even competed in the Iditarod Trail Sled Dog Race twice. These real-world survival experiences gave authenticity to his wilderness narratives.
+                  </p>
+                  
+                  <p className="text-gray-300 mb-4">
+                    Paulsen wrote more than 200 books and over 200 magazine articles and short stories, selling more than 35 million copies of his work. He was awarded the Margaret A. Edwards Award for his lifetime contribution to young adult literature.
+                  </p>
+                  
+                  <p className="text-gray-300 mb-4">
+                    His most famous works include the "Hatchet" series (Brian's Saga), "Dogsong," and "The Winter Room." Many of his stories feature protagonists facing extreme situations in the wilderness, forcing them to develop self-reliance and resilience.
+                  </p>
+                  
+                  <p className="text-gray-300">
+                    Paulsen was known for his sparse, direct writing style and his ability to capture the challenges and beauty of survival situations. His personal motto was "The most important thing you can do is read," reflecting his belief in the transformative power of literature.
+                  </p>
                 </div>
-                
-                <p className="text-gray-300 mb-4">
-                  Paulsen wrote more than 200 books and over 200 magazine articles and short stories, selling more than 35 million copies of his work. He was awarded the Margaret A. Edwards Award for his lifetime contribution to young adult literature.
-                </p>
-                
-                <p className="text-gray-300 mb-4">
-                  His most famous works include the "Hatchet" series (Brian's Saga), "Dogsong," and "The Winter Room." Many of his stories feature protagonists facing extreme situations in the wilderness, forcing them to develop self-reliance and resilience.
-                </p>
-                
-                <p className="text-gray-300">
-                  Paulsen was known for his sparse, direct writing style and his ability to capture the challenges and beauty of survival situations. His personal motto was "The most important thing you can do is read," reflecting his belief in the transformative power of literature.
-                </p>
                 
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex items-center">
