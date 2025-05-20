@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Axe, Compass, Trees, TreePine, Mountain, ArrowLeft } from 'lucide-react';
+import { Axe, Compass, Trees, TreePine, Mountain, ArrowLeft, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import HatchetVideos from '@/components/HatchetVideos';
 import HatchetResources from '@/components/HatchetResources';
+import OtherBooks from '@/components/OtherBooks';
 
 const Hatchet = () => {
   const [activeTab, setActiveTab] = useState('passage1');
@@ -147,20 +148,33 @@ const Hatchet = () => {
         </div>
       </section>
       
-      {/* Book Summary */}
+      {/* Book Summary & Cover */}
       <section id="summary" className="py-16 bg-[#0f1b15]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Book Summary & Author
+              Book Summary
             </h2>
             <div className="w-24 h-1 bg-[#e9b872] mx-auto"></div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Book Summary Box */}
+            {/* Book Cover & Summary */}
             <div data-aos="fade-right">
-              <div className="bg-[#162821] p-8 rounded-lg border border-[#2c4c3b] shadow-lg h-full">
+              <div className="bg-[#162821] p-8 rounded-lg border border-[#2c4c3b] shadow-lg h-full flex flex-col">
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-48 h-auto shadow-xl">
+                    <img 
+                      src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781442403321/hatchet-9781442403321_hr.jpg" 
+                      alt="Hatchet Book Cover" 
+                      className="w-full h-auto rounded-md border-4 border-[#2c4c3b] object-cover transform transition-transform duration-500 hover:scale-105"
+                    />
+                    <div className="absolute -bottom-3 -right-3 bg-[#e9b872] text-[#0f1b15] px-3 py-1 rounded-full text-sm font-bold rotate-[-5deg] shadow-lg">
+                      Classic!
+                    </div>
+                  </div>
+                </div>
+                
                 <h3 className="text-2xl font-bold mb-4 flex items-center text-[#e9b872]">
                   <i className="fas fa-fire text-orange-400 mr-3"></i>
                   Book Summary
@@ -168,25 +182,27 @@ const Hatchet = () => {
                 
                 <div className="w-full h-px bg-gradient-to-r from-transparent via-[#638b6d]/50 to-transparent mb-6"></div>
                 
-                <p className="text-gray-300 mb-4">
-                  "Hatchet" is a powerful coming-of-age novel about thirteen-year-old Brian Robeson who must learn to survive alone in the Canadian wilderness after a plane crash. Armed with only a hatchet given to him by his mother, Brian must overcome numerous challenges and learn to live off the land.
-                </p>
-                
-                <p className="text-gray-300 mb-4">
-                  As the only survivor of a small plane crash, Brian finds himself stranded deep in the wilderness with no supplies except for a hatchet his mother gave him. Initially overwhelmed by his circumstances, he gradually develops crucial survival skills: building shelter, finding food, making fire, and crafting tools.
-                </p>
-                
-                <p className="text-gray-300 mb-4">
-                  Throughout his 54-day ordeal, Brian undergoes a profound transformation, developing resilience, self-reliance, and an appreciation for nature. He faces numerous challenges including encounters with wildlife, weather events, and the psychological burden of isolation and abandonment.
-                </p>
-                
-                <p className="text-gray-300 mb-4">
-                  The novel explores themes of survival, self-discovery, resilience, and humanity's relationship with the natural world. Brian's journey is not only about physical survival but also emotional and psychological growth as he processes his parents' divorce and his mother's affair ("The Secret").
-                </p>
-                
-                <p className="text-gray-300">
-                  By the story's end, Brian is no longer the same city boy who boarded the plane. His experiences have matured him, teaching him patience, resourcefulness, and a deeper understanding of himself and the natural world. Even after his eventual rescue, these lessons remain with him, forever changing his perspective on life.
-                </p>
+                <div className="flex-grow">
+                  <p className="text-gray-300 mb-4">
+                    "Hatchet" is a powerful coming-of-age novel about thirteen-year-old Brian Robeson who must learn to survive alone in the Canadian wilderness after a plane crash. Armed with only a hatchet given to him by his mother, Brian must overcome numerous challenges and learn to live off the land.
+                  </p>
+                  
+                  <p className="text-gray-300 mb-4">
+                    As the only survivor of a small plane crash, Brian finds himself stranded deep in the wilderness with no supplies except for a hatchet his mother gave him. Initially overwhelmed by his circumstances, he gradually develops crucial survival skills: building shelter, finding food, making fire, and crafting tools.
+                  </p>
+                  
+                  <p className="text-gray-300 mb-4">
+                    Throughout his 54-day ordeal, Brian undergoes a profound transformation, developing resilience, self-reliance, and an appreciation for nature. He faces numerous challenges including encounters with wildlife, weather events, and the psychological burden of isolation and abandonment.
+                  </p>
+                  
+                  <p className="text-gray-300 mb-4">
+                    The novel explores themes of survival, self-discovery, resilience, and humanity's relationship with the natural world. Brian's journey is not only about physical survival but also emotional and psychological growth as he processes his parents' divorce and his mother's affair ("The Secret").
+                  </p>
+                  
+                  <p className="text-gray-300">
+                    By the story's end, Brian is no longer the same city boy who boarded the plane. His experiences have matured him, teaching him patience, resourcefulness, and a deeper understanding of himself and the natural world. Even after his eventual rescue, these lessons remain with him, forever changing his perspective on life.
+                  </p>
+                </div>
                 
                 <div className="mt-6 flex justify-center">
                   <div className="inline-flex items-center space-x-1 bg-[#2c4c3b]/60 px-4 py-2 rounded-full text-sm">
@@ -214,7 +230,7 @@ const Hatchet = () => {
                 <div className="flex flex-col sm:flex-row gap-6 mb-6">
                   <div className="sm:w-1/3">
                     <img 
-                      src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Gary_Paulsen_%282007%29.jpg" 
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL0qtld_Cr0u4WlFTXmPnAFlPXpywEfUm5rg&s" 
                       alt="Gary Paulsen" 
                       className="rounded-lg border-2 border-[#2c4c3b] w-full shadow-lg"
                     />
@@ -258,8 +274,11 @@ const Hatchet = () => {
           </div>
         </div>
       </section>
+
+      {/* Other Books by Gary Paulsen */}
+      <OtherBooks />
       
-      {/* Add the new components we created */}
+      {/* Add the other components we created */}
       <HatchetVideos />
       <HatchetResources />
       
