@@ -5,7 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const AboutMe = () => {
-  const [stars, useState] = useState<{ id: number; x: number; y: number; size: number; opacity: number; speed: number }[]>([]);
+  const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; opacity: number; speed: number }[]>([]);
   
   useEffect(() => {
     // Generate stars for the space background
@@ -21,7 +21,7 @@ const AboutMe = () => {
           speed: Math.random() * 0.05 + 0.01
         });
       }
-      useState(newStars);
+      setStars(newStars);
     };
     
     generateStars();
