@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import OurFinalInvention from "./pages/OurFinalInvention";
 import Hatchet from './pages/Hatchet';
-import SecondBook from './pages/SecondBook';
+import AboutMe from './pages/AboutMe';
 import './App.css';
 
 // Create a new QueryClient instance outside of the component
@@ -44,7 +44,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/our-final-invention" element={<OurFinalInvention />} />
             <Route path="/hatchet" element={<Hatchet />} />
-            <Route path="/second-book" element={<SecondBook />} />
+            <Route path="/about-me" element={<AboutMe />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
