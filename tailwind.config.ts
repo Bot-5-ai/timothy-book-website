@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,6 +24,8 @@ export default {
 				'cinzel': ['Cinzel', 'serif'],
 				'medieval': ['Metamorphous', 'cursive'],
 				'source-code': ['Source Code Pro', 'monospace'],
+				'serif': ['Playfair Display', 'Georgia', 'serif'],
+				'sans': ['Inter', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
