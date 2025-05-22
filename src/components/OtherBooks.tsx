@@ -18,7 +18,7 @@ const OtherBooks: React.FC = () => {
       id: "brians-winter",
       title: "Brian's Winter",
       description: "What if Brian hadn't been rescued at the end of Hatchet? This alternative narrative explores how Brian would have survived the harsh winter in the wilderness.",
-      coverImage: "https://m.media-amazon.com/images/I/81dg-GbLsyL._AC_UF1000,1000_QL80_.jpg",
+      coverImage: "https://m.media-amazon.com/images/I/91wPKUEJ+NL._AC_UF1000,1000_QL80_.jpg",
       releaseYear: "1996",
       amazonLink: "https://www.amazon.com/Brians-Winter-Gary-Paulsen/dp/0307929582/"
     },
@@ -34,7 +34,7 @@ const OtherBooks: React.FC = () => {
       id: "brians-hunt",
       title: "Brian's Hunt",
       description: "Brian returns to the wilderness to confront his fears and pursue a rogue bear that is attacking a neighboring family.",
-      coverImage: "https://m.media-amazon.com/images/I/819WFOEV30L._AC_UF1000,1000_QL80_.jpg",
+      coverImage: "https://m.media-amazon.com/images/I/A1IFtT3besL._UF894,1000_QL80_.jpg",
       releaseYear: "2003",
       amazonLink: "https://www.amazon.com/Brians-Hunt-Saga-Gary-Paulsen/dp/0553494155/"
     },
@@ -42,7 +42,7 @@ const OtherBooks: React.FC = () => {
       id: "the-river",
       title: "The River",
       description: "A sequel to Hatchet where Brian returns to the wilderness with a government psychologist to record his survival techniques when disaster strikes.",
-      coverImage: "https://m.media-amazon.com/images/I/81fC+VjJCwL._AC_UF1000,1000_QL80_.jpg",
+      coverImage: "https://images.randomhouse.com/cover/9780307929617",
       releaseYear: "1991",
       amazonLink: "https://www.amazon.com/River-Hatchet-Adventure-Gary-Paulsen/dp/0307929612/"
     }
