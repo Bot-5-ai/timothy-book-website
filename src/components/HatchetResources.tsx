@@ -92,7 +92,7 @@ const HatchetResources: React.FC = () => {
             <div className="md:w-1/3 flex justify-center">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                  src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781442403321/hatchet-9781442403321_hr.jpg" 
                   alt="Hatchet Book" 
                   className="rounded-lg shadow-lg border-2 border-[#2c4c3b] h-64 object-cover"
                 />

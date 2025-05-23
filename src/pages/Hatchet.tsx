@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Axe, Compass, Trees, TreePine, Mountain, ArrowLeft, BookOpen } from 'lucide-react';
@@ -5,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import HatchetVideos from '@/components/HatchetVideos';
 import HatchetResources from '@/components/HatchetResources';
 import OtherBooks from '@/components/OtherBooks';
+import GaryPaulsenTimeline from '@/components/GaryPaulsenTimeline';
 
 const Hatchet = () => {
   const [activeTab, setActiveTab] = useState('passage1');
@@ -167,7 +169,7 @@ const Hatchet = () => {
                     alt="Hatchet Book Cover" 
                     className="w-full h-auto rounded-md border-4 border-[#2c4c3b] object-cover transform transition-transform duration-500 hover:scale-105"
                   />
-                  <div className="absolute -bottom-3 -right-3 bg-[#e9b872] text-[#0f1b15] px-3 py-1 rounded-full text-sm font-bold rotate-[-5deg] shadow-lg">
+                  <div className="absolute top-2 right-2 bg-[#e9b872] text-[#0f1b15] px-3 py-1 rounded-full text-sm font-bold rotate-[-5deg] shadow-lg">
                     Classic!
                   </div>
                 </div>
@@ -281,6 +283,9 @@ const Hatchet = () => {
                 </div>
               </div>
             </div>
+            
+            {/* Gary Paulsen Timeline */}
+            <GaryPaulsenTimeline />
           </div>
         </div>
       </section>
