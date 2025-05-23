@@ -52,10 +52,10 @@ const OtherBooks: React.FC = () => {
     <section className="py-16 bg-[#162821]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12" data-aos="fade-up">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white font-merriweather">
             More by Gary Paulsen
           </h2>
-          <div className="w-24 h-1 bg-[#e9b872] mx-auto"></div>
+          <div className="w-24 h-1 bg-[#e9b872] mx-auto transition-all duration-300"></div>
           <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
             Continue your wilderness adventure with these other acclaimed works from the Brian's Saga series
           </p>
@@ -65,26 +65,33 @@ const OtherBooks: React.FC = () => {
           {otherBooks.map((book) => (
             <div 
               key={book.id}
-              className="group relative bg-[#0f1b15] border border-[#2c4c3b] rounded-lg overflow-hidden shadow-xl transition-all duration-300 hover:shadow-[#e9b872]/20 hover:border-[#e9b872]/30 hover:-translate-y-1"
+              className="group relative bg-[#0f1b15] border border-[#2c4c3b] rounded-lg overflow-hidden shadow-xl transition-all duration-300 hover:shadow-[#e9b872]/20 hover:border-[#e9b872]/30 hover:-translate-y-1 hover:scale-105"
               data-aos="fade-up"
             >
               <div className="aspect-[2/3] overflow-hidden">
-                <img 
-                  src={book.coverImage} 
-                  alt={`${book.title} book cover`} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute top-2 right-2 bg-[#e9b872]/80 text-[#0f1b15] px-2 py-1 rounded text-xs font-bold">
+                <a 
+                  href={book.amazonLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block w-full h-full"
+                >
+                  <img 
+                    src={book.coverImage} 
+                    alt={`${book.title} book cover`} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+                  />
+                </a>
+                <div className="absolute top-2 right-2 bg-[#e9b872]/80 text-[#0f1b15] px-2 py-1 rounded text-xs font-bold transition-all duration-300 group-hover:bg-[#e9b872] group-hover:scale-110">
                   {book.releaseYear}
                 </div>
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold text-[#e9b872] mb-2 font-cabin">
+                <h3 className="text-xl font-bold text-[#e9b872] mb-2 font-cabin transition-colors duration-200 group-hover:text-white">
                   {book.title}
                 </h3>
                 
-                <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+                <p className="text-gray-300 text-sm mb-4 line-clamp-3 transition-colors duration-200 group-hover:text-white">
                   {book.description}
                 </p>
                 
@@ -92,14 +99,14 @@ const OtherBooks: React.FC = () => {
                   href={book.amazonLink} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-[#a3c9a8] hover:text-[#e9b872] transition-colors text-sm font-medium"
+                  className="inline-flex items-center text-[#a3c9a8] hover:text-[#e9b872] transition-all duration-300 text-sm font-medium hover:translate-x-2"
                 >
                   View on Amazon
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </div>
               
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f1b15] via-transparent to-transparent opacity-60 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0f1b15] via-transparent to-transparent opacity-60 pointer-events-none transition-opacity duration-300 group-hover:opacity-40"></div>
             </div>
           ))}
         </div>
@@ -109,7 +116,7 @@ const OtherBooks: React.FC = () => {
             href="https://www.goodreads.com/author/list/18.Gary_Paulsen"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-[#2c4c3b]/80 text-white rounded-md hover:bg-[#2c4c3b] transition-colors shadow-lg backdrop-blur-sm"
+            className="inline-flex items-center px-6 py-3 bg-[#2c4c3b]/80 text-white rounded-md hover:bg-[#2c4c3b] transition-all duration-300 shadow-lg backdrop-blur-sm hover:scale-105 hover:shadow-xl"
           >
             <BookOpen className="mr-2 h-5 w-5" />
             <span>Explore All Books by Gary Paulsen</span>

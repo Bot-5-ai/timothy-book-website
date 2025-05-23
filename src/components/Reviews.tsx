@@ -50,7 +50,7 @@ const Reviews = () => {
     return Array(5).fill(0).map((_, i) => (
       <Star 
         key={i} 
-        className={`h-5 w-5 ${i < rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} 
+        className={`h-5 w-5 transition-colors duration-200 ${i < rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} 
       />
     ));
   };
@@ -68,6 +68,12 @@ const Reviews = () => {
     animateCSS.rel = 'stylesheet';
     animateCSS.href = 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
     document.head.appendChild(animateCSS);
+
+    // Google Fonts
+    const googleFonts = document.createElement('link');
+    googleFonts.rel = 'stylesheet';
+    googleFonts.href = 'https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap';
+    document.head.appendChild(googleFonts);
   }, []);
 
   return (
@@ -80,27 +86,27 @@ const Reviews = () => {
             </span>
             <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 mx-auto rounded-full shadow-glow"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 mx-auto rounded-full shadow-glow transition-all duration-300"></div>
         </div>
 
         <div className="max-w-4xl mx-auto relative" data-aos="fade-up" data-aos-delay="200">
-          <div className="bg-white rounded-xl shadow-lg p-8 md:p-12 mb-8 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 animate__animated animate__fadeIn">
-            <div className="flex justify-between items-center mb-8">
-              <h3 className="text-xl md:text-2xl font-merriweather font-bold text-gray-800 flex items-center">
-                <i className="fas fa-quote-left text-blue-500 mr-2"></i>
-                {reviews[currentReview].source}
+          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate__animated animate__fadeIn min-h-[300px] flex flex-col">
+            <div className="flex justify-between items-start mb-6 flex-wrap gap-4">
+              <h3 className="text-xl md:text-2xl font-merriweather font-bold text-gray-800 flex items-center flex-1 min-w-0">
+                <i className="fas fa-quote-left text-blue-500 mr-2 flex-shrink-0"></i>
+                <span className="truncate">{reviews[currentReview].source}</span>
               </h3>
-              <div className="flex animate__animated animate__fadeIn">
+              <div className="flex animate__animated animate__fadeIn flex-shrink-0">
                 {renderStars(reviews[currentReview].rating)}
               </div>
             </div>
 
-            <blockquote className="text-gray-700 text-lg italic mb-6 animate__animated animate__fadeIn">
+            <blockquote className="text-gray-700 text-base md:text-lg italic mb-6 animate__animated animate__fadeIn flex-1 leading-relaxed">
               "{reviews[currentReview].content}"
             </blockquote>
 
-            <div className="flex justify-between items-center">
-              <p className="text-bookblue-600 font-medium">
+            <div className="flex justify-between items-center mt-auto">
+              <p className="text-bookblue-600 font-medium text-sm md:text-base">
                 — {reviews[currentReview].reviewer}
               </p>
               <div className="text-sm text-gray-500">
@@ -112,7 +118,7 @@ const Reviews = () => {
           <div className="flex justify-center space-x-4">
             <button 
               onClick={prevReview}
-              className="p-3 rounded-full bg-white shadow-md hover:bg-blue-50 text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-110"
+              className="p-3 rounded-full bg-white shadow-md hover:bg-blue-50 text-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-110 hover:shadow-lg"
               aria-label="Previous review"
             >
               <ChevronLeft className="h-6 w-6" />
@@ -120,7 +126,7 @@ const Reviews = () => {
             
             <button
               onClick={nextReview}
-              className="p-3 rounded-full bg-white shadow-md hover:bg-blue-50 text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-110"
+              className="p-3 rounded-full bg-white shadow-md hover:bg-blue-50 text-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-110 hover:shadow-lg"
               aria-label="Next review"
             >
               <ChevronRight className="h-6 w-6" />
@@ -132,7 +138,7 @@ const Reviews = () => {
               href="https://www.amazon.com/Our-Final-Invention-Artificial-Intelligence/dp/1250058783/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full font-medium hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 animate__animated animate__pulse animate__infinite animate__slow transform hover:scale-105 hover:animate-none"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full font-medium hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 animate__animated animate__pulse animate__infinite animate__slow transform hover:scale-105 hover:animate-none hover:shadow-xl"
             >
               <i className="fas fa-shopping-cart mr-2"></i>
               Purchase Book
