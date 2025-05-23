@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -131,19 +130,6 @@ const Reviews = () => {
             >
               <ChevronRight className="h-6 w-6" />
             </button>
-          </div>
-
-          <div className="mt-12 text-center">
-            <a 
-              href="https://www.amazon.com/Our-Final-Invention-Artificial-Intelligence/dp/1250058783/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full font-medium hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 animate__animated animate__pulse animate__infinite animate__slow transform hover:scale-105 hover:animate-none hover:shadow-xl"
-            >
-              <i className="fas fa-shopping-cart mr-2"></i>
-              Purchase Book
-            </a>
-            <p className="mt-3 text-sm text-gray-500">Available at major booksellers</p>
           </div>
         </div>
       </div>
