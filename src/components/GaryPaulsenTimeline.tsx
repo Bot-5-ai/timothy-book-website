@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Clock, Timeline } from 'lucide-react';
+import { ChevronDown, ChevronUp, Clock, Calendar } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const GaryPaulsenTimeline: React.FC = () => {
@@ -26,7 +26,7 @@ const GaryPaulsenTimeline: React.FC = () => {
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger className="w-full flex items-center justify-between p-2 text-[#e9b872] font-bold text-xl hover:bg-[#1c2e25] rounded-md transition-colors">
           <div className="flex items-center space-x-2">
-            <Timeline className="h-5 w-5" />
+            <Calendar className="h-5 w-5" />
             <span>Gary Paulsen's Timeline</span>
           </div>
           {isOpen ? (
