@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Summary from '@/components/Summary';
@@ -13,6 +13,18 @@ import AIChatbot from '@/components/AIChatbot';
 import Footer from '@/components/Footer';
 
 const OurFinalInvention = () => {
+  const [currentWarning, setCurrentWarning] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+  const [scanningActive, setScanningActive] = useState(false);
+
+  const warnings = [
+    "⚠️ NEURAL NETWORK ACTIVITY DETECTED",
+    "⚠️ ANALYZING AI THREAT LEVELS",
+    "⚠️ SCANNING FOR AUTONOMOUS SYSTEMS",
+    "⚠️ MONITORING INTELLIGENCE EXPANSION",
+    "⚠️ DETECTING ALGORITHMIC ANOMALIES"
+  ];
+
   useEffect(() => {
     // Initialize AOS with scanning-like transitions
     const AOS = window.AOS;
@@ -25,108 +37,187 @@ const OurFinalInvention = () => {
         easing: 'ease-in-out-cubic',
         delay: 0
       });
+
+      // Add scroll listener for scanning effect
+      const handleScroll = () => {
+        setScanningActive(true);
+        setTimeout(() => setScanningActive(false), 2000);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
     }
-
-    // Add scanning overlay effect
-    const scanningOverlay = document.createElement('div');
-    scanningOverlay.className = 'scanning-overlay';
-    document.body.appendChild(scanningOverlay);
-
-    return () => {
-      if (document.body.contains(scanningOverlay)) {
-        document.body.removeChild(scanningOverlay);
-      }
-    };
   }, []);
+
+  useEffect(() => {
+    // Cycle through warnings with typing effect
+    const warningInterval = setInterval(() => {
+      setIsTyping(false);
+      setTimeout(() => {
+        setCurrentWarning((prev) => (prev + 1) % warnings.length);
+        setIsTyping(true);
+      }, 500);
+    }, 4000);
+
+    return () => clearInterval(warningInterval);
+  }, [warnings.length]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 relative">
-      {/* Scanning line effect */}
-      <div className="scanning-line"></div>
+      {/* Scanning line effect - appears on scroll */}
+      <div className={`scanning-line ${scanningActive ? 'active' : ''}`}></div>
       
-      {/* Warning banner at the top */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-red-900/90 border-b border-red-500/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-2">
-          <div className="flex items-center justify-center text-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-red-200 text-sm font-mono">
-                ⚠️ AI SYSTEM ANALYSIS IN PROGRESS - POTENTIAL RISKS DETECTED ⚠️
-              </span>
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-            </div>
-          </div>
+      {/* Typing warning box - top right */}
+      <div className="fixed top-4 right-4 z-[60] bg-black/90 border border-green-500/50 rounded-lg px-4 py-2 backdrop-blur-sm animate__animated animate__fadeInDown">
+        <div className="text-green-400 font-mono text-sm">
+          <span className={`typing-text ${isTyping ? 'typing' : 'deleting'}`}>
+            {warnings[currentWarning]}
+          </span>
+          <span className="cursor">|</span>
         </div>
       </div>
 
-      <div className="pt-12">
-        <Navbar />
-        <div data-aos="fade-up" data-aos-duration="1500">
-          <Hero />
-        </div>
-        <div data-aos="fade-right" data-aos-duration="1200" data-aos-delay="100">
-          <Summary />
-        </div>
-        <div data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
-          <AuthorBio />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
-          <Reviews />
-        </div>
-        <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
-          <MoreByBarrat />
-        </div>
-        <div data-aos="fade-right" data-aos-duration="1200" data-aos-delay="500">
-          <DangerSection />
-        </div>
-        <div data-aos="fade-left" data-aos-duration="1200" data-aos-delay="600">
-          <AIRiskVisualization />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
-          <Analysis />
-        </div>
-        <AIChatbot />
-        <Footer />
+      <Navbar />
+      <div data-aos="fade-up" data-aos-duration="1500">
+        <Hero />
       </div>
+      <div data-aos="fade-right" data-aos-duration="1200" data-aos-delay="100">
+        <Summary />
+      </div>
+      <div data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+        <AuthorBio />
+      </div>
+      <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
+        <Reviews />
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+        <MoreByBarrat />
+      </div>
+      <div data-aos="fade-right" data-aos-duration="1200" data-aos-delay="500">
+        <DangerSection />
+      </div>
+      <div data-aos="fade-left" data-aos-duration="1200" data-aos-delay="600">
+        <AIRiskVisualization />
+      </div>
+      <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
+        <Analysis />
+      </div>
+      <AIChatbot />
+      <Footer />
 
-      {/* Scanning overlay styles */}
+      {/* Enhanced scanning and typing animations */}
       <style>{`
         .scanning-line {
           position: fixed;
           top: 0;
-          left: 0;
+          left: -100%;
           width: 100%;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, #00ff00, transparent);
-          animation: scan 3s linear infinite;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, #00ff00 50%, transparent);
           z-index: 1000;
           pointer-events: none;
+          transition: all 0.3s ease;
+          box-shadow: 0 0 10px #00ff00;
         }
 
-        .scanning-overlay {
-          position: fixed;
-          top: 0;
+        .scanning-line.active {
           left: 0;
-          width: 100%;
-          height: 100%;
-          background: 
-            linear-gradient(transparent 50%, rgba(0, 255, 0, 0.03) 50%),
-            linear-gradient(90deg, transparent 50%, rgba(0, 255, 0, 0.03) 50%);
-          background-size: 100% 4px, 4px 100%;
-          animation: scanningGrid 0.1s linear infinite;
-          pointer-events: none;
-          z-index: 1;
+          animation: scanAcross 2s ease-in-out;
         }
 
-        @keyframes scan {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100vw); }
+        @keyframes scanAcross {
+          0% { 
+            left: -100%; 
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% { 
+            left: 100%; 
+            opacity: 0;
+          }
         }
 
-        @keyframes scanningGrid {
-          0% { opacity: 0.1; }
-          50% { opacity: 0.3; }
-          100% { opacity: 0.1; }
+        .typing-text {
+          display: inline-block;
+          min-width: 280px;
+        }
+
+        .typing-text.typing {
+          animation: typeIn 2s steps(30, end);
+        }
+
+        .typing-text.deleting {
+          animation: typeOut 0.5s steps(10, end);
+        }
+
+        @keyframes typeIn {
+          from { 
+            width: 0;
+            opacity: 0;
+          }
+          to { 
+            width: 100%;
+            opacity: 1;
+          }
+        }
+
+        @keyframes typeOut {
+          from { 
+            width: 100%;
+            opacity: 1;
+          }
+          to { 
+            width: 0;
+            opacity: 0.3;
+          }
+        }
+
+        .cursor {
+          animation: blink 1s infinite;
+          color: #00ff00;
+          font-weight: bold;
+        }
+
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+
+        /* Enhanced section transitions */
+        [data-aos] {
+          transition-property: transform, opacity, background;
+          transition-duration: 1.2s;
+        }
+
+        /* Scanning grid overlay enhancements */
+        .grid-scanning {
+          background-image: 
+            linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+          background-size: 50px 50px;
+          animation: gridScan 6s linear infinite;
+        }
+
+        @keyframes gridScan {
+          0% { 
+            transform: translate(0, 0);
+            opacity: 0.1;
+          }
+          50% {
+            opacity: 0.3;
+          }
+          100% { 
+            transform: translate(50px, 50px);
+            opacity: 0.1;
+          }
         }
       `}</style>
     </div>
