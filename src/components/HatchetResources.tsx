@@ -7,28 +7,28 @@ const HatchetResources: React.FC = () => {
   const resources = [
     {
       title: "Gary Paulsen Interview",
-      description: "An in-depth interview with Gary Paulsen about his writing and experiences that influenced Hatchet.",
+      description: "A cool interview with Gary Paulsen where he talks about his writing and the real experiences that inspired Hatchet.",
       url: "https://www.teachingbooks.net/interview.cgi?id=91&a=1",
       icon: <LinkIcon className="h-5 w-5 text-[#a3c9a8]" />,
       category: "Interview"
     },
     {
       title: "Gary Paulsen: Everything I Am Is Because of Books",
-      description: "An article exploring how books shaped Gary Paulsen's life and career as an author.",
+      description: "An article about how reading books totally changed Gary Paulsen's life and made him want to become a writer.",
       url: "https://www.mackincommunity.com/2021/04/29/gary-paulsen-everything-i-am-is-because-of-books/",
       icon: <BookOpen className="h-5 w-5 text-[#a3c9a8]" />,
       category: "Article"
     },
     {
       title: "Barnes & Noble - Hatchet Books",
-      description: "Purchase physical copies of Hatchet and related Gary Paulsen books.",
+      description: "Get your own physical copy of Hatchet and other awesome Gary Paulsen books.",
       url: "https://www.barnesandnoble.com/s/hatchet",
       icon: <Book className="h-5 w-5 text-[#e9b872]" />,
       category: "Purchase"
     },
     {
       title: "Audible - Hatchet Audiobooks",
-      description: "Listen to the audiobook version of Hatchet and other wilderness survival stories.",
+      description: "Listen to the audiobook version of Hatchet and other survival stories while you're doing other stuff.",
       url: "https://www.audible.ca/search?keywords=hatchet&k=hatchet&crid=6194bee9dfc840be91e3a7050d762272&sprefix=hatchet%2Cna-audible-ca%2C191&i=na-audible-ca&url=search-alias%3Dna-audible-ca&ref=nb_sb_noss_1",
       icon: <Bookmark className="h-5 w-5 text-[#e9b872]" />,
       category: "Audiobook"
@@ -41,11 +41,11 @@ const HatchetResources: React.FC = () => {
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl md:text-4xl font-cabin font-bold mb-4 text-[#e9b872]">
-            Hatchet Resources
+            Cool Hatchet Stuff
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[#e9b872] to-[#a3c9a8] mx-auto"></div>
           <p className="mt-4 text-gray-300 max-w-xl mx-auto">
-            Explore these helpful resources to learn more about Hatchet and its author Gary Paulsen
+            Check out these awesome resources to learn more about Hatchet and Gary Paulsen
           </p>
         </div>
 
@@ -78,7 +78,7 @@ const HatchetResources: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-4 py-2 bg-[#2c4c3b] text-white rounded-md hover:bg-[#3a5d4a] transition-colors group"
                 >
-                  <span>Visit Resource</span>
+                  <span>Check It Out</span>
                   <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
@@ -103,10 +103,10 @@ const HatchetResources: React.FC = () => {
             </div>
             
             <div className="md:w-2/3">
-              <h3 className="text-2xl font-bold text-[#e9b872] mb-3">Get Your Copy of Hatchet</h3>
+              <h3 className="text-2xl font-bold text-[#e9b872] mb-3">Get Your Own Copy of Hatchet</h3>
               <p className="text-gray-300 mb-6">
-                Experience Brian Robeson's journey of survival and self-discovery in Gary Paulsen's gripping novel. 
-                Available in multiple formats to suit your reading preferences.
+                Experience Brian's crazy survival journey yourself! This book is available in different formats 
+                so you can read it however you want.
               </p>
               
               <div className="flex flex-wrap gap-4">
@@ -128,16 +128,6 @@ const HatchetResources: React.FC = () => {
                 >
                   <Bookmark className="mr-2 h-5 w-5" />
                   Get Audiobook
-                </a>
-                
-                <a 
-                  href="https://www.amazon.com/Hatchet-Gary-Paulsen-ebook/dp/B002MBLU9U/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-5 py-3 border-2 border-[#e9b872] text-[#e9b872] rounded-md font-medium hover:bg-[#e9b872]/20 transition-colors shadow-lg flex items-center"
-                >
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Buy eBook
                 </a>
               </div>
             </div>

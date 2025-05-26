@@ -15,31 +15,31 @@ const Hatchet = () => {
   const reviews = [
     {
       source: "School Library Journal",
-      content: "A heart-stopping story... Paulsen has produced another riveting adventure, another story of survival in the wilderness, and another book to capture completely the young adult audience.",
+      content: "This book is seriously exciting! It's perfect for kids who don't usually like reading because there's so much action and adventure. Brian's story really keeps you hooked.",
       rating: 5,
       reviewer: "Literary Review"
     },
     {
       source: "Kirkus Reviews",
-      content: "A tour de force. This novel is perfect for reluctant readers who love fast-paced, action-packed stories. Paulsen's vivid descriptions and Brian's transformation make this a compelling read.",
+      content: "This is one of those books you can't put down. Gary Paulsen really knows how to write about survival, and Brian feels like a real person going through all this crazy stuff.",
       rating: 5,
       reviewer: "Children's Literature"
     },
     {
       source: "The Horn Book",
-      content: "Paulsen's lean prose and his ability to sustain excitement while building a believable character study make this wilderness survival story memorable and gripping.",
+      content: "Paulsen writes in a way that makes you feel like you're right there with Brian in the woods. The survival parts are really detailed and the character development is amazing.",
       rating: 4,
       reviewer: "Youth Literature"
     },
     {
       source: "Booklist",
-      content: "An intense, fast-paced wilderness survival story that will keep readers on the edge of their seats. Brian's character development is masterfully crafted.",
+      content: "This wilderness survival story is intense and fast-paced. You really get to see how Brian changes and grows throughout his time alone in the forest.",
       rating: 5,
       reviewer: "American Library Association"
     },
     {
       source: "Publishers Weekly",
-      content: "Paulsen's descriptions of Brian's ordeal are so vivid that readers will feel they are experiencing every hardship, small triumph, and life-threatening danger along with the protagonist.",
+      content: "When you read this book, you feel like you're going through everything Brian goes through. Every challenge he faces and every small victory feels real.",
       rating: 4,
       reviewer: "Book Review"
     }
@@ -186,7 +186,7 @@ const Hatchet = () => {
           </h1>
           
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-6 text-gray-300 animate__animated animate__fadeIn animate__delay-1s">
-            A gripping tale of wilderness survival by Gary Paulsen
+            An awesome survival story by Gary Paulsen
           </p>
           
           <div className="inline-block mb-10 p-2 px-6 backdrop-blur-md bg-[#1f3d2a]/50 text-[#a3c9a8] rounded-full text-sm font-mono border border-[#638b6d]/30 shadow-lg animate__animated animate__fadeIn animate__delay-2s transition-all duration-300 hover:shadow-xl hover:scale-105">
@@ -200,7 +200,7 @@ const Hatchet = () => {
             </a>
             
             <a href="#resources" className="px-6 py-3 border-2 border-[#e9b872] text-[#e9b872] rounded-md font-medium hover:bg-[#e9b872]/20 transition-all duration-300 shadow-lg flex items-center hover:scale-105 hover:shadow-xl">
-              <i className="fas fa-book mr-2"></i> Purchase Book
+              <i className="fas fa-book mr-2"></i> Get the Book
             </a>
           </div>
         </div>
@@ -222,7 +222,7 @@ const Hatchet = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-merriweather">
-              Book Summary
+              What's This Book About?
             </h2>
             <div className="w-24 h-1 bg-[#e9b872] mx-auto transition-all duration-300"></div>
           </div>
@@ -245,30 +245,30 @@ const Hatchet = () => {
               <div className="md:w-2/3 lg:w-3/4">
                 <h3 className="text-2xl font-bold mb-4 flex items-center text-[#e9b872] font-merriweather">
                   <i className="fas fa-fire text-orange-400 mr-3"></i>
-                  Book Summary
+                  The Story
                 </h3>
                 
                 <div className="w-full h-px bg-gradient-to-r from-transparent via-[#638b6d]/50 to-transparent mb-6"></div>
                 
                 <div className="space-y-4">
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    "Hatchet" is a powerful coming-of-age novel about thirteen-year-old Brian Robeson who must learn to survive alone in the Canadian wilderness after a plane crash. Armed with only a hatchet given to him by his mother, Brian must overcome numerous challenges and learn to live off the land.
+                    Hatchet is about this 13-year-old kid named Brian Robeson who gets stuck in the middle of nowhere after a plane crash. The pilot has a heart attack and dies, leaving Brian all alone in the Canadian wilderness with nothing but a hatchet his mom gave him.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    As the only survivor of a small plane crash, Brian finds himself stranded deep in the wilderness with no supplies except for a hatchet his mother gave him. Initially overwhelmed by his circumstances, he gradually develops crucial survival skills: building shelter, finding food, making fire, and crafting tools.
+                    At first, Brian has no idea what he's doing. He's just a city kid who's never had to survive on his own before. But slowly, he figures out how to make fire, find food, build shelter, and deal with all kinds of scary animals and weather.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Throughout his 54-day ordeal, Brian undergoes a profound transformation, developing resilience, self-reliance, and an appreciation for nature. He faces numerous challenges including encounters with wildlife, weather events, and the psychological burden of isolation and abandonment.
+                    The whole time he's out there for 54 days, Brian is also dealing with his parents' divorce and this big secret he knows about his mom. It's really hard for him emotionally, but being in the wilderness actually helps him work through it.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    The novel explores themes of survival, self-discovery, resilience, and humanity's relationship with the natural world. Brian's journey is not only about physical survival but also emotional and psychological growth as he processes his parents' divorce and his mother's affair ("The Secret").
+                    What's cool about this book is how much Brian changes. He goes from being this helpless kid to someone who can actually take care of himself. He learns to be patient, think things through, and not give up when things get tough.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    By the story's end, Brian is no longer the same city boy who boarded the plane. His experiences have matured him, teaching him patience, resourcefulness, and a deeper understanding of himself and the natural world. Even after his eventual rescue, these lessons remain with him, forever changing his perspective on life.
+                    By the end of the book, even after he gets rescued, Brian is completely different. He's more mature, confident, and has this deep respect for nature that he never had before. It's pretty amazing to see how someone can change so much.
                   </p>
                 </div>
                 
@@ -293,7 +293,7 @@ const Hatchet = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white font-merriweather">
-              About the Author
+              About Gary Paulsen
             </h2>
             <div className="w-24 h-1 bg-[#e9b872] mx-auto transition-all duration-300"></div>
           </div>
@@ -318,30 +318,30 @@ const Hatchet = () => {
                 
                 <div className="space-y-4">
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Gary Paulsen was a renowned American author of young adult literature, best known for his coming-of-age stories set in the wilderness. His own difficult childhood and diverse experiences deeply influenced his writing.
+                    Gary Paulsen was this amazing author who wrote tons of books for young people, especially stories about surviving in the wilderness. He had a really tough childhood and ended up running away from home when he was only 14.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Paulsen ran away from home at 14 and later worked as a farmhand, construction worker, ranch hand, truck driver, sailor, and even competed in the Iditarod Trail Sled Dog Race twice. These real-world survival experiences gave authenticity to his wilderness narratives.
+                    What makes his books so realistic is that he actually lived through a lot of crazy stuff himself. He worked on farms, drove trucks, sailed boats, and even raced in the Iditarod (that's the famous dog sled race in Alaska) twice! No wonder his survival stories feel so real.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Paulsen wrote more than 200 books and over 200 magazine articles and short stories, selling more than 35 million copies of his work. He was awarded the Margaret A. Edwards Award for his lifetime contribution to young adult literature.
+                    Gary wrote over 200 books and sold more than 35 million copies. That's insane! He won a bunch of awards too, including three Newbery Honor Awards, which is like the biggest deal in kids' literature.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    His most famous works include the "Hatchet" series (Brian's Saga), "Dogsong," and "The Winter Room." Many of his stories feature protagonists facing extreme situations in the wilderness, forcing them to develop self-reliance and resilience.
+                    Besides Hatchet, he wrote other awesome books like "Brian's Winter," "Dogsong," and "The Winter Room." Most of his stories are about kids who get thrown into tough situations and have to figure out how to survive using their own skills.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Paulsen was known for his sparse, direct writing style and his ability to capture the challenges and beauty of survival situations. His personal motto was "The most important thing you can do is read," reflecting his belief in the transformative power of literature.
+                    Gary had this simple way of writing that made you feel like you were right there with the characters. He always said "The most important thing you can do is read," and he really believed that books could change people's lives.
                   </p>
                 </div>
                 
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex items-center transition-transform duration-200 hover:translate-x-2">
                     <i className="fas fa-book text-[#a3c9a8] mr-2"></i>
-                    <span className="text-gray-300">Notable Works: Hatchet, Brian's Winter, Dogsong</span>
+                    <span className="text-gray-300">Famous Books: Hatchet, Brian's Winter, Dogsong</span>
                   </div>
                   <div className="flex items-center transition-transform duration-200 hover:translate-x-2">
                     <i className="fas fa-award text-[#a3c9a8] mr-2"></i>
@@ -357,17 +357,17 @@ const Hatchet = () => {
         </div>
       </section>
 
-      {/* Book Reviews Section - NEW */}
+      {/* Book Reviews Section */}
       <section id="reviews" className="py-20 px-4 bg-[url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-fixed relative">
         <div className="absolute inset-0 bg-[#0f1b15]/90 backdrop-filter backdrop-blur-sm"></div>
         <div className="container mx-auto relative z-10">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 text-[#e9b872]">
-              Critics & Reviews
+              What People Are Saying
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-[#e9b872] to-[#a3c9a8] mx-auto"></div>
             <p className="mt-4 text-gray-300 max-w-xl mx-auto">
-              See what critics and readers are saying about this modern classic
+              Check out what critics and readers think about this awesome book
             </p>
           </div>
 
@@ -414,19 +414,6 @@ const Hatchet = () => {
                 <ChevronRight className="h-6 w-6" />
               </button>
             </div>
-
-            <div className="mt-12 text-center">
-              <a 
-                href="https://www.amazon.com/Hatchet-Gary-Paulsen/dp/1442403322/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-[#e9b872] to-[#d4a255] text-[#0f1b15] rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#e9b872] focus:ring-offset-2 transform hover:scale-105 hover:shadow-xl animate__animated animate__pulse animate__infinite animate__slow hover:animate-none"
-              >
-                <i className="fas fa-shopping-cart mr-2"></i>
-                Purchase Hatchet
-              </a>
-              <p className="mt-3 text-sm text-gray-400">Available at major booksellers worldwide</p>
-            </div>
           </div>
         </div>
       </section>
@@ -436,7 +423,6 @@ const Hatchet = () => {
       
       {/* Add the other components we created */}
       <HatchetVideos />
-      <HatchetResources />
       
       {/* Plot, Setting, and Characters */}
       <section className="py-16 bg-[url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=60')] bg-fixed bg-cover bg-center relative">
@@ -454,21 +440,21 @@ const Hatchet = () => {
                   <div className="w-10 h-10 rounded-full bg-[#2c4c3b] flex items-center justify-center mr-3 transition-colors duration-300 hover:bg-[#e9b872]">
                     <i className="fas fa-book-open text-[#e9b872] hover:text-[#0f1b15] transition-colors duration-300"></i>
                   </div>
-                  <h3 className="text-xl font-bold text-[#e9b872] font-merriweather">The Plot</h3>
+                  <h3 className="text-xl font-bold text-[#e9b872] font-merriweather">What Happens</h3>
                 </div>
                 
                 <div className="space-y-3 text-gray-300">
                   <p className="transition-colors duration-200 hover:text-white">
-                    After his parents' divorce, Brian is traveling to visit his father in Canada when the small plane he's in crashes in the wilderness after the pilot suffers a heart attack.
+                    Brian's parents just got divorced, so he's flying to Canada to visit his dad. But then the pilot has a heart attack and dies, and the plane crashes in the middle of the wilderness.
                   </p>
                   <p className="transition-colors duration-200 hover:text-white">
-                    Alone and with only his hatchet, Brian must learn how to survive in the wild. He faces numerous challenges including finding food, building shelter, and making fire.
+                    Now Brian's all alone with just his hatchet. He has to learn everything from scratch - how to make fire, find food, build a shelter, and stay safe from wild animals.
                   </p>
                   <p className="transition-colors duration-200 hover:text-white">
-                    Brian experiences several setbacks, including encounters with wildlife, a tornado that changes his circumstances, and the emotional weight of "The Secret" - his knowledge of his mother's affair.
+                    Things keep going wrong for Brian. He gets attacked by a porcupine, there's a tornado, and he keeps thinking about this secret he knows about his mom that's really bothering him.
                   </p>
                   <p className="transition-colors duration-200 hover:text-white">
-                    Through perseverance and adaptation, Brian undergoes a profound transformation, both physically and mentally. After 54 days in the wilderness, he is eventually rescued when he recovers a survival pack from the plane.
+                    But Brian doesn't give up. He keeps trying and learning, and after 54 days in the woods, he finally gets rescued when he finds a survival kit in the crashed plane.
                   </p>
                 </div>
               </div>
@@ -482,24 +468,24 @@ const Hatchet = () => {
                   <div className="w-10 h-10 rounded-full bg-[#2c4c3b] flex items-center justify-center mr-3 transition-colors duration-300 hover:bg-[#e9b872]">
                     <Mountain className="h-5 w-5 text-[#e9b872] hover:text-[#0f1b15] transition-colors duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#e9b872] font-merriweather">The Setting</h3>
+                  <h3 className="text-xl font-bold text-[#e9b872] font-merriweather">Where It Happens</h3>
                 </div>
                 
                 <div className="space-y-3 text-gray-300">
                   <p className="transition-colors duration-200 hover:text-white">
-                    <span className="font-bold text-[#a3c9a8]">Location:</span> The Canadian wilderness, specifically the North Woods of Canada, in a densely forested area with a lake.
+                    <span className="font-bold text-[#a3c9a8]">Place:</span> Way out in the Canadian wilderness, surrounded by thick forests and a big lake where Brian ends up living.
                   </p>
                   <p className="transition-colors duration-200 hover:text-white">
-                    <span className="font-bold text-[#a3c9a8]">Environment:</span> Dense forest surrounds a clear lake that becomes Brian's home. The area is populated with diverse wildlife including bears, wolves, moose, fish, birds, and various plants.
+                    <span className="font-bold text-[#a3c9a8]">What's There:</span> Dense woods full of animals like bears, wolves, moose, and tons of different birds and fish. There are also berries and other plants Brian can eat.
                   </p>
                   <p className="transition-colors duration-200 hover:text-white">
-                    <span className="font-bold text-[#a3c9a8]">Time Period:</span> Contemporary setting (1980s when written), taking place during summer months.
+                    <span className="font-bold text-[#a3c9a8]">When:</span> The story happens in the 1980s during summer, so at least Brian doesn't have to deal with freezing cold weather.
                   </p>
                   <p className="transition-colors duration-200 hover:text-white">
-                    <span className="font-bold text-[#a3c9a8]">Weather:</span> Brian experiences various weather conditions from pleasant summer days to violent storms, including a tornado that dramatically changes his circumstances.
+                    <span className="font-bold text-[#a3c9a8]">Weather:</span> Brian deals with everything from nice sunny days to crazy storms, including this massive tornado that totally changes everything for him.
                   </p>
                   <p className="transition-colors duration-200 hover:text-white">
-                    <span className="font-bold text-[#a3c9a8]">Significance:</span> The wilderness setting serves as both antagonist and teacher, challenging Brian while also providing the means for his survival and transformation.
+                    <span className="font-bold text-[#a3c9a8]">Why It Matters:</span> The wilderness is basically like another character in the book - it's dangerous and challenging, but it's also what teaches Brian how to survive and grow up.
                   </p>
                 </div>
               </div>
@@ -513,30 +499,30 @@ const Hatchet = () => {
                   <div className="w-10 h-10 rounded-full bg-[#2c4c3b] flex items-center justify-center mr-3 transition-colors duration-300 hover:bg-[#e9b872]">
                     <i className="fas fa-users text-[#e9b872] hover:text-[#0f1b15] transition-colors duration-300"></i>
                   </div>
-                  <h3 className="text-xl font-bold text-[#e9b872] font-merriweather">The Characters</h3>
+                  <h3 className="text-xl font-bold text-[#e9b872] font-merriweather">Who's In The Story</h3>
                 </div>
                 
                 <div className="space-y-4 text-gray-300">
                   <div>
-                    <h4 className="text-[#a3c9a8] font-bold">Major Characters</h4>
+                    <h4 className="text-[#a3c9a8] font-bold">Main Characters</h4>
                     <ul className="list-disc list-inside space-y-1">
-                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">Brian Robeson</span> - The thirteen-year-old protagonist who must learn to survive alone</li>
-                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">The Pilot</span> - Who suffers a fatal heart attack, leaving Brian alone</li>
+                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">Brian Robeson</span> - The 13-year-old kid who has to survive on his own</li>
+                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">The Pilot</span> - Dies from a heart attack early in the story, leaving Brian stranded</li>
                     </ul>
                   </div>
                   
                   <div>
-                    <h4 className="text-[#a3c9a8] font-bold">Minor Characters</h4>
+                    <h4 className="text-[#a3c9a8] font-bold">Other People</h4>
                     <ul className="list-disc list-inside space-y-1">
-                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">Brian's Mother</span> - Who gives him the hatchet before his journey</li>
-                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">Brian's Father</span> - Who Brian was traveling to visit in Canada</li>
-                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">The Man with Whom Brian's Mother Had an Affair</span> - Part of "The Secret" that weighs on Brian</li>
+                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">Brian's Mom</span> - She gives him the hatchet and is part of the secret that bugs Brian</li>
+                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">Brian's Dad</span> - The person Brian was going to visit in Canada</li>
+                      <li className="transition-colors duration-200 hover:text-white"><span className="font-bold">The Guy Brian's Mom Had an Affair With</span> - This is "The Secret" that really messes with Brian's head</li>
                     </ul>
                   </div>
                   
                   <div>
-                    <h4 className="text-[#a3c9a8] font-bold">Natural "Characters"</h4>
-                    <p className="transition-colors duration-200 hover:text-white">The wilderness itself and its wildlife (bear, moose, wolf, porcupine) function almost as characters, challenging and teaching Brian throughout his journey.</p>
+                    <h4 className="text-[#a3c9a8] font-bold">Nature as a Character</h4>
+                    <p className="transition-colors duration-200 hover:text-white">The wilderness and all the animals (bears, moose, wolves, porcupines) are almost like characters too because they're constantly challenging Brian and teaching him lessons.</p>
                   </div>
                 </div>
               </div>
@@ -550,7 +536,7 @@ const Hatchet = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-merriweather">
-              Literary Analysis
+              What The Book's Really About
             </h2>
             <div className="w-24 h-1 bg-[#e9b872] mx-auto transition-all duration-300"></div>
           </div>
@@ -560,42 +546,42 @@ const Hatchet = () => {
             <div className="bg-[#162821] rounded-lg border border-[#2c4c3b] p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-[#e9b872]/30 hover:transform hover:scale-105" data-aos="fade-right">
               <h3 className="text-2xl font-bold mb-6 text-[#e9b872] flex items-center font-merriweather">
                 <i className="fas fa-lightbulb text-[#e9b872] mr-3"></i>
-                Key Themes
+                Main Themes
               </h3>
               
               <div className="space-y-4">
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Survival & Self-Reliance</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Learning to Survive on Your Own</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    The most prominent theme explores how Brian learns to provide for his own needs in the wilderness, developing practical skills and mental fortitude.
+                    The biggest theme is how Brian learns to take care of himself in the wild. He goes from being totally helpless to being able to find food, make fire, and handle dangerous situations.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Coming of Age & Transformation</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Growing Up Fast</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Brian undergoes a profound physical and psychological change, maturing from a dependent city boy to a self-reliant young man with a deep connection to nature.
+                    Brian changes from a regular city kid to someone who's way more mature and confident. Being alone in the wilderness forces him to grow up really quickly.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Man vs. Nature</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Fighting Against Nature</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Brian's struggle against the wilderness highlights both the harshness of nature and its beauty, showing that nature is neither malevolent nor benevolent.
+                    Brian's constantly dealing with nature - sometimes it tries to kill him, but sometimes it helps him survive. It's not good or bad, it just is what it is.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Perseverance & Resilience</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Never Giving Up</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Through numerous setbacks and challenges, Brian demonstrates remarkable tenacity, adapting and pushing forward despite overwhelming odds.
+                    Even when everything goes wrong and Brian wants to quit, he keeps trying. The book shows how important it is to be tough and keep going even when things suck.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Dealing with Divorce & Family Conflict</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Dealing with Family Problems</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Brian grapples with his parents' divorce and "The Secret" of his mother's affair, eventually learning to process these emotions in the wilderness.
+                    Brian's really upset about his parents' divorce and this secret about his mom. Being in the wilderness actually helps him figure out how to deal with these feelings.
                   </p>
                 </div>
               </div>
@@ -605,42 +591,42 @@ const Hatchet = () => {
             <div className="bg-[#162821] rounded-lg border border-[#2c4c3b] p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-[#e9b872]/30 hover:transform hover:scale-105" data-aos="fade-left">
               <h3 className="text-2xl font-bold mb-6 text-[#e9b872] flex items-center font-merriweather">
                 <i className="fas fa-feather text-[#e9b872] mr-3"></i>
-                Literary Devices
+                Writing Techniques
               </h3>
               
               <div className="space-y-4">
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Symbolism</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Symbols</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    The hatchet symbolizes both survival and Brian's connection to civilization. The lake represents clarity and rebirth.
+                    The hatchet represents Brian's connection to the civilized world and his ability to survive. The lake represents new beginnings and clarity.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Imagery</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Really Detailed Descriptions</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Paulsen uses vivid, sensory descriptions to immerse the reader in Brian's experiences, from the taste of wild berries to the sounds of the forest at night.
+                    Paulsen describes everything so well that you feel like you're right there with Brian - tasting the berries, hearing the forest sounds, feeling the cold water.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Internal Monologue</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Brian's Thoughts</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    The novel frequently uses Brian's thoughts to convey his emotional state and development, creating intimacy with the character.
+                    We get to read what Brian's thinking all the time, which helps us understand how he's feeling and what he's going through emotionally.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Foreshadowing</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Hints About What's Coming</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Early mentions of the hatchet and survival training foreshadow their importance later in the story.
+                    Early mentions of the hatchet and survival stuff hint that these things are going to be super important later in the story.
                   </p>
                 </div>
                 
                 <div className="p-4 bg-[#0f1b15] rounded-lg border border-[#2c4c3b]/60 transition-all duration-300 hover:border-[#e9b872]/30 hover:shadow-lg">
-                  <h4 className="font-bold text-[#a3c9a8] mb-2">Repetition</h4>
+                  <h4 className="font-bold text-[#a3c9a8] mb-2">Repeating Important Stuff</h4>
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Repeated phrases like "Secret" and "tough times don't last, but tough people do" emphasize key themes and Brian's mental state.
+                    Words like "Secret" and phrases about being tough get repeated a lot to show what's really important and what Brian's thinking about.
                   </p>
                 </div>
               </div>
@@ -648,17 +634,20 @@ const Hatchet = () => {
           </div>
         </div>
       </section>
+
+      {/* Resources section */}
+      <HatchetResources />
       
       {/* Passage Analysis */}
       <section className="py-16 bg-[#162821]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white font-merriweather">
-              Passage Analysis
+              Important Parts of the Book
             </h2>
             <div className="w-24 h-1 bg-[#e9b872] mx-auto transition-all duration-300"></div>
             <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
-              Key excerpts from "Hatchet" with detailed literary analysis
+              Let's look at some key scenes from Hatchet and what they mean
             </p>
           </div>
           
@@ -674,7 +663,7 @@ const Hatchet = () => {
               >
                 <div className="flex items-center">
                   <i className="fas fa-fire mr-2"></i>
-                  <span>Fire & Survival</span>
+                  <span>Making Fire</span>
                   <span className="ml-2 px-1.5 py-0.5 text-xs rounded-full bg-[#2c4c3b]/60 text-[#a3c9a8]">p.49</span>
                 </div>
               </button>
@@ -689,7 +678,7 @@ const Hatchet = () => {
               >
                 <div className="flex items-center">
                   <i className="fas fa-sync-alt mr-2"></i>
-                  <span>Transformation</span>
+                  <span>Brian Changes</span>
                   <span className="ml-2 px-1.5 py-0.5 text-xs rounded-full bg-[#2c4c3b]/60 text-[#a3c9a8]">p.153</span>
                 </div>
               </button>
@@ -704,7 +693,7 @@ const Hatchet = () => {
               >
                 <div className="flex items-center">
                   <i className="fas fa-lightbulb mr-2"></i>
-                  <span>New Understanding</span>
+                  <span>The Secret</span>
                   <span className="ml-2 px-1.5 py-0.5 text-xs rounded-full bg-[#2c4c3b]/60 text-[#a3c9a8]">p.116</span>
                 </div>
               </button>
@@ -716,7 +705,7 @@ const Hatchet = () => {
                   <div className="flex items-center mb-4">
                     <i className="fas fa-fire text-orange-400 mr-3"></i>
                     <h3 className="text-xl font-bold text-white font-merriweather">
-                      Fire - The Turning Point
+                      Fire - The Big Breakthrough
                     </h3>
                   </div>
                   
@@ -728,39 +717,39 @@ const Hatchet = () => {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       <div className="space-y-3">
-                        <h4 className="text-[#e9b872] font-bold text-lg">Analysis</h4>
+                        <h4 className="text-[#e9b872] font-bold text-lg">What This Means</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This passage marks a crucial turning point in Brian's survival journey. The repetition of "He had fire" and "I have fire" emphasizes the monumental importance of this achievement.
+                          This is like the biggest moment in the whole book so far. Brian keeps saying "I have fire" because he can't believe he actually did it. Making fire is huge for surviving in the wilderness.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          The description shows both Brian's disbelief and his growing confidence. Fire represents not just warmth and protection, but Brian's first major triumph over nature and his increasing self-reliance.
+                          You can tell how shocked and excited Brian is. This is the first time he feels like he might actually be able to survive on his own instead of just hoping someone rescues him.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          Paulsen's simple, direct language mimics Brian's thought processes, creating an immediate connection between reader and protagonist during this pivotal moment.
+                          Paulsen writes in a simple way that shows exactly how Brian thinks. You can feel how important this moment is for him.
                         </p>
                       </div>
                       
                       <div className="space-y-3">
-                        <h4 className="text-[#a3c9a8] font-bold text-lg">Significance</h4>
+                        <h4 className="text-[#a3c9a8] font-bold text-lg">Why Fire is So Important</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This is the first major milestone in Brian's survival journey - gaining the ability to make fire gives him:
+                          Getting fire changes everything for Brian. Now he can:
                         </p>
                         <ul className="list-disc list-inside space-y-2 text-gray-300">
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>Protection from predators</span>
+                            <span>Keep dangerous animals away</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>A means to cook food and purify water</span>
+                            <span>Cook food so it's safe to eat</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>Psychological comfort and hope</span>
+                            <span>Feel less scared and alone</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>The first concrete evidence that he can survive</span>
+                            <span>Actually believe he can make it</span>
                           </li>
                         </ul>
                       </div>
@@ -774,7 +763,7 @@ const Hatchet = () => {
                   <div className="flex items-center mb-4">
                     <i className="fas fa-sync-alt text-[#a3c9a8] mr-3"></i>
                     <h3 className="text-xl font-bold text-white font-merriweather">
-                      Transformation - A New Brian
+                      Brian Becomes Someone New
                     </h3>
                   </div>
                   
@@ -786,32 +775,32 @@ const Hatchet = () => {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       <div className="space-y-3">
-                        <h4 className="text-[#e9b872] font-bold text-lg">Analysis</h4>
+                        <h4 className="text-[#e9b872] font-bold text-lg">What This Means</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This passage illustrates the profound transformation Brian undergoes during his time in the wilderness. The repetition of "time" underscores how his experience of it has shifted from the urgency of survival to a deeper, more natural rhythm.
+                          This part shows how much Brian has changed from the scared city kid he was when the plane crashed. Now he can watch wolves and not be terrified - he even nods at them like they're neighbors or something.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          The interaction with the wolves symbolizes Brian's integration into the natural world and his newfound ability to coexist with it rather than simply battle against it.
+                          The way he thinks about time is different too. Before, every minute felt like forever and he was always worried about when he'd get rescued. Now he's just living in the moment.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          Paulsen uses simple declarative statements ("He was not the same now") to emphasize the finality and completeness of Brian's transformation.
+                          Paulsen keeps it simple by just saying "He was not the same now" to show that this change is permanent and complete.
                         </p>
                       </div>
                       
                       <div className="space-y-3">
-                        <h4 className="text-[#a3c9a8] font-bold text-lg">Key Changes in Brian</h4>
+                        <h4 className="text-[#a3c9a8] font-bold text-lg">How Brian Changed</h4>
                         <ul className="space-y-2 text-gray-300">
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>From fear of nature to understanding and respect for it</span>
+                            <span>From being scared of nature to understanding and respecting it</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>From dependence on technology to reliance on his own skills</span>
+                            <span>From needing technology to relying on his own skills</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>From seeing time as a stress-inducing constraint to experiencing it naturally</span>
+                            <span>From being stressed about time to living naturally</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-arrow-right text-[#a3c9a8] mt-1 mr-2"></i>
@@ -829,7 +818,7 @@ const Hatchet = () => {
                   <div className="flex items-center mb-4">
                     <i className="fas fa-lightbulb text-[#e9b872] mr-3"></i>
                     <h3 className="text-xl font-bold text-white font-merriweather">
-                      New Understanding - The Secret
+                      Finally Dealing with The Secret
                     </h3>
                   </div>
                   
@@ -841,39 +830,39 @@ const Hatchet = () => {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       <div className="space-y-3">
-                        <h4 className="text-[#e9b872] font-bold text-lg">Analysis</h4>
+                        <h4 className="text-[#e9b872] font-bold text-lg">What This Means</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This passage represents Brian's emotional breakthrough regarding "The Secret" - his knowledge of his mother's affair that led to his parents' divorce.
+                          This is when Brian finally deals with the secret about his mom's affair that's been eating at him the whole time. He realizes that even though it happened and it's part of his life, he doesn't have to let it control him.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          Paulsen capitalizes "Secret" throughout the novel, emphasizing its weight and power over Brian. In this moment, Brian achieves emotional maturity by accepting this painful reality without letting it control him.
+                          Throughout the book, Paulsen always writes "Secret" with a capital S to show how big and important it was in Brian's mind. But now Brian's mature enough to handle it.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          The repetition of "gone, finally gone" signals both relief and closure, marking an important step in Brian's psychological healing.
+                          When it says "finally gone," you can feel Brian's relief. He's been carrying this weight around forever, and now he can let it go.
                         </p>
                       </div>
                       
                       <div className="space-y-3">
-                        <h4 className="text-[#a3c9a8] font-bold text-lg">Psychological Growth</h4>
+                        <h4 className="text-[#a3c9a8] font-bold text-lg">Brian's Emotional Growth</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This passage illustrates several aspects of Brian's psychological development:
+                          This passage shows how much Brian has grown emotionally:
                         </p>
                         <ul className="space-y-2 text-gray-300">
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>Acceptance: Brian acknowledges the reality of his parents' situation</span>
+                            <span>He accepts that bad things happen and that's just life</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>Integration: He recognizes that painful experiences become part of us</span>
+                            <span>He understands that painful experiences become part of who we are</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>Agency: He realizes he has control over how much influence past trauma has</span>
+                            <span>He knows he gets to choose how much power to give past hurts</span>
                           </li>
                           <li className="flex items-start transition-transform duration-200 hover:translate-x-2">
                             <i className="fas fa-check-circle text-[#a3c9a8] mt-1 mr-2"></i>
-                            <span>Release: The wilderness has provided him space to process his emotions</span>
+                            <span>Being alone in nature gave him space to work through his feelings</span>
                           </li>
                         </ul>
                       </div>
@@ -896,7 +885,7 @@ const Hatchet = () => {
                 <h3 className="text-[#e9b872] text-xl font-bold font-merriweather">Survival Literature</h3>
               </div>
               <p className="text-gray-400 mt-2 text-sm">
-                Exploring themes of resilience and self-discovery
+                Exploring stories about being tough and figuring yourself out
               </p>
             </div>
             
