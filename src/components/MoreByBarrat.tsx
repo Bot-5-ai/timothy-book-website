@@ -18,17 +18,17 @@ const MoreByBarrat: React.FC = () => {
       id: "facing-suicide",
       title: "Facing Suicide: Understanding Why People Kill Themselves and How We Can Stop Them",
       description: "A comprehensive examination of suicide prevention, exploring the psychological, social, and medical factors that contribute to suicidal behavior and evidence-based approaches to intervention.",
-      coverImage: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1347707107i/16158392.jpg",
+      coverImage: "https://dynamic.indigoimages.ca/v1/books/books/059353915X/1.jpg",
       releaseYear: "2014",
-      amazonLink: "https://www.amazon.com/Facing-Suicide-Understanding-People-Themselves/dp/1250055156/"
+      amazonLink: "https://www.amazon.ca/Facing-Suicide-Understanding-People-Themselves/dp/059353915X"
     },
     {
       id: "intelligence-explosion",
       title: "The Intelligence Explosion: When AI Beats Humans at Everything",
       description: "An exploration of the potential future scenario where artificial intelligence surpasses human intelligence across all domains, examining the implications and timeline of such developments.",
-      coverImage: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1390925471i/20663864.jpg",
+      coverImage: "https://dynamic.indigoimages.ca/v1/books/books/1250355028/1.jpg",
       releaseYear: "2015",
-      amazonLink: "https://www.amazon.com/Intelligence-Explosion-Beats-Humans-Everything/dp/1250064376/"
+      amazonLink: "https://www.amazon.ca/Intelligence-Explosion-Beats-Humans-Everything-ebook/dp/B0DDJCX7FM"
     }
   ];
 
