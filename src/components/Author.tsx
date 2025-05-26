@@ -26,7 +26,20 @@ const Author = () => {
                     />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-1">James Barrat</h3>
-                  <p className="text-bookblue-100">Author & Documentarian</p>
+                  <p className="text-bookblue-100 mb-4">Author & Documentarian</p>
+                  
+                  {/* Famous Books section moved here */}
+                  <div className="bg-white/20 rounded-lg p-4 mt-4">
+                    <h4 className="text-white font-bold text-sm mb-2">Famous Books:</h4>
+                    <ul className="text-bookblue-100 text-sm space-y-1">
+                      <li>• Hatchet</li>
+                      <li>• Brian's Winter</li>
+                      <li>• Dogsong</li>
+                    </ul>
+                    <div className="mt-2 text-yellow-300 text-xs font-semibold">
+                      🏆 3 Newbery Honor Awards
+                    </div>
+                  </div>
                 </div>
               </div>
               
