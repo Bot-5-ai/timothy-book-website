@@ -108,7 +108,7 @@ const Summary = () => {
       </div>
 
       {/* CSS for scanning grid effect */}
-      <style jsx>{`
+      <style>{`
         .grid-scanning {
           width: 100%;
           height: 100%;

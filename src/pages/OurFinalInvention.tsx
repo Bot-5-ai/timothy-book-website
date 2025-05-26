@@ -90,7 +90,7 @@ const OurFinalInvention = () => {
       </div>
 
       {/* Scanning overlay styles */}
-      <style jsx>{`
+      <style>{`
         .scanning-line {
           position: fixed;
           top: 0;
