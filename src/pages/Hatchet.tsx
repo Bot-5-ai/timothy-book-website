@@ -6,6 +6,7 @@ import HatchetVideos from '@/components/HatchetVideos';
 import HatchetResources from '@/components/HatchetResources';
 import OtherBooks from '@/components/OtherBooks';
 import GaryPaulsenTimeline from '@/components/GaryPaulsenTimeline';
+import HatchetInteractiveMap from '@/components/HatchetInteractiveMap';
 
 const Hatchet = () => {
   const [activeTab, setActiveTab] = useState('passage1');
@@ -287,6 +288,9 @@ const Hatchet = () => {
           </div>
         </div>
       </section>
+
+      {/* Interactive Map Section - NEW */}
+      <HatchetInteractiveMap />
       
       {/* Author Bio Section - New separate section */}
       <section id="author" className="py-16 bg-[#162821]">

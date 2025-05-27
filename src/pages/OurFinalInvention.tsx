@@ -14,12 +14,14 @@ import Footer from '@/components/Footer';
 
 const OurFinalInvention = () => {
   const [currentWarning, setCurrentWarning] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
+  const [typedText, setTypedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
   const [scanningActive, setScanningActive] = useState(false);
 
   const warnings = [
     "⚠️ NEURAL NETWORK ACTIVITY DETECTED",
-    "⚠️ ANALYZING AI THREAT LEVELS",
+    "⚠️ ANALYZING AI THREAT LEVELS", 
     "⚠️ SCANNING FOR AUTONOMOUS SYSTEMS",
     "⚠️ MONITORING INTELLIGENCE EXPANSION",
     "⚠️ DETECTING ALGORITHMIC ANOMALIES"
@@ -53,30 +55,43 @@ const OurFinalInvention = () => {
   }, []);
 
   useEffect(() => {
-    // Cycle through warnings with typing effect
-    const warningInterval = setInterval(() => {
-      setIsTyping(false);
-      setTimeout(() => {
-        setCurrentWarning((prev) => (prev + 1) % warnings.length);
-        setIsTyping(true);
-      }, 500);
-    }, 4000);
+    const currentText = warnings[currentWarning];
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseTime = 2000;
 
-    return () => clearInterval(warningInterval);
-  }, [warnings.length]);
+    const typeEffect = () => {
+      if (!isDeleting && charIndex < currentText.length) {
+        setTypedText(currentText.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+      } else if (isDeleting && charIndex > 0) {
+        setTypedText(currentText.substring(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+      } else if (!isDeleting && charIndex === currentText.length) {
+        setTimeout(() => setIsDeleting(true), pauseTime);
+      } else if (isDeleting && charIndex === 0) {
+        setIsDeleting(false);
+        setCurrentWarning((prev) => (prev + 1) % warnings.length);
+      }
+    };
+
+    const timeout = setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, currentWarning, warnings]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 relative">
       {/* Scanning line effect - appears on scroll */}
       <div className={`scanning-line ${scanningActive ? 'active' : ''}`}></div>
       
-      {/* Typing warning box - top right */}
-      <div className="fixed top-4 right-4 z-[60] bg-black/90 border border-green-500/50 rounded-lg px-4 py-2 backdrop-blur-sm animate__animated animate__fadeInDown">
-        <div className="text-green-400 font-mono text-sm">
-          <span className={`typing-text ${isTyping ? 'typing' : 'deleting'}`}>
-            {warnings[currentWarning]}
+      {/* Typing warning box - top right, moved down */}
+      <div className="fixed top-20 right-4 z-[60] bg-black/90 border border-cyan-400/50 rounded-lg px-4 py-3 backdrop-blur-sm animate__animated animate__fadeInDown">
+        <div className="text-cyan-300 font-mono text-sm flex items-center">
+          <div className="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></div>
+          <span className="min-w-[280px]">
+            {typedText}
+            <span className="animate-pulse text-cyan-400">|</span>
           </span>
-          <span className="cursor">|</span>
         </div>
       </div>
 
@@ -143,52 +158,6 @@ const OurFinalInvention = () => {
             left: 100%; 
             opacity: 0;
           }
-        }
-
-        .typing-text {
-          display: inline-block;
-          min-width: 280px;
-        }
-
-        .typing-text.typing {
-          animation: typeIn 2s steps(30, end);
-        }
-
-        .typing-text.deleting {
-          animation: typeOut 0.5s steps(10, end);
-        }
-
-        @keyframes typeIn {
-          from { 
-            width: 0;
-            opacity: 0;
-          }
-          to { 
-            width: 100%;
-            opacity: 1;
-          }
-        }
-
-        @keyframes typeOut {
-          from { 
-            width: 100%;
-            opacity: 1;
-          }
-          to { 
-            width: 0;
-            opacity: 0.3;
-          }
-        }
-
-        .cursor {
-          animation: blink 1s infinite;
-          color: #00ff00;
-          font-weight: bold;
-        }
-
-        @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
         }
 
         /* Enhanced section transitions */
