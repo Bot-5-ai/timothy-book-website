@@ -1,22 +1,24 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Star, Telescope, GamepadIcon, Trophy, Calendar, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 const AboutMe = () => {
   const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; opacity: number; speed: number }[]>([]);
+  const [shootingStars, setShootingStars] = useState<{ id: number; x: number; y: number; delay: number }[]>([]);
   
   useEffect(() => {
-    // Generate stars for the space background
+    // Generate background stars
     const generateStars = () => {
       const newStars = [];
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 150; i++) {
         newStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 3 + 1,
+          size: Math.random() * 2 + 1,
           opacity: Math.random() * 0.8 + 0.2,
           speed: Math.random() * 0.05 + 0.01
         });
@@ -24,7 +26,22 @@ const AboutMe = () => {
       setStars(newStars);
     };
     
+    // Generate shooting stars
+    const generateShootingStars = () => {
+      const newShootingStars = [];
+      for (let i = 0; i < 8; i++) {
+        newShootingStars.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 60,
+          delay: Math.random() * 10
+        });
+      }
+      setShootingStars(newShootingStars);
+    };
+    
     generateStars();
+    generateShootingStars();
     
     // Initialize animations
     if (typeof window.AOS !== 'undefined') {
@@ -37,37 +54,55 @@ const AboutMe = () => {
   
   return (
     <div className="min-h-screen bg-[#070b24] text-gray-100 font-roboto relative overflow-hidden">
-      {/* Stars background */}
+      {/* Enhanced Stars background */}
       <div className="absolute inset-0 overflow-hidden">
         {stars.map((star) => (
-          <div
+          <motion.div
             key={star.id}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full bg-white star"
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: [star.opacity * 0.3, star.opacity, star.opacity * 0.3],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-              opacity: star.opacity
             }}
           />
         ))}
         
-        {/* Nebula effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+        {/* Shooting Stars */}
+        {shootingStars.map((shootingStar) => (
+          <div
+            key={shootingStar.id}
+            className="shooting-star"
+            style={{
+              left: `${shootingStar.x}%`,
+              top: `${shootingStar.y}%`,
+              animationDelay: `${shootingStar.delay}s`
+            }}
+          />
+        ))}
+        
+        {/* Enhanced Nebula effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/30 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-900/25 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent"></div>
       </div>
       
       {/* Navigation */}
       <header className="py-4 px-6 bg-[#040613]/80 border-b border-indigo-900/30 sticky top-0 z-50 backdrop-blur-md">
         <div className="container mx-auto flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 mr-3 text-indigo-400">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-              <path d="M2 12h20"></path>
-            </svg>
-            <h1 className="text-indigo-300 text-2xl font-bold">About Me</h1>
+            <Telescope className="h-8 w-8 mr-3 text-indigo-400" />
+            <h1 className="text-indigo-300 text-2xl font-bold">Timothy Chen</h1>
           </Link>
           
           <nav className="hidden md:flex space-x-6">
@@ -94,179 +129,350 @@ const AboutMe = () => {
         </Link>
       </div>
       
-      {/* Main Content - Space Theme */}
+      {/* Main Content */}
       <main className="container mx-auto px-6 py-16 relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Profile Header */}
-          <div className="text-center mb-12" data-aos="fade-up">
-            <div className="w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mx-auto mb-6 p-1">
-              <div className="w-full h-full bg-[#070b24] rounded-full flex items-center justify-center">
-                <span className="text-4xl">👨‍🚀</span>
+          <motion.div 
+            className="text-center mb-12" 
+            data-aos="fade-up"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div 
+              className="w-40 h-40 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mx-auto mb-6 p-2 relative"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="w-full h-full bg-[#070b24] rounded-full flex items-center justify-center relative overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" 
+                  alt="Timothy Chen" 
+                  className="w-full h-full object-cover rounded-full"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent rounded-full"></div>
               </div>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">About Me</h1>
-            <p className="text-xl text-indigo-200/80">
-              Space enthusiast and literary explorer
-            </p>
-          </div>
+              <Star className="absolute -top-2 -right-2 text-yellow-400 animate-pulse" size={20} />
+            </motion.div>
+            <motion.h1 
+              className="text-4xl md:text-5xl font-bold mb-4 text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Timothy!</span>
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-indigo-200/80 mb-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              Grade 10 Student & Future Astronomer
+            </motion.p>
+            <motion.p 
+              className="text-lg text-gray-300"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
+              Passionate about science, space, and everything beyond! 🚀
+            </motion.p>
+          </motion.div>
+          
+          {/* Quick Facts Cards */}
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+          >
+            <motion.div 
+              className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-6 text-center"
+              whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.1)" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Calendar className="h-8 w-8 text-purple-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-indigo-200 mb-2">Age</h3>
+              <p className="text-gray-300">15 years old</p>
+              <p className="text-sm text-gray-400">Born July 23, 2009</p>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-6 text-center"
+              whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.1)" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Telescope className="h-8 w-8 text-purple-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-indigo-200 mb-2">Dream Career</h3>
+              <p className="text-gray-300">Astronomer</p>
+              <p className="text-sm text-gray-400">Studying the cosmos</p>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-6 text-center"
+              whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.1)" }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Star className="h-8 w-8 text-purple-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-indigo-200 mb-2">Grade</h3>
+              <p className="text-gray-300">10th Grade</p>
+              <p className="text-sm text-gray-400">High school student</p>
+            </motion.div>
+          </motion.div>
           
           {/* About Section */}
-          <div className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl mb-12" data-aos="fade-up">
+          <motion.div 
+            className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl mb-12" 
+            data-aos="fade-up"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.1, duration: 0.6 }}
+          >
             <h2 className="text-2xl font-bold mb-6 text-indigo-300 flex items-center">
               <i className="fas fa-user-astronaut mr-3"></i>
-              Personal Information
+              About Me
             </h2>
             
-            <p className="text-gray-300 mb-6">
-              Hello there! This is a placeholder for your personal information. You can customize this section with details about yourself, your interests, and your background.
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Hey there! I'm Timothy Chen, a 15-year-old high school student with a huge passion for science and astronomy. 
+              Ever since I was little, I've been fascinated by the stars, planets, and everything beyond our Earth. 
+              My dream is to become an astronomer and maybe even discover something amazing in space someday!
+            </p>
+            
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              When I'm not studying or stargazing, you can find me playing badminton or volleyball with friends, 
+              or gaming on my computer. I love the strategy and teamwork in sports, and gaming helps me relax and 
+              connect with friends online. Science class is definitely my favorite - especially physics and chemistry!
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-bold mb-4 text-indigo-200">Interests</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li className="flex items-center">
-                    <i className="fas fa-book-open text-purple-400 mr-3"></i>
-                    <span>Reading science fiction and fantasy</span>
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-meteor text-purple-400 mr-3"></i>
-                    <span>Astronomy and space exploration</span>
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-hiking text-purple-400 mr-3"></i>
-                    <span>Hiking and outdoor adventures</span>
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-gamepad text-purple-400 mr-3"></i>
-                    <span>Gaming and interactive storytelling</span>
-                  </li>
+                <h3 className="text-xl font-bold mb-4 text-indigo-200 flex items-center">
+                  <Star className="mr-2 h-5 w-5 text-purple-400" />
+                  My Interests
+                </h3>
+                <ul className="space-y-3 text-gray-300">
+                  <motion.li 
+                    className="flex items-center"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Telescope className="text-purple-400 mr-3 h-5 w-5" />
+                    <span>Astronomy & Space Science</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-center"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <i className="fas fa-atom text-purple-400 mr-3"></i>
+                    <span>Physics & Chemistry</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-center"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Trophy className="text-purple-400 mr-3 h-5 w-5" />
+                    <span>Badminton & Volleyball</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-center"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <GamepadIcon className="text-purple-400 mr-3 h-5 w-5" />
+                    <span>Gaming & Technology</span>
+                  </motion.li>
                 </ul>
               </div>
               
               <div>
-                <h3 className="text-xl font-bold mb-4 text-indigo-200">Education</h3>
-                <ul className="space-y-4 text-gray-300">
-                  <li>
-                    <div className="flex items-center text-purple-300 mb-1">
-                      <i className="fas fa-graduation-cap mr-2"></i>
-                      <span className="font-bold">Bachelor's Degree</span>
-                    </div>
-                    <p>Literature & Space Sciences, University Name</p>
-                    <p className="text-sm text-indigo-400">2018 - 2022</p>
-                  </li>
-                  <li>
-                    <div className="flex items-center text-purple-300 mb-1">
-                      <i className="fas fa-certificate mr-2"></i>
-                      <span className="font-bold">Certification</span>
-                    </div>
-                    <p>Advanced Space Programming, Institute Name</p>
-                    <p className="text-sm text-indigo-400">2022</p>
-                  </li>
+                <h3 className="text-xl font-bold mb-4 text-indigo-200 flex items-center">
+                  <i className="fas fa-lightbulb mr-2 text-purple-400"></i>
+                  Fun Facts
+                </h3>
+                <ul className="space-y-3 text-gray-300">
+                  <motion.li 
+                    className="flex items-start"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <span className="text-purple-400 mr-3">🎂</span>
+                    <span>Cancer ♋ (July 23rd baby!)</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-start"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <span className="text-purple-400 mr-3">🌙</span>
+                    <span>I love staying up late to watch meteor showers</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-start"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <span className="text-purple-400 mr-3">🎮</span>
+                    <span>Favorite games: space exploration & strategy</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-start"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <span className="text-purple-400 mr-3">📚</span>
+                    <span>Currently reading about black holes and galaxies</span>
+                  </motion.li>
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
           
-          {/* More Sections */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl" data-aos="fade-up" data-aos-delay="100">
+          {/* Goals & Dreams */}
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.3, duration: 0.6 }}
+          >
+            <motion.div 
+              className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl" 
+              data-aos="fade-up" 
+              data-aos-delay="100"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <h2 className="text-2xl font-bold mb-6 text-indigo-300 flex items-center">
                 <i className="fas fa-rocket mr-3"></i>
-                Projects
+                My Goals
               </h2>
               
               <ul className="space-y-4">
-                <li>
-                  <h3 className="text-xl font-bold text-purple-300">Literary Analysis Blog</h3>
-                  <p className="text-gray-300 mt-2">
-                    A blog focusing on in-depth analysis of classic and contemporary literature with a special focus on wilderness survival narratives.
+                <motion.li whileHover={{ x: 5 }}>
+                  <h3 className="text-xl font-bold text-purple-300 mb-2">🎓 Academic Goals</h3>
+                  <p className="text-gray-300">
+                    Ace my science courses and get into a great university with a strong astronomy program
                   </p>
-                </li>
-                <li>
-                  <h3 className="text-xl font-bold text-purple-300">Space Exploration Timeline</h3>
-                  <p className="text-gray-300 mt-2">
-                    An interactive timeline chronicling major events in human space exploration from Sputnik to modern commercial spaceflight.
+                </motion.li>
+                <motion.li whileHover={{ x: 5 }}>
+                  <h3 className="text-xl font-bold text-purple-300 mb-2">🔭 Career Dreams</h3>
+                  <p className="text-gray-300">
+                    Become a professional astronomer and maybe work at NASA or a major observatory
                   </p>
-                </li>
+                </motion.li>
+                <motion.li whileHover={{ x: 5 }}>
+                  <h3 className="text-xl font-bold text-purple-300 mb-2">🌟 Big Dream</h3>
+                  <p className="text-gray-300">
+                    Discover a new exoplanet or contribute to finding signs of life beyond Earth!
+                  </p>
+                </motion.li>
               </ul>
-            </div>
+            </motion.div>
             
-            <div className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl" data-aos="fade-up" data-aos-delay="200">
+            <motion.div 
+              className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl" 
+              data-aos="fade-up" 
+              data-aos-delay="200"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <h2 className="text-2xl font-bold mb-6 text-indigo-300 flex items-center">
                 <i className="fas fa-star mr-3"></i>
-                Favorite Books
+                What I'm Learning
               </h2>
               
               <ul className="space-y-4">
-                <li className="flex items-start">
+                <motion.li 
+                  className="flex items-start"
+                  whileHover={{ x: 5 }}
+                >
                   <div className="flex-shrink-0 w-12 h-12 bg-indigo-900/40 rounded-lg mr-4 flex items-center justify-center">
-                    <i className="fas fa-book text-indigo-300"></i>
+                    <i className="fas fa-calculator text-indigo-300"></i>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-purple-300">Hatchet</h3>
-                    <p className="text-gray-400">Gary Paulsen</p>
-                    <div className="flex text-yellow-300 text-sm mt-1">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                    </div>
+                    <h3 className="text-lg font-bold text-purple-300">Advanced Math</h3>
+                    <p className="text-gray-400">Calculus and physics calculations</p>
                   </div>
-                </li>
-                <li className="flex items-start">
+                </motion.li>
+                <motion.li 
+                  className="flex items-start"
+                  whileHover={{ x: 5 }}
+                >
                   <div className="flex-shrink-0 w-12 h-12 bg-indigo-900/40 rounded-lg mr-4 flex items-center justify-center">
-                    <i className="fas fa-book text-indigo-300"></i>
+                    <i className="fas fa-laptop-code text-indigo-300"></i>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-purple-300">Dune</h3>
-                    <p className="text-gray-400">Frank Herbert</p>
-                    <div className="flex text-yellow-300 text-sm mt-1">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star-half-alt"></i>
-                    </div>
+                    <h3 className="text-lg font-bold text-purple-300">Programming</h3>
+                    <p className="text-gray-400">Python for data analysis</p>
                   </div>
-                </li>
+                </motion.li>
+                <motion.li 
+                  className="flex items-start"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 bg-indigo-900/40 rounded-lg mr-4 flex items-center justify-center">
+                    <Telescope className="text-indigo-300 h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-purple-300">Telescope Operation</h3>
+                    <p className="text-gray-400">Learning to use different telescopes</p>
+                  </div>
+                </motion.li>
               </ul>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
           {/* Contact Section */}
-          <div className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl" data-aos="fade-up">
-            <h2 className="text-2xl font-bold mb-6 text-indigo-300 flex items-center">
+          <motion.div 
+            className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl text-center"
+            data-aos="fade-up"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+          >
+            <h2 className="text-2xl font-bold mb-6 text-indigo-300 flex items-center justify-center">
               <i className="fas fa-paper-plane mr-3"></i>
-              Contact Me
+              Let's Connect!
             </h2>
             
-            <div className="space-y-6">
-              <p className="text-gray-300">
-                Feel free to reach out through any of these platforms:
-              </p>
-              
-              <div className="flex flex-wrap gap-4">
-                <a href="#" className="flex items-center px-4 py-2 bg-indigo-900/50 hover:bg-indigo-800/70 text-indigo-200 rounded-lg transition-colors shadow-md">
-                  <i className="fab fa-twitter mr-2"></i>
-                  Twitter
-                </a>
-                <a href="#" className="flex items-center px-4 py-2 bg-indigo-900/50 hover:bg-indigo-800/70 text-indigo-200 rounded-lg transition-colors shadow-md">
-                  <i className="fab fa-linkedin-in mr-2"></i>
-                  LinkedIn
-                </a>
-                <a href="#" className="flex items-center px-4 py-2 bg-indigo-900/50 hover:bg-indigo-800/70 text-indigo-200 rounded-lg transition-colors shadow-md">
-                  <i className="fab fa-github mr-2"></i>
-                  GitHub
-                </a>
-                <a href="mailto:example@email.com" className="flex items-center px-4 py-2 bg-indigo-900/50 hover:bg-indigo-800/70 text-indigo-200 rounded-lg transition-colors shadow-md">
-                  <i className="fas fa-envelope mr-2"></i>
-                  Email
-                </a>
-              </div>
+            <p className="text-gray-300 mb-6">
+              I love meeting other science enthusiasts and learning from everyone. Feel free to reach out if you want to talk about space, science, or just chat!
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-4">
+              <motion.a 
+                href="#" 
+                className="flex items-center px-6 py-3 bg-indigo-900/50 hover:bg-indigo-800/70 text-indigo-200 rounded-lg transition-colors shadow-md"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <i className="fab fa-discord mr-2"></i>
+                Discord
+              </motion.a>
+              <motion.a 
+                href="#" 
+                className="flex items-center px-6 py-3 bg-indigo-900/50 hover:bg-indigo-800/70 text-indigo-200 rounded-lg transition-colors shadow-md"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <i className="fab fa-instagram mr-2"></i>
+                Instagram
+              </motion.a>
+              <motion.a 
+                href="mailto:timothy.chen@example.com" 
+                className="flex items-center px-6 py-3 bg-indigo-900/50 hover:bg-indigo-800/70 text-indigo-200 rounded-lg transition-colors shadow-md"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <i className="fas fa-envelope mr-2"></i>
+                Email
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </main>
       
@@ -276,7 +482,7 @@ const AboutMe = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-indigo-200 text-sm">
-                © 2025 My Space Journey
+                © 2025 Timothy Chen - Future Astronomer 🚀
               </p>
             </div>
             
@@ -298,16 +504,64 @@ const AboutMe = () => {
         </div>
       </footer>
 
+      {/* Enhanced Animations */}
       <style>
         {`
         @keyframes twinkle {
           0% { opacity: 0.2; }
-          50% { opacity: 0.8; }
+          50% { opacity: 1; }
           100% { opacity: 0.2; }
+        }
+        
+        @keyframes shooting-star {
+          0% {
+            transform: translateX(-100px) translateY(-100px) rotate(45deg);
+            opacity: 0;
+          }
+          5% {
+            opacity: 1;
+          }
+          95% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(1000px) translateY(1000px) rotate(45deg);
+            opacity: 0;
+          }
         }
         
         .star {
           animation: twinkle 3s infinite ease-in-out;
+        }
+        
+        .shooting-star {
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          background: linear-gradient(45deg, #fff, transparent);
+          animation: shooting-star 8s infinite linear;
+        }
+        
+        .shooting-star::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50px;
+          height: 1px;
+          background: linear-gradient(45deg, #fff, transparent);
+          transform: translateX(-50px);
+        }
+        
+        .shooting-star::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 30px;
+          height: 1px;
+          background: linear-gradient(45deg, #a855f7, transparent);
+          transform: translateX(-30px);
         }
         `}
       </style>
