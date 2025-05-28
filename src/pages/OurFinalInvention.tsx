@@ -56,8 +56,8 @@ const OurFinalInvention = () => {
 
   useEffect(() => {
     const currentText = warnings[currentWarning];
-    const typingSpeed = 80;
-    const deletingSpeed = 40;
+    const typingSpeed = 50; // Faster typing for smoother effect
+    const deletingSpeed = 30; // Faster deleting for smoother effect
     const pauseTime = 3000;
 
     const typeEffect = () => {
@@ -84,17 +84,13 @@ const OurFinalInvention = () => {
       {/* Scanning line effect - appears on scroll */}
       <div className={`scanning-line ${scanningActive ? 'active' : ''}`}></div>
       
-      {/* Typing warning box - top right, positioned better */}
-      <div className="fixed top-32 right-6 z-[60] bg-black/95 border border-cyan-400/60 rounded-lg px-5 py-4 backdrop-blur-md animate__animated animate__fadeInDown shadow-lg shadow-cyan-400/20">
-        <div className="text-cyan-300 font-mono text-sm flex items-start max-w-xs">
-          <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-2 animate-pulse flex-shrink-0"></div>
-          <div className="flex-1">
-            <div className="text-cyan-200 text-xs mb-2 uppercase tracking-wider">AI RISK ANALYSIS</div>
-            <span className="leading-relaxed">
-              {typedText}
-              <span className="animate-pulse text-cyan-400 ml-1">|</span>
-            </span>
-          </div>
+      {/* Minimalist typing warning box - smaller and cleaner */}
+      <div className="fixed top-36 right-6 z-[60] bg-gradient-to-br from-blue-500/20 to-cyan-400/20 border border-cyan-400/40 rounded-lg px-4 py-3 backdrop-blur-md animate__animated animate__fadeInDown shadow-lg shadow-cyan-400/10 max-w-sm">
+        <div className="text-cyan-300 font-mono text-sm">
+          <span className="leading-relaxed">
+            {typedText}
+            <span className="animate-pulse text-cyan-400 ml-1">|</span>
+          </span>
         </div>
       </div>
 
@@ -190,6 +186,12 @@ const OurFinalInvention = () => {
             transform: translate(50px, 50px);
             opacity: 0.1;
           }
+        }
+
+        /* Smooth typing cursor animation */
+        @keyframes smoothBlink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
         }
       `}</style>
     </div>
