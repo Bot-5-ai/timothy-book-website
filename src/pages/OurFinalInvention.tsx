@@ -40,10 +40,10 @@ const OurFinalInvention = () => {
         delay: 0
       });
 
-      // Add scroll listener for vertical scanning effect
+      // Add scroll listener for horizontal scanning effect
       const handleScroll = () => {
         setScanningActive(true);
-        setTimeout(() => setScanningActive(false), 2500);
+        setTimeout(() => setScanningActive(false), 3000);
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -81,8 +81,12 @@ const OurFinalInvention = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 relative">
-      {/* Vertical scanning line effect - appears on scroll */}
-      <div className={`scanning-line-vertical ${scanningActive ? 'active' : ''}`}></div>
+      {/* Horizontal scanning lines effect - appears on scroll */}
+      <div className={`scanning-lines ${scanningActive ? 'active' : ''}`}>
+        <div className="scan-line scan-line-1"></div>
+        <div className="scan-line scan-line-2"></div>
+        <div className="scan-line scan-line-3"></div>
+      </div>
       
       {/* Minimalist typing warning box - smaller and cleaner */}
       <div className="fixed top-36 right-6 z-[60] bg-gradient-to-br from-blue-500/20 to-cyan-400/20 border border-cyan-400/40 rounded-lg px-4 py-3 backdrop-blur-md animate__animated animate__fadeInDown shadow-lg shadow-cyan-400/10 max-w-sm">
@@ -122,95 +126,103 @@ const OurFinalInvention = () => {
       <AIChatbot />
       <Footer />
 
-      {/* Enhanced vertical scanning and typing animations */}
+      {/* Enhanced horizontal scanning animations */}
       <style>{`
-        .scanning-line-vertical {
+        .scanning-lines {
           position: fixed;
+          top: 0;
           left: 0;
-          top: -100%;
-          width: 4px;
+          width: 100%;
           height: 100%;
-          background: linear-gradient(180deg, transparent, #00ff00 30%, #00ff00 70%, transparent);
-          z-index: 1000;
           pointer-events: none;
-          transition: all 0.3s ease;
+          z-index: 1000;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .scanning-lines.active {
+          opacity: 1;
+        }
+
+        .scan-line {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #00ff00 20%, #00ff00 80%, transparent);
           box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           opacity: 0;
         }
 
-        .scanning-line-vertical.active {
-          top: 0;
-          opacity: 1;
-          animation: scanVertical 2.5s ease-in-out;
+        .scan-line-1 {
+          animation: scanHorizontal 3s ease-in-out;
+          animation-delay: 0s;
         }
 
-        @keyframes scanVertical {
+        .scan-line-2 {
+          animation: scanHorizontal 3s ease-in-out;
+          animation-delay: 0.3s;
+          height: 1px;
+          opacity: 0.7;
+        }
+
+        .scan-line-3 {
+          animation: scanHorizontal 3s ease-in-out;
+          animation-delay: 0.6s;
+          height: 1px;
+          opacity: 0.5;
+        }
+
+        .scanning-lines.active .scan-line {
+          opacity: 1;
+        }
+
+        @keyframes scanHorizontal {
           0% { 
-            top: -100%; 
+            top: -10px; 
             opacity: 0;
             box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
-          10% {
+          5% {
             opacity: 1;
             box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
           }
           50% {
             opacity: 1;
             box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00;
-            left: 25%;
           }
-          90% {
+          95% {
             opacity: 1;
             box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
-            left: 75%;
           }
           100% { 
-            top: 100%; 
+            top: 100vh; 
             opacity: 0;
-            left: 100%;
             box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
         }
 
-        /* Additional vertical scan lines for more computer-like effect */
-        .scanning-line-vertical::before {
+        /* Additional grid overlay for computer scanning effect */
+        .scanning-lines::before {
           content: '';
           position: absolute;
-          left: 10px;
           top: 0;
-          width: 2px;
-          height: 100%;
-          background: linear-gradient(180deg, transparent, #00ff00 40%, #00ff00 60%, transparent);
-          opacity: 0.6;
-        }
-
-        .scanning-line-vertical::after {
-          content: '';
-          position: absolute;
-          left: -8px;
-          top: 0;
-          width: 1px;
-          height: 100%;
-          background: linear-gradient(180deg, transparent, #00ff00 50%, transparent);
-          opacity: 0.4;
-        }
-
-        /* Enhanced section transitions */
-        [data-aos] {
-          transition-property: transform, opacity, background;
-          transition-duration: 1.2s;
-        }
-
-        /* Scanning grid overlay enhancements */
-        .grid-scanning {
+          left: 0;
+          right: 0;
+          bottom: 0;
           background-image: 
-            linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+            linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
           background-size: 50px 50px;
-          animation: gridScan 6s linear infinite;
+          animation: gridMove 4s linear infinite;
+          opacity: 0;
         }
 
-        @keyframes gridScan {
+        .scanning-lines.active::before {
+          opacity: 1;
+        }
+
+        @keyframes gridMove {
           0% { 
             transform: translate(0, 0);
             opacity: 0.1;
@@ -224,18 +236,20 @@ const OurFinalInvention = () => {
           }
         }
 
+        /* Enhanced section transitions */
+        [data-aos] {
+          transition-property: transform, opacity, background;
+          transition-duration: 1.2s;
+        }
+
         /* Smooth typing cursor animation */
         @keyframes smoothBlink {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
         }
 
-        /* Additional computer scanning effects */
-        body {
-          position: relative;
-        }
-
-        body::before {
+        /* Computer scanning feedback */
+        body::after {
           content: '';
           position: fixed;
           top: 0;
@@ -243,21 +257,15 @@ const OurFinalInvention = () => {
           right: 0;
           bottom: 0;
           background: 
-            linear-gradient(90deg, transparent 0%, rgba(0, 255, 0, 0.02) 50%, transparent 100%),
-            linear-gradient(180deg, transparent 0%, rgba(0, 255, 0, 0.02) 50%, transparent 100%);
+            radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.02) 0%, transparent 50%);
           pointer-events: none;
-          z-index: 1;
-          animation: computerGrid 4s ease-in-out infinite;
+          z-index: 999;
           opacity: 0;
+          transition: opacity 0.5s ease;
         }
 
-        .scanning-line-vertical.active ~ * body::before {
+        .scanning-lines.active ~ * body::after {
           opacity: 1;
-        }
-
-        @keyframes computerGrid {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 0.3; }
         }
       `}</style>
     </div>
