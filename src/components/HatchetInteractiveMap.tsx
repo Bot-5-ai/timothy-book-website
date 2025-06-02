@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 
 const HatchetInteractiveMap = () => {
@@ -59,6 +58,15 @@ const HatchetInteractiveMap = () => {
       icon: "🚫",
       description: "A dangerous area that Brian learns to avoid after encountering wolves, teaching him about wilderness hazards.",
       details: "This heavily forested area becomes a crucial lesson in wilderness awareness and respect for wildlife. Brian's encounter with wolves here teaches him that the forest has its own rules and hierarchies that he must understand and respect. The wolves are not necessarily aggressive toward Brian, but their presence makes it clear that this is their domain. Brian learns to read the signs of wolf activity - tracks, scat, territorial markings, and the distinctive howling that carries through the forest at night. This experience teaches him about the importance of avoiding certain areas, especially during hunting times or when wolves are protecting their young. The encounter also reinforces Brian's understanding that he is not the apex predator in this environment and must remain constantly vigilant. This location represents the wildness and danger that always lurk in the background of Brian's survival story, reminding him that nature is both provider and potential destroyer. It's a lesson in humility and the importance of coexisting with, rather than trying to dominate, the natural world."
+    },
+    {
+      id: 7,
+      name: "The Lake",
+      x: 50,
+      y: 70,
+      icon: "🏞️",
+      description: "The L-shaped lake that becomes central to Brian's survival, providing water, fish, and transportation while also holding the key to his rescue.",
+      details: "This expansive L-shaped lake is the geographical heart of Brian's survival story and serves multiple crucial functions in his wilderness experience. The lake provides Brian with his most essential need - fresh water for drinking, cooking, and cleaning. Its clear, cold waters are home to various fish species that become Brian's primary protein source, including pike, perch, and bass. The lake also serves as a natural highway, allowing Brian to travel efficiently along its shores and explore different areas of his territory. The shallow bays and inlets provide ideal fishing spots and gathering areas for other food sources. Most importantly, the lake holds the crashed plane in its depths, along with the survival pack that ultimately leads to Brian's rescue. The lake represents both sustenance and hope - it keeps Brian alive day by day while also containing the means of his eventual salvation. Brian learns to read the lake's moods, understanding its currents, depths, and seasonal changes. The lake becomes a mirror for Brian's internal journey, reflecting his growth from a frightened boy into a confident young man who has learned to work with nature rather than against it."
     }
   ];
 
