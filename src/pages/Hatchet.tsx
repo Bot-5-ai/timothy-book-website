@@ -781,13 +781,13 @@ const Hatchet = () => {
                       <div className="space-y-3">
                         <h4 className="text-[#e9b872] font-bold text-lg">What This Means</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This part shows how much Brian has changed from the scared city kid he was when the plane crashed. Now he can watch wolves and not be terrified - he even nods at them like they're neighbors or something.
+                          This particular section reveals the drastic transformation that Brian has undergone since the fearful moment when the plane crashed, when he was a frightened city boy, filled with fear and confusion. In sharp difference to his former self, though, he is now able to look at wolves in the wild without feeling a pinch of fear. In fact, he even nods at them in a matter-of-fact manner, as though they were close neighbors or friends which he encounters every day.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          The way he thinks about time is different too. Before, every minute felt like forever and he was always worried about when he'd get rescued. Now he's just living in the moment.
+                         His perception of time is has also drastically changed. Before, each minute would feel like it lasted an hour, with him experiencing a huge level of anxiety as he thought about when he would finally be rescued. But now he has adopted a more relaxed approach and surrendered to the present moment, simply allowing things to happen as they do.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          Paulsen keeps it simple by just saying "He was not the same now" to show that this change is permanent and complete.
+                          Paulsen also simplifies this concept by stating simply, "He was not the same now." This straightforward statement really informs us that this change is not some temporary change, but one that is complete and permanent in his nature.
                         </p>
                       </div>
                       
@@ -836,13 +836,13 @@ const Hatchet = () => {
                       <div className="space-y-3">
                         <h4 className="text-[#e9b872] font-bold text-lg">What This Means</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This is when Brian finally deals with the secret about his mom's affair that's been eating at him the whole time. He realizes that even though it happened and it's part of his life, he doesn't have to let it control him.
+                          This is the part of the book where Brian is finally able to confront the long-hidden reality of his mother's affair reality that has silently troubled him for what seems like his whole life. He comes to understand, in a deep and significant manner, that even though this event is permanent and will forever be a part of his own past, he need not allow it to control how he feels or behaves. The reality of his mother's affair is one that he can accept without permitting it to define him or determine his fate.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          Throughout the book, Paulsen always writes "Secret" with a capital S to show how big and important it was in Brian's mind. But now Brian's mature enough to handle it.
+                          For the remainder of the book, author Gary Paulsen stresses how significant this secret is by typing it out over and over again as "Secret" with a capital "S". This is a literary tool that serves to point out how much and how important this information has been weighing on Brian, indicating that it has a central position in his mind and heart. However, by the time of the novel's action, it is obvious that Brian has reached a new stage of maturity. He is able to come at this challenging time in his life with courage and acceptance now, and is opting to respond to it positively and constructively instead of allowing it to get the better of him.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          When it says "finally gone," you can feel Brian's relief. He's been carrying this weight around forever, and now he can let it go.
+                          Because the story says the secret is "finally gone," the reader can practically sense the relief that floods through Brian. He has been carting this emotional baggage around for years, but now he is finally free to release it and move forward, no longer defined by the pain and confusion it had formerly caused him.
                         </p>
                       </div>
                       
