@@ -43,7 +43,7 @@ const OurFinalInvention = () => {
       // Add scroll listener for scanning effect
       const handleScroll = () => {
         setScanningActive(true);
-        setTimeout(() => setScanningActive(false), 2000);
+        setTimeout(() => setScanningActive(false), 3000);
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -81,8 +81,8 @@ const OurFinalInvention = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 relative">
-      {/* Scanning line effect - appears on scroll */}
-      <div className={`scanning-line ${scanningActive ? 'active' : ''}`}></div>
+      {/* Enhanced scanning line effect - horizontal line scanning vertically */}
+      <div className={`scanning-line-horizontal ${scanningActive ? 'active' : ''}`}></div>
       
       {/* Minimalist typing warning box - smaller and cleaner */}
       <div className="fixed top-36 right-6 z-[60] bg-gradient-to-br from-blue-500/20 to-cyan-400/20 border border-cyan-400/40 rounded-lg px-4 py-3 backdrop-blur-md animate__animated animate__fadeInDown shadow-lg shadow-cyan-400/10 max-w-sm">
@@ -124,38 +124,53 @@ const OurFinalInvention = () => {
 
       {/* Enhanced scanning and typing animations */}
       <style>{`
-        .scanning-line {
+        .scanning-line-horizontal {
           position: fixed;
-          top: 0;
-          left: -100%;
-          width: 100%;
+          top: -100%;
+          left: 0;
+          width: 100vw;
           height: 3px;
-          background: linear-gradient(90deg, transparent, #00ff00 50%, transparent);
+          background: linear-gradient(90deg, transparent 20%, #00ff00 30%, #ffffff 50%, #00ff00 70%, transparent 80%);
           z-index: 1000;
           pointer-events: none;
-          transition: all 0.3s ease;
-          box-shadow: 0 0 10px #00ff00;
+          transition: all 0.5s ease;
+          box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff0080, 0 0 60px #00ff0040;
+          opacity: 0;
         }
 
-        .scanning-line.active {
-          left: 0;
-          animation: scanAcross 2s ease-in-out;
+        .scanning-line-horizontal.active {
+          opacity: 1;
+          animation: scanVertically 3s ease-in-out;
         }
 
-        @keyframes scanAcross {
+        @keyframes scanVertically {
           0% { 
-            left: -100%; 
+            top: -10px;
             opacity: 0;
+            transform: scaleX(0.8);
           }
-          10% {
+          5% {
             opacity: 1;
+            transform: scaleX(1);
           }
-          90% {
+          25% {
+            box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff0080, 0 0 90px #00ff0040;
+          }
+          50% {
+            top: 50vh;
+            box-shadow: 0 0 40px #00ff00, 0 0 80px #00ff0080, 0 0 120px #00ff0040;
+          }
+          75% {
+            box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff0080, 0 0 90px #00ff0040;
+          }
+          95% {
             opacity: 1;
+            transform: scaleX(1);
           }
           100% { 
-            left: 100%; 
+            top: calc(100vh + 10px);
             opacity: 0;
+            transform: scaleX(0.8);
           }
         }
 
