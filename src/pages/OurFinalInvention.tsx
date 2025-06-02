@@ -40,10 +40,10 @@ const OurFinalInvention = () => {
         delay: 0
       });
 
-      // Add scroll listener for horizontal scanning effect
+      // Add scroll listener for scanning effect
       const handleScroll = () => {
         setScanningActive(true);
-        setTimeout(() => setScanningActive(false), 3000);
+        setTimeout(() => setScanningActive(false), 2000);
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -56,8 +56,8 @@ const OurFinalInvention = () => {
 
   useEffect(() => {
     const currentText = warnings[currentWarning];
-    const typingSpeed = 50;
-    const deletingSpeed = 30;
+    const typingSpeed = 50; // Faster typing for smoother effect
+    const deletingSpeed = 30; // Faster deleting for smoother effect
     const pauseTime = 3000;
 
     const typeEffect = () => {
@@ -81,10 +81,10 @@ const OurFinalInvention = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 relative">
-      {/* Horizontal scanning line that moves vertically */}
-      <div className={`scanning-line-horizontal ${scanningActive ? 'active' : ''}`}></div>
+      {/* Scanning line effect - appears on scroll */}
+      <div className={`scanning-line ${scanningActive ? 'active' : ''}`}></div>
       
-      {/* Minimalist typing warning box */}
+      {/* Minimalist typing warning box - smaller and cleaner */}
       <div className="fixed top-36 right-6 z-[60] bg-gradient-to-br from-blue-500/20 to-cyan-400/20 border border-cyan-400/40 rounded-lg px-4 py-3 backdrop-blur-md animate__animated animate__fadeInDown shadow-lg shadow-cyan-400/10 max-w-sm">
         <div className="text-cyan-300 font-mono text-sm">
           <span className="leading-relaxed">
@@ -122,74 +122,41 @@ const OurFinalInvention = () => {
       <AIChatbot />
       <Footer />
 
-      {/* Enhanced horizontal scanning animations */}
+      {/* Enhanced scanning and typing animations */}
       <style>{`
-        .scanning-line-horizontal {
+        .scanning-line {
           position: fixed;
-          left: 0;
-          top: -4px;
+          top: 0;
+          left: -100%;
           width: 100%;
-          height: 4px;
-          background: linear-gradient(90deg, transparent, #00ff00 30%, #00ff00 70%, transparent);
+          height: 3px;
+          background: linear-gradient(90deg, transparent, #00ff00 50%, transparent);
           z-index: 1000;
           pointer-events: none;
           transition: all 0.3s ease;
-          box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
-          opacity: 0;
+          box-shadow: 0 0 10px #00ff00;
         }
 
-        .scanning-line-horizontal.active {
-          opacity: 1;
-          animation: scanHorizontal 3s ease-in-out;
+        .scanning-line.active {
+          left: 0;
+          animation: scanAcross 2s ease-in-out;
         }
 
-        @keyframes scanHorizontal {
+        @keyframes scanAcross {
           0% { 
-            top: -4px; 
+            left: -100%; 
             opacity: 0;
-            box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
-          5% {
+          10% {
             opacity: 1;
-            box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00;
           }
-          50% {
+          90% {
             opacity: 1;
-            box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00;
-            top: 50vh;
-          }
-          95% {
-            opacity: 1;
-            box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00;
           }
           100% { 
-            top: 100vh; 
+            left: 100%; 
             opacity: 0;
-            box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
-        }
-
-        /* Additional scanning effects */
-        .scanning-line-horizontal::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 8px;
-          width: 100%;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, #00ff00 40%, #00ff00 60%, transparent);
-          opacity: 0.6;
-        }
-
-        .scanning-line-horizontal::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: -6px;
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, #00ff00 50%, transparent);
-          opacity: 0.4;
         }
 
         /* Enhanced section transitions */
@@ -221,34 +188,10 @@ const OurFinalInvention = () => {
           }
         }
 
-        /* Additional computer scanning effects */
-        body {
-          position: relative;
-        }
-
-        body::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: 
-            linear-gradient(90deg, transparent 0%, rgba(0, 255, 0, 0.02) 50%, transparent 100%),
-            linear-gradient(180deg, transparent 0%, rgba(0, 255, 0, 0.02) 50%, transparent 100%);
-          pointer-events: none;
-          z-index: 1;
-          animation: computerGrid 4s ease-in-out infinite;
-          opacity: 0;
-        }
-
-        .scanning-line-horizontal.active ~ * body::before {
-          opacity: 1;
-        }
-
-        @keyframes computerGrid {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 0.3; }
+        /* Smooth typing cursor animation */
+        @keyframes smoothBlink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
         }
       `}</style>
     </div>
