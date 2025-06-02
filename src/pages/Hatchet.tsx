@@ -723,13 +723,13 @@ const Hatchet = () => {
                       <div className="space-y-3">
                         <h4 className="text-[#e9b872] font-bold text-lg">What This Means</h4>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          This is like the biggest moment in the whole book so far. Brian keeps saying "I have fire" because he can't believe he actually did it. Making fire is huge for surviving in the wilderness.
+                          This is quite possibly the most important thing to happen in the whole book so far. Brian is still yelling, "I have fire," since he can barely believe that he has accomplished this incredible task. Fire is so very important in wilderness survival since it is such a great tool for keeping warm, for cooking, and for keeping danger away.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          You can tell how shocked and excited Brian is. This is the first time he feels like he might actually be able to survive on his own instead of just hoping someone rescues him.
+                         You can almost visualize the extent of Brian's shock and excitement emanating from him. He has this incredible sense of empowerment for the very first time in his life, that he may actually be capable of being independent, instead of just holding onto the faint hope that someone will appear out of nowhere and save him from his fate. Paulsen employs a straightforward, direct writing style that conveys the inner thoughts of Brian. You can truly sense how significant and life-changing this particular point in time is to him as a person.
                         </p>
                         <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                          Paulsen writes in a simple way that shows exactly how Brian thinks. You can feel how important this moment is for him.
+                         As the fire crackles to life, it is as if a threshold has been passed—not only in Brian's fight to survive, but in himself. The fire is no longer just a physical tool; it is a symbol of hope, resolve, and a turning point for his quest. This achievement is the moment when Brian starts to trust his instincts and ingenuity and is certain that he can meet adversity directly. The feeling of triumph is not just linked to the fire, but to finding a newfound strength within himself that will sustain him in the challenges ahead.
                         </p>
                       </div>
                       
