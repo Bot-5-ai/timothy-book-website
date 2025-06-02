@@ -8,18 +8,20 @@ import { motion } from 'framer-motion';
 const AboutMe = () => {
   const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; opacity: number; speed: number }[]>([]);
   const [shootingStars, setShootingStars] = useState<{ id: number; x: number; y: number; delay: number }[]>([]);
+  const [planets, setPlanets] = useState<{ id: number; x: number; y: number; size: number; type: string; speed: number }[]>([]);
+  const [ufos, setUfos] = useState<{ id: number; x: number; y: number; delay: number }[]>([]);
   
   useEffect(() => {
     // Generate background stars
     const generateStars = () => {
       const newStars = [];
-      for (let i = 0; i < 150; i++) {
+      for (let i = 0; i < 200; i++) {
         newStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.8 + 0.2,
+          size: Math.random() * 2.5 + 1,
+          opacity: Math.random() * 0.9 + 0.1,
           speed: Math.random() * 0.05 + 0.01
         });
       }
@@ -29,19 +31,52 @@ const AboutMe = () => {
     // Generate shooting stars
     const generateShootingStars = () => {
       const newShootingStars = [];
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 12; i++) {
         newShootingStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 60,
-          delay: Math.random() * 10
+          delay: Math.random() * 15
         });
       }
       setShootingStars(newShootingStars);
     };
+
+    // Generate planets
+    const generatePlanets = () => {
+      const planetTypes = ['jupiter', 'saturn', 'mars', 'venus', 'neptune'];
+      const newPlanets = [];
+      for (let i = 0; i < 6; i++) {
+        newPlanets.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 60 + 40,
+          type: planetTypes[Math.floor(Math.random() * planetTypes.length)],
+          speed: Math.random() * 0.02 + 0.005
+        });
+      }
+      setPlanets(newPlanets);
+    };
+
+    // Generate UFOs
+    const generateUfos = () => {
+      const newUfos = [];
+      for (let i = 0; i < 4; i++) {
+        newUfos.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 80 + 10,
+          delay: Math.random() * 20
+        });
+      }
+      setUfos(newUfos);
+    };
     
     generateStars();
     generateShootingStars();
+    generatePlanets();
+    generateUfos();
     
     // Initialize animations
     if (typeof window.AOS !== 'undefined') {
@@ -63,9 +98,10 @@ const AboutMe = () => {
             initial={{ opacity: 0 }}
             animate={{ 
               opacity: [star.opacity * 0.3, star.opacity, star.opacity * 0.3],
+              scale: [1, 1.2, 1]
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 4 + Math.random() * 3,
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -78,11 +114,11 @@ const AboutMe = () => {
           />
         ))}
         
-        {/* Shooting Stars */}
+        {/* Enhanced Shooting Stars */}
         {shootingStars.map((shootingStar) => (
           <div
             key={shootingStar.id}
-            className="shooting-star"
+            className="shooting-star enhanced-meteor"
             style={{
               left: `${shootingStar.x}%`,
               top: `${shootingStar.y}%`,
@@ -90,11 +126,60 @@ const AboutMe = () => {
             }}
           />
         ))}
+
+        {/* Floating Planets */}
+        {planets.map((planet) => (
+          <motion.div
+            key={planet.id}
+            className={`absolute planet planet-${planet.type}`}
+            initial={{ opacity: 0.6, rotate: 0 }}
+            animate={{ 
+              opacity: [0.6, 0.9, 0.6],
+              rotate: 360,
+              y: [0, -20, 0]
+            }}
+            transition={{
+              duration: 20 + planet.id * 5,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              left: `${planet.x}%`,
+              top: `${planet.y}%`,
+              width: `${planet.size}px`,
+              height: `${planet.size}px`,
+            }}
+          />
+        ))}
+
+        {/* UFOs */}
+        {ufos.map((ufo) => (
+          <motion.div
+            key={ufo.id}
+            className="ufo"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ 
+              opacity: [0, 0.8, 0],
+              x: ['-100px', `${window.innerWidth + 100}px`],
+              y: [0, -30, 0]
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              delay: ufo.delay,
+              ease: "easeInOut"
+            }}
+            style={{
+              left: `${ufo.x}%`,
+              top: `${ufo.y}%`,
+            }}
+          />
+        ))}
         
         {/* Enhanced Nebula effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/30 via-transparent to-transparent"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-900/25 via-transparent to-transparent"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/40 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-900/35 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-900/30 via-transparent to-transparent"></div>
       </div>
       
       {/* Navigation */}
@@ -222,7 +307,7 @@ const AboutMe = () => {
             </motion.div>
           </motion.div>
           
-          {/* About Section */}
+          {/* About Section - Enhanced with more content */}
           <motion.div 
             className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl mb-12" 
             data-aos="fade-up"
@@ -242,9 +327,23 @@ const AboutMe = () => {
             </p>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
+              What really excites me about astronomy is the endless mystery of it all. Every night when I look up at the sky, 
+              I'm reminded that we're just a tiny part of this incredible universe. I love reading about black holes, 
+              exoplanets, and the possibility of life beyond Earth. The James Webb Space Telescope images absolutely blow my mind!
+            </p>
+            
+            <p className="text-gray-300 mb-6 leading-relaxed">
               When I'm not studying or stargazing, you can find me playing badminton or volleyball with friends, 
-              or gaming on my computer. I love the strategy and teamwork in sports, and gaming helps me relax and 
-              connect with friends online. Science class is definitely my favorite - especially physics and chemistry!
+              or gaming on my computer. I'm really into Plants vs Zombies Garden Warfare 2 and Minecraft - there's something 
+              about building and creating worlds that appeals to me, maybe it's similar to how scientists piece together 
+              theories about how the universe works!
+            </p>
+
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              School-wise, I absolutely love physics and chemistry. There's something magical about understanding how 
+              things work at the most fundamental level. I'm particularly fascinated by quantum mechanics and how it 
+              relates to astrophysics. I'm also learning Python programming because I know it's essential for data 
+              analysis in astronomy research.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -284,7 +383,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <GamepadIcon className="text-purple-400 mr-3 h-5 w-5" />
-                    <span>Gaming & Technology</span>
+                    <span>Plants vs Zombies GW2 & Minecraft</span>
                   </motion.li>
                 </ul>
               </div>
@@ -300,8 +399,8 @@ const AboutMe = () => {
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <span className="text-purple-400 mr-3">🎂</span>
-                    <span>Cancer ♋ (July 23rd baby!)</span>
+                    <span className="text-purple-400 mr-3">🦁</span>
+                    <span>Leo ♌ (July 23rd baby!)</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -316,8 +415,8 @@ const AboutMe = () => {
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <span className="text-purple-400 mr-3">🎮</span>
-                    <span>Favorite games: space exploration & strategy</span>
+                    <span className="text-purple-400 mr-3">🔭</span>
+                    <span>I have my own telescope and track Jupiter's moons</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -325,7 +424,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">📚</span>
-                    <span>Currently reading about black holes and galaxies</span>
+                    <span>Currently reading about gravitational waves</span>
                   </motion.li>
                 </ul>
               </div>
@@ -355,19 +454,22 @@ const AboutMe = () => {
                 <motion.li whileHover={{ x: 5 }}>
                   <h3 className="text-xl font-bold text-purple-300 mb-2">🎓 Academic Goals</h3>
                   <p className="text-gray-300">
-                    Ace my science courses and get into a great university with a strong astronomy program
+                    Ace my science courses and get into a great university with a strong astronomy program. 
+                    I'm particularly interested in MIT, Caltech, or the University of Toronto.
                   </p>
                 </motion.li>
                 <motion.li whileHover={{ x: 5 }}>
                   <h3 className="text-xl font-bold text-purple-300 mb-2">🔭 Career Dreams</h3>
                   <p className="text-gray-300">
-                    Become a professional astronomer and maybe work at NASA or a major observatory
+                    Become a professional astronomer and maybe work at NASA, ESA, or a major observatory. 
+                    I'd love to be part of a team that discovers habitable exoplanets.
                   </p>
                 </motion.li>
                 <motion.li whileHover={{ x: 5 }}>
                   <h3 className="text-xl font-bold text-purple-300 mb-2">🌟 Big Dream</h3>
                   <p className="text-gray-300">
-                    Discover a new exoplanet or contribute to finding signs of life beyond Earth!
+                    Discover a new exoplanet or contribute to finding signs of life beyond Earth! 
+                    Maybe even help design future space telescopes.
                   </p>
                 </motion.li>
               </ul>
@@ -394,8 +496,8 @@ const AboutMe = () => {
                     <i className="fas fa-calculator text-indigo-300"></i>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-purple-300">Advanced Math</h3>
-                    <p className="text-gray-400">Calculus and physics calculations</p>
+                    <h3 className="text-lg font-bold text-purple-300">Advanced Math & Physics</h3>
+                    <p className="text-gray-400">Calculus, differential equations, and quantum mechanics basics</p>
                   </div>
                 </motion.li>
                 <motion.li 
@@ -406,8 +508,8 @@ const AboutMe = () => {
                     <i className="fas fa-laptop-code text-indigo-300"></i>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-purple-300">Programming</h3>
-                    <p className="text-gray-400">Python for data analysis</p>
+                    <h3 className="text-lg font-bold text-purple-300">Python Programming</h3>
+                    <p className="text-gray-400">Data analysis, matplotlib, and astronomical calculations</p>
                   </div>
                 </motion.li>
                 <motion.li 
@@ -418,8 +520,8 @@ const AboutMe = () => {
                     <Telescope className="text-indigo-300 h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-purple-300">Telescope Operation</h3>
-                    <p className="text-gray-400">Learning to use different telescopes</p>
+                    <h3 className="text-lg font-bold text-purple-300">Observational Astronomy</h3>
+                    <p className="text-gray-400">Using telescopes and understanding celestial coordinates</p>
                   </div>
                 </motion.li>
               </ul>
@@ -513,7 +615,7 @@ const AboutMe = () => {
           100% { opacity: 0.2; }
         }
         
-        @keyframes shooting-star {
+        @keyframes enhanced-shooting-star {
           0% {
             transform: translateX(-100px) translateY(-100px) rotate(45deg);
             opacity: 0;
@@ -534,34 +636,113 @@ const AboutMe = () => {
           animation: twinkle 3s infinite ease-in-out;
         }
         
-        .shooting-star {
+        .enhanced-meteor {
           position: absolute;
-          width: 2px;
-          height: 2px;
+          width: 3px;
+          height: 3px;
           background: linear-gradient(45deg, #fff, transparent);
-          animation: shooting-star 8s infinite linear;
+          animation: enhanced-shooting-star 6s infinite linear;
+          box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
         }
         
-        .shooting-star::before {
+        .enhanced-meteor::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 80px;
+          height: 2px;
+          background: linear-gradient(45deg, #fff, #a855f7, transparent);
+          transform: translateX(-80px);
+          box-shadow: 0 0 15px #a855f7;
+        }
+        
+        .enhanced-meteor::after {
           content: '';
           position: absolute;
           top: 0;
           left: 0;
           width: 50px;
           height: 1px;
-          background: linear-gradient(45deg, #fff, transparent);
+          background: linear-gradient(45deg, #60a5fa, transparent);
           transform: translateX(-50px);
         }
-        
-        .shooting-star::after {
+
+        .planet {
+          border-radius: 50%;
+          background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent 50%);
+          filter: blur(0.5px);
+        }
+
+        .planet-jupiter {
+          background: linear-gradient(45deg, #d97706, #f59e0b, #d97706);
+        }
+
+        .planet-saturn {
+          background: linear-gradient(45deg, #fbbf24, #f59e0b);
+          position: relative;
+        }
+
+        .planet-saturn::after {
           content: '';
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 30px;
-          height: 1px;
-          background: linear-gradient(45deg, #a855f7, transparent);
-          transform: translateX(-30px);
+          top: 50%;
+          left: -20%;
+          width: 140%;
+          height: 2px;
+          background: rgba(251, 191, 36, 0.6);
+          transform: translateY(-50%);
+        }
+
+        .planet-mars {
+          background: linear-gradient(45deg, #dc2626, #ef4444);
+        }
+
+        .planet-venus {
+          background: linear-gradient(45deg, #eab308, #facc15);
+        }
+
+        .planet-neptune {
+          background: linear-gradient(45deg, #2563eb, #3b82f6);
+        }
+
+        .ufo {
+          width: 40px;
+          height: 20px;
+          background: linear-gradient(45deg, #64748b, #94a3b8);
+          border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+          position: relative;
+          filter: drop-shadow(0 0 10px rgba(148, 163, 184, 0.5));
+        }
+
+        .ufo::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 20px;
+          height: 10px;
+          background: linear-gradient(45deg, #475569, #64748b);
+          border-radius: 50%;
+        }
+
+        .ufo::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 20px;
+          background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.3), transparent);
+          border-radius: 50%;
+          animation: ufo-light 2s infinite ease-in-out;
+        }
+
+        @keyframes ufo-light {
+          0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+          50% { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
         }
         `}
       </style>

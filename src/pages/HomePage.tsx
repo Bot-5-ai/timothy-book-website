@@ -156,13 +156,13 @@ const HomePage = () => {
               </div>
             </Link>
             
-            {/* Featured Book 2: Our Final Invention */}
+            {/* Featured Book 2: Our Final Invention - Updated with new image */}
             <Link to="/our-final-invention" className="block">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden shadow-xl border border-white/20 group transition-all duration-300 hover:shadow-2xl hover:border-white/40 hover:scale-105 cursor-pointer" data-aos="fade-left">
                 <div className="relative overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
-                    alt="AI concept" 
+                    src="https://cdn.mos.cms.futurecdn.net/C7zuX7HdFRZ3vVBcCCPh4e-1200-80.jpg" 
+                    alt="Artificial Intelligence concept" 
                     className="w-full h-60 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
