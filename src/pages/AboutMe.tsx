@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Star, Telescope, GamepadIcon, Trophy, Calendar, MapPin } from 'lucide-react';
@@ -8,17 +7,19 @@ import { motion } from 'framer-motion';
 const AboutMe = () => {
   const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; opacity: number; speed: number }[]>([]);
   const [shootingStars, setShootingStars] = useState<{ id: number; x: number; y: number; delay: number }[]>([]);
+  const [ufos, setUfos] = useState<{ id: number; x: number; y: number; delay: number }[]>([]);
+  const [planets, setPlanets] = useState<{ id: number; x: number; y: number; size: number; color: string }[]>([]);
   
   useEffect(() => {
     // Generate background stars
     const generateStars = () => {
       const newStars = [];
-      for (let i = 0; i < 150; i++) {
+      for (let i = 0; i < 200; i++) {
         newStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 2 + 1,
+          size: Math.random() * 3 + 1,
           opacity: Math.random() * 0.8 + 0.2,
           speed: Math.random() * 0.05 + 0.01
         });
@@ -29,19 +30,51 @@ const AboutMe = () => {
     // Generate shooting stars
     const generateShootingStars = () => {
       const newShootingStars = [];
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 12; i++) {
         newShootingStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 60,
-          delay: Math.random() * 10
+          delay: Math.random() * 8
         });
       }
       setShootingStars(newShootingStars);
     };
     
+    // Generate UFOs
+    const generateUfos = () => {
+      const newUfos = [];
+      for (let i = 0; i < 3; i++) {
+        newUfos.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 40,
+          delay: Math.random() * 15
+        });
+      }
+      setUfos(newUfos);
+    };
+    
+    // Generate planets
+    const generatePlanets = () => {
+      const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
+      const newPlanets = [];
+      for (let i = 0; i < 5; i++) {
+        newPlanets.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 40 + 20,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      setPlanets(newPlanets);
+    };
+    
     generateStars();
     generateShootingStars();
+    generateUfos();
+    generatePlanets();
     
     // Initialize animations
     if (typeof window.AOS !== 'undefined') {
@@ -78,7 +111,7 @@ const AboutMe = () => {
           />
         ))}
         
-        {/* Shooting Stars */}
+        {/* Enhanced Shooting Stars */}
         {shootingStars.map((shootingStar) => (
           <div
             key={shootingStar.id}
@@ -87,6 +120,46 @@ const AboutMe = () => {
               left: `${shootingStar.x}%`,
               top: `${shootingStar.y}%`,
               animationDelay: `${shootingStar.delay}s`
+            }}
+          />
+        ))}
+        
+        {/* UFOs */}
+        {ufos.map((ufo) => (
+          <div
+            key={ufo.id}
+            className="ufo"
+            style={{
+              left: `${ufo.x}%`,
+              top: `${ufo.y}%`,
+              animationDelay: `${ufo.delay}s`
+            }}
+          />
+        ))}
+        
+        {/* Planets */}
+        {planets.map((planet) => (
+          <motion.div
+            key={planet.id}
+            className="absolute rounded-full planet"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0.3, 0.6, 0.3],
+              scale: [0.8, 1, 0.8],
+              rotate: 360
+            }}
+            transition={{
+              duration: 20 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              left: `${planet.x}%`,
+              top: `${planet.y}%`,
+              width: `${planet.size}px`,
+              height: `${planet.size}px`,
+              background: `radial-gradient(circle at 30% 30%, ${planet.color}, ${planet.color}80)`,
+              boxShadow: `0 0 20px ${planet.color}40`
             }}
           />
         ))}
@@ -197,6 +270,7 @@ const AboutMe = () => {
               <h3 className="text-lg font-bold text-indigo-200 mb-2">Age</h3>
               <p className="text-gray-300">15 years old</p>
               <p className="text-sm text-gray-400">Born July 23, 2009</p>
+              <p className="text-xs text-purple-300 mt-1">♌ Leo</p>
             </motion.div>
             
             <motion.div 
@@ -222,7 +296,7 @@ const AboutMe = () => {
             </motion.div>
           </motion.div>
           
-          {/* About Section */}
+          {/* Enhanced About Section */}
           <motion.div 
             className="bg-[#0c1333]/70 backdrop-blur-md border border-indigo-900/30 rounded-xl p-8 shadow-xl mb-12" 
             data-aos="fade-up"
@@ -236,15 +310,29 @@ const AboutMe = () => {
             </h2>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Hey there! I'm Timothy Chen, a 15-year-old high school student with a huge passion for science and astronomy. 
-              Ever since I was little, I've been fascinated by the stars, planets, and everything beyond our Earth. 
-              My dream is to become an astronomer and maybe even discover something amazing in space someday!
+              Hey there! I'm Timothy Chen, a 15-year-old high school student with an absolutely massive passion for science and astronomy. 
+              Ever since I was about 7 years old, I've been completely fascinated by the stars, planets, black holes, and everything beyond our Earth. 
+              It all started when my dad showed me Saturn through a small telescope - seeing those rings with my own eyes was the moment I knew I wanted to spend my life exploring the universe.
             </p>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              When I'm not studying or stargazing, you can find me playing badminton or volleyball with friends, 
-              or gaming on my computer. I love the strategy and teamwork in sports, and gaming helps me relax and 
-              connect with friends online. Science class is definitely my favorite - especially physics and chemistry!
+              My dream is to become a professional astronomer and astrophysicist, working at places like NASA, SpaceX, or major observatories around the world. 
+              I'm especially interested in exoplanet research and the search for extraterrestrial life. The thought that we might discover signs of life on other worlds during my lifetime gives me chills - in the best way possible! 
+              I spend hours reading research papers about the James Webb Space Telescope discoveries and follow every major space mission.
+            </p>
+            
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              When I'm not studying astronomy or doing homework, you can find me playing badminton or volleyball with my friends at school. 
+              I love the strategy and teamwork these sports require - it's like problem-solving but with your whole body! I'm also pretty into gaming, 
+              especially space exploration games like Kerbal Space Program and No Man's Sky. Gaming helps me relax and connect with friends online, 
+              and honestly, some of these games have taught me more about orbital mechanics than my textbooks!
+            </p>
+            
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              At school, science classes are definitely my favorite - particularly physics and chemistry. I love understanding how the universe works at both 
+              the smallest and largest scales. Right now I'm diving deep into calculus and advanced physics to prepare for university applications. 
+              My goal is to get into a top-tier astronomy program, maybe at Caltech, MIT, or the University of Toronto. 
+              Being a Leo, I guess I naturally love being challenged and reaching for the stars - literally!
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -260,7 +348,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <Telescope className="text-purple-400 mr-3 h-5 w-5" />
-                    <span>Astronomy & Space Science</span>
+                    <span>Astronomy & Astrophysics</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-center"
@@ -284,7 +372,15 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <GamepadIcon className="text-purple-400 mr-3 h-5 w-5" />
-                    <span>Gaming & Technology</span>
+                    <span>Space Gaming & Technology</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-center"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <i className="fas fa-satellite text-purple-400 mr-3"></i>
+                    <span>Exoplanet Research</span>
                   </motion.li>
                 </ul>
               </div>
@@ -301,7 +397,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🎂</span>
-                    <span>Cancer ♋ (July 23rd baby!)</span>
+                    <span>Leo ♌ (July 23rd) - ambitious and loves challenges!</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -309,7 +405,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🌙</span>
-                    <span>I love staying up late to watch meteor showers</span>
+                    <span>I stay up all night during meteor shower events</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -317,7 +413,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🎮</span>
-                    <span>Favorite games: space exploration & strategy</span>
+                    <span>Kerbal Space Program taught me orbital mechanics</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -325,7 +421,15 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">📚</span>
-                    <span>Currently reading about black holes and galaxies</span>
+                    <span>Reading about JWST discoveries and black holes</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-start"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <span className="text-purple-400 mr-3">🛸</span>
+                    <span>Hopeful we'll find alien life in my lifetime</span>
                   </motion.li>
                 </ul>
               </div>
@@ -530,6 +634,27 @@ const AboutMe = () => {
           }
         }
         
+        @keyframes ufo-float {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.8;
+          }
+          50% {
+            transform: translateX(50vw) translateY(-20px) rotate(180deg);
+            opacity: 1;
+          }
+          90% {
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(360deg);
+            opacity: 0;
+          }
+        }
+        
         .star {
           animation: twinkle 3s infinite ease-in-out;
         }
@@ -539,7 +664,7 @@ const AboutMe = () => {
           width: 2px;
           height: 2px;
           background: linear-gradient(45deg, #fff, transparent);
-          animation: shooting-star 8s infinite linear;
+          animation: shooting-star 6s infinite linear;
         }
         
         .shooting-star::before {
@@ -547,10 +672,10 @@ const AboutMe = () => {
           position: absolute;
           top: 0;
           left: 0;
-          width: 50px;
+          width: 80px;
           height: 1px;
           background: linear-gradient(45deg, #fff, transparent);
-          transform: translateX(-50px);
+          transform: translateX(-80px);
         }
         
         .shooting-star::after {
@@ -558,10 +683,60 @@ const AboutMe = () => {
           position: absolute;
           top: 0;
           left: 0;
-          width: 30px;
+          width: 50px;
           height: 1px;
           background: linear-gradient(45deg, #a855f7, transparent);
-          transform: translateX(-30px);
+          transform: translateX(-50px);
+        }
+        
+        .ufo {
+          position: absolute;
+          width: 40px;
+          height: 20px;
+          background: linear-gradient(to bottom, #4ade80, #22c55e);
+          border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+          animation: ufo-float 20s infinite linear;
+          box-shadow: 0 0 10px #4ade80, inset 0 2px 5px rgba(255,255,255,0.3);
+        }
+        
+        .ufo::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 15px;
+          height: 10px;
+          background: radial-gradient(circle, #60a5fa, #3b82f6);
+          border-radius: 50%;
+        }
+        
+        .ufo::after {
+          content: '';
+          position: absolute;
+          bottom: -3px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: linear-gradient(to right, transparent, rgba(64, 224, 208, 0.5), transparent);
+          border-radius: 50%;
+        }
+        
+        .planet {
+          position: relative;
+        }
+        
+        .planet::before {
+          content: '';
+          position: absolute;
+          top: 10%;
+          left: 10%;
+          width: 30%;
+          height: 30%;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          filter: blur(2px);
         }
         `}
       </style>
