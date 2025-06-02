@@ -40,7 +40,7 @@ const OurFinalInvention = () => {
         delay: 0
       });
 
-      // Add scroll listener for scanning effect
+      // Add scroll listener for horizontal scanning effect
       const handleScroll = () => {
         setScanningActive(true);
         setTimeout(() => setScanningActive(false), 3000);
@@ -81,8 +81,12 @@ const OurFinalInvention = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 relative">
-      {/* Enhanced scanning line effect - horizontal line scanning vertically */}
-      <div className={`scanning-line-horizontal ${scanningActive ? 'active' : ''}`}></div>
+      {/* Horizontal scanning lines effect - appears on scroll */}
+      <div className={`scanning-lines ${scanningActive ? 'active' : ''}`}>
+        <div className="scan-line scan-line-1"></div>
+        <div className="scan-line scan-line-2"></div>
+        <div className="scan-line scan-line-3"></div>
+      </div>
       
       {/* Minimalist typing warning box - smaller and cleaner */}
       <div className="fixed top-36 right-6 z-[60] bg-gradient-to-br from-blue-500/20 to-cyan-400/20 border border-cyan-400/40 rounded-lg px-4 py-3 backdrop-blur-md animate__animated animate__fadeInDown shadow-lg shadow-cyan-400/10 max-w-sm">
@@ -122,74 +126,103 @@ const OurFinalInvention = () => {
       <AIChatbot />
       <Footer />
 
-      {/* Enhanced scanning and typing animations */}
+      {/* Enhanced horizontal scanning animations */}
       <style>{`
-        .scanning-line-horizontal {
+        .scanning-lines {
           position: fixed;
-          top: -100%;
+          top: 0;
           left: 0;
-          width: 100vw;
-          height: 3px;
-          background: linear-gradient(90deg, transparent 20%, #00ff00 30%, #ffffff 50%, #00ff00 70%, transparent 80%);
-          z-index: 1000;
+          width: 100%;
+          height: 100%;
           pointer-events: none;
-          transition: all 0.5s ease;
-          box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff0080, 0 0 60px #00ff0040;
+          z-index: 1000;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .scanning-lines.active {
+          opacity: 1;
+        }
+
+        .scan-line {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #00ff00 20%, #00ff00 80%, transparent);
+          box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           opacity: 0;
         }
 
-        .scanning-line-horizontal.active {
-          opacity: 1;
-          animation: scanVertically 3s ease-in-out;
+        .scan-line-1 {
+          animation: scanHorizontal 3s ease-in-out;
+          animation-delay: 0s;
         }
 
-        @keyframes scanVertically {
+        .scan-line-2 {
+          animation: scanHorizontal 3s ease-in-out;
+          animation-delay: 0.3s;
+          height: 1px;
+          opacity: 0.7;
+        }
+
+        .scan-line-3 {
+          animation: scanHorizontal 3s ease-in-out;
+          animation-delay: 0.6s;
+          height: 1px;
+          opacity: 0.5;
+        }
+
+        .scanning-lines.active .scan-line {
+          opacity: 1;
+        }
+
+        @keyframes scanHorizontal {
           0% { 
-            top: -10px;
+            top: -10px; 
             opacity: 0;
-            transform: scaleX(0.8);
+            box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
           5% {
             opacity: 1;
-            transform: scaleX(1);
-          }
-          25% {
-            box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff0080, 0 0 90px #00ff0040;
+            box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
           }
           50% {
-            top: 50vh;
-            box-shadow: 0 0 40px #00ff00, 0 0 80px #00ff0080, 0 0 120px #00ff0040;
-          }
-          75% {
-            box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff0080, 0 0 90px #00ff0040;
+            opacity: 1;
+            box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00;
           }
           95% {
             opacity: 1;
-            transform: scaleX(1);
+            box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
           }
           100% { 
-            top: calc(100vh + 10px);
+            top: 100vh; 
             opacity: 0;
-            transform: scaleX(0.8);
+            box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
         }
 
-        /* Enhanced section transitions */
-        [data-aos] {
-          transition-property: transform, opacity, background;
-          transition-duration: 1.2s;
-        }
-
-        /* Scanning grid overlay enhancements */
-        .grid-scanning {
+        /* Additional grid overlay for computer scanning effect */
+        .scanning-lines::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           background-image: 
-            linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+            linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
           background-size: 50px 50px;
-          animation: gridScan 6s linear infinite;
+          animation: gridMove 4s linear infinite;
+          opacity: 0;
         }
 
-        @keyframes gridScan {
+        .scanning-lines.active::before {
+          opacity: 1;
+        }
+
+        @keyframes gridMove {
           0% { 
             transform: translate(0, 0);
             opacity: 0.1;
@@ -203,10 +236,36 @@ const OurFinalInvention = () => {
           }
         }
 
+        /* Enhanced section transitions */
+        [data-aos] {
+          transition-property: transform, opacity, background;
+          transition-duration: 1.2s;
+        }
+
         /* Smooth typing cursor animation */
         @keyframes smoothBlink {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
+        }
+
+        /* Computer scanning feedback */
+        body::after {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.02) 0%, transparent 50%);
+          pointer-events: none;
+          z-index: 999;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+
+        .scanning-lines.active ~ * body::after {
+          opacity: 1;
         }
       `}</style>
     </div>
