@@ -8,14 +8,12 @@ import { motion } from 'framer-motion';
 const AboutMe = () => {
   const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; opacity: number; speed: number }[]>([]);
   const [shootingStars, setShootingStars] = useState<{ id: number; x: number; y: number; delay: number }[]>([]);
-  const [planets, setPlanets] = useState<{ id: number; x: number; y: number; size: number; color: string; speed: number }[]>([]);
-  const [ufos, setUfos] = useState<{ id: number; x: number; y: number; delay: number }[]>([]);
   
   useEffect(() => {
     // Generate background stars
     const generateStars = () => {
       const newStars = [];
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 150; i++) {
         newStars.push({
           id: i,
           x: Math.random() * 100,
@@ -31,52 +29,19 @@ const AboutMe = () => {
     // Generate shooting stars
     const generateShootingStars = () => {
       const newShootingStars = [];
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 8; i++) {
         newShootingStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 60,
-          delay: Math.random() * 15
+          delay: Math.random() * 10
         });
       }
       setShootingStars(newShootingStars);
     };
-
-    // Generate planets
-    const generatePlanets = () => {
-      const planetColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
-      const newPlanets = [];
-      for (let i = 0; i < 8; i++) {
-        newPlanets.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 60 + 20,
-          color: planetColors[Math.floor(Math.random() * planetColors.length)],
-          speed: Math.random() * 0.02 + 0.005
-        });
-      }
-      setPlanets(newPlanets);
-    };
-
-    // Generate UFOs
-    const generateUfos = () => {
-      const newUfos = [];
-      for (let i = 0; i < 5; i++) {
-        newUfos.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 80,
-          delay: Math.random() * 20
-        });
-      }
-      setUfos(newUfos);
-    };
     
     generateStars();
     generateShootingStars();
-    generatePlanets();
-    generateUfos();
     
     // Initialize animations
     if (typeof window.AOS !== 'undefined') {
@@ -109,46 +74,6 @@ const AboutMe = () => {
               top: `${star.y}%`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-            }}
-          />
-        ))}
-        
-        {/* Planets */}
-        {planets.map((planet) => (
-          <motion.div
-            key={planet.id}
-            className="absolute rounded-full planet"
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: [0.1, 0.3, 0.1],
-              rotate: 360,
-              scale: [0.8, 1.1, 0.8]
-            }}
-            transition={{
-              duration: 20 + Math.random() * 10,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={{
-              left: `${planet.x}%`,
-              top: `${planet.y}%`,
-              width: `${planet.size}px`,
-              height: `${planet.size}px`,
-              background: `radial-gradient(circle at 30% 30%, ${planet.color}, ${planet.color}88)`,
-              boxShadow: `0 0 20px ${planet.color}44`
-            }}
-          />
-        ))}
-        
-        {/* UFOs */}
-        {ufos.map((ufo) => (
-          <div
-            key={ufo.id}
-            className="ufo"
-            style={{
-              left: `${ufo.x}%`,
-              top: `${ufo.y}%`,
-              animationDelay: `${ufo.delay}s`
             }}
           />
         ))}
@@ -291,9 +216,9 @@ const AboutMe = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Star className="h-8 w-8 text-purple-400 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-indigo-200 mb-2">Zodiac</h3>
-              <p className="text-gray-300">Leo ♌</p>
-              <p className="text-sm text-gray-400">July 23rd baby!</p>
+              <h3 className="text-lg font-bold text-indigo-200 mb-2">Grade</h3>
+              <p className="text-gray-300">10th Grade</p>
+              <p className="text-sm text-gray-400">High school student</p>
             </motion.div>
           </motion.div>
           
@@ -318,23 +243,8 @@ const AboutMe = () => {
             
             <p className="text-gray-300 mb-6 leading-relaxed">
               When I'm not studying or stargazing, you can find me playing badminton or volleyball with friends, 
-              or gaming on my computer. I love playing Plants vs Zombies Garden Warfare 2 and Minecraft - there's something 
-              amazing about building entire worlds and exploring infinite landscapes! The creativity in Minecraft especially 
-              appeals to me because it's like being an architect of entire universes.
-            </p>
-
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Science class is definitely my favorite - especially physics and chemistry! I love learning about how the universe works, 
-              from the smallest atoms to the largest galaxies. I'm currently taking advanced math to prepare for the complex calculations 
-              needed in astronomy, and I'm teaching myself Python programming to analyze astronomical data. 
-              I spend my free time reading about black holes, exoplanets, and the latest space missions.
-            </p>
-
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              As a Leo, I suppose my love for stars was written in the stars! I'm naturally curious and determined, 
-              which helps me tackle challenging physics problems and stay up late observing meteor showers. 
-              I have my own telescope that I use for weekend stargazing sessions, and I'm part of our school's astronomy club 
-              where we organize viewing nights and discuss the latest space discoveries.
+              or gaming on my computer. I love the strategy and teamwork in sports, and gaming helps me relax and 
+              connect with friends online. Science class is definitely my favorite - especially physics and chemistry!
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -391,7 +301,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🎂</span>
-                    <span>Leo ♌ (July 23rd baby!)</span>
+                    <span>Cancer ♋ (July 23rd baby!)</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -407,7 +317,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🎮</span>
-                    <span>Favorite games: PvZ Garden Warfare 2 & Minecraft</span>
+                    <span>Favorite games: space exploration & strategy</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -619,42 +529,6 @@ const AboutMe = () => {
             opacity: 0;
           }
         }
-
-        @keyframes ufo-float {
-          0% {
-            transform: translateX(-50px) translateY(0px) rotate(0deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.8;
-          }
-          50% {
-            transform: translateX(50vw) translateY(-20px) rotate(5deg);
-            opacity: 1;
-          }
-          90% {
-            opacity: 0.8;
-          }
-          100% {
-            transform: translateX(110vw) translateY(0px) rotate(0deg);
-            opacity: 0;
-          }
-        }
-
-        @keyframes planet-pulse {
-          0% { 
-            transform: scale(0.8);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-          }
-          50% { 
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-          }
-          100% { 
-            transform: scale(0.8);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-          }
-        }
         
         .star {
           animation: twinkle 3s infinite ease-in-out;
@@ -665,7 +539,7 @@ const AboutMe = () => {
           width: 2px;
           height: 2px;
           background: linear-gradient(45deg, #fff, transparent);
-          animation: shooting-star 12s infinite linear;
+          animation: shooting-star 8s infinite linear;
         }
         
         .shooting-star::before {
@@ -688,46 +562,6 @@ const AboutMe = () => {
           height: 1px;
           background: linear-gradient(45deg, #a855f7, transparent);
           transform: translateX(-30px);
-        }
-
-        .ufo {
-          position: absolute;
-          width: 30px;
-          height: 15px;
-          background: linear-gradient(135deg, #4ade80, #22d3ee);
-          border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
-          animation: ufo-float 25s infinite linear;
-          filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.5));
-        }
-
-        .ufo::before {
-          content: '';
-          position: absolute;
-          top: -5px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 15px;
-          height: 8px;
-          background: linear-gradient(135deg, #60a5fa, #a78bfa);
-          border-radius: 50%;
-          filter: drop-shadow(0 0 5px rgba(96, 165, 250, 0.8));
-        }
-
-        .ufo::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 40px;
-          height: 2px;
-          background: radial-gradient(ellipse, rgba(34, 211, 238, 0.6), transparent);
-          border-radius: 50%;
-        }
-
-        .planet {
-          animation: planet-pulse 8s infinite ease-in-out;
-          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
         }
         `}
       </style>
