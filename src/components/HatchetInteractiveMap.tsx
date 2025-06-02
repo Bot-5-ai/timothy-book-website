@@ -1,199 +1,161 @@
 
-import React, { useState } from 'react';
-import { MapPin, Trees, Flame, Home, Waves } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const HatchetInteractiveMap = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const mapRef = useRef(null);
 
   const locations = [
     {
       id: 1,
       name: "Crash Site",
-      x: 65,
+      x: 45,
       y: 25,
-      icon: "💥",
-      description: "Where the plane crashed into the L-shaped lake. Brian's survival journey begins here.",
-      details: "The Cessna 406 went down near the shore, partially submerged. Brian managed to retrieve the survival pack from the tail section after learning to dive.",
-      chapter: "Chapters 1-3"
+      icon: "📍",
+      description: "The remote wilderness location where Brian's plane crashed after the pilot suffered a heart attack. This marks the beginning of Brian's incredible survival journey.",
+      details: "The crash site represents the moment Brian's life changed forever. The wreckage of the small Cessna 406 bush plane lies scattered in the dense Canadian wilderness, far from any civilization. Brian was thrown clear of the aircraft during the crash, sustaining minor injuries but finding himself completely alone with nothing but the clothes on his back and a hatchet - a gift from his mother. The crash site serves as both his first shelter attempt and a constant reminder of his isolation. The plane's emergency transmitter was damaged in the crash, cutting off his only hope of immediate rescue. This location symbolizes the beginning of Brian's transformation from a city boy into a wilderness survivor."
     },
     {
       id: 2,
-      name: "The Shelter",
-      x: 45,
-      y: 40,
+      name: "Emergency Shelter",
+      x: 60,
+      y: 35,
       icon: "🏠",
-      description: "Brian's lean-to shelter built against a rock wall near the lake.",
-      details: "Constructed from branches and pine boughs, this shelter protected Brian from wind and rain. The overhang provided crucial protection during storms.",
-      chapter: "Chapter 7"
+      description: "Brian's first makeshift shelter built against a rock overhang, providing basic protection from the elements and wildlife.",
+      details: "After wandering aimlessly for hours following the crash, Brian discovers this natural rock formation that becomes his first real shelter. The overhang provides protection from rain and wind, while the nearby cave-like depression offers a sense of security. Brian learns to reinforce the shelter using branches, leaves, and debris from the forest floor. This location becomes his base of operations for the first several weeks, where he stores his limited supplies and attempts to signal for rescue. The shelter represents Brian's first successful adaptation to wilderness life, though it's not perfect - he still struggles with keeping warm, dry, and safe from curious wildlife. It's here that Brian first truly grasps the reality of his situation and begins to understand that rescue may not come quickly."
     },
     {
       id: 3,
-      name: "First Fire",
-      x: 35,
-      y: 55,
-      icon: "🔥",
-      description: "Where Brian first successfully created fire using his hatchet and stone.",
-      details: "After discovering sparks from striking his hatchet against stone, Brian learned to nurture tinder into flame. This fire spot became central to his survival.",
-      chapter: "Chapter 8"
+      name: "Berry Patch",
+      x: 30,
+      y: 50,
+      icon: "🫐",
+      description: "A cluster of raspberry and blueberry bushes that provided Brian with his first reliable food source, teaching him about foraging.",
+      details: "This berry patch becomes Brian's salvation during his most desperate hunger. Located about a quarter-mile from his shelter, the patch contains a mix of wild raspberries, blueberries, and other edible berries. Brian's discovery of this food source marks a turning point in his survival story - it's his first successful foraging attempt and gives him the energy and hope he needs to continue. However, his first encounter with the berries also teaches him hard lessons about wilderness survival. He initially eats too many and becomes violently ill, learning the importance of moderation and gradually introducing new foods to his system. The berry patch also attracts wildlife, including bears, which forces Brian to be more cautious and aware of his surroundings. This location represents Brian's growing understanding of the forest ecosystem and his place within it."
     },
     {
       id: 4,
-      name: "Berry Patch",
-      x: 20,
-      y: 30,
-      icon: "🫐",
-      description: "The raspberry patch where Brian first found food and encountered the bear.",
-      details: "These gut cherries provided Brian's first substantial meal but also taught him about food poisoning. The bear encounter here was a crucial learning experience.",
-      chapter: "Chapter 6"
+      name: "Fire Making Site",
+      x: 55,
+      y: 45,
+      icon: "🔥",
+      description: "The location where Brian finally succeeds in making fire using his hatchet and a piece of flint, a pivotal moment in his survival.",
+      details: "This site marks one of the most crucial achievements in Brian's survival journey. After days of failed attempts and growing desperation, Brian finally masters the art of fire-making here using his hatchet to strike sparks from a piece of flint he discovered. The location is strategically chosen - close enough to his shelter for convenience, but positioned to avoid setting the forest ablaze. The fire ring Brian creates becomes the heart of his survival efforts, providing warmth, light, protection from insects and predators, and most importantly, a way to cook food and purify water. The psychological impact of having fire cannot be overstated - it gives Brian a sense of control over his environment and connects him to his primitive ancestors. This location also becomes his signal fire site, where he maintains a constant smoke signal hoping to attract rescue aircraft. The mastery of fire represents Brian's evolution from helpless victim to capable survivor."
     },
     {
       id: 5,
-      name: "Wolf Den",
-      x: 80,
+      name: "Fishing Spot",
+      x: 40,
       y: 60,
-      icon: "🐺",
-      description: "The area where Brian encountered wolves during his exploration.",
-      details: "Brian's encounter with the wolf pack taught him about mutual respect in nature. The wolves showed him that not all wild animals were threats.",
-      chapter: "Chapter 15"
+      icon: "🎣",
+      description: "A productive fishing area along the lake where Brian learns to catch fish, becoming his primary protein source.",
+      details: "Located along a shallow inlet of the L-shaped lake, this fishing spot becomes Brian's most reliable source of protein. Initially, Brian struggles to catch fish with makeshift spears and his bare hands, but eventually develops effective techniques using a bow and arrow he crafts from birch wood and his shoelaces. The spot is ideal because the water is shallow enough to see the fish clearly, and the rocky bottom provides good footing. Brian learns to read the water, understanding fish behavior and the best times to hunt. He discovers that early morning and evening are most productive, and that patience is essential. This location teaches Brian about the abundance that nature can provide to those who understand its rhythms. The fishing spot also becomes a place of meditation and reflection for Brian, where he often sits and thinks about his family, his situation, and his growing confidence in his ability to survive. It represents his mastery of procuring food and his deep connection to the natural world."
+    },
+    {
+      id: 6,
+      name: "Wolf Territory",
+      x: 75,
+      y: 30,
+      icon: "🚫",
+      description: "A dangerous area that Brian learns to avoid after encountering wolves, teaching him about wilderness hazards.",
+      details: "This heavily forested area becomes a crucial lesson in wilderness awareness and respect for wildlife. Brian's encounter with wolves here teaches him that the forest has its own rules and hierarchies that he must understand and respect. The wolves are not necessarily aggressive toward Brian, but their presence makes it clear that this is their domain. Brian learns to read the signs of wolf activity - tracks, scat, territorial markings, and the distinctive howling that carries through the forest at night. This experience teaches him about the importance of avoiding certain areas, especially during hunting times or when wolves are protecting their young. The encounter also reinforces Brian's understanding that he is not the apex predator in this environment and must remain constantly vigilant. This location represents the wildness and danger that always lurk in the background of Brian's survival story, reminding him that nature is both provider and potential destroyer. It's a lesson in humility and the importance of coexisting with, rather than trying to dominate, the natural world."
     }
   ];
 
-  const legendItems = [
-    { icon: <Trees className="h-5 w-5 text-green-500" />, label: "Dense Forest", color: "bg-green-800" },
-    { icon: <Waves className="h-5 w-5 text-blue-500" />, label: "L-Shaped Lake", color: "bg-blue-600" },
-    { icon: <MapPin className="h-5 w-5 text-red-500" />, label: "Key Locations", color: "bg-red-600" },
-    { icon: <Flame className="h-5 w-5 text-orange-500" />, label: "Fire Sites", color: "bg-orange-600" },
-    { icon: <Home className="h-5 w-5 text-amber-500" />, label: "Shelter Areas", color: "bg-amber-600" }
-  ];
+  const handleLocationClick = (location) => {
+    setSelectedLocation(location);
+  };
+
+  useEffect(() => {
+    const AOS = window.AOS;
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    }
+  }, []);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-green-900 via-green-800 to-gray-900">
-      <div className="container mx-auto">
-        <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-3xl md:text-4xl font-cabin font-bold mb-4 text-amber-400">
-            Interactive Wilderness Map
-          </h2>
-          <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
-            Explore the Canadian wilderness where Brian's survival story unfolds. Click on locations to learn more about key events.
-          </p>
-        </div>
+    <section className="py-20 px-4 bg-gradient-to-b from-green-50 to-green-100">
+      <div className="text-center mb-16" data-aos="fade-up">
+        <h2 className="text-3xl md:text-4xl font-merriweather font-bold mb-4 text-green-800">
+          Brian's Journey in Hatchet
+        </h2>
+        <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+          Explore the key locations that shaped Brian's incredible 54-day survival experience in the Canadian wilderness.
+        </p>
+        <div className="w-20 h-1 bg-green-500 mx-auto mt-6"></div>
+      </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Map Area */}
-            <div className="lg:col-span-2">
-              <div className="bg-gradient-to-br from-green-900/50 to-blue-900/30 rounded-xl p-6 border border-amber-500/30 backdrop-blur-sm">
-                <div className="relative bg-gradient-to-br from-green-700 via-green-600 to-blue-500 rounded-lg h-96 overflow-hidden shadow-2xl">
-                  {/* Forest texture overlay */}
-                  <div className="absolute inset-0 opacity-20" style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.4'%3E%3Ccircle cx='7' cy='7' r='3'/%3E%3Ccircle cx='53' cy='53' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-                  }}></div>
-                  
-                  {/* Lake */}
-                  <div className="absolute bottom-0 right-0 w-48 h-32 bg-blue-400 rounded-tl-3xl opacity-80"></div>
-                  <div className="absolute bottom-8 right-16 w-20 h-24 bg-blue-500 rounded-lg opacity-70"></div>
-                  
-                  {/* Rivers */}
-                  <div className="absolute bottom-16 left-1/4 w-2 h-20 bg-blue-400 transform rotate-45 opacity-60"></div>
-                  <div className="absolute top-1/3 right-1/3 w-1 h-16 bg-blue-300 transform -rotate-12 opacity-60"></div>
-                  
-                  {/* Location markers */}
-                  {locations.map((location) => (
-                    <div
-                      key={location.id}
-                      className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-                      style={{ left: `${location.x}%`, top: `${location.y}%` }}
-                      onClick={() => setSelectedLocation(location)}
-                    >
-                      <div className="relative">
-                        <div className="text-2xl animate-bounce group-hover:scale-110 transition-transform duration-200 bg-white/90 rounded-full p-1 shadow-lg backdrop-blur-sm">
-                          {location.icon}
-                        </div>
-                        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900/90 text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 backdrop-blur-sm">
-                          {location.name}
-                        </div>
-                      </div>
-                      {/* Pulse effect */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-400/30 rounded-full animate-ping"></div>
-                    </div>
-                  ))}
-                  
-                  {/* Compass */}
-                  <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-full p-3">
-                    <div className="text-white text-sm font-bold">
-                      <div className="text-center mb-1">N</div>
-                      <div className="flex justify-between items-center">
-                        <span>W</span>
-                        <div className="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center">
-                          <div className="w-2 h-2 bg-white rounded-full"></div>
-                        </div>
-                        <span>E</span>
-                      </div>
-                      <div className="text-center mt-1">S</div>
-                    </div>
-                  </div>
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Interactive Map */}
+          <div className="relative" data-aos="fade-right">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-green-200">
+              <svg
+                ref={mapRef}
+                width="100%"
+                height="auto"
+                viewBox="0 0 100 80"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <image
+                  href="/lovable-uploads/map-hatchet-book.jpg"
+                  width="100"
+                  height="80"
+                />
+                {locations.map((location) => (
+                  <g
+                    key={location.id}
+                    className="location-marker"
+                    transform={`translate(${location.x}, ${location.y})`}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => handleLocationClick(location)}
+                  >
+                    <circle cx="0" cy="0" r="2" fill="green" />
+                    <text x="5" y="2" fontSize="4" fill="green">
+                      {location.icon}
+                    </text>
+                  </g>
+                ))}
+              </svg>
+            </div>
+          </div>
+
+          {/* Location Information Panel */}
+          <div className="space-y-6" data-aos="fade-left">
+            {selectedLocation ? (
+              <div className="bg-white p-8 rounded-xl shadow-lg border border-green-200">
+                <div className="flex items-center mb-6">
+                  <span className="text-4xl mr-4">{selectedLocation.icon}</span>
+                  <h3 className="text-2xl font-bold text-green-800">{selectedLocation.name}</h3>
+                </div>
+                <p className="text-green-700 mb-4 text-lg leading-relaxed">{selectedLocation.description}</p>
+                <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                  <p className="text-green-800 leading-relaxed">{selectedLocation.details}</p>
                 </div>
               </div>
-            </div>
-
-            {/* Legend and Info Panel */}
-            <div className="space-y-6">
-              {/* Legend */}
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-700/80 rounded-xl p-6 border border-amber-500/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-amber-400 mb-4 flex items-center">
-                  <MapPin className="h-5 w-5 mr-2" />
-                  Map Legend
-                </h3>
+            ) : (
+              <div className="bg-white p-8 rounded-xl shadow-lg border border-green-200">
+                <h3 className="text-2xl font-bold text-green-800 mb-4">Explore Brian's Journey</h3>
+                <p className="text-green-700 mb-6">
+                  Click on any location marker to discover the crucial spots that shaped Brian's 54-day survival experience. Each location tells a story of adaptation, learning, and growth in the unforgiving Canadian wilderness.
+                </p>
                 <div className="space-y-3">
-                  {legendItems.map((item, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <div className={`w-4 h-4 rounded ${item.color}`}></div>
-                      {item.icon}
-                      <span className="text-gray-300 text-sm">{item.label}</span>
-                    </div>
+                  {locations.map((location) => (
+                    <button
+                      key={location.id}
+                      onClick={() => setSelectedLocation(location)}
+                      className="flex items-center p-3 w-full text-left rounded-lg border border-green-200 hover:bg-green-50 transition-colors"
+                    >
+                      <span className="text-2xl mr-3">{location.icon}</span>
+                      <span className="text-green-800 font-medium">{location.name}</span>
+                    </button>
                   ))}
                 </div>
               </div>
-
-              {/* Location Info */}
-              {selectedLocation && (
-                <div className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 rounded-xl p-6 border border-amber-500/40 backdrop-blur-sm animate-fade-in">
-                  <h3 className="text-xl font-bold text-amber-400 mb-3 flex items-center">
-                    <span className="text-2xl mr-2">{selectedLocation.icon}</span>
-                    {selectedLocation.name}
-                  </h3>
-                  <p className="text-gray-300 mb-3">{selectedLocation.description}</p>
-                  <p className="text-gray-400 text-sm mb-3">{selectedLocation.details}</p>
-                  <div className="bg-amber-600/20 rounded-lg p-3">
-                    <span className="text-amber-300 font-semibold text-sm">{selectedLocation.chapter}</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Quick Stats */}
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-700/80 rounded-xl p-6 border border-amber-500/30 backdrop-blur-sm">
-                <h3 className="text-lg font-bold text-amber-400 mb-4">Survival Stats</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Days Survived:</span>
-                    <span className="text-white font-bold">54 days</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Temperature Range:</span>
-                    <span className="text-white font-bold">40°F - 85°F</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Lake Size:</span>
-                    <span className="text-white font-bold">~2 miles long</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Forest Type:</span>
-                    <span className="text-white font-bold">Boreal</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
