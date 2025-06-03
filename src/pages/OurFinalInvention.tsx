@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -40,10 +39,10 @@ const OurFinalInvention = () => {
         delay: 0
       });
 
-      // Add scroll listener for vertical scanning effect
+      // Add scroll listener for horizontal scanning effect
       const handleScroll = () => {
         setScanningActive(true);
-        setTimeout(() => setScanningActive(false), 2500);
+        setTimeout(() => setScanningActive(false), 3000);
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -81,8 +80,8 @@ const OurFinalInvention = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 relative">
-      {/* Vertical scanning line effect - appears on scroll */}
-      <div className={`scanning-line-vertical ${scanningActive ? 'active' : ''}`}></div>
+      {/* Horizontal scanning line effect - scans from top to bottom */}
+      <div className={`scanning-line-horizontal ${scanningActive ? 'active' : ''}`}></div>
       
       {/* Minimalist typing warning box - smaller and cleaner */}
       <div className="fixed top-36 right-6 z-[60] bg-gradient-to-br from-blue-500/20 to-cyan-400/20 border border-cyan-400/40 rounded-lg px-4 py-3 backdrop-blur-md animate__animated animate__fadeInDown shadow-lg shadow-cyan-400/10 max-w-sm">
@@ -122,15 +121,15 @@ const OurFinalInvention = () => {
       <AIChatbot />
       <Footer />
 
-      {/* Enhanced vertical scanning and typing animations */}
+      {/* Enhanced horizontal scanning animations */}
       <style>{`
-        .scanning-line-vertical {
+        .scanning-line-horizontal {
           position: fixed;
           left: 0;
-          top: -100%;
-          width: 4px;
-          height: 100%;
-          background: linear-gradient(180deg, transparent, #00ff00 30%, #00ff00 70%, transparent);
+          top: -10px;
+          width: 100%;
+          height: 4px;
+          background: linear-gradient(90deg, transparent, #00ff00 30%, #00ff00 70%, transparent);
           z-index: 1000;
           pointer-events: none;
           transition: all 0.3s ease;
@@ -138,15 +137,14 @@ const OurFinalInvention = () => {
           opacity: 0;
         }
 
-        .scanning-line-vertical.active {
-          top: 0;
+        .scanning-line-horizontal.active {
           opacity: 1;
-          animation: scanVertical 2.5s ease-in-out;
+          animation: scanHorizontal 3s ease-in-out;
         }
 
-        @keyframes scanVertical {
+        @keyframes scanHorizontal {
           0% { 
-            top: -100%; 
+            top: -10px; 
             opacity: 0;
             box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
@@ -157,41 +155,39 @@ const OurFinalInvention = () => {
           50% {
             opacity: 1;
             box-shadow: 0 0 25px #00ff00, 0 0 50px #00ff00;
-            left: 25%;
+            top: 50vh;
           }
           90% {
             opacity: 1;
             box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
-            left: 75%;
           }
           100% { 
-            top: 100%; 
+            top: 100vh; 
             opacity: 0;
-            left: 100%;
             box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
           }
         }
 
-        /* Additional vertical scan lines for more computer-like effect */
-        .scanning-line-vertical::before {
+        /* Additional horizontal scan lines for enhanced computer-like effect */
+        .scanning-line-horizontal::before {
           content: '';
           position: absolute;
-          left: 10px;
-          top: 0;
-          width: 2px;
-          height: 100%;
-          background: linear-gradient(180deg, transparent, #00ff00 40%, #00ff00 60%, transparent);
+          left: 0;
+          top: 8px;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #00ff00 40%, #00ff00 60%, transparent);
           opacity: 0.6;
         }
 
-        .scanning-line-vertical::after {
+        .scanning-line-horizontal::after {
           content: '';
           position: absolute;
-          left: -8px;
-          top: 0;
-          width: 1px;
-          height: 100%;
-          background: linear-gradient(180deg, transparent, #00ff00 50%, transparent);
+          left: 0;
+          top: -6px;
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, #00ff00 50%, transparent);
           opacity: 0.4;
         }
 
@@ -251,7 +247,7 @@ const OurFinalInvention = () => {
           opacity: 0;
         }
 
-        .scanning-line-vertical.active ~ * body::before {
+        .scanning-line-horizontal.active ~ * body::before {
           opacity: 1;
         }
 
