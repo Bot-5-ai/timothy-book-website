@@ -321,7 +321,7 @@ const AboutMe = () => {
             </p>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
-              When I'm not stargazing or reading about astrophysics, I love staying active through sports. Badminton and volleyball are my favorites because they require quick thinking, strategy, and excellent teamwork - skills that I believe will also help me in scientific research. I'm also really into creative gaming, especially Minecraft where I can build entire worlds and experiment with different designs. There's something amazing about creating something from nothing, whether it's a massive space station in Minecraft or theorizing about planetary formations in real life.
+              When I'm not stargazing or reading about astrophysics, I love staying active through sports. Badminton and volleyball are my favorites because they require quick thinking, strategy, and excellent teamwork - skills that I believe will also help me in scientific research. I also enjoy gaming, especially space exploration and strategy games that challenge my problem-solving abilities. These hobbies help me relax while still engaging my mind in different ways.
             </p>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -373,7 +373,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <GamepadIcon className="text-purple-400 mr-3 h-5 w-5" />
-                    <span>Creative Gaming & Minecraft Building</span>
+                    <span>Strategic Gaming & Space Simulations</span>
                   </motion.li>
                 </ul>
               </div>
@@ -421,8 +421,8 @@ const AboutMe = () => {
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <span className="text-purple-400 mr-3">🎮</span>
-                    <span>Love building space stations and planets in Minecraft</span>
+                    <span className="text-purple-400 mr-3">🚀</span>
+                    <span>Dream destination: Atacama Desert's ALMA Observatory</span>
                   </motion.li>
                 </ul>
               </div>
