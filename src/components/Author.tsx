@@ -21,14 +21,13 @@ const Author = () => {
                   <div className="inline-block rounded-full border-4 border-white p-2 mb-4 overflow-hidden">
                     <img 
                       src="/lovable-uploads/bf953bbd-2af1-455e-8b7c-bf24f14e79a1.png" 
-                      alt="James Barrat"
+                      alt="Gary Paulsen"
                       className="h-48 w-48 rounded-full object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-1">James Barrat</h3>
-                  <p className="text-bookblue-100 mb-4">Author & Documentarian</p>
+                  <h3 className="text-xl font-bold text-white mb-1">Gary Paulsen</h3>
+                  <p className="text-bookblue-100 mb-4">Survival Story Master</p>
                   
-                  {/* Famous Books section moved here */}
                   <div className="bg-white/20 rounded-lg p-4 mt-4">
                     <h4 className="text-white font-bold text-sm mb-2">Famous Books:</h4>
                     <ul className="text-bookblue-100 text-sm space-y-1">
@@ -45,15 +44,15 @@ const Author = () => {
               
               <div className="p-8 md:w-2/3">
                 <p className="text-gray-700 mb-4">
-                  James Barrat is a documentary filmmaker and author living in America. He has created films for National Geographic, Discovery, PBS and other broadcasters that are from America and Europe. His book that he wrote titled "Our Final Invention" talks about the risks of us humans developing AI that are too advanced.
+                  Here's the thing about Gary Paulsen - this guy didn't just write about adventure and survival from behind a desk. He actually lived it. Born in 1939, Paulsen had what you might call a pretty rough childhood. His parents moved around a lot, and he often felt like an outsider. But instead of letting that break him down, he turned to the wilderness and found something there that would shape his entire life.
                 </p>
                 
                 <p className="text-gray-700 mb-4">
-                  Barrat was interested in the risks of AI after he had interviewed multiple experts such as Ray Kurzweil and others for some of his documentary projects. He has a growing concern after those interviews as he learned a lot about AI developing too quickly and he fears that we don't pay attention to safety protocols when trying to develop stronger AI.
+                  What makes Paulsen's writing so real is that he's actually done most of the stuff his characters do. He's run sled dogs in Alaska, lived off the land, and faced those moments where nature tests everything you've got. When Brian struggles to make fire in Hatchet, Paulsen knows exactly what that desperation feels like because he's been there himself. That's why reading his books feels less like fiction and more like getting survival advice from someone who really knows what they're talking about.
                 </p>
                 
                 <p className="text-gray-700">
-                  Through his work, Barrat wants to raise more awareness about what can happen to mankind if we don't get a grasp of AI development. His voice is very well known to build better safety for AI and calls for more research so that we build AI to help us and respects our values.
+                  Paulsen has this amazing gift for writing about young people who discover they're way tougher than they ever imagined. His stories aren't just about surviving in the wilderness - they're about finding out who you really are when everything comfortable gets stripped away. He's written over 200 books, but it's his survival stories like Hatchet that really show his genius for understanding what it means to grow up and find your inner strength.
                 </p>
               </div>
             </div>
@@ -64,12 +63,12 @@ const Author = () => {
               <div className="text-bookblue-500 mb-4">
                 <Award className="h-8 w-8" />
               </div>
-              <h4 className="font-merriweather font-bold text-lg mb-2">Career Highlights</h4>
+              <h4 className="font-merriweather font-bold text-lg mb-2">Recognition</h4>
               <ul className="text-gray-700 space-y-2">
-                <li>• Award-winning documentary filmmaker</li>
-                <li>• National Geographic contributor</li>
-                <li>• Speaker on AI safety and ethics</li>
-                <li>• Consultant on technology risks</li>
+                <li>• Three-time Newbery Honor winner</li>
+                <li>• Margaret A. Edwards Award recipient</li>
+                <li>• Over 35 million books sold worldwide</li>
+                <li>• Young Adult Literature Hall of Fame</li>
               </ul>
             </div>
 
@@ -77,12 +76,12 @@ const Author = () => {
               <div className="text-bookblue-500 mb-4">
                 <BookOpen className="h-8 w-8" />
               </div>
-              <h4 className="font-merriweather font-bold text-lg mb-2">Notable Works</h4>
+              <h4 className="font-merriweather font-bold text-lg mb-2">Real-Life Adventures</h4>
               <ul className="text-gray-700 space-y-2">
-                <li>• "Our Final Invention" (2013)</li>
-                <li>• Various technology documentaries</li>
-                <li>• Articles on AI development</li>
-                <li>• Interviews with AI pioneers</li>
+                <li>• Completed the Iditarod sled dog race</li>
+                <li>• Sailed across the Pacific Ocean</li>
+                <li>• Lived in the wilderness for months</li>
+                <li>• Served in the Army and worked many jobs</li>
               </ul>
             </div>
 
@@ -90,12 +89,12 @@ const Author = () => {
               <div className="text-bookblue-500 mb-4">
                 <Globe className="h-8 w-8" />
               </div>
-              <h4 className="font-merriweather font-bold text-lg mb-2">Influence & Impact</h4>
+              <h4 className="font-merriweather font-bold text-lg mb-2">Writing Legacy</h4>
               <ul className="text-gray-700 space-y-2">
-                <li>• Raised awareness about AI risks</li>
-                <li>• Contributed to AI safety discourse</li>
-                <li>• Advocated for responsible AI development</li>
-                <li>• Influenced tech policy discussions</li>
+                <li>• Over 200 books and articles published</li>
+                <li>• Inspired countless young readers</li>
+                <li>• Champion of literacy and reading</li>
+                <li>• Master of young adult adventure fiction</li>
               </ul>
             </div>
           </div>
