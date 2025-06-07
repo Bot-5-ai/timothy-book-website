@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { User, Award, Globe, BookOpen } from 'lucide-react';
 
@@ -21,14 +20,14 @@ const Author = () => {
                   <div className="inline-block rounded-full border-4 border-white p-2 mb-4 overflow-hidden">
                     <img 
                       src="/lovable-uploads/bf953bbd-2af1-455e-8b7c-bf24f14e79a1.png" 
-                      alt="James Barrat"
+                      alt="Gary Paulsen"
                       className="h-48 w-48 rounded-full object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-1">James Barrat</h3>
-                  <p className="text-bookblue-100 mb-4">Author & Documentarian</p>
+                  <h3 className="text-xl font-bold text-white mb-1">Gary Paulsen</h3>
+                  <p className="text-bookblue-100 mb-4">Author & Outdoorsman</p>
                   
-                  {/* Famous Books section moved here */}
+                  {/* Famous Books section */}
                   <div className="bg-white/20 rounded-lg p-4 mt-4">
                     <h4 className="text-white font-bold text-sm mb-2">Famous Books:</h4>
                     <ul className="text-bookblue-100 text-sm space-y-1">
@@ -45,15 +44,15 @@ const Author = () => {
               
               <div className="p-8 md:w-2/3">
                 <p className="text-gray-700 mb-4">
-                  James Barrat is a documentary filmmaker and author living in America. He has created films for National Geographic, Discovery, PBS and other broadcasters that are from America and Europe. His book that he wrote titled "Our Final Invention" talks about the risks of us humans developing AI that are too advanced.
+                  Gary Paulsen lived the kind of life that most people only read about in adventure novels. Growing up wasn't easy for him - his parents struggled with alcoholism, and he often found himself on his own. But instead of letting these challenges define him, Paulsen discovered something magical: the wilderness became his teacher, his refuge, and eventually, his greatest inspiration.
                 </p>
                 
                 <p className="text-gray-700 mb-4">
-                  Barrat was interested in the risks of AI after he had interviewed multiple experts such as Ray Kurzweil and others for some of his documentary projects. He has a growing concern after those interviews as he learned a lot about AI developing too quickly and he fears that we don't pay attention to safety protocols when trying to develop stronger AI.
+                  What makes Paulsen's writing so powerful is that he actually lived these adventures. He didn't just imagine what it would be like to survive in the wild - he did it. He ran the Iditarod (that brutal 1,150-mile dog sled race across Alaska), lived off the land, and experienced firsthand the raw beauty and danger of nature. When he writes about Brian struggling to make fire or catch fish, you can feel the authenticity in every word.
                 </p>
                 
                 <p className="text-gray-700">
-                  Through his work, Barrat wants to raise more awareness about what can happen to mankind if we don't get a grasp of AI development. His voice is very well known to build better safety for AI and calls for more research so that we build AI to help us and respects our values.
+                  Paulsen had this incredible gift for connecting with young readers because he never talked down to them. He understood that kids could handle real, gritty stories about survival, courage, and growing up. His books, especially Hatchet, have become classics because they respect young people's intelligence while delivering genuine thrills and life lessons. Sadly, we lost this literary giant in 2021, but his stories continue to inspire new generations of readers to look at nature - and themselves - with fresh eyes.
                 </p>
               </div>
             </div>
@@ -66,10 +65,10 @@ const Author = () => {
               </div>
               <h4 className="font-merriweather font-bold text-lg mb-2">Career Highlights</h4>
               <ul className="text-gray-700 space-y-2">
-                <li>• Award-winning documentary filmmaker</li>
-                <li>• National Geographic contributor</li>
-                <li>• Speaker on AI safety and ethics</li>
-                <li>• Consultant on technology risks</li>
+                <li>• Award-winning young adult author</li>
+                <li>• Three-time Newbery Honor recipient</li>
+                <li>• Iditarod sled dog racer</li>
+                <li>• Over 200 published books</li>
               </ul>
             </div>
 
@@ -79,10 +78,10 @@ const Author = () => {
               </div>
               <h4 className="font-merriweather font-bold text-lg mb-2">Notable Works</h4>
               <ul className="text-gray-700 space-y-2">
-                <li>• "Our Final Invention" (2013)</li>
-                <li>• Various technology documentaries</li>
-                <li>• Articles on AI development</li>
-                <li>• Interviews with AI pioneers</li>
+                <li>• "Hatchet" series (5 books)</li>
+                <li>• "Brian's Saga" continuation</li>
+                <li>• "Dogsong" (Newbery Honor)</li>
+                <li>• "The Winter Room" (Newbery Honor)</li>
               </ul>
             </div>
 
@@ -90,12 +89,12 @@ const Author = () => {
               <div className="text-bookblue-500 mb-4">
                 <Globe className="h-8 w-8" />
               </div>
-              <h4 className="font-merriweather font-bold text-lg mb-2">Influence & Impact</h4>
+              <h4 className="font-merriweather font-bold text-lg mb-2">Legacy & Impact</h4>
               <ul className="text-gray-700 space-y-2">
-                <li>• Raised awareness about AI risks</li>
-                <li>• Contributed to AI safety discourse</li>
-                <li>• Advocated for responsible AI development</li>
-                <li>• Influenced tech policy discussions</li>
+                <li>• Inspired countless young readers</li>
+                <li>• Champion of outdoor education</li>
+                <li>• Authentic wilderness adventure stories</li>
+                <li>• Enduring influence on YA literature</li>
               </ul>
             </div>
           </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BookOpen, Cpu, BrainCircuit } from 'lucide-react';
 
@@ -42,23 +41,23 @@ const Summary = () => {
 
               <div className="text-gray-300 space-y-4">
                 <p className="animate__animated animate__fadeInUp animate__delay-2s">
-                  In the book "Our Final Invention", the author James Barrat talks about some of the risks of developing artificial intelligence that can surpass humans. The book presents a safe view of how AI can surpass the human mind that it can take control over use and maybe even pose a threat to our society.
+                  James Barrat's "Our Final Invention" dives deep into something that keeps a lot of smart people awake at night - what happens when we create machines that are smarter than us? It's not just science fiction anymore; this is a real conversation happening in labs and boardrooms around the world. Barrat takes us on a journey through the exciting yet terrifying possibilities of artificial intelligence that could one day surpass human intelligence.
                 </p>
                 
                 <p className="animate__animated animate__fadeInUp animate__delay-3s">
-                  Barrat educates us on something that is known as <span className="text-cyan-300 hover:text-cyan-200 transition-colors">Artificial General Intelligence (AGI)</span> - AI systems that are equal to human intelligence and <span className="text-blue-300 hover:text-blue-200 transition-colors">Artificial Super Intelligence (ASI)</span> - AI systems that can surpass human knowledge. James Barrat talks about once when we develop AGI, developing ASI may happen too quickly.
+                  The book introduces us to two game-changing concepts: <span className="text-cyan-300 hover:text-cyan-200 transition-colors">Artificial General Intelligence (AGI)</span> - basically AI that's as smart as humans - and <span className="text-blue-300 hover:text-blue-200 transition-colors">Artificial Super Intelligence (ASI)</span> - AI that leaves us in the dust intellectually. Here's the kicker: Barrat argues that once we hit AGI, the jump to ASI might happen so fast we won't have time to hit the brakes.
                 </p>
                 
                 <p className="animate__animated animate__fadeInUp animate__delay-4s">
-                  The main problem that Barrat shares in his novel is something known as the "Control Problem". Which is how can us humans make sure that superintelligent machines share the same values and goals as us? Barrat interviews many researchers of AI, some philosophers and scientists who have different perspectives on this challenge.
+                  The heart of the book revolves around what experts call the "Control Problem" - basically, how do we make sure these super-smart machines actually care about what's good for humanity? It sounds simple, but it's incredibly complex. Barrat interviews everyone from AI researchers to philosophers, and their perspectives paint a picture that's both fascinating and slightly nerve-wracking.
                 </p>
                 
                 <p className="animate__animated animate__fadeInUp animate__delay-5s">
-                  By checking over trends of AI development, initiatives from the government and private industry research, Barrat makes a case on how we need to make sure that we need to do AI safety research so that when we reach technological breakthroughs, we can control the intelligence.
+                  What makes this book compelling is how Barrat connects the dots between current AI trends, government initiatives, and private research. He builds a convincing case that we need to be working on AI safety now, not after we've already created something we can't control. It's like installing seatbelts before you start driving, not after the crash.
                 </p>
 
                 <p className="animate__animated animate__fadeInUp animate__delay-6s">
-                  This book finishes off with recommendations for AI research and development. Barrat really emphasizes on how we should build AI so that it will work in our favor and following rules on what is right and what is wrong.
+                  The book wraps up with practical recommendations for how we should approach AI development moving forward. Barrat isn't trying to scare us away from AI - he's passionate about making sure we develop it responsibly, with safety measures built in from the ground up. His message is clear: we need AI that works with us, not against us.
                 </p>
               </div>
             </div>

@@ -313,26 +313,26 @@ const AboutMe = () => {
             </h2>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Hello! I'm Timothy Chen, a 15-year-old student currently in Grade 10, and I have an absolutely incredible passion for astronomy and space science. Ever since I was a young child, I've been completely mesmerized by the vast expanse of the universe - from the twinkling stars in our night sky to the mysterious black holes that bend space and time itself. My fascination began when I first looked through a telescope at age 8 and saw Saturn's rings with my own eyes. That moment changed everything for me.
+              Hey there! So I'm Timothy Chen, and I'm 15 years old, currently making my way through Grade 10. Here's the thing about me - I'm absolutely obsessed with space and astronomy. Like, seriously obsessed. Ever since I was little, I've been that kid who stares up at the night sky and wonders what's out there. It all started when I was 8 and got my first look at Saturn through a telescope. Seeing those rings with my own eyes? That moment completely changed everything for me.
             </p>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              My ultimate dream is to become a professional astronomer and contribute meaningful discoveries to our understanding of the cosmos. I'm particularly interested in exoplanet research and the search for potentially habitable worlds beyond our solar system. The possibility that we might find signs of life elsewhere in the universe absolutely captivates me. I spend countless hours reading about the latest discoveries from the James Webb Space Telescope and following missions to Mars.
+              My biggest dream is to become a professional astronomer someday and actually contribute to our understanding of the universe. What really gets me excited is exoplanet research - the idea that we might discover planets out there that could support life just blows my mind. I spend way too much time reading about the latest discoveries from the James Webb Space Telescope and following what's happening with Mars missions. It's like we're living in a golden age of space exploration!
             </p>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
-              When I'm not stargazing or reading about astrophysics, I love staying active through sports. Badminton and volleyball are my favorites because they require quick thinking, strategy, and excellent teamwork - skills that I believe will also help me in scientific research. I also enjoy gaming, especially space exploration and strategy games that challenge my problem-solving abilities. These hobbies help me relax while still engaging my mind in different ways.
+              When I'm not lost in space documentaries or stargazing, I love staying active with sports. Badminton and volleyball are my go-to activities because they're all about quick thinking, strategy, and teamwork - skills I think will actually help me in scientific research too. I also spend a good amount of time gaming, especially creative and sandbox games like Minecraft where I can build and explore. There's something really satisfying about creating worlds and solving problems, whether it's in a game or figuring out how the universe works.
             </p>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Academically, I excel in physics and chemistry, which are laying the foundation for my future studies in astrophysics. I'm already planning to pursue a degree in astronomy or astrophysics at university, with hopes of eventually working at major observatories or even space agencies like NASA or ESA. I believe that understanding the universe around us is one of humanity's most important endeavors.
+              School-wise, I'm doing really well in physics and chemistry, which are basically the building blocks for everything I want to study later. I'm already planning out my path to university - looking at astronomy and astrophysics programs, and dreaming about maybe working at NASA or ESA someday. I know it sounds ambitious, but I truly believe that understanding our place in the universe is one of the most important things we can do as humans.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-bold mb-4 text-indigo-200 flex items-center">
                   <Star className="mr-2 h-5 w-5 text-purple-400" />
-                  My Deep Interests
+                  What I'm Really Into
                 </h3>
                 <ul className="space-y-3 text-gray-300">
                   <motion.li 
@@ -373,7 +373,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <GamepadIcon className="text-purple-400 mr-3 h-5 w-5" />
-                    <span>Strategic Gaming & Space Simulations</span>
+                    <span>Creative Gaming (Minecraft, sandbox games)</span>
                   </motion.li>
                 </ul>
               </div>
@@ -381,7 +381,7 @@ const AboutMe = () => {
               <div>
                 <h3 className="text-xl font-bold mb-4 text-indigo-200 flex items-center">
                   <i className="fas fa-lightbulb mr-2 text-purple-400"></i>
-                  Fun Space Facts About Me
+                  Random Cool Facts About Me
                 </h3>
                 <ul className="space-y-3 text-gray-300">
                   <motion.li 
@@ -390,7 +390,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">♌</span>
-                    <span>Leo ♌ (July 23rd) - Just like a lion, I'm bold in pursuing my cosmic dreams!</span>
+                    <span>I'm a Leo (July 23rd) - which probably explains why I'm so passionate about everything!</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -398,7 +398,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🌙</span>
-                    <span>I stay up late tracking ISS passes and watching meteor showers</span>
+                    <span>I track ISS passes and stay up way too late watching meteor showers</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -406,7 +406,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🔭</span>
-                    <span>Own a Celestron telescope and have photographed Jupiter's moons</span>
+                    <span>I have my own Celestron telescope and have actually photographed Jupiter's moons</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -414,7 +414,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">📚</span>
-                    <span>Currently reading "Astrophysics for Young People in a Hurry"</span>
+                    <span>Currently reading "Astrophysics for Young People in a Hurry" by Neil deGrasse Tyson</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start"
@@ -422,7 +422,7 @@ const AboutMe = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <span className="text-purple-400 mr-3">🚀</span>
-                    <span>Dream destination: Atacama Desert's ALMA Observatory</span>
+                    <span>My dream trip? The Atacama Desert to visit the ALMA Observatory</span>
                   </motion.li>
                 </ul>
               </div>
