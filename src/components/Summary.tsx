@@ -41,11 +41,11 @@ const Summary = () => {
 
               <div className="text-gray-300 space-y-4">
                 <p className="animate__animated animate__fadeInUp animate__delay-2s">
-                  James Barrat's "Our Final Invention" dives deep into something that keeps a lot of smart people awake at night - what happens when we create machines that are smarter than us? It's not just science fiction anymore; this is a real conversation happening in labs and boardrooms around the world. Barrat takes us on a journey through the exciting yet terrifying possibilities of artificial intelligence that could one day surpass human intelligence.
+                  James Barrat's book "Our Final Invention" examines a subject that many intelligent individuals find hard to ignore: what would happen if we created machines with higher intelligences than ourselves? It's no longer science fiction; this is a real conversation happening in labs and boardrooms around the globe. Barrat guides us through the exciting and terrifying possibilities of artificial intelligence, which could surpass human intelligence in the future.
                 </p>
                 
                 <p className="animate__animated animate__fadeInUp animate__delay-3s">
-                  The book introduces us to two game-changing concepts: <span className="text-cyan-300 hover:text-cyan-200 transition-colors">Artificial General Intelligence (AGI)</span> - basically AI that's as smart as humans - and <span className="text-blue-300 hover:text-blue-200 transition-colors">Artificial Super Intelligence (ASI)</span> - AI that leaves us in the dust intellectually. Here's the kicker: Barrat argues that once we hit AGI, the jump to ASI might happen so fast we won't have time to hit the brakes.
+                  The book introduces us to two important concepts: Artificial General Intelligence (AGI), which is essentially AI as intelligent as humans, and Artificial Super Intelligence (ASI), which is AI that is intellectually superior to humans. The worst part is this: Barrat argues that the shift to ASI might happen so fast after we reach AGI that we won't have time to apply the brakes.
                 </p>
                 
                 <p className="animate__animated animate__fadeInUp animate__delay-4s">
@@ -53,11 +53,11 @@ const Summary = () => {
                 </p>
                 
                 <p className="animate__animated animate__fadeInUp animate__delay-5s">
-                  What makes this book compelling is how Barrat connects the dots between current AI trends, government initiatives, and private research. He builds a convincing case that we need to be working on AI safety now, not after we've already created something we can't control. It's like installing seatbelts before you start driving, not after the crash.
+                  The book revolves around the "Control Problem," which is essentially how we can make sure that these highly intelligent machines actually care about what's best for humanity. It is incredibly complex despite its apparent simplicity. Barrat interviews a variety of people, such as philosophers and AI researchers, whose perspectives paint an interesting but somewhat frightening picture.
                 </p>
 
                 <p className="animate__animated animate__fadeInUp animate__delay-6s">
-                  The book wraps up with practical recommendations for how we should approach AI development moving forward. Barrat isn't trying to scare us away from AI - he's passionate about making sure we develop it responsibly, with safety measures built in from the ground up. His message is clear: we need AI that works with us, not against us.
+                  The book concludes with some useful recommendations for the direction of AI development going forward. Barrat is committed to making sure that, rather than letting AI scare us, we develop it responsibly and with safety measures in place from the start. He uses strong words: we need AI that works for us, not the other way around.
                 </p>
               </div>
             </div>

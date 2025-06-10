@@ -313,19 +313,19 @@ const AboutMe = () => {
             </h2>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Hey there! So I'm Timothy Chen, and I'm 15 years old, currently making my way through Grade 10. Here's the thing about me - I'm absolutely obsessed with space and astronomy. Like, seriously obsessed. Ever since I was little, I've been that kid who stares up at the night sky and wonders what's out there. It all started when I was 8 and got my first look at Saturn through a telescope. Seeing those rings with my own eyes? That moment completely changed everything for me.
+              Hello! My name is Timothy Chen, and I am currently a 15-year-old student in Grade 10. The problem with me is that I'm totally enamored with space and astronomy. Like, totally captivated. Looking up at the night sky and wondering what else might be out there has always been a part of me as a child. It all started when I was eight years old and used a telescope to see Saturn for the first time. Are those rings really visible to me? In that moment, everything changed for me.
             </p>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              My biggest dream is to become a professional astronomer someday and actually contribute to our understanding of the universe. What really gets me excited is exoplanet research - the idea that we might discover planets out there that could support life just blows my mind. I spend way too much time reading about the latest discoveries from the James Webb Space Telescope and following what's happening with Mars missions. It's like we're living in a golden age of space exploration!
+             My long-term objective is to study to be a professional astronomer and add to our expanding knowledge of the universe. What really motivates me about studying exoplanets is the chance that we may discover planets that may support life. I read a lot about the current state of the Mars missions and the most recent findings from the James Webb Space Telescope. It seems that we are living in the era of space exploration!
             </p>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
-              When I'm not lost in space documentaries or stargazing, I love staying active with sports. Badminton and volleyball are my go-to activities because they're all about quick thinking, strategy, and teamwork - skills I think will actually help me in scientific research too. I also spend a good amount of time gaming, especially creative and sandbox games like Minecraft where I can build and explore. There's something really satisfying about creating worlds and solving problems, whether it's in a game or figuring out how the universe works.
+              I enjoy playing sports to stay active when I'm not stargazing or watching space documentaries. The sports I enjoy playing are badminton and volleyball because they require quick thinking, strategy, and teamwork skills that I believe will be useful in scientific research as well. I also like to play video games, particularly sandbox and creative games like Minecraft that let me build and explore. Making worlds and solving puzzles whether in a game or figuring out how the universe functions has a very fulfilling quality.
             </p>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
-              School-wise, I'm doing really well in physics and chemistry, which are basically the building blocks for everything I want to study later. I'm already planning out my path to university - looking at astronomy and astrophysics programs, and dreaming about maybe working at NASA or ESA someday. I know it sounds ambitious, but I truly believe that understanding our place in the universe is one of the most important things we can do as humans.
+             I'm doing exceptionally well academically in physics and chemistry, which form the foundation of all my later classes. I'm already planning my college career, looking into astronomy and astrophysics programs, and strive to work for NASA or ESA eventually. It may sound ambitious, but I truly believe that understanding our place in the universe is among the most important things that humans can achieve.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

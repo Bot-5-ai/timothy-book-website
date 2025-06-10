@@ -218,10 +218,10 @@ const DangerSection = () => {
                     The Challenge of Encoding Human Values
                   </h4>
                   <p className="text-white mb-4">
-                    Human emotions and values are not that simple to encode into computers. We will usually values things such as freedom, happiness and fairness but, these concepts are hard to define precisely. Some humans can even disagree about what these values can really mean.
+                    Computers are not very good at encoding human emotions and values. Though these ideas are difficult to define exactly, we typically value things like freedom, happiness, and fairness. Even the true meaning of these values may be disputed by some people.
                   </p>
                   <p className="text-white">
-                    As Barrat points out, we cannot tell an AI to do what us humans want as what we want are complex, contradictory and are always changing. This makes the alignment of AI and humans one of the toughest challenges for AI safety.
+                    As Barrat notes, we cannot instruct an AI to carry out our desires since they are complicated, conflicting, and ever-evolving. Thus, one of the most difficult issues for AI safety is bringing humans and AI into alignment.
                   </p>
                 </div>
                 
