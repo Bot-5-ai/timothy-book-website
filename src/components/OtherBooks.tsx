@@ -20,7 +20,7 @@ const OtherBooks: React.FC = () => {
       description: "What if Brian hadn't been rescued at the end of Hatchet? This alternative narrative explores how Brian would have survived the harsh winter in the wilderness.",
       coverImage: "https://m.media-amazon.com/images/I/91wPKUEJ+NL._AC_UF1000,1000_QL80_.jpg",
       releaseYear: "1996",
-      amazonLink: "https://www.amazon.com/Brians-Winter-Gary-Paulsen/dp/0307929582/"
+      amazonLink: "https://www.amazon.com/Brians-Winter-Gary-Paulsen/dp/0307929582"
     },
     {
       id: "brians-return",
@@ -28,7 +28,7 @@ const OtherBooks: React.FC = () => {
       description: "Brian, now sixteen years old, finds it difficult to adjust to normal life after his wilderness experiences and decides to return to the woods to find peace again.",
       coverImage: "https://m.media-amazon.com/images/I/815tMobAd+L.jpg",
       releaseYear: "1999",
-      amazonLink: "https://www.amazon.com/Brians-Return-Gary-Paulsen/dp/0307929590/"
+      amazonLink: "https://www.amazon.com/Brians-Return-Gary-Paulsen/dp/0307929590"
     },
     {
       id: "brians-hunt",
@@ -36,7 +36,7 @@ const OtherBooks: React.FC = () => {
       description: "Brian returns to the wilderness to confront his fears and pursue a rogue bear that is attacking a neighboring family.",
       coverImage: "https://m.media-amazon.com/images/I/A1IFtT3besL._UF894,1000_QL80_.jpg",
       releaseYear: "2003",
-      amazonLink: "https://www.amazon.com/Brians-Hunt-Saga-Gary-Paulsen/dp/0553494155/"
+      amazonLink: "https://www.amazon.com/Brians-Hunt-Saga-Gary-Paulsen/dp/0553494155"
     },
     {
       id: "the-river",
@@ -44,7 +44,7 @@ const OtherBooks: React.FC = () => {
       description: "A sequel to Hatchet where Brian returns to the wilderness with a government psychologist to record his survival techniques when disaster strikes.",
       coverImage: "https://images.randomhouse.com/cover/9780307929617",
       releaseYear: "1991",
-      amazonLink: "https://www.amazon.com/River-Hatchet-Adventure-Gary-Paulsen/dp/0307929612/"
+      amazonLink: "https://www.amazon.com/River-Hatchet-Adventure-Gary-Paulsen/dp/0307929612"
     }
   ];
 

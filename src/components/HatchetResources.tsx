@@ -6,30 +6,30 @@ import { Button } from '@/components/ui/button';
 const HatchetResources: React.FC = () => {
   const resources = [
     {
-      title: "Gary Paulsen Interview",
-      description: "A cool interview with Gary Paulsen where he talks about his writing and the real experiences that inspired Hatchet.",
-      url: "https://www.teachingbooks.net/interview.cgi?id=91&a=1",
+      title: "Gary Paulsen Biography",
+      description: "Learn about Gary Paulsen's life, his writing career, and the real experiences that inspired his survival stories.",
+      url: "https://www.britannica.com/biography/Gary-Paulsen",
       icon: <LinkIcon className="h-5 w-5 text-[#a3c9a8]" />,
-      category: "Interview"
+      category: "Biography"
     },
     {
-      title: "Gary Paulsen: Everything I Am Is Because of Books",
-      description: "An article about how reading books totally changed Gary Paulsen's life and made him want to become a writer.",
-      url: "https://www.mackincommunity.com/2021/04/29/gary-paulsen-everything-i-am-is-because-of-books/",
+      title: "Scholastic Author Profile",
+      description: "A comprehensive profile of Gary Paulsen featuring his books, writing process, and advice for young writers.",
+      url: "https://www.scholastic.com/teachers/authors-and-books/author-studies/author-profile-gary-paulsen/",
       icon: <BookOpen className="h-5 w-5 text-[#a3c9a8]" />,
-      category: "Article"
+      category: "Author Study"
     },
     {
-      title: "Barnes & Noble - Hatchet Books",
+      title: "Amazon - Hatchet Books",
       description: "Get your own physical copy of Hatchet and other awesome Gary Paulsen books.",
-      url: "https://www.barnesandnoble.com/s/hatchet",
+      url: "https://www.amazon.com/s?k=hatchet+gary+paulsen&ref=nb_sb_noss_1",
       icon: <Book className="h-5 w-5 text-[#e9b872]" />,
       category: "Purchase"
     },
     {
       title: "Audible - Hatchet Audiobooks",
       description: "Listen to the audiobook version of Hatchet and other survival stories while you're doing other stuff.",
-      url: "https://www.audible.ca/search?keywords=hatchet&k=hatchet&crid=6194bee9dfc840be91e3a7050d762272&sprefix=hatchet%2Cna-audible-ca%2C191&i=na-audible-ca&url=search-alias%3Dna-audible-ca&ref=nb_sb_noss_1",
+      url: "https://www.audible.com/search?keywords=hatchet+gary+paulsen&ref=a_search_t1_header_search",
       icon: <Bookmark className="h-5 w-5 text-[#e9b872]" />,
       category: "Audiobook"
     }
@@ -111,7 +111,7 @@ const HatchetResources: React.FC = () => {
               
               <div className="flex flex-wrap gap-4">
                 <a 
-                  href="https://www.barnesandnoble.com/s/hatchet" 
+                  href="https://www.amazon.com/s?k=hatchet+gary+paulsen&ref=nb_sb_noss_1" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="px-5 py-3 bg-[#e9b872] text-[#0f1b15] rounded-md font-medium hover:bg-[#d4a255] transition-colors shadow-lg flex items-center"
@@ -121,7 +121,7 @@ const HatchetResources: React.FC = () => {
                 </a>
                 
                 <a 
-                  href="https://www.audible.ca/search?keywords=hatchet&k=hatchet&crid=6194bee9dfc840be91e3a7050d762272&sprefix=hatchet%2Cna-audible-ca%2C191&i=na-audible-ca&url=search-alias%3Dna-audible-ca&ref=nb_sb_noss_1" 
+                  href="https://www.audible.com/search?keywords=hatchet+gary+paulsen&ref=a_search_t1_header_search" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="px-5 py-3 border-2 border-[#a3c9a8] text-[#a3c9a8] rounded-md font-medium hover:bg-[#a3c9a8]/20 transition-colors shadow-lg flex items-center"

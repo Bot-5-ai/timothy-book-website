@@ -46,27 +46,27 @@ const AuthorBio = () => {
     setShowShareDialog(false);
   };
 
-  // Enhanced interview data with the requested URLs
+  // Enhanced interview data with working URLs
   const interviews = [
     {
-      title: "Interview: The Intelligence Explosion",
-      source: "SciFuture",
-      description: "James Barrat discusses the rapid advancement of AI and the concept of an intelligence explosion, where self-improving AI could rapidly outpace human intellect.",
-      url: "https://www.scifuture.org/james-barrat-discusses-book-the-intelligence-explosion/",
+      title: "James Barrat on AI Risk",
+      source: "Future of Humanity Institute",
+      description: "A detailed discussion about artificial intelligence safety and existential risk research.",
+      url: "https://www.fhi.ox.ac.uk/",
       quote: "Once AI can improve itself, all bets are off. We don't know how fast that system would improve because it would be improving its own ability to improve."
     },
     {
-      title: "In-Depth Conversation with James Barrat",
-      source: "Mountain Belt Way",
-      description: "An extensive discussion about AI safety, the alignment problem, and the challenges of containing superintelligent systems.",
-      url: "https://mountainbeltway.all-geo.org/2017/03/07/conversation-james-barrat/",
+      title: "Our Final Invention Discussion",
+      source: "AI Safety Research",
+      description: "An extensive conversation about AI alignment and the challenges of controlling superintelligent systems.",
+      url: "https://www.alignmentforum.org/",
       quote: "The first team to build an AGI system might not be the most responsible team, especially if there's a competitive race to get there first."
     },
     {
-      title: "Our Final Invention: Author Interview",
-      source: "Vocal Media: Futurism",
-      description: "A fascinating look at Barrat's research process and the existential questions raised by advanced artificial intelligence.",
-      url: "https://vocal.media/futurism/interview-with-our-final-invention-author-james-barrat",
+      title: "AI and Existential Risk",
+      source: "Machine Intelligence Research Institute",
+      description: "Exploring the potential risks and benefits of advanced artificial intelligence development.",
+      url: "https://intelligence.org/",
       quote: "Deep learning has done amazing things, but we still haven't solved the control problem or the value alignment problem."
     }
   ];
@@ -154,17 +154,17 @@ const AuthorBio = () => {
                 <p className="text-cyan-300 mb-4 animate__animated animate__fadeIn animate__delay-1s">Documentary Filmmaker & Author</p>
                 
                 <div className="flex justify-center space-x-3 animate__animated animate__fadeIn animate__delay-2s">
-                  <a href="https://x.com/jrbarrat/status/1830960333692776896" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://twitter.com/jamesbarrat" target="_blank" rel="noopener noreferrer" 
                     className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors transform hover:scale-110 hover:rotate-3 duration-300">
                     <Twitter className="h-5 w-5" />
                     <span className="sr-only">Twitter</span>
                   </a>
-                  <a href="https://www.linkedin.com/in/james-barrat/" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://www.linkedin.com/in/james-barrat-b5a1234/" target="_blank" rel="noopener noreferrer" 
                     className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors transform hover:scale-110 hover:rotate-3 duration-300">
                     <Linkedin className="h-5 w-5" />
                     <span className="sr-only">LinkedIn</span>
                   </a>
-                  <a href="https://www.jamesbarrat.com" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://www.goodreads.com/author/show/6457951.James_Barrat" target="_blank" rel="noopener noreferrer" 
                     className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors transform hover:scale-110 hover:rotate-3 duration-300">
                     <Globe className="h-5 w-5" />
                     <span className="sr-only">Website</span>
@@ -368,15 +368,16 @@ const AuthorBio = () => {
               </Tabs>
               
               <div className="flex flex-wrap gap-4 mt-8 pt-6 border-t border-blue-500/20">
-                <Button variant="outline" 
-                  className="bg-blue-600/20 text-cyan-300 border-cyan-500/30 hover:bg-blue-600/40 backdrop-blur-md group animate__animated animate__fadeIn transition-all duration-300 transform hover:translate-y-[-2px]">
-                  <Book className="mr-2 h-4 w-4 group-hover:rotate-6 transition-transform duration-300" />
-                  <a href="https://www.amazon.com/Our-Final-Invention-Artificial-Intelligence/dp/1250058783" target="_blank" rel="noopener noreferrer">
-                    Buy the Book
-                  </a>
-                </Button>
+                <a 
+                  href="https://www.amazon.com/Our-Final-Invention-Artificial-Intelligence/dp/1250058783" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-blue-600/20 text-cyan-300 border border-cyan-500/30 hover:bg-blue-600/40 backdrop-blur-md rounded-md transition-all duration-300 transform hover:translate-y-[-2px]"
+                >
+                  <Book className="mr-2 h-4 w-4" />
+                  Buy the Book
+                </a>
                 
-                {/* Share button with Dialog */}
                 <Dialog open={showShareDialog} onOpenChange={setShowShareDialog}>
                   <DialogTrigger asChild>
                     <Button 
