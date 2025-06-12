@@ -35,7 +35,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-2">Find This Book</h4>
             <div className="flex space-x-3">
               <a 
-                href="https://www.amazon.com/" 
+                href="https://www.amazon.com/s?k=hatchet+gary+paulsen" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300 transition-colors"
@@ -44,7 +44,7 @@ const Footer = () => {
                 <i className="fab fa-amazon text-lg"></i>
               </a>
               <a 
-                href="https://books.apple.com/" 
+                href="https://books.apple.com/us/search?term=hatchet%20gary%20paulsen" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300 transition-colors"
@@ -53,7 +53,7 @@ const Footer = () => {
                 <i className="fab fa-apple text-lg"></i>
               </a>
               <a 
-                href="https://play.google.com/store/books" 
+                href="https://play.google.com/store/search?q=hatchet%20gary%20paulsen&c=books" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300 transition-colors"
@@ -62,7 +62,7 @@ const Footer = () => {
                 <i className="fab fa-google-play text-lg"></i>
               </a>
               <a 
-                href="https://www.barnesandnoble.com/" 
+                href="https://www.barnesandnoble.com/s/hatchet+gary+paulsen" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300 transition-colors"

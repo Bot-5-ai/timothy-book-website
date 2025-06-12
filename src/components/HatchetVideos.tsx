@@ -17,22 +17,22 @@ const HatchetVideos: React.FC = () => {
   
   const hatchetVideos: VideoItem[] = [
     {
-      id: "KGUH6YruXgM",
-      title: "Hatchet by Gary Paulsen (Book Summary and Review)",
+      id: "oRkNaF4HdpE",
+      title: "Hatchet by Gary Paulsen - Book Summary",
       description: "A detailed analysis and review of the survival classic",
-      thumbnail: "https://img.youtube.com/vi/KGUH6YruXgM/maxresdefault.jpg"
+      thumbnail: "https://img.youtube.com/vi/oRkNaF4HdpE/maxresdefault.jpg"
     },
     {
-      id: "GuiDTvlW-6Q",
-      title: "Hatchet Video Summary",
+      id: "5o-A8-HSS9k",
+      title: "Hatchet Book Review and Analysis",
       description: "Comprehensive overview of the plot and key elements",
-      thumbnail: "https://img.youtube.com/vi/GuiDTvlW-6Q/maxresdefault.jpg"
+      thumbnail: "https://img.youtube.com/vi/5o-A8-HSS9k/maxresdefault.jpg"
     },
     {
-      id: "DNwilANEW7A",
-      title: "Hatchet: The Five Phases of Brian's Life",
-      description: "Exploring the protagonist's journey and transformation",
-      thumbnail: "https://img.youtube.com/vi/DNwilANEW7A/maxresdefault.jpg"
+      id: "MHePeWybsds",
+      title: "Survival Skills from Hatchet",
+      description: "Exploring the survival techniques Brian uses in the wilderness",
+      thumbnail: "https://img.youtube.com/vi/MHePeWybsds/maxresdefault.jpg"
     }
   ];
 
