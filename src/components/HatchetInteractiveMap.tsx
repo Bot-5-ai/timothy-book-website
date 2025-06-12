@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, X, Info, Box, Tent, TreePine, Flame, Ban } from 'lucide-react';
+import { MapPin, X, Info, Box, Tent, TreePine, Flame, Ban, Droplets } from 'lucide-react';
 
 interface MapLocation {
   id: string;
@@ -39,8 +39,8 @@ const HatchetInteractiveMap = () => {
     {
       id: 'shelter',
       name: 'Brian\'s Shelter',
-      x: 45,
-      y: 50,
+      x: 60,
+      y: 45,
       icon: <Tent className="h-5 w-5" />,
       title: 'The Rock Shelter',
       description: 'Brian found this natural shelter formed by a rock overhang near the lake. This became his home for 54 days, providing protection from the elements and wild animals. The shelter faced east, giving Brian morning sunlight and a view of the lake where he could watch for planes and monitor the weather.',
@@ -53,8 +53,8 @@ const HatchetInteractiveMap = () => {
     {
       id: 'fire-site',
       name: 'First Fire',
-      x: 50,
-      y: 45,
+      x: 65,
+      y: 50,
       icon: <Flame className="h-5 w-5" />,
       title: 'Where Brian Made Fire',
       description: 'The spot where Brian finally succeeded in making fire using his hatchet and birch bark - a turning point in his survival. After days of failed attempts and growing desperation, Brian discovered that striking his hatchet against the rock wall created sparks that could ignite the fine birch bark tinder he had prepared.',
@@ -67,8 +67,8 @@ const HatchetInteractiveMap = () => {
     {
       id: 'berry-patch',
       name: 'Berry Patch',
-      x: 70,
-      y: 35,
+      x: 75,
+      y: 30,
       icon: <TreePine className="h-5 w-5" />,
       title: 'The Berry Patch',
       description: 'Brian discovered these gut cherries that made him violently sick at first, but later became an important food source once he learned to eat them in moderation. The berry patch was located about a quarter mile from his shelter, requiring careful navigation to find again. The area was rich with wildlife, and Brian often saw birds and small animals feeding on the same berries.',
@@ -79,9 +79,23 @@ const HatchetInteractiveMap = () => {
       characterDevelopment: 'Brian\'s experience with the berries shows his growing wisdom and self-control. He learns from his mistakes and develops the patience to eat carefully rather than desperately. This location marks his evolution from someone who takes without thinking to someone who observes and learns.'
     },
     {
+      id: 'lake',
+      name: 'The Lake',
+      x: 40,
+      y: 55,
+      icon: <Droplets className="h-5 w-5" />,
+      title: 'The Central Lake',
+      description: 'The pristine wilderness lake that became the center of Brian\'s world. This body of water provided drinking water, fish for food, and served as his primary landmark for navigation. The lake was where the plane crashed, where Brian learned to fish, and where he would scan the skies daily hoping for rescue planes to spot him.',
+      quote: '"The lake was everything - his highway, his refrigerator, his hope."',
+      importance: 'The lake represents both life and death in Brian\'s story. It nearly killed him in the crash, but then sustained him throughout his ordeal.',
+      detailedAnalysis: 'The lake serves as the geographical and symbolic heart of the story. Paulsen uses it to represent the duality of nature - both nurturing and dangerous. The clear, clean water provides Brian with his most essential need, while the fish beneath its surface become his primary protein source once he learns to catch them. The lake also serves as Brian\'s calendar and clock, as he measures the passing days by the changing light on its surface and uses it to track weather patterns.',
+      symbolism: 'Water traditionally symbolizes life, purification, and renewal. For Brian, the lake represents all of these things - it\'s where he\'s reborn as a survivor, where he cleanses himself of his old, dependent self, and where he finds the sustenance to continue living.',
+      characterDevelopment: 'Brian\'s relationship with the lake shows his growing understanding of nature. Initially, he sees it as an obstacle or danger, but gradually he learns to read its moods, understand its rhythms, and work with it rather than against it.'
+    },
+    {
       id: 'survival-pack',
       name: 'Survival Pack',
-      x: 20,
+      x: 22,
       y: 40,
       icon: <Box className="h-5 w-5" />,
       title: 'The Survival Pack Location',
@@ -95,7 +109,7 @@ const HatchetInteractiveMap = () => {
     {
       id: 'restricted-area',
       name: 'Dangerous Area',
-      x: 75,
+      x: 80,
       y: 65,
       icon: <Ban className="h-5 w-5" />,
       title: 'Restricted Wilderness Area',
@@ -139,33 +153,53 @@ const HatchetInteractiveMap = () => {
 
         <div className="relative bg-[#f5f1e8] rounded-3xl shadow-2xl overflow-hidden border-8 border-[#8b4513] border-opacity-60" 
              style={{
-               background: 'linear-gradient(135deg, #f5f1e8 0%, #e8dcc0 50%, #d4c4a8 100%)',
-               boxShadow: 'inset 0 0 50px rgba(139, 69, 19, 0.2), 0 20px 40px rgba(0,0,0,0.3)'
+               background: `
+                 radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 70%, rgba(101, 67, 33, 0.08) 0%, transparent 50%),
+                 linear-gradient(45deg, #f5f1e8 0%, #e8dcc0 25%, #f0e5d0 50%, #e8dcc0 75%, #f5f1e8 100%)
+               `,
+               boxShadow: 'inset 0 0 100px rgba(139, 69, 19, 0.15), 0 20px 40px rgba(0,0,0,0.3)',
+               backgroundSize: '200px 200px, 150px 150px, 100% 100%'
              }} 
              data-aos="zoom-in">
           
-          {/* Decorative Pine Branch Border */}
-          <div className="absolute inset-0 pointer-events-none">
-            <svg width="100%" height="100%" viewBox="0 0 800 600" className="absolute inset-0">
+          {/* Parchment Texture Overlay */}
+          <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 800 600">
               <defs>
-                <pattern id="borderBranches" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                  <path d="M 10,10 Q 20,5 30,10 Q 40,15 50,10 Q 60,5 70,10 Q 80,15 90,10" 
-                        stroke="#2d5016" strokeWidth="1.5" fill="none" opacity="0.4"/>
-                  <circle cx="25" cy="8" r="1" fill="#8b4513" opacity="0.6"/>
-                  <circle cx="65" cy="12" r="1" fill="#8b4513" opacity="0.6"/>
-                </pattern>
+                <filter id="parchmentTexture">
+                  <feTurbulence baseFrequency="0.9" numOctaves="4" result="noise"/>
+                  <feColorMatrix in="noise" type="saturate" values="0"/>
+                  <feComponentTransfer>
+                    <feFuncA type="discrete" tableValues="0.1 0.2 0.3 0.1 0.2"/>
+                  </feComponentTransfer>
+                  <feComposite operator="multiply" in2="SourceGraphic"/>
+                </filter>
               </defs>
-              <rect x="0" y="0" width="100%" height="20" fill="url(#borderBranches)"/>
-              <rect x="0" y="580" width="100%" height="20" fill="url(#borderBranches)"/>
-              <rect x="0" y="0" width="20" height="100%" fill="url(#borderBranches)"/>
-              <rect x="780" y="0" width="20" height="100%" fill="url(#borderBranches)"/>
+              <rect width="100%" height="100%" fill="#8b7355" filter="url(#parchmentTexture)" opacity="0.3"/>
+            </svg>
+          </div>
+
+          {/* Weathered Edges */}
+          <div className="absolute inset-0 pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 800 600">
+              <defs>
+                <filter id="weatheredEdge">
+                  <feTurbulence baseFrequency="0.02" numOctaves="3"/>
+                  <feDisplacementMap in="SourceGraphic" scale="3"/>
+                </filter>
+              </defs>
+              <path d="M 0,0 Q 50,10 100,5 Q 200,15 300,8 Q 500,12 700,6 Q 750,8 800,0 L 800,20 L 0,20 Z" 
+                    fill="#8b4513" opacity="0.4" filter="url(#weatheredEdge)"/>
+              <path d="M 0,580 Q 50,590 100,585 Q 200,595 300,588 Q 500,592 700,586 Q 750,588 800,580 L 800,600 L 0,600 Z" 
+                    fill="#8b4513" opacity="0.4" filter="url(#weatheredEdge)"/>
             </svg>
           </div>
 
           {/* Hand-Drawn Map Container */}
           <div className="relative w-full h-96 md:h-[600px] overflow-hidden p-8">
             
-            {/* Base Terrain with Hand-Drawn Texture */}
+            {/* Base Terrain with Parchment Style */}
             <div className="absolute inset-8 rounded-2xl" 
                  style={{
                    background: 'radial-gradient(circle at 40% 30%, #7fb069 0%, #8fbc8f 30%, #6b8e23 60%, #556b2f 100%)'
@@ -277,6 +311,43 @@ const HatchetInteractiveMap = () => {
                 </svg>
               </motion.div>
 
+              {/* Treasure Map Trail - Dotted Line from Edge to Shelter */}
+              <svg width="100%" height="100%" viewBox="0 0 800 600" className="absolute inset-0">
+                <defs>
+                  <filter id="trailGlow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge> 
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                
+                {/* Main treasure trail from map edge to shelter */}
+                <path d="M 50,50 Q 120,80 200,120 Q 300,140 400,180 Q 450,200 480,270" 
+                      stroke="#d4af37" 
+                      strokeWidth="4" 
+                      fill="none" 
+                      strokeDasharray="12,8" 
+                      opacity="0.9"
+                      filter="url(#trailGlow)"
+                      className="animate-pulse"/>
+                
+                {/* Secondary trails */}
+                <path d="M 480,270 Q 520,280 560,240 Q 580,220 600,180" 
+                      stroke="#cd853f" 
+                      strokeWidth="3" 
+                      fill="none" 
+                      strokeDasharray="8,6" 
+                      opacity="0.7"/>
+                
+                {/* X marks near shelter */}
+                <g transform="translate(475, 265)" className="animate-pulse">
+                  <path d="M -8,-8 L 8,8 M 8,-8 L -8,8" stroke="#d4af37" strokeWidth="3" opacity="0.8"/>
+                  <circle cx="0" cy="0" r="12" fill="none" stroke="#d4af37" strokeWidth="2" opacity="0.6"/>
+                </g>
+              </svg>
+
               {/* Hand-Drawn Rocky Ridge */}
               <div className="absolute right-8 top-16 w-32 h-24">
                 <svg width="100%" height="100%" viewBox="0 0 100 80">
@@ -300,31 +371,6 @@ const HatchetInteractiveMap = () => {
                 </svg>
               </div>
 
-              {/* Hand-Drawn Winding Trails */}
-              <svg width="100%" height="100%" viewBox="0 0 800 600" className="absolute inset-0">
-                <defs>
-                  <filter id="trailTexture">
-                    <feTurbulence baseFrequency="0.3" numOctaves="1"/>
-                    <feDisplacementMap in="SourceGraphic" scale="0.5"/>
-                  </filter>
-                </defs>
-                
-                <path d="M 80,380 Q 200,360 320,380 Q 440,400 560,370 Q 650,350 720,380" 
-                      stroke="#d2b48c" 
-                      strokeWidth="6" 
-                      fill="none" 
-                      strokeDasharray="8,4" 
-                      opacity="0.8"
-                      filter="url(#trailTexture)"/>
-                
-                <path d="M 320,150 Q 420,200 480,180 Q 580,160 680,220" 
-                      stroke="#cd853f" 
-                      strokeWidth="4" 
-                      fill="none" 
-                      strokeDasharray="6,3" 
-                      opacity="0.7"/>
-              </svg>
-
               {/* Hand-Drawn Berry Patches */}
               <div className="absolute top-20 right-16 w-20 h-16">
                 <svg width="100%" height="100%" viewBox="0 0 80 60">
@@ -341,41 +387,52 @@ const HatchetInteractiveMap = () => {
                 </svg>
               </div>
 
-              {/* Enhanced Hand-Drawn Compass Rose */}
-              <div className="absolute top-6 left-6 w-24 h-24 text-[#8b4513] bg-[#f5f1e8] rounded-full p-4 border-2 border-[#8b4513] shadow-lg">
-                <svg viewBox="0 0 64 64" className="w-full h-full" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.3))' }}>
-                  <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4,2"/>
+              {/* Enhanced Decorative Compass Rose */}
+              <div className="absolute top-6 left-6 w-28 h-28 text-[#8b4513] bg-[#f5f1e8] rounded-full p-4 border-3 border-[#d4af37] shadow-xl" 
+                   style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))' }}>
+                <svg viewBox="0 0 64 64" className="w-full h-full">
+                  {/* Ornate outer ring */}
+                  <circle cx="32" cy="32" r="30" fill="none" stroke="#d4af37" strokeWidth="2"/>
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4,2"/>
                   <circle cx="32" cy="32" r="22" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
                   
-                  {/* Ornate North Arrow */}
-                  <path d="M32,8 L36,26 L32,30 L28,26 Z" fill="#dc143c" stroke="#8b4513" strokeWidth="0.5"/>
-                  <path d="M32,56 L36,38 L32,34 L28,38 Z" fill="currentColor"/>
-                  <path d="M8,32 L26,28 L30,32 L26,36 Z" fill="currentColor" opacity="0.7"/>
-                  <path d="M56,32 L38,28 L34,32 L38,36 Z" fill="currentColor" opacity="0.7"/>
+                  {/* Ornate North Arrow - Red */}
+                  <path d="M32,6 L38,28 L32,32 L26,28 Z" fill="#dc143c" stroke="#8b4513" strokeWidth="0.8"/>
+                  <path d="M32,58 L38,36 L32,32 L26,36 Z" fill="currentColor"/>
+                  <path d="M6,32 L28,26 L32,32 L28,38 Z" fill="currentColor" opacity="0.7"/>
+                  <path d="M58,32 L36,26 L32,32 L36,38 Z" fill="currentColor" opacity="0.7"/>
                   
-                  <text x="32" y="14" textAnchor="middle" fontSize="10" fill="currentColor" fontWeight="bold" fontFamily="serif">N</text>
-                  <text x="50" y="36" textAnchor="middle" fontSize="7" fill="currentColor" fontFamily="serif">E</text>
-                  <text x="32" y="54" textAnchor="middle" fontSize="7" fill="currentColor" fontFamily="serif">S</text>
-                  <text x="14" y="36" textAnchor="middle" fontSize="7" fill="currentColor" fontFamily="serif">W</text>
+                  {/* Decorative cardinal points */}
+                  <text x="32" y="12" textAnchor="middle" fontSize="8" fill="#dc143c" fontWeight="bold" fontFamily="serif">N</text>
+                  <text x="52" y="36" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif">E</text>
+                  <text x="32" y="56" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif">S</text>
+                  <text x="12" y="36" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="serif">W</text>
                   
-                  {/* Decorative Elements */}
-                  <circle cx="32" cy="32" r="3" fill="currentColor"/>
-                  <path d="M 20,20 Q 25,25 20,30 M 44,20 Q 39,25 44,30 M 20,44 Q 25,39 20,34 M 44,44 Q 39,39 44,34" 
-                        stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.6"/>
+                  {/* Center ornament */}
+                  <circle cx="32" cy="32" r="4" fill="#d4af37"/>
+                  <circle cx="32" cy="32" r="2" fill="currentColor"/>
+                  
+                  {/* Decorative flourishes */}
+                  <path d="M 18,18 Q 25,25 18,32 M 46,18 Q 39,25 46,32 M 18,46 Q 25,39 18,32 M 46,46 Q 39,39 46,32" 
+                        stroke="#d4af37" strokeWidth="0.8" fill="none" opacity="0.8"/>
                 </svg>
               </div>
 
-              {/* Enhanced Scale Bar with Hand-Drawn Style */}
-              <div className="absolute bottom-6 right-6 bg-[#f5f1e8] backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg border-2 border-[#8b4513]">
+              {/* Enhanced Rustic Scale Bar */}
+              <div className="absolute bottom-6 right-6 bg-[#f5f1e8] backdrop-blur-sm px-8 py-6 rounded-xl shadow-xl border-3 border-[#d4af37]"
+                   style={{ 
+                     background: 'linear-gradient(135deg, #f5f1e8 0%, #e8dcc0 100%)',
+                     filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))'
+                   }}>
                 <div className="flex items-center space-x-4 text-[#8b4513]">
                   <div className="flex items-center space-x-1">
-                    <div className="w-12 h-2 bg-[#8b4513] rounded-sm"></div>
-                    <div className="w-12 h-2 bg-[#f5f1e8] border-2 border-[#8b4513] rounded-sm"></div>
-                    <div className="w-12 h-2 bg-[#8b4513] rounded-sm"></div>
+                    <div className="w-16 h-3 bg-[#8b4513] rounded-sm transform rotate-1"></div>
+                    <div className="w-16 h-3 bg-[#f5f1e8] border-2 border-[#8b4513] rounded-sm transform -rotate-1"></div>
+                    <div className="w-16 h-3 bg-[#8b4513] rounded-sm transform rotate-1"></div>
                   </div>
-                  <span className="text-sm font-bold font-serif">1 km</span>
+                  <span className="text-lg font-bold font-serif transform -rotate-1">1 km</span>
                 </div>
-                <div className="text-xs text-[#6b4e3d] mt-1 font-serif italic">Canadian Wilderness</div>
+                <div className="text-sm text-[#6b4e3d] mt-2 font-serif italic transform rotate-1">~ Canadian Wilderness ~</div>
               </div>
 
               {/* Hand-Drawn Location Markers */}
@@ -392,47 +449,52 @@ const HatchetInteractiveMap = () => {
                   onClick={() => setSelectedLocation(location)}
                 >
                   <div className="relative">
-                    {/* Hand-Drawn Marker Base */}
-                    <div className="w-14 h-14 bg-[#f5f1e8] rounded-full flex items-center justify-center text-[#8b4513] shadow-xl border-3 border-[#d2b48c] group-hover:bg-[#fff8e7] transition-all duration-300"
+                    {/* Hand-Drawn Marker Base with Treasure Map Style */}
+                    <div className="w-16 h-16 bg-[#f5f1e8] rounded-full flex items-center justify-center text-[#8b4513] shadow-xl border-3 border-[#d4af37] group-hover:bg-[#fff8e7] transition-all duration-300"
                          style={{
-                           boxShadow: '0 4px 8px rgba(139, 69, 19, 0.3), inset 0 2px 4px rgba(245, 241, 232, 0.8)',
-                           transform: 'rotate(-2deg)'
+                           boxShadow: '0 6px 12px rgba(139, 69, 19, 0.4), inset 0 2px 4px rgba(245, 241, 232, 0.8)',
+                           transform: `rotate(${Math.sin(index) * 5}deg)`
                          }}>
-                      {React.cloneElement(location.icon as React.ReactElement, { className: "h-6 w-6" })}
+                      {React.cloneElement(location.icon as React.ReactElement, { className: "h-7 w-7" })}
                     </div>
                     
-                    {/* Hand-Drawn Label */}
-                    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-[#8b4513]/90 text-[#f5f1e8] px-3 py-1 rounded-lg text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap font-serif"
-                         style={{ transform: 'translateX(-50%) rotate(-1deg)' }}>
+                    {/* Hand-Drawn Label with Parchment Style */}
+                    <div className="absolute -top-14 left-1/2 transform -translate-x-1/2 bg-[#8b4513]/95 text-[#f5f1e8] px-4 py-2 rounded-lg text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap font-serif border-2 border-[#d4af37]"
+                         style={{ 
+                           transform: `translateX(-50%) rotate(${Math.sin(index + 1) * 3}deg)`,
+                           filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))'
+                         }}>
                       {location.name}
                     </div>
                     
-                    {/* Pulsing Effect */}
+                    {/* Enhanced Pulsing Effect */}
                     <motion.div
-                      className="absolute inset-0 rounded-full border-2 border-[#d2b48c]/60"
-                      animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute inset-0 rounded-full border-3 border-[#d4af37]/60"
+                      animate={{ scale: [1, 1.5, 1], opacity: [0.8, 0, 0.8] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     />
                     
-                    {/* Hand-Drawn Shadow */}
-                    <div className="absolute inset-1 rounded-full bg-[#8b4513]/20 transform translate-y-1 translate-x-0.5 -z-10 blur-sm"></div>
+                    {/* Hand-Drawn Shadow with perspective */}
+                    <div className="absolute inset-1 rounded-full bg-[#8b4513]/30 transform translate-y-2 translate-x-1 -z-10 blur-md"
+                         style={{ transform: `translate(2px, 4px) rotate(${Math.sin(index) * 3}deg)` }}></div>
                   </div>
                 </motion.button>
               ))}
             </div>
           </div>
 
-          {/* Enhanced Legend with Hand-Drawn Style */}
-          <div className="p-8 bg-gradient-to-r from-[#f5f1e8]/95 to-[#e8dcc0]/95 border-t-4 border-[#8b4513] border-dashed">
-            <h3 className="text-[#8b4513] font-bold mb-6 flex items-center text-lg font-serif">
-              <Info className="mr-3 h-6 w-6" />
-              Wilderness Map Legend
+          {/* Enhanced Legend with Treasure Map Style */}
+          <div className="p-8 bg-gradient-to-r from-[#f5f1e8]/98 to-[#e8dcc0]/98 border-t-4 border-[#d4af37] border-dashed">
+            <h3 className="text-[#8b4513] font-bold mb-6 flex items-center text-xl font-serif">
+              <Info className="mr-3 h-7 w-7 text-[#d4af37]" />
+              ~ Wilderness Map Legend ~
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-[#6b4e3d]">
-              {locations.map((location) => (
-                <div key={location.id} className="flex items-center space-x-4 text-sm hover:text-[#8b4513] transition-colors duration-200 cursor-pointer p-2 rounded-lg hover:bg-[#f5f1e8]/50">
-                  <div className="w-10 h-10 bg-[#f5f1e8] rounded-full flex items-center justify-center text-[#8b4513] border-2 border-[#d2b48c] shadow-md transform rotate-1">
-                    {React.cloneElement(location.icon as React.ReactElement, { className: "h-5 w-5" })}
+              {locations.map((location, index) => (
+                <div key={location.id} className="flex items-center space-x-4 text-sm hover:text-[#8b4513] transition-colors duration-200 cursor-pointer p-3 rounded-lg hover:bg-[#f5f1e8]/70 border border-[#d4af37]/30"
+                     style={{ transform: `rotate(${Math.sin(index) * 1}deg)` }}>
+                  <div className="w-12 h-12 bg-[#f5f1e8] rounded-full flex items-center justify-center text-[#8b4513] border-2 border-[#d4af37] shadow-md transform rotate-2">
+                    {React.cloneElement(location.icon as React.ReactElement, { className: "h-6 w-6" })}
                   </div>
                   <span className="font-semibold font-serif">{location.name}</span>
                 </div>
@@ -453,8 +515,11 @@ const HatchetInteractiveMap = () => {
                 onClick={() => setSelectedLocation(null)}
               />
               <motion.div
-                className="fixed inset-4 md:inset-8 lg:inset-16 bg-[#f5f1e8] border-4 border-[#8b4513] rounded-2xl shadow-2xl z-50 overflow-hidden"
-                style={{ background: 'linear-gradient(135deg, #f5f1e8 0%, #e8dcc0 100%)' }}
+                className="fixed inset-4 md:inset-8 lg:inset-16 bg-[#f5f1e8] border-4 border-[#d4af37] rounded-2xl shadow-2xl z-50 overflow-hidden"
+                style={{ 
+                  background: 'linear-gradient(135deg, #f5f1e8 0%, #e8dcc0 100%)',
+                  filter: 'drop-shadow(4px 4px 8px rgba(0,0,0,0.3))'
+                }}
                 initial={{ scale: 0.8, opacity: 0, rotate: -2 }}
                 animate={{ scale: 1, opacity: 1, rotate: 0 }}
                 exit={{ scale: 0.8, opacity: 0, rotate: 2 }}
@@ -463,15 +528,15 @@ const HatchetInteractiveMap = () => {
                 <div className="relative h-full flex flex-col">
                   <button
                     onClick={() => setSelectedLocation(null)}
-                    className="absolute top-6 right-6 z-10 w-10 h-10 bg-[#8b4513] hover:bg-[#d2b48c] text-[#f5f1e8] hover:text-[#8b4513] rounded-full flex items-center justify-center transition-colors duration-200 shadow-lg"
+                    className="absolute top-6 right-6 z-10 w-12 h-12 bg-[#8b4513] hover:bg-[#d4af37] text-[#f5f1e8] hover:text-[#8b4513] rounded-full flex items-center justify-center transition-colors duration-200 shadow-lg border-2 border-[#d4af37]"
                   >
-                    <X className="h-5 w-5" />
+                    <X className="h-6 w-6" />
                   </button>
 
                   <div className="p-8 flex-1 overflow-y-auto">
                     <div className="flex items-center mb-8">
-                      <div className="w-20 h-20 bg-[#f5f1e8] rounded-full flex items-center justify-center text-[#8b4513] mr-6 border-3 border-[#d2b48c] shadow-lg transform rotate-2">
-                        {React.cloneElement(selectedLocation.icon as React.ReactElement, { className: "h-10 w-10" })}
+                      <div className="w-24 h-24 bg-[#f5f1e8] rounded-full flex items-center justify-center text-[#8b4513] mr-6 border-4 border-[#d4af37] shadow-lg transform rotate-3">
+                        {React.cloneElement(selectedLocation.icon as React.ReactElement, { className: "h-12 w-12" })}
                       </div>
                       <div>
                         <h3 className="text-3xl md:text-4xl font-merriweather font-bold text-[#8b4513] mb-2">
@@ -487,7 +552,7 @@ const HatchetInteractiveMap = () => {
                         <p className="text-[#5d4e37] leading-relaxed text-base">{selectedLocation.description}</p>
                       </div>
 
-                      <div className="bg-[#e8dcc0] p-6 rounded-xl border-l-4 border-[#d2b48c] shadow-inner">
+                      <div className="bg-[#e8dcc0] p-6 rounded-xl border-l-4 border-[#d4af37] shadow-inner">
                         <h4 className="text-xl font-bold text-[#6b4e3d] mb-4 font-serif">Quote from the Book</h4>
                         <blockquote className="text-[#5d4e37] italic text-base leading-relaxed font-serif">{selectedLocation.quote}</blockquote>
                       </div>
