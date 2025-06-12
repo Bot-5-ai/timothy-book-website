@@ -48,6 +48,10 @@ const OtherBooks: React.FC = () => {
     }
   ];
 
+  const handleLinkClick = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section className="py-16 bg-[#162821]">
       <div className="container mx-auto px-6">
@@ -69,18 +73,16 @@ const OtherBooks: React.FC = () => {
               data-aos="fade-up"
             >
               <div className="aspect-[2/3] overflow-hidden">
-                <a 
-                  href={book.amazonLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full h-full"
+                <div 
+                  onClick={() => handleLinkClick(book.amazonLink)}
+                  className="block w-full h-full cursor-pointer"
                 >
                   <img 
                     src={book.coverImage} 
                     alt={`${book.title} book cover`} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                </a>
+                </div>
                 <div className="absolute top-2 right-2 bg-[#e9b872]/80 text-[#0f1b15] px-2 py-1 rounded text-xs font-bold transition-all duration-300 group-hover:bg-[#e9b872] group-hover:scale-110">
                   {book.releaseYear}
                 </div>
@@ -95,15 +97,13 @@ const OtherBooks: React.FC = () => {
                   {book.description}
                 </p>
                 
-                <a 
-                  href={book.amazonLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-[#a3c9a8] hover:text-[#e9b872] transition-all duration-300 text-sm font-medium hover:translate-x-2"
+                <button 
+                  onClick={() => handleLinkClick(book.amazonLink)}
+                  className="inline-flex items-center text-[#a3c9a8] hover:text-[#e9b872] transition-all duration-300 text-sm font-medium hover:translate-x-2 cursor-pointer"
                 >
                   View on Amazon
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </button>
               </div>
               
               <div className="absolute inset-0 bg-gradient-to-t from-[#0f1b15] via-transparent to-transparent opacity-60 pointer-events-none transition-opacity duration-300 group-hover:opacity-40"></div>
@@ -112,15 +112,13 @@ const OtherBooks: React.FC = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <a 
-            href="https://www.goodreads.com/author/list/18.Gary_Paulsen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-[#2c4c3b]/80 text-white rounded-md hover:bg-[#2c4c3b] transition-all duration-300 shadow-lg backdrop-blur-sm hover:scale-105 hover:shadow-xl"
+          <button 
+            onClick={() => handleLinkClick("https://www.goodreads.com/author/list/18.Gary_Paulsen")}
+            className="inline-flex items-center px-6 py-3 bg-[#2c4c3b]/80 text-white rounded-md hover:bg-[#2c4c3b] transition-all duration-300 shadow-lg backdrop-blur-sm hover:scale-105 hover:shadow-xl cursor-pointer"
           >
             <BookOpen className="mr-2 h-5 w-5" />
             <span>Explore All Books by Gary Paulsen</span>
-          </a>
+          </button>
         </div>
       </div>
     </section>

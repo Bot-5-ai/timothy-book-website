@@ -15,25 +15,29 @@ const HatchetResources: React.FC = () => {
     {
       title: "Scholastic Author Profile",
       description: "A comprehensive profile of Gary Paulsen featuring his books, writing process, and advice for young writers.",
-      url: "https://www.scholastic.com/teachers/authors-and-books/author-studies/author-profile-gary-paulsen/",
+      url: "https://www.scholastic.com/teachers/authors-and-books/author-studies/author-profiles/gary-paulsen/",
       icon: <BookOpen className="h-5 w-5 text-[#a3c9a8]" />,
       category: "Author Study"
     },
     {
       title: "Amazon - Hatchet Books",
       description: "Get your own physical copy of Hatchet and other awesome Gary Paulsen books.",
-      url: "https://www.amazon.com/s?k=hatchet+gary+paulsen&ref=nb_sb_noss_1",
+      url: "https://www.amazon.com/s?k=hatchet+gary+paulsen",
       icon: <Book className="h-5 w-5 text-[#e9b872]" />,
       category: "Purchase"
     },
     {
       title: "Audible - Hatchet Audiobooks",
       description: "Listen to the audiobook version of Hatchet and other survival stories while you're doing other stuff.",
-      url: "https://www.audible.com/search?keywords=hatchet+gary+paulsen&ref=a_search_t1_header_search",
+      url: "https://www.audible.com/search?keywords=hatchet+gary+paulsen",
       icon: <Bookmark className="h-5 w-5 text-[#e9b872]" />,
       category: "Audiobook"
     }
   ];
+
+  const handleLinkClick = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section id="resources" className="py-20 px-4 bg-[url('https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=60')] bg-cover bg-fixed relative">
@@ -72,15 +76,13 @@ const HatchetResources: React.FC = () => {
                   {resource.description}
                 </p>
                 
-                <a 
-                  href={resource.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-[#2c4c3b] text-white rounded-md hover:bg-[#3a5d4a] transition-colors group"
+                <button 
+                  onClick={() => handleLinkClick(resource.url)}
+                  className="inline-flex items-center px-4 py-2 bg-[#2c4c3b] text-white rounded-md hover:bg-[#3a5d4a] transition-colors group cursor-pointer"
                 >
                   <span>Check It Out</span>
                   <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
               </div>
             </div>
           ))}
@@ -110,25 +112,21 @@ const HatchetResources: React.FC = () => {
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <a 
-                  href="https://www.amazon.com/s?k=hatchet+gary+paulsen&ref=nb_sb_noss_1" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-5 py-3 bg-[#e9b872] text-[#0f1b15] rounded-md font-medium hover:bg-[#d4a255] transition-colors shadow-lg flex items-center"
+                <button 
+                  onClick={() => handleLinkClick("https://www.amazon.com/s?k=hatchet+gary+paulsen")}
+                  className="px-5 py-3 bg-[#e9b872] text-[#0f1b15] rounded-md font-medium hover:bg-[#d4a255] transition-colors shadow-lg flex items-center cursor-pointer"
                 >
                   <Book className="mr-2 h-5 w-5" />
                   Buy Physical Book
-                </a>
+                </button>
                 
-                <a 
-                  href="https://www.audible.com/search?keywords=hatchet+gary+paulsen&ref=a_search_t1_header_search" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-5 py-3 border-2 border-[#a3c9a8] text-[#a3c9a8] rounded-md font-medium hover:bg-[#a3c9a8]/20 transition-colors shadow-lg flex items-center"
+                <button 
+                  onClick={() => handleLinkClick("https://www.audible.com/search?keywords=hatchet+gary+paulsen")}
+                  className="px-5 py-3 border-2 border-[#a3c9a8] text-[#a3c9a8] rounded-md font-medium hover:bg-[#a3c9a8]/20 transition-colors shadow-lg flex items-center cursor-pointer"
                 >
                   <Bookmark className="mr-2 h-5 w-5" />
                   Get Audiobook
-                </a>
+                </button>
               </div>
             </div>
           </div>

@@ -32,6 +32,10 @@ const MoreByBarrat: React.FC = () => {
     }
   ];
 
+  const handleLinkClick = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section className="py-16 bg-gradient-to-b from-gray-900 to-black">
       <div className="container mx-auto px-6">
@@ -53,18 +57,16 @@ const MoreByBarrat: React.FC = () => {
               data-aos="fade-up"
             >
               <div className="aspect-[2/3] overflow-hidden md:aspect-[3/4] lg:aspect-[2/3]">
-                <a 
-                  href={book.amazonLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full h-full"
+                <div 
+                  onClick={() => handleLinkClick(book.amazonLink)}
+                  className="block w-full h-full cursor-pointer"
                 >
                   <img 
                     src={book.coverImage} 
                     alt={`${book.title} book cover`} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                </a>
+                </div>
                 <div className="absolute top-2 right-2 bg-cyan-400/80 text-black px-2 py-1 rounded text-xs font-bold transition-all duration-300 group-hover:bg-cyan-400 group-hover:scale-110">
                   {book.releaseYear}
                 </div>
@@ -79,15 +81,13 @@ const MoreByBarrat: React.FC = () => {
                   {book.description}
                 </p>
                 
-                <a 
-                  href={book.amazonLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-400 hover:text-cyan-400 transition-all duration-300 text-sm font-medium hover:translate-x-2"
+                <button 
+                  onClick={() => handleLinkClick(book.amazonLink)}
+                  className="inline-flex items-center text-blue-400 hover:text-cyan-400 transition-all duration-300 text-sm font-medium hover:translate-x-2 cursor-pointer"
                 >
                   View on Amazon
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </button>
               </div>
               
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 pointer-events-none transition-opacity duration-300 group-hover:opacity-40"></div>
@@ -96,15 +96,13 @@ const MoreByBarrat: React.FC = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <a 
-            href="https://www.goodreads.com/author/show/6457951.James_Barrat"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 backdrop-blur-sm text-white rounded-md hover:from-blue-600/50 hover:to-cyan-600/50 transition-all duration-300 shadow-lg border border-blue-500/20 hover:scale-105 hover:shadow-xl"
+          <button 
+            onClick={() => handleLinkClick("https://www.goodreads.com/author/show/6457951.James_Barrat")}
+            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 backdrop-blur-sm text-white rounded-md hover:from-blue-600/50 hover:to-cyan-600/50 transition-all duration-300 shadow-lg border border-blue-500/20 hover:scale-105 hover:shadow-xl cursor-pointer"
           >
             <BookOpen className="mr-2 h-5 w-5" />
             <span>Explore All Books by James Barrat</span>
-          </a>
+          </button>
         </div>
       </div>
     </section>
