@@ -20,7 +20,7 @@ const MoreByBarrat: React.FC = () => {
       description: "A comprehensive examination of suicide prevention, exploring the psychological, social, and medical factors that contribute to suicidal behavior and evidence-based approaches to intervention.",
       coverImage: "https://dynamic.indigoimages.ca/v1/books/books/059353915X/1.jpg",
       releaseYear: "2014",
-      amazonLink: "https://www.amazon.com/Facing-Suicide-Understanding-People-Themselves/dp/0593539155"
+      amazonLink: "https://www.amazon.com/dp/059353915X/?bestFormat=true&k=facing%20suicide&ref_=nb_sb_ss_w_scx-ent-pd-bk-d_de_k0_1_14&crid=1X1F67AXFBXQF&sprefix=facing%20suicide"
     },
     {
       id: "intelligence-explosion",
@@ -97,7 +97,7 @@ const MoreByBarrat: React.FC = () => {
         
         <div className="mt-12 text-center">
           <button 
-            onClick={() => handleLinkClick("https://www.goodreads.com/author/show/6457951.James_Barrat")}
+            onClick={() => handleLinkClick("https://www.goodreads.com/search?q=james+barrat&qid=")}
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 backdrop-blur-sm text-white rounded-md hover:from-blue-600/50 hover:to-cyan-600/50 transition-all duration-300 shadow-lg border border-blue-500/20 hover:scale-105 hover:shadow-xl cursor-pointer"
           >
             <BookOpen className="mr-2 h-5 w-5" />

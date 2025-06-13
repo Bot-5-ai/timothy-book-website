@@ -338,28 +338,28 @@ const AuthorBio = () => {
                       </div>
                     </a>
                     
-                    <a href="https://www.alignmentforum.org/" target="_blank" rel="noopener noreferrer" 
+                    <a href="https://engage.checkpoint.com/dg-ai-security-report?utm_campaign=dg_wr_25q2_ww_all-ai-security-report-2025-page-lg_en-gsem&utm_source=google-dg&utm_medium=cpc&utm_term=artificial%20intelligence%20and%20security%20threats&utm_content=aithreat&gad_source=1&gad_campaignid=22516808791&gbraid=0AAAAADIBfpdqV_ipW1YM_cTQbA-znl5dL&gclid=Cj0KCQjwmK_CBhCEARIsAMKwcD7CoXJ2OuqQrp5w3_gwVTWX7v6GSrBlMNB9cw-XWl0__gRBzMFKME0aAmX2EALw_wcB" target="_blank" rel="noopener noreferrer" 
                        className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-800/30 transition-all duration-300 transform hover:translate-x-1 group">
                       <div className="flex items-start">
                         <div className="mr-4 flex-shrink-0 w-12 text-cyan-400 group-hover:text-cyan-300 transition-colors">
                           <Globe className="h-6 w-6 transform group-hover:rotate-12 transition-transform duration-300" />
                         </div>
                         <div>
-                          <h5 className="text-white font-medium group-hover:text-cyan-200 transition-colors">AI Alignment Forum</h5>
-                          <p className="text-sm text-gray-400">Discussion on AI safety research</p>
+                          <h5 className="text-white font-medium group-hover:text-cyan-200 transition-colors">AI Security Report</h5>
+                          <p className="text-sm text-gray-400">Comprehensive report on AI security threats and challenges</p>
                         </div>
                       </div>
                     </a>
                     
-                    <a href="https://www.effectivealtruism.org/articles/cause-profile-artificial-intelligence-alignment" target="_blank" rel="noopener noreferrer" 
+                    <a href="https://safe.ai/ai-risk" target="_blank" rel="noopener noreferrer" 
                        className="block bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 hover:bg-blue-800/30 transition-all duration-300 transform hover:translate-x-1 group">
                       <div className="flex items-start">
                         <div className="mr-4 flex-shrink-0 w-12 text-cyan-400 group-hover:text-cyan-300 transition-colors">
                           <Globe className="h-6 w-6 transform group-hover:rotate-12 transition-transform duration-300" />
                         </div>
                         <div>
-                          <h5 className="text-white font-medium group-hover:text-cyan-200 transition-colors">Effective Altruism</h5>
-                          <p className="text-sm text-gray-400">Cause Profile: Artificial Intelligence Alignment</p>
+                          <h5 className="text-white font-medium group-hover:text-cyan-200 transition-colors">Safe AI</h5>
+                          <p className="text-sm text-gray-400">Understanding AI Risk and Safety Measures</p>
                         </div>
                       </div>
                     </a>

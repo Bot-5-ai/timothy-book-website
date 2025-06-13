@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -9,6 +10,7 @@ import DangerSection from '@/components/DangerSection';
 import AIRiskVisualization from '@/components/AIRiskVisualization';
 import Analysis from '@/components/Analysis';
 import AIChatbot from '@/components/AIChatbot';
+import AIVideoGallery from '@/components/AIVideoGallery';
 import Footer from '@/components/Footer';
 
 const OurFinalInvention = () => {
@@ -117,6 +119,9 @@ const OurFinalInvention = () => {
       </div>
       <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
         <Analysis />
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
+        <AIVideoGallery />
       </div>
       <AIChatbot />
       <Footer />
