@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -117,11 +116,11 @@ const OurFinalInvention = () => {
       <div data-aos="fade-left" data-aos-duration="1200" data-aos-delay="600">
         <AIRiskVisualization />
       </div>
-      <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
-        <Analysis />
-      </div>
-      <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
+      <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="700">
         <AIVideoGallery />
+      </div>
+      <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">
+        <Analysis />
       </div>
       <AIChatbot />
       <Footer />
