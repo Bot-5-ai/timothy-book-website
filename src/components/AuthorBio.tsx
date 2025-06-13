@@ -49,24 +49,24 @@ const AuthorBio = () => {
   // Enhanced interview data with working URLs
   const interviews = [
     {
-      title: "James Barrat on AI Risk",
-      source: "Future of Humanity Institute",
-      description: "A detailed discussion about artificial intelligence safety and existential risk research.",
-      url: "https://www.fhi.ox.ac.uk/",
+      title: "Interview with Our Final Invention Author James Barrat",
+      source: "Vocal Media - Futurism",
+      description: "A comprehensive interview discussing the implications of artificial intelligence and the urgent need for AI safety research.",
+      url: "https://vocal.media/futurism/interview-with-our-final-invention-author-james-barrat",
       quote: "Once AI can improve itself, all bets are off. We don't know how fast that system would improve because it would be improving its own ability to improve."
     },
     {
-      title: "Our Final Invention Discussion",
-      source: "AI Safety Research",
-      description: "An extensive conversation about AI alignment and the challenges of controlling superintelligent systems.",
-      url: "https://www.alignmentforum.org/",
+      title: "James Barrat: Our Final Invention - The Risks of Artificial Intelligence",
+      source: "SciFuture",
+      description: "An in-depth discussion about the potential risks of artificial intelligence development and the challenges of controlling superintelligent systems.",
+      url: "https://www.scifuture.org/james-barrat-our-final-invention-the-risks-of-artificial-intelligence/",
       quote: "The first team to build an AGI system might not be the most responsible team, especially if there's a competitive race to get there first."
     },
     {
-      title: "AI and Existential Risk",
-      source: "Machine Intelligence Research Institute",
-      description: "Exploring the potential risks and benefits of advanced artificial intelligence development.",
-      url: "https://intelligence.org/",
+      title: "Hacking the Self Podcast with James Barrat",
+      source: "Sahaja Soma",
+      description: "A podcast interview exploring AI safety, consciousness, and the future of human-AI interaction.",
+      url: "https://www.sahajasoma.com/hacking-the-self-podcast/james-barrat",
       quote: "Deep learning has done amazing things, but we still haven't solved the control problem or the value alignment problem."
     }
   ];
