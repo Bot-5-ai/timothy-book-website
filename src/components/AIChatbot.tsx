@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import { useToast } from "@/hooks/use-toast";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { generateGeminiResponse } from '@/utils/geminiAPI';
+// Replace Gemini import with fetch from edge function
+// import { generateGeminiResponse } from '@/utils/geminiAPI';
 
 type MessageType = {
   content: string;
@@ -92,36 +93,58 @@ const AIChatbot = () => {
     }
   };
   
+  // Helper: call the Edge Function to get OpenAI response
+  const generateOpenAIResponse = async (userMessage: string): Promise<string> => {
+    try {
+      const res = await fetch("https://rgzpyzxulmrepehmyoac.supabase.co/functions/v1/openai-chat", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt: userMessage }),
+      });
+      if (!res.ok) throw new Error(`Edge Function error: ${res.status}`);
+      const data = await res.json();
+      return data.response || "Sorry, I couldn't generate an answer right now.";
+    } catch (error) {
+      console.error("OpenAI edge function call failed", error);
+      return "I'm sorry, I'm having trouble connecting right now. Please try again in a moment.";
+    }
+  };
+
   const handleSendMessage = async () => {
-    if (message.trim() === '') return;
-    
-    // Add user message to chat
+    if (message.trim() === "") return;
+
     const userMessage = {
       content: message,
       isUser: true,
       timestamp: new Date(),
     };
-    
     setMessages((prev) => [...prev, userMessage]);
     const currentMessage = message;
-    setMessage('');
+    setMessage("");
     setIsTyping(true);
-    
+
     try {
-      // Use Gemini API for smarter responses
-      const botResponse = await generateGeminiResponse(currentMessage);
-      setMessages((prev) => [...prev, {
-        content: botResponse,
-        isUser: false,
-        timestamp: new Date(),
-      }]);
+      // Use Edge Function OpenAI for smarter responses
+      const botResponse = await generateOpenAIResponse(currentMessage);
+      setMessages((prev) => [
+        ...prev,
+        {
+          content: botResponse,
+          isUser: false,
+          timestamp: new Date(),
+        },
+      ]);
     } catch (error) {
-      console.error('Error generating response:', error);
-      setMessages((prev) => [...prev, {
-        content: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment.",
-        isUser: false,
-        timestamp: new Date(),
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          content: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment.",
+          isUser: false,
+          timestamp: new Date(),
+        },
+      ]);
     } finally {
       setIsTyping(false);
     }
