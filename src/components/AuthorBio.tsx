@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Book, ExternalLink, Award, Share2, User, Twitter, Linkedin, Globe, File, Mail, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -154,17 +155,17 @@ const AuthorBio = () => {
                 <p className="text-cyan-300 mb-4 animate__animated animate__fadeIn animate__delay-1s">Documentary Filmmaker & Author</p>
                 
                 <div className="flex justify-center space-x-3 animate__animated animate__fadeIn animate__delay-2s">
-                  <a href="https://twitter.com/jamesbarrat" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://x.com/jrbarrat" target="_blank" rel="noopener noreferrer" 
                     className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors transform hover:scale-110 hover:rotate-3 duration-300">
                     <Twitter className="h-5 w-5" />
                     <span className="sr-only">Twitter</span>
                   </a>
-                  <a href="https://www.linkedin.com/in/james-barrat-b5a1234/" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://www.linkedin.com/in/james-barrat-01a30a56" target="_blank" rel="noopener noreferrer" 
                     className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors transform hover:scale-110 hover:rotate-3 duration-300">
                     <Linkedin className="h-5 w-5" />
                     <span className="sr-only">LinkedIn</span>
                   </a>
-                  <a href="https://www.goodreads.com/author/show/6457951.James_Barrat" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://www.jamesbarrat.com/author" target="_blank" rel="noopener noreferrer" 
                     className="p-2 rounded-full bg-blue-600/20 text-blue-300 hover:bg-blue-600/40 transition-colors transform hover:scale-110 hover:rotate-3 duration-300">
                     <Globe className="h-5 w-5" />
                     <span className="sr-only">Website</span>
