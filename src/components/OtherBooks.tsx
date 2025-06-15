@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, ArrowRight } from 'lucide-react';
@@ -28,7 +27,7 @@ const OtherBooks: React.FC = () => {
       description: "Brian, now sixteen years old, finds it difficult to adjust to normal life after his wilderness experiences and decides to return to the woods to find peace again.",
       coverImage: "https://m.media-amazon.com/images/I/815tMobAd+L.jpg",
       releaseYear: "1999",
-      amazonLink: "https://www.amazon.com/Brians-Return-Gary-Paulsen/dp/0307929590"
+      amazonLink: "https://www.amazon.com/Brians-Return-Gary-Paulsen/dp/1613834543/ref=tmm_hrd_swatch_0?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.5G-N7DS6T1q2je_P6oGP1wT-lqO3DTfWRIiLa99nkiuTi24r49kEwZwKW2iUkhsWdZ0qctOEaOg2GnqX4fHx9eGZ7o4aubNsIhIcSpG4yERf-yFm28HgeiMrqOaruWRHOgxknT6-5WZbhGHOHc69vhn-PA4FI-zjO-VA6g2UN7eweAYwmTXesPnCbBUShHC1k3bce0f9M9HFXEdyJJfjrzhzP5AG6WZ44DZAhxMRA5c.vKuDktsjcKEKVLq6S2qpPoxM_HfyWbzVhpv4o0D6TPY&qid=1750023492&sr=1-3"
     },
     {
       id: "brians-hunt",

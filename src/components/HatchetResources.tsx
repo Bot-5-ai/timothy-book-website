@@ -8,30 +8,30 @@ const HatchetResources: React.FC = () => {
     {
       title: "Gary Paulsen Biography",
       description: "Learn about Gary Paulsen's life, his writing career, and the real experiences that inspired his survival stories.",
-      url: "https://www.britannica.com/biography/Gary-Paulsen",
+      url: "https://kids.britannica.com/students/article/Gary-Paulsen/312922",
       icon: <LinkIcon className="h-5 w-5 text-[#a3c9a8]" />,
       category: "Biography"
     },
     {
-      title: "Scholastic Author Profile",
-      description: "A comprehensive profile of Gary Paulsen featuring his books, writing process, and advice for young writers.",
-      url: "https://www.scholastic.com/teachers/authors-and-books/author-studies/author-profiles/gary-paulsen/",
+      title: "Hatchet Summary & Analysis",
+      description: "A comprehensive analysis of Hatchet featuring themes, characters, and detailed study guide materials.",
+      url: "https://study.com/academy/lesson/hatchet-summary-analysis.html",
       icon: <BookOpen className="h-5 w-5 text-[#a3c9a8]" />,
-      category: "Author Study"
+      category: "Study Guide"
     },
     {
-      title: "Amazon - Hatchet Books",
-      description: "Get your own physical copy of Hatchet and other awesome Gary Paulsen books.",
-      url: "https://www.amazon.com/s?k=hatchet+gary+paulsen",
+      title: "Hatchet SuperSummary",
+      description: "Get detailed chapter summaries, themes, and analysis to help you understand every part of the book.",
+      url: "https://www.supersummary.com/hatchet/summary/",
       icon: <Book className="h-5 w-5 text-[#e9b872]" />,
-      category: "Purchase"
+      category: "Summary"
     },
     {
-      title: "Audible - Hatchet Audiobooks",
-      description: "Listen to the audiobook version of Hatchet and other survival stories while you're doing other stuff.",
-      url: "https://www.audible.com/search?keywords=hatchet+gary+paulsen",
+      title: "Q&A with Gary Paulsen",
+      description: "An exclusive interview where Gary Paulsen talks about his writing process and what inspired Hatchet.",
+      url: "https://www.publishersweekly.com/pw/by-topic/childrens/childrens-authors/article/85136-q-a-with-gary-paulsen.html",
       icon: <Bookmark className="h-5 w-5 text-[#e9b872]" />,
-      category: "Audiobook"
+      category: "Interview"
     }
   ];
 
@@ -121,7 +121,7 @@ const HatchetResources: React.FC = () => {
                 </button>
                 
                 <button 
-                  onClick={() => handleLinkClick("https://www.audible.com/search?keywords=hatchet+gary+paulsen")}
+                  onClick={() => handleLinkClick("https://www.audible.ca/search?keywords=hatchet&k=hatchet&crid=c172bb5237894f389f63d62a44a879f0&sprefix=hatchet%2Cna-audible-ca%2C233&i=na-audible-ca&url=search-alias%3Dna-audible-ca&ref=nb_sb_noss_1")}
                   className="px-5 py-3 border-2 border-[#a3c9a8] text-[#a3c9a8] rounded-md font-medium hover:bg-[#a3c9a8]/20 transition-colors shadow-lg flex items-center cursor-pointer"
                 >
                   <Bookmark className="mr-2 h-5 w-5" />
