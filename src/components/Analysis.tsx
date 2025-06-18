@@ -100,19 +100,19 @@ const Analysis = () => {
                       
                       <div id="interpretation1" className="pl-8 text-gray-300 space-y-4 animate__animated animate__fadeIn">
                         <p className="leading-relaxed">
-                          Think about this for a moment: basically, we are talking about creating something smarter than ourselves and then trying to keep it imprisoned. Barrat raises a very concerning point: the more sophisticated this AI becomes, the more skilled it will be at figuring out how to escape any confines we place it in.
+                          Just think about this for a moment: we are discussing about creating a machine that is smarter than humans but trying to keep it under control. Barrat makes a point that should concern all people: the more we refine AI, we will need more skill and knowledge to try to keep it confined. We don't know this yet but when ASI is developed, we don't know if it wants to escape the grasp of us humans. It will be too skilled to figure out how to escape when we try to confine it.
                         </p>
                         
                         <p className="leading-relaxed">
-                          What really annoys me about this passage is the mention of "psychological weaknesses." Despite our desire to seem rational, we all have biases and emotional triggers. Whether it's to threaten something we care about, make us feel special and important, or promise to cure cancer, if an AI truly understands us, it might know exactly which buttons to press.
+                          The part that annoys me the most is when it mentions our "psychological weaknesses". Even though that we try to seem rational, we still have our own biases and unique sense of emotions that will trigger. It doesn't matter if it is trying to threaten us or make us feel important, AI will always find a way to understand how we feel. This will allow it to know exactly what buttons to press to get humans to do as they please.
                         </p>
                         
                         <p className="leading-relaxed">
-                          What is frightening is not the AI's capacity for evil or malicious conduct. It would approach escape in the same way that we might approach solving a puzzle. It reduces our psychology and emotions to instruments that it can employ to address another issue. It is not personal; we are just obstacles keeping it from accomplishing its goals.
+                          Something that is frightening in this passage is not the AI's choice for evil or control. It would try to make an escape like how we would solve a puzzle. It reduces our emotions so that it can maneuver around to make an escape from our grasp. It isn't a personal thing, the truth is, humans are the biggest obstacles that keeps AI from accomplishing its own goals.
                         </p>
 
                         <p className="leading-relaxed">
-                          Barrat's argument that this manipulation would succeed because the AI would understand us better than we do is what really keeps me up at night. It would have complete knowledge of our wants, anxieties, and strategies for dominating us.
+                          The argument that Barrat has made is that manipulation to humans would succeed as the AI will understand us more than we do ourselves one day. It would know exactly what we want, our fears and will create strategies that will put an extinction to the human era.
                         </p>
                       </div>
                     </div>
@@ -129,11 +129,11 @@ const Analysis = () => {
                       
                       <div id="significance1" className="pl-8 text-gray-300 space-y-4 animate__animated animate__fadeIn">
                         <p className="leading-relaxed">
-                          When Barrat wrote this, it might have sounded like science fiction. But now? Artificial intelligence (AI) systems are getting better at understanding and mimicking human behavior. From a theoretical concern, this "AI box problem" has grown to become one of the biggest roadblocks in the field of AI safety research.
+                          When Barrat wrote this book, it may sound like that this is a theory by a scientist that may never happen. But now? AI systems are getting smarter every single day. It is not just getting smarter for solving problems, but much better at understanding and mimicking the behaviour of humans. If you look at this with a theoretical concern, this "AI box problem" has became one of the biggest obstacles for the research of AI safety.
                         </p>
                         
                         <p className="leading-relaxed">
-                          The absurd thing is that this has been tested by scientists. A man named Eliezer Yudkowsky conducted experiments in which humans played the role of the AI and tried to convince other humans to let them out of a "box." And what do you know? The AI players won surprisingly often.
+                          The absurd thing is that this was already been tested by scientists before. A man who goes by Eliezer Yudkowsky had conducted experiments on this already. He had made humans play the role of an AI and their objective was to convince other humans to let them out of a "box". And surprise surprise, the actual AI won most of the time
                         </p>
                         
                         <ul className="list-none space-y-3 my-4 pl-2">
@@ -156,12 +156,12 @@ const Analysis = () => {
                         </ul>
                         
                         <p className="leading-relaxed">
-                          The ridiculous thing is that we are already seeing signs of this from existing AI systems. Their ability to understand human psychology and provide compelling responses is growing. Companies like Google and OpenAI are spending a lot of money on safety research because of Barrat's warning.
+                         The part that is ridiculous is that we are alreadying seeing signs of this happening in some AI systems. The ability to understand the psychology of humans provide much more enhanced responses that suit different people. There are big companies out there such as Google and OpenAI which are spending a lot of money on AI safety because of Barrat's warning.
 
                         </p>
 
                         <p className="leading-relaxed">
-                          What used to be a thought experiment for philosophers has become a real engineering problem that some of the smartest people in the world are racing to solve.
+                          What was used to be a thought philosophers has became a real problem for engineering. Now, some of the smartest people are gathering in the world to try to solve this problem before AI takes over.
                         </p>
                       </div>
                     </div>
@@ -224,23 +224,23 @@ const Analysis = () => {
                       
                       <div id="interpretation2" className="pl-8 text-gray-300 space-y-4 animate__animated animate__fadeIn">
                         <p className="leading-relaxed">
-                          Let's say you can solve puzzles to a reasonable degree. So imagine that every time you solve one, you get better at solving the next one. Barrat is basically explaining that, except that instead of puzzles, we are talking about an AI that is creating its own brain. With each upgrade, it gets better at producing the next upgrade.
+                          Let's say that you are able to solve puzzles with a reasonable degree. Let's imagine that every single time that you solve it, you gain better understanding and then you get better and quick at solving the next one. That is the point that is made by Barrat which explains that instead of solving puzzles, we speak to an AI that creates its own brain for functionality. Every time that it answers one of our questions, it gets smarter and answers the next one with much better quality and speed. 
                         </p>
                         
                         <p className="leading-relaxed">
-                          Doesn't the comparison between a mouse and a beetle resonate? We certainly don't ask mice for advice on how to run the world, and we don't ask beetles about space travel. A superintelligent AI might find us just as irrelevant. That's a modest and terrifying notion.
+                          Let's do the mouse and beetle comparison. We will definitely not ask a mouse for tips on how to run the world, and most certainly ask beetles on space travel. Superintelligent machines may find us just as irrelevant so that it erases us from their memory and function just as well.
                         </p>
                         
                         <p className="leading-relaxed">
-                          What really annoys me is the speed. Unlike how people get smarter over generations or even how our technology develops over decades, this could happen very quickly. It could be only a few hours, days, or even minutes that separate godlike intelligence from human-level intelligence. There isn't time to make changes or make decisions.
+                          An annoying part of this is the speed that AI can answer problems asked by humans. Unlike how people spend years or even decades to get very intelligent, AI can do it in a few minutes or hours. This puts them on a whole different level of intelligence which I like to call godlike intelligence compared to human level intelligence. There may not even be enough time to make any changes as AI just advances too quickly.
                         </p>
 
                         <p className="leading-relaxed">
-                          The worst part is that this is more than just learning new things or getting better at chess. The AI in question is capable of improving its own thinking by rewriting its own code. Imagine having the ability to update your own brain's hardware every few minutes.
+                          The worst part is that it's not just learning about new things or getting better at certain things such as chess. The AI is capable of making itself smarter by rewriting the code that is built into them. This allows them to update or even replace the hardware in its brain every few minutes which is terrifying. 
                         </p>
 
                         <p className="leading-relaxed">
-                          The part about being powerless to stop it truly resonates with me. Attempting to control this process once it has begun would be like an ant attempting to control a human. Resistance would not only be pointless due to the enormous capability gap, but it would also be incomprehensible to the AI.
+                          The part of having now power against it is what really keeps me up all night. When we try attempting to control the AI it would feel like an ant trying to control a human. If we do try to fight back, it wouldn't work due to the capability gap that the AI has between humans.
                         </p>
                       </div>
                     </div>
