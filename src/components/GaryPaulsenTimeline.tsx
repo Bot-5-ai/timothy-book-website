@@ -22,77 +22,40 @@ const GaryPaulsenTimeline: React.FC = () => {
   ];
 
   return (
-    <>
-      <style>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+    <div className="my-8 bg-[#0a1510] border border-[#2c4c3b] rounded-lg p-4 shadow-lg">
+      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+        <CollapsibleTrigger className="w-full flex items-center justify-between p-2 text-[#e9b872] font-bold text-xl hover:bg-[#1c2e25] rounded-md transition-colors">
+          <div className="flex items-center space-x-2">
+            <Calendar className="h-5 w-5" />
+            <span>Gary Paulsen's Timeline</span>
+          </div>
+          {isOpen ? (
+            <ChevronUp className="h-5 w-5" />
+          ) : (
+            <ChevronDown className="h-5 w-5" />
+          )}
+        </CollapsibleTrigger>
         
-        .timeline-content {
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .timeline-content.open {
-          animation: fade-in 0.4s ease-out forwards;
-        }
-        
-        .timeline-item {
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .timeline-item.animate-in {
-          animation: fade-in 0.4s ease-out forwards;
-        }
-      `}</style>
-      
-      <div className="my-8 bg-[#0a1510] border border-[#2c4c3b] rounded-lg p-4 shadow-lg">
-        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-          <CollapsibleTrigger className="w-full flex items-center justify-between p-2 text-[#e9b872] font-bold text-xl hover:bg-[#1c2e25] rounded-md transition-all duration-300 ease-in-out">
-            <div className="flex items-center space-x-2">
-              <Calendar className="h-5 w-5" />
-              <span>Gary Paulsen's Timeline</span>
-            </div>
-            <div className="transform transition-transform duration-300 ease-in-out">
-              {isOpen ? (
-                <ChevronUp className="h-5 w-5" />
-              ) : (
-                <ChevronDown className="h-5 w-5" />
-              )}
-            </div>
-          </CollapsibleTrigger>
-          
-          <CollapsibleContent className="mt-4 overflow-hidden transition-all duration-500 ease-in-out data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-            <div className={`space-y-4 pl-4 timeline-content ${isOpen ? 'open' : ''}`}>
-              {timelineEvents.map((event, index) => (
-                <div 
-                  key={index} 
-                  className={`relative pl-8 pb-4 border-l-2 border-[#2c4c3b] last:border-0 last:pb-0 timeline-item transform transition-all duration-300 ease-in-out hover:translate-x-1 ${isOpen ? 'animate-in' : ''}`}
-                  style={{ 
-                    animationDelay: isOpen ? `${300 + (index * 100)}ms` : '0ms',
-                    opacity: isOpen ? '1' : '0'
-                  }}
-                >
-                  <div className="absolute -left-[5px] mt-1.5 transition-all duration-300 ease-in-out hover:scale-110">
-                    <div className="h-3 w-3 rounded-full bg-[#e9b872] shadow-lg"></div>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[#a3c9a8] font-bold transition-colors duration-200 ease-in-out hover:text-[#c5e8ca]">{event.year}</span>
-                    <span className="text-gray-300 transition-colors duration-200 ease-in-out hover:text-white">{event.event}</span>
-                  </div>
+        <CollapsibleContent className="mt-4 overflow-hidden">
+          <div className="space-y-4 pl-4">
+            {timelineEvents.map((event, index) => (
+              <div 
+                key={index} 
+                className="relative pl-8 pb-4 border-l-2 border-[#2c4c3b] last:border-0 last:pb-0"
+              >
+                <div className="absolute -left-[5px] mt-1.5">
+                  <div className="h-3 w-3 rounded-full bg-[#e9b872]"></div>
                 </div>
-              ))}
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
-      </div>
-    </>
+                <div className="flex flex-col">
+                  <span className="text-[#a3c9a8] font-bold">{event.year}</span>
+                  <span className="text-gray-300">{event.event}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
+    </div>
   );
 };
 
