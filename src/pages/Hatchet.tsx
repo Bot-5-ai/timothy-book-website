@@ -1,7 +1,5 @@
+
 import React, { useState } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import { Book, Calendar, Flame, GraduationCap, Home, Lightbulb, List, MapPin, MessageSquare, Search, Send, User, Youtube } from 'lucide-react';
 import HatchetInteractiveMap from '@/components/HatchetInteractiveMap';
 import GaryPaulsenTimeline from '@/components/GaryPaulsenTimeline';
@@ -23,7 +21,7 @@ export default function Hatchet() {
       <nav className="sticky top-0 z-50 bg-[#0a1510]/90 backdrop-blur-sm border-b border-[#2c4c3b]">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Image src="/favicon.ico" alt="Hatchet Icon" width={32} height={32} className="rounded-full" />
+            <img src="/favicon.ico" alt="Hatchet Icon" width={32} height={32} className="rounded-full" />
             <span className="text-[#e9b872] font-bold text-lg">Hatchet</span>
           </div>
           <div className="hidden md:flex space-x-6">
@@ -46,7 +44,7 @@ export default function Hatchet() {
         <div className="container mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-[#e9b872] mb-6">Hatchet</h1>
           <p className="text-xl text-gray-300 mb-8">A survival story by Gary Paulsen</p>
-          <Image
+          <img
             src="/lovable-uploads/e544979a-9661-451a-a949-e89981b94599.jpg"
             alt="Hatchet Book Cover"
             width={300}
