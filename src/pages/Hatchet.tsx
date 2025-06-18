@@ -322,23 +322,27 @@ const Hatchet = () => {
                 
                 <div className="space-y-4">
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Gary Paulsen was this amazing author who wrote tons of books for young people, especially stories about surviving in the wilderness. He had a really tough childhood and ended up running away from home when he was only 14.
+                    Gary Paulsen is an author that enjoys to write book that is targeted towards the younger audience. He enjoys to write books that are related to survival and the wilderness and relates his books to some of his experiences. He does this because he had a tough life when he was younger and then ended up running away from home at the age of 14.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    What makes his books so realistic is that he actually lived through a lot of crazy stuff himself. He worked on farms, drove trucks, sailed boats, and even raced in the Iditarod (that's the famous dog sled race in Alaska) twice! No wonder his survival stories feel so real.
+                    Besides that, he has done a lot of crazy things in his life such as working on farms, driving trucks, sailing boats and even raced in Iditarod which is a famous dog sled race in Alaska twice. He incorporates his life events with a strong use of imagery to give you the sense that his books are non fiction even though that they aren't.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Gary wrote over 200 books and sold more than 35 million copies. That's insane! He won a bunch of awards too, including three Newbery Honor Awards, which is like the biggest deal in kids' literature.
+                    Throughout his lifetime, Gary Paulsen had wrote over 200 books and together, they had sold over 35 million copies. On top of that, he had also won a lot of awards along the way which includes: three Newberry Honor Awards, ALA Best Book Awards, Parent's Choice Awards and many more. 
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Besides Hatchet, he wrote other awesome books like "Brian's Winter," "Dogsong," and "The Winter Room." Most of his stories are about kids who get thrown into tough situations and have to figure out how to survive using their own skills.
+                    Besides Hatchet, he had also written a lot of other popular books as well including: "Brian's Winter", "Dogsong" and "The Winter Room". All these books have a pretty similar situation which is younger kids who are thrown into tough situations in life then them trying to survive with their own skills.
                   </p>
                   
                   <p className="text-gray-300 transition-colors duration-200 hover:text-white">
-                    Gary had this simple way of writing that made you feel like you were right there with the characters. He always said "The most important thing you can do is read," and he really believed that books could change people's lives.
+                    Paulsen had this way to write where he attracts the attention of many people. His writing style makes you feel that you were in the book right beside the characters. He had said that "The most important thing you can do is read". He believes that reading is what can change people's lives so he came up with a writing style that attracts everyone's attention.
+                  </p>
+
+                  <p className="text-gray-300 transition-colors duration-200 hover:text-white">
+                    Paulsen had live a fulfilling and amazing life. He lived the way he always had wanted to and wrote amazing books to teach young children. He sadly passed away in 2021 and may he rest in peace.
                   </p>
                 </div>
                 
